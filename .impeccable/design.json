@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T15:14:57Z",
+  "title": "Design System: TI Ninja",
+  "extensions": {
+    "colorMeta": {
+      "lime": {
+        "role": "primary",
+        "displayName": "Tube Lime",
+        "canonical": "#92c417",
+        "tonalRamp": [
+          "oklch(15.0% 0.1880 126.2)",
+          "oklch(26.4% 0.1880 126.2)",
+          "oklch(37.9% 0.1880 126.2)",
+          "oklch(49.3% 0.1880 126.2)",
+          "oklch(60.7% 0.1880 126.2)",
+          "oklch(72.1% 0.1880 126.2)",
+          "oklch(83.6% 0.1880 126.2)",
+          "oklch(95.0% 0.1880 126.2)"
+        ]
+      },
+      "lime-deep": {
+        "role": "primary",
+        "displayName": "Pressed Lime",
+        "canonical": "#7ead12",
+        "tonalRamp": [
+          "oklch(15.0% 0.1729 126.9)",
+          "oklch(26.4% 0.1729 126.9)",
+          "oklch(37.9% 0.1729 126.9)",
+          "oklch(49.3% 0.1729 126.9)",
+          "oklch(60.7% 0.1729 126.9)",
+          "oklch(72.1% 0.1729 126.9)",
+          "oklch(83.6% 0.1729 126.9)",
+          "oklch(95.0% 0.1729 126.9)"
+        ]
+      },
+      "purple": {
+        "role": "secondary",
+        "displayName": "Painted Purple",
+        "canonical": "#44335c",
+        "tonalRamp": [
+          "oklch(15.0% 0.0716 302.0)",
+          "oklch(26.4% 0.0716 302.0)",
+          "oklch(37.9% 0.0716 302.0)",
+          "oklch(49.3% 0.0716 302.0)",
+          "oklch(60.7% 0.0716 302.0)",
+          "oklch(72.1% 0.0716 302.0)",
+          "oklch(83.6% 0.0716 302.0)",
+          "oklch(95.0% 0.0716 302.0)"
+        ]
+      },
+      "purple-deep": {
+        "role": "secondary",
+        "displayName": "Glass Purple",
+        "canonical": "#2a1e3c",
+        "tonalRamp": [
+          "oklch(15.0% 0.0562 301.1)",
+          "oklch(26.4% 0.0562 301.1)",
+          "oklch(37.9% 0.0562 301.1)",
+          "oklch(49.3% 0.0562 301.1)",
+          "oklch(60.7% 0.0562 301.1)",
+          "oklch(72.1% 0.0562 301.1)",
+          "oklch(83.6% 0.0562 301.1)",
+          "oklch(95.0% 0.0562 301.1)"
+        ]
+      },
+      "jamb": {
+        "role": "secondary",
+        "displayName": "Jamb",
+        "canonical": "#5c4a78",
+        "tonalRamp": [
+          "oklch(15.0% 0.0763 301.4)",
+          "oklch(26.4% 0.0763 301.4)",
+          "oklch(37.9% 0.0763 301.4)",
+          "oklch(49.3% 0.0763 301.4)",
+          "oklch(60.7% 0.0763 301.4)",
+          "oklch(72.1% 0.0763 301.4)",
+          "oklch(83.6% 0.0763 301.4)",
+          "oklch(95.0% 0.0763 301.4)"
+        ]
+      },
+      "custo": {
+        "role": "tertiary",
+        "displayName": "Cost Violet",
+        "canonical": "#6d5a8c",
+        "tonalRamp": [
+          "oklch(15.0% 0.0804 301.1)",
+          "oklch(26.4% 0.0804 301.1)",
+          "oklch(37.9% 0.0804 301.1)",
+          "oklch(49.3% 0.0804 301.1)",
+          "oklch(60.7% 0.0804 301.1)",
+          "oklch(72.1% 0.0804 301.1)",
+          "oklch(83.6% 0.0804 301.1)",
+          "oklch(95.0% 0.0804 301.1)"
+        ]
+      },
+      "imposto": {
+        "role": "tertiary",
+        "displayName": "Tax Straw",
+        "canonical": "#d5de78",
+        "tonalRamp": [
+          "oklch(15.0% 0.1267 113.2)",
+          "oklch(26.4% 0.1267 113.2)",
+          "oklch(37.9% 0.1267 113.2)",
+          "oklch(49.3% 0.1267 113.2)",
+          "oklch(60.7% 0.1267 113.2)",
+          "oklch(72.1% 0.1267 113.2)",
+          "oklch(83.6% 0.1267 113.2)",
+          "oklch(95.0% 0.1267 113.2)"
+        ]
+      },
+      "fault": {
+        "role": "tertiary",
+        "displayName": "Fault Clay",
+        "canonical": "#ffb1a3",
+        "tonalRamp": [
+          "oklch(15.0% 0.0942 30.5)",
+          "oklch(26.4% 0.0942 30.5)",
+          "oklch(37.9% 0.0942 30.5)",
+          "oklch(49.3% 0.0942 30.5)",
+          "oklch(60.7% 0.0942 30.5)",
+          "oklch(72.1% 0.0942 30.5)",
+          "oklch(83.6% 0.0942 30.5)",
+          "oklch(95.0% 0.0942 30.5)"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Night Floor",
+        "canonical": "#100e12",
+        "tonalRamp": [
+          "oklch(15.0% 0.0088 307.9)",
+          "oklch(26.4% 0.0088 307.9)",
+          "oklch(37.9% 0.0088 307.9)",
+          "oklch(49.3% 0.0088 307.9)",
+          "oklch(60.7% 0.0088 307.9)",
+          "oklch(72.1% 0.0088 307.9)",
+          "oklch(83.6% 0.0088 307.9)",
+          "oklch(95.0% 0.0088 307.9)"
+        ]
+      },
+      "night-2": {
+        "role": "neutral",
+        "displayName": "Counter Night",
+        "canonical": "#1a1520",
+        "tonalRamp": [
+          "oklch(15.0% 0.0226 305.2)",
+          "oklch(26.4% 0.0226 305.2)",
+          "oklch(37.9% 0.0226 305.2)",
+          "oklch(49.3% 0.0226 305.2)",
+          "oklch(60.7% 0.0226 305.2)",
+          "oklch(72.1% 0.0226 305.2)",
+          "oklch(83.6% 0.0226 305.2)",
+          "oklch(95.0% 0.0226 305.2)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Sign Paper",
+        "canonical": "#f3f0e8",
+        "tonalRamp": [
+          "oklch(15.0% 0.0111 89.7)",
+          "oklch(26.4% 0.0111 89.7)",
+          "oklch(37.9% 0.0111 89.7)",
+          "oklch(49.3% 0.0111 89.7)",
+          "oklch(60.7% 0.0111 89.7)",
+          "oklch(72.1% 0.0111 89.7)",
+          "oklch(83.6% 0.0111 89.7)",
+          "oklch(95.0% 0.0111 89.7)"
+        ]
+      },
+      "ink-dim": {
+        "role": "neutral",
+        "displayName": "Dim Lavender",
+        "canonical": "#d5cce2",
+        "tonalRamp": [
+          "oklch(15.0% 0.0316 304.2)",
+          "oklch(26.4% 0.0316 304.2)",
+          "oklch(37.9% 0.0316 304.2)",
+          "oklch(49.3% 0.0316 304.2)",
+          "oklch(60.7% 0.0316 304.2)",
+          "oklch(72.1% 0.0316 304.2)",
+          "oklch(83.6% 0.0316 304.2)",
+          "oklch(95.0% 0.0316 304.2)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero sign and the missing-page sign."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section signs."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Monthly ledger heading inside the result panel."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "Minimum hour price, in tube lime. The phone rail repeats it at 2.1rem."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs, help, and input values. Stopped at 68ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Plates at 1.4rem. Nav is 1.35rem and field names are 1.45rem, same face and tracking."
+      }
+    },
+    "shadows": [
+      {
+        "name": "fascia",
+        "value": "0 12px 28px rgba(6, 4, 8, 0.35)",
+        "purpose": "Ambient drop under the sticky painted board."
+      },
+      {
+        "name": "result",
+        "value": "0 18px 36px rgba(6, 4, 8, 0.38)",
+        "purpose": "Ambient drop under the price panel."
+      },
+      {
+        "name": "rail",
+        "value": "0 -14px 30px rgba(6, 4, 8, 0.45)",
+        "purpose": "Ambient lift under the phone rail while it is on screen."
+      }
+    ],
+    "motion": [
+      {
+        "name": "tube-draw",
+        "value": "900ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Fascia tube scales from the left once on load. Reduced motion skips it."
+      },
+      {
+        "name": "price-settle",
+        "value": "420ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Price figure rises from 0.4rem and a 5px blur when its text changes, not on first paint. Reduced motion skips it."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary plate",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Lime shop sign for the main action. Hover fills with pressed lime; the plate does not lift.",
+      "html": "<button class=\"ds-placa\" type=\"button\">Calcular minha hora</button>",
+      "css": ".ds-placa {\n  appearance: none;\n  border: 0;\n  cursor: pointer;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-height: 3.1rem;\n  padding: 0.55rem 1.15rem 0.45rem;\n  font-family: var(--display);\n  font-weight: 700;\n  font-size: 1.4rem;\n  letter-spacing: -0.03em;\n  line-height: 1;\n  border-radius: 2px;\n  background: var(--lime);\n  color: var(--night);\n  text-decoration: none;\n}\n.ds-placa:hover { background: var(--lime-deep); }\n.ds-placa:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }\n.ds-placa:disabled {\n  background: var(--purple-deep);\n  color: var(--ink-dim);\n  box-shadow: inset 0 0 0 1px var(--jamb);\n  cursor: not-allowed;\n}"
+    },
+    {
+      "name": "Glass plate",
+      "kind": "button",
+      "refersTo": "button-glass",
+      "description": "Transparent plate with a dim-lavender inset line. Hover fills with glass purple.",
+      "html": "<button class=\"ds-vidro\" type=\"button\">E-book gratuito</button>",
+      "css": ".ds-vidro {\n  appearance: none;\n  border: 0;\n  cursor: pointer;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-height: 3.1rem;\n  padding: 0.55rem 1.15rem 0.45rem;\n  font-family: var(--display);\n  font-weight: 700;\n  font-size: 1.4rem;\n  letter-spacing: -0.03em;\n  line-height: 1;\n  border-radius: 2px;\n  background: transparent;\n  color: var(--ink);\n  text-decoration: none;\n  box-shadow: inset 0 0 0 1px var(--ink-dim);\n}\n.ds-vidro:hover { background: var(--purple-deep); }\n.ds-vidro:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }\n.ds-vidro:disabled {\n  background: var(--purple-deep);\n  color: var(--ink-dim);\n  box-shadow: inset 0 0 0 1px var(--jamb);\n  cursor: not-allowed;\n}"
+    },
+    {
+      "name": "Disabled plate",
+      "kind": "button",
+      "refersTo": "button-disabled",
+      "description": "Glass-purple plate with dim text and a jamb inset, used until the account is valid.",
+      "html": "<button class=\"ds-off\" type=\"button\" disabled>Copiar resultado</button>",
+      "css": ".ds-off {\n  appearance: none;\n  border: 0;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-height: 3.1rem;\n  padding: 0.55rem 1.15rem 0.45rem;\n  font-family: var(--display);\n  font-weight: 700;\n  font-size: 1.4rem;\n  letter-spacing: -0.03em;\n  line-height: 1;\n  border-radius: 2px;\n  background: var(--purple-deep);\n  color: var(--ink-dim);\n  box-shadow: inset 0 0 0 1px var(--jamb);\n  cursor: not-allowed;\n}"
+    },
+    {
+      "name": "Account field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Counter-night well with a lime prefix. Invalid borders switch to fault clay.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-nome\">Custos fixos mensais <small>CF</small></span><span class=\"ds-controle\"><span class=\"ds-adorn\" aria-hidden=\"true\">R$</span><input inputmode=\"decimal\" value=\"3.000,00\" aria-describedby=\"ds-ajuda\"></span><span class=\"ds-ajuda\" id=\"ds-ajuda\">O que sai todo mês mesmo sem chamado.</span></label>",
+      "css": ".ds-field { display: grid; gap: 0.3rem; max-width: 28rem; }\n.ds-field-nome {\n  font-family: var(--display);\n  font-weight: 700;\n  font-size: 1.45rem;\n  letter-spacing: -0.03em;\n  color: var(--ink);\n}\n.ds-field-nome small {\n  font-family: var(--body);\n  font-weight: 400;\n  font-size: 0.95rem;\n  color: var(--ink-dim);\n  margin-left: 0.35rem;\n}\n.ds-controle { position: relative; }\n.ds-adorn {\n  position: absolute;\n  left: 0.85rem;\n  top: 50%;\n  transform: translateY(-50%);\n  color: var(--lime);\n  font-family: var(--display);\n  font-weight: 700;\n  font-size: 1.25rem;\n  pointer-events: none;\n}\n.ds-field input {\n  width: 100%;\n  min-height: 3.25rem;\n  padding: 0.65rem 0.9rem 0.55rem 3.1rem;\n  border: 1px solid var(--jamb);\n  border-radius: 2px;\n  background: var(--night-2);\n  color: var(--ink);\n  font-family: var(--body);\n  font-size: 1.2rem;\n  font-variant-numeric: tabular-nums;\n  caret-color: var(--lime);\n}\n.ds-field input:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }\n.ds-field input[aria-invalid=\"true\"] { border-color: var(--fault); }\n.ds-ajuda { color: var(--ink-dim); margin: 0; font-family: var(--body); font-size: 0.98rem; }"
+    },
+    {
+      "name": "Fascia",
+      "kind": "nav",
+      "refersTo": "fascia",
+      "description": "Sticky painted board with a lime tube that draws once. The shipped mark is the color logo at 2.4rem; this snippet sets the name in the sign face so the board renders without the asset.",
+      "html": "<header class=\"ds-fascia\"><div class=\"ds-tubo\" aria-hidden=\"true\"></div><a class=\"ds-marca\" href=\"/\">TI Ninja</a><nav aria-label=\"Principal\"><a href=\"/\" aria-current=\"page\">Início</a><a href=\"/minha-hora/\">Minha hora</a><a href=\"/quanto-cobrar/\">E-book</a></nav></header>",
+      "css": ".ds-fascia {\n  position: relative;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: space-between;\n  gap: 0.7rem 1.4rem;\n  padding: 0.95rem clamp(1.1rem, 4vw, 2.5rem) 0.8rem;\n  background: var(--purple);\n  color: var(--ink);\n  box-shadow: 0 12px 28px rgba(6, 4, 8, 0.35);\n}\n.ds-tubo {\n  position: absolute;\n  left: 0; right: 0; top: 0;\n  height: 4px;\n  background: var(--lime);\n  transform-origin: left center;\n  animation: ds-acende 900ms cubic-bezier(0.16, 1, 0.3, 1) both;\n}\n.ds-marca {\n  font-family: var(--display);\n  font-weight: 800;\n  font-size: 2.4rem;\n  letter-spacing: -0.035em;\n  line-height: 0.9;\n  color: var(--ink);\n  text-decoration: none;\n}\n.ds-fascia nav { display: flex; flex-wrap: wrap; gap: 0.35rem 1.15rem; }\n.ds-fascia nav a {\n  font-family: var(--display);\n  font-weight: 700;\n  font-size: 1.35rem;\n  letter-spacing: -0.03em;\n  text-decoration: none;\n  color: var(--ink);\n  min-height: 2.75rem;\n  display: inline-flex;\n  align-items: center;\n}\n.ds-fascia nav a:hover,\n.ds-fascia nav a[aria-current=\"page\"] {\n  color: var(--lime);\n  text-decoration: underline;\n  text-decoration-thickness: 2px;\n  text-underline-offset: 0.28em;\n}\n.ds-fascia nav a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }\n@keyframes ds-acende { from { transform: scaleX(0); } to { transform: scaleX(1); } }\n@media (prefers-reduced-motion: reduce) {\n  .ds-tubo { animation: none; }\n}"
+    },
+    {
+      "name": "Result panel",
+      "kind": "custom",
+      "refersTo": "result-panel",
+      "description": "Deep-purple glass with a static lime tube and the hour price. The figure settles when its text changes.",
+      "html": "<div class=\"ds-resultado\"><span class=\"ds-tubo-fixo\" aria-hidden=\"true\"></span><p class=\"ds-rotulo\">Preço mínimo da hora</p><p class=\"ds-preco\">R$&nbsp;62,50</p><p class=\"ds-custo-linha\">Custo da hora <strong>R$&nbsp;50,00</strong></p><div class=\"ds-barra\" role=\"img\" aria-label=\"Divisão do preço mínimo\"><span class=\"ds-seg-custo\"></span><span class=\"ds-seg-imposto\"></span><span class=\"ds-seg-margem\"></span></div></div>",
+      "css": ".ds-resultado {\n  position: relative;\n  background: var(--purple-deep);\n  color: var(--ink);\n  padding: 1.25rem 1.25rem 1.4rem;\n  box-shadow: 0 18px 36px rgba(6, 4, 8, 0.38);\n  max-width: 24rem;\n}\n.ds-tubo-fixo {\n  display: block;\n  height: 4px;\n  margin: -1.25rem -1.25rem 1rem;\n  background: var(--lime);\n}\n.ds-rotulo {\n  margin: 0;\n  font-family: var(--display);\n  font-weight: 700;\n  font-size: 1.35rem;\n  letter-spacing: -0.03em;\n}\n.ds-preco {\n  margin: 0.15rem 0 0.4rem;\n  font-family: var(--display);\n  font-weight: 800;\n  font-size: clamp(3.4rem, 8vw, 5.6rem);\n  letter-spacing: -0.045em;\n  line-height: 0.86;\n  color: var(--lime);\n  font-variant-numeric: tabular-nums;\n  animation: ds-assenta 420ms cubic-bezier(0.16, 1, 0.3, 1);\n}\n.ds-custo-linha { margin: 0.35rem 0 0.8rem; color: var(--ink-dim); font-family: var(--body); }\n.ds-custo-linha strong { color: var(--ink); font-weight: 700; }\n.ds-barra { display: flex; height: 0.85rem; margin: 1rem 0 0; background: var(--night); overflow: hidden; }\n.ds-barra span { display: block; height: 100%; }\n.ds-seg-custo { width: 80%; background: var(--custo); }\n.ds-seg-imposto { width: 10%; background: var(--imposto); }\n.ds-seg-margem { width: 10%; background: var(--lime); }\n@keyframes ds-assenta {\n  from { transform: translateY(0.4rem); filter: blur(5px); }\n  to { transform: none; filter: none; }\n}\n@media (prefers-reduced-motion: reduce) {\n  .ds-preco { animation: none; }\n}"
+    },
+    {
+      "name": "Phone rail",
+      "kind": "custom",
+      "refersTo": "phone-rail",
+      "description": "Repeats the price under 900px only after the big figure has left upward. Shipped position is fixed to the viewport bottom; the frame here keeps the bar inside the tile.",
+      "html": "<div class=\"ds-rail-frame\"><div class=\"ds-dock\"><span>Preço mínimo</span><strong>R$&nbsp;62,50</strong></div></div>",
+      "css": ".ds-rail-frame { position: relative; height: 5.75rem; background: var(--night); }\n.ds-dock {\n  position: absolute;\n  left: 0; right: 0; bottom: 0;\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  gap: 1rem;\n  padding: 0.75rem clamp(1.1rem, 4vw, 2.5rem) calc(0.75rem + env(safe-area-inset-bottom));\n  background: var(--purple-deep);\n  border-top: 4px solid var(--lime);\n  box-shadow: 0 -14px 30px rgba(6, 4, 8, 0.45);\n}\n.ds-dock span {\n  font-family: var(--display);\n  font-weight: 700;\n  font-size: 1.25rem;\n  letter-spacing: -0.03em;\n  color: var(--ink);\n}\n.ds-dock strong {\n  font-family: var(--display);\n  font-weight: 800;\n  font-size: 2.1rem;\n  line-height: 0.9;\n  letter-spacing: -0.04em;\n  color: var(--lime);\n  font-variant-numeric: tabular-nums;\n}"
+    },
+    {
+      "name": "Photo window",
+      "kind": "custom",
+      "refersTo": "photo-window",
+      "description": "Square deep-purple frame with a static 4px lime tube. The photograph covers the frame.",
+      "html": "<div class=\"ds-janela\" role=\"img\" aria-label=\"Janela de foto\"></div>",
+      "css": ".ds-janela {\n  position: relative;\n  background: var(--purple-deep);\n  aspect-ratio: 16 / 9;\n  min-height: 10rem;\n}\n.ds-janela::before {\n  content: \"\";\n  position: absolute;\n  z-index: 1;\n  left: 0; right: 0; top: 0;\n  height: 4px;\n  background: var(--lime);\n}"
+    },
+    {
+      "name": "Channel row",
+      "kind": "custom",
+      "refersTo": "channel-row",
+      "description": "Large sign link with a dim handle and a lavender hairline. Hover turns the row lime.",
+      "html": "<div class=\"ds-canais\"><a href=\"https://www.youtube.com/@tininjaconsult\">YouTube<span>@tininjaconsult</span></a><a href=\"https://www.instagram.com/consult.tininja/\">Instagram<span>@consult.tininja</span></a></div>",
+      "css": ".ds-canais { display: grid; gap: 0.8rem; }\n.ds-canais a {\n  display: flex;\n  justify-content: space-between;\n  gap: 1rem;\n  align-items: center;\n  text-decoration: none;\n  padding: 1rem 0 0.8rem;\n  border-top: 1px solid rgba(213, 204, 226, 0.35);\n  font-family: var(--display);\n  font-weight: 800;\n  font-size: clamp(2rem, 5vw, 3.2rem);\n  letter-spacing: -0.04em;\n  line-height: 0.95;\n  color: var(--ink);\n}\n.ds-canais a span {\n  font-family: var(--body);\n  font-weight: 400;\n  font-size: 1rem;\n  letter-spacing: 0;\n  color: var(--ink-dim);\n}\n.ds-canais a:hover { color: var(--lime); }\n.ds-canais a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Shopfront",
+    "overview": "TI Ninja is a painted fascia and a sheet of glass after dark. The floor is near-black, the board is purple, and a flat lime tube is the only light that draws itself. Type does the work of a shop sign: large, tight, and mostly the paper color, with lime reserved for whatever is switched on — the price, the primary plate, the active word.\n\nThe sign stays open: a title in a dark bay, one sentence, two plates. The account is tighter: a readable form, one deep-purple result panel, a split bar, a ledger. Photographs sit in square windows under the same tube. Layers are opaque. The system refuses an eyebrow over the sign, a hero full of badges, a floating pill for navigation, and a row of equal cards.\n\nMotion is two beats, then quiet. The fascia tube draws once from the left. The price figure settles when its text changes. On a phone, a rail repeats that same price only after the big figure has left upward.",
+    "keyCharacteristics": [
+      "Night floor, painted purple board, flat lime tube",
+      "Sign face for the letreiro, readable face for the form",
+      "Opaque layers and a 2px plate radius",
+      "Lime price on deep-purple glass; the phone rail waits until that figure has left",
+      "One tube draw, one price settle; everything else stays still"
+    ],
+    "rules": [
+      {
+        "name": "The Lit Mark Rule",
+        "body": "Lime is a flat fill, with no gradient and no glow. It marks the tube, the price, the primary plate, hovered and current links, form prefixes, the caret, text selection, the scrollbar thumb, and the margin slice of the split bar. One clause inside a sign may switch to lime. It does not fill a section.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Purples Rule",
+        "body": "Painted purple is the fascia and the closing band. Deep purple is the glass: the result panel, the photo window, the phone rail, and the pressed glass plate. They do not trade places.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sign and the Form Rule",
+        "body": "Darker Grotesque carries the sign: headings, the price, nav, plates, and field names. Atkinson Hyperlegible carries paragraphs, help, and input values. The two do not swap.",
+        "section": "typography"
+      },
+      {
+        "name": "The Empty Bay Rule",
+        "body": "The title sits in the dark bay. Nothing is labeled above it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Column Rule",
+        "body": "Body copy stops at 68ch. The hero lede stops at 36ch. The content column stops at 1120px inside the gutters.",
+        "section": "layout"
+      },
+      {
+        "name": "The Rail After the Figure Rule",
+        "body": "Below 900px, the fixed rail repeats the price only once that figure's bottom edge has crossed the top of the viewport. Until then the rail stays hidden.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Layer Rule",
+        "body": "Depth is opaque stacks — floor, painted board, deep glass, photograph — not blur. Soft shadows sit only under the fascia, the result panel, and the phone rail.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Tube Once Rule",
+        "body": "The fascia tube scales from the left once, over 900ms. The tube on a result panel or photo window is already lit. Reduced motion shows every tube at full length and does not settle the price.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Near-Square Rule",
+        "body": "Plates, fields, and the notice field use a 2px radius. The nav, the result panel, photo windows, and the price rail are square. Nothing is a pill.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do paint the floor night (#100e12) and the fascia painted purple (#44335c), with a 4px tube of lime (#92c417) on the fascia, the result panel, each photo window, and the phone rail.",
+      "Do set signs, plates, nav, and field names in Darker Grotesque, and set paragraphs, help, and input values in Atkinson Hyperlegible.",
+      "Do keep plates and fields at a 2px radius and a minimum height of 3.1–3.25rem, with the 3px sign-paper focus ring offset by 3px.",
+      "Do keep the phone rail off until the big price's bottom edge has left the viewport upward, and only below 900px.",
+      "Do draw the fascia tube once over 900ms with cubic-bezier(0.16, 1, 0.3, 1), and settle the price over 420ms on the same curve only when its text changes. Skip both when reduced motion is requested."
+    ],
+    "donts": [
+      "Don't place an eyebrow, kicker, or row of badges above a sign.",
+      "Don't build a section as a row of equal cards. Use one glass panel, a photo window beside text, or a list.",
+      "Don't frost a surface with backdrop blur, and don't use a hard offset shadow. The only blur is the price figure's settle.",
+      "Don't wash a region in lime, and don't set the price in any color but lime.",
+      "Don't use pill shapes for the nav, plates, fields, or the rail."
+    ]
+  }
+}
