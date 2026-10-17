@@ -35,4 +35,4 @@ O tubo de limão acende uma vez na carga. O preço mínimo assenta quando a cont
 
 ## Unresolved
 
-`CNAME` com tininja.net já está no repositório; o DNS no provedor continua externo. A captura do guia usa `LEAD_ENDPOINT` em `assets/js/site.js`, ainda vazio até o E-goi.
+`CNAME` com tininja.net já está no repositório; o DNS no provedor continua externo. A captura do guia usa `LEAD_ENDPOINT` em `assets/js/site.js`, ainda vazio até a URL `/exec` do Apps Script.

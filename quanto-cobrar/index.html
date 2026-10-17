@@ -51,7 +51,7 @@
         <p class="lede">Do 169.254 ao DNS: guia gratuito com o preço mínimo da sua hora e uma proposta de uma página.</p>
       </div>
 
-      <!-- TODO: o endpoint do E-goi fica só em LEAD_ENDPOINT, em /assets/js/site.js. Não repetir a URL aqui. -->
+      <!-- TODO: a URL /exec do Apps Script fica só em LEAD_ENDPOINT, em /assets/js/site.js. Não repetir a URL aqui. -->
       <form data-lead action="" method="post" novalidate>
         <div class="campo">
           <label for="nome">Nome</label>
@@ -74,6 +74,7 @@
         <input type="hidden" name="utm_medium" value="">
         <input type="hidden" name="utm_campaign" value="">
         <input type="hidden" name="utm_content" value="">
+        <div class="hp" aria-hidden="true"><label>Site <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <button class="placa placa-lima" type="submit">Quero o guia grátis</button>
         <p class="lead-status" data-lead-status role="status" aria-live="polite"></p>
       </form>

@@ -1058,6 +1058,15 @@ button:disabled {
   display: none;
 }
 
+.hp {
+  position: absolute;
+  left: -10000px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .isca-baixo .caminho {
   margin-top: 0.8rem;
 }

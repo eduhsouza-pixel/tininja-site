@@ -24,7 +24,7 @@ Quem ensina é um técnico que virou dono de MSP, não uma escola genérica de c
 
 ## Operating Context
 
-Site estático, sem backend. A captura do guia em `/quanto-cobrar/` usa `LEAD_ENDPOINT` em `assets/js/site.js`, vazio até o E-goi, sem envio falso. A página `/quanto-cobrar/obrigado/` é `noindex`. A calculadora roda no navegador. Há um atalho para copiar a planilha no Google Sheets. Conteúdo recente aponta para YouTube e Instagram. Idioma visível: português do Brasil.
+Site estático, sem backend. A captura do guia em `/quanto-cobrar/` usa `LEAD_ENDPOINT` em `assets/js/site.js`, vazio até a URL `/exec` do Apps Script, sem envio falso. A página `/quanto-cobrar/obrigado/` é `noindex`. A calculadora roda no navegador. Há um atalho para copiar a planilha no Google Sheets. Conteúdo recente aponta para YouTube e Instagram. Idioma visível: português do Brasil.
 
 ## Capabilities and Constraints
 

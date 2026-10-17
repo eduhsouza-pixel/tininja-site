@@ -236,12 +236,12 @@ function mountCalc(form) {
   paint();
 }
 
-// TODO: colar a URL do formulário E-goi.
+// TODO: colar aqui a URL /exec do Google Apps Script.
 // Enquanto estiver vazia, o formulário não envia e não redireciona.
-// Com a URL, o POST é FormData em modo CORS. Só vai para
-// /quanto-cobrar/obrigado/ se response.ok. Não usar no-cors:
-// resposta opaca não é sucesso. Se o E-goi bloquear CORS, a
-// mensagem de erro permanece nesta página.
+// O POST é URLSearchParams (pedido CORS simples, sem header customizado),
+// mode cors, credentials omit. O script responde HTTP 200 com
+// {ok:true} ou {ok:false,error}. Só redireciona para
+// /quanto-cobrar/obrigado/ se response.ok e o JSON tem ok === true.
 export const LEAD_ENDPOINT = "";
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
@@ -320,11 +320,12 @@ function mountLead(doc) {
     try {
       const response = await fetch(LEAD_ENDPOINT, {
         method: "POST",
-        body: new FormData(form),
+        body: new URLSearchParams(new FormData(form)),
         mode: "cors",
         credentials: "omit",
       });
-      if (!response.ok) {
+      const data = await response.json().catch(() => null);
+      if (!response.ok || !data || data.ok !== true) {
         status.textContent = "Não deu para enviar agora. Tente de novo em instantes. Nada foi confirmado.";
         button.disabled = false;
         return;
