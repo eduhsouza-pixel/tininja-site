@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quanto vale a sua hora — TI Ninja</title>
+  <meta name="description" content="Calcule o custo e o preço mínimo da sua hora técnica a partir dos custos fixos, da retirada, das horas faturáveis, dos impostos e da margem.">
+  <link rel="canonical" href="https://tininja.net/minha-hora/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#100E12">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="Quanto vale a sua hora — TI Ninja">
+  <meta property="og:description" content="Custo da hora e preço mínimo, com imposto e margem. A conta atualiza enquanto você digita.">
+  <meta property="og:url" content="https://tininja.net/minha-hora/">
+  <meta property="og:image" content="https://tininja.net/assets/img/calculadora-1280.jpg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="Ilustração de um ninja ao lado de uma calculadora e notas, em luz verde e roxa.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Quanto vale a sua hora — TI Ninja">
+  <meta name="twitter:description" content="Custo da hora e preço mínimo, com imposto e margem.">
+  <meta name="twitter:image" content="https://tininja.net/assets/img/calculadora-1280.jpg">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/darker-grotesque-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/darker-grotesque-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/img/calculadora-1280.webp" as="image" type="image/webp" imagesrcset="/assets/img/calculadora-640.webp 640w, /assets/img/calculadora-960.webp 960w, /assets/img/calculadora-1280.webp 1280w" imagesizes="(min-width: 900px) 52vw, 100vw">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <header class="fascia">
+    <div class="tubo" aria-hidden="true"></div>
+    <a class="marca" href="/">
+      <img src="/assets/img/logo-nav.webp" alt="TI Ninja" width="480" height="154">
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/minha-hora/" aria-current="page">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="fachada" aria-labelledby="pagina-titulo">
+      <div>
+        <h1 id="pagina-titulo">Quanto vale a sua hora</h1>
+        <p class="lede">Some o que a operação custa e o que você quer retirar. Divida pelas horas que realmente fatura. O preço mínimo ainda cabe imposto e margem.</p>
+        <a class="placa placa-lima" href="#conta">Ir para a conta</a>
+      </div>
+      <div class="janela">
+        <picture>
+          <source type="image/webp" srcset="/assets/img/calculadora-640.webp 640w, /assets/img/calculadora-960.webp 960w, /assets/img/calculadora-1280.webp 1280w" sizes="(min-width: 900px) 52vw, 100vw">
+          <img src="/assets/img/calculadora-1280.jpg" width="1280" height="720" alt="Ilustração de um ninja ao lado de uma calculadora e notas, em luz verde e roxa." fetchpriority="high" decoding="async">
+        </picture>
+      </div>
+    </section>
+
+    <section class="conta" id="conta" aria-labelledby="conta-titulo">
+      <div class="faixa">
+        <form class="conta-grid" data-calc novalidate>
+          <div class="conta-intro">
+            <h2 id="conta-titulo">A conta</h2>
+            <p>Cada campo abaixo diz o que entra nele. Os números que já vêm preenchidos são um exemplo para testar a fórmula, não uma sugestão de mercado.</p>
+            <p class="nota">Conferência: custos fixos mais retirada = R$ 8.000, 160 horas → custo R$ 50,00. Com imposto e margem somando 20% → preço mínimo R$ 62,50.</p>
+          </div>
+
+          <div class="resultado">
+            <span class="tubo-fixo" aria-hidden="true"></span>
+            <p class="resultado-rotulo">Preço mínimo da hora</p>
+            <p class="preco-valor" data-out="preco">R$&nbsp;62,50</p>
+            <p class="custo-linha">Custo da hora <strong data-out="custo">R$&nbsp;50,00</strong></p>
+            <p class="formula">Custo = (CF + R) ÷ H. Preço mínimo = custo ÷ (1 − I − M).</p>
+            <div class="barra" data-bar role="img" aria-label="Divisão do preço mínimo: 80% cobre custo e retirada, 10% é imposto, 10% é margem.">
+              <span data-seg="custo"></span>
+              <span data-seg="imposto"></span>
+              <span data-seg="margem"></span>
+            </div>
+            <ul class="legenda">
+              <li><span class="amostra custo" aria-hidden="true"></span> Custo e retirada</li>
+              <li><span class="amostra imposto" aria-hidden="true"></span> Imposto</li>
+              <li><span class="amostra margem" aria-hidden="true"></span> Margem</li>
+            </ul>
+            <h3>No mês</h3>
+            <dl class="mes">
+              <div><dt>Faturamento mínimo</dt><dd data-out="faturamento">R$&nbsp;10.000,00</dd></div>
+              <div><dt>Impostos</dt><dd data-out="impostos">R$&nbsp;1.000,00</dd></div>
+              <div><dt>Margem</dt><dd data-out="margem-mes">R$&nbsp;1.000,00</dd></div>
+              <div><dt>Cobre custos e retirada</dt><dd data-out="cobertura">R$&nbsp;8.000,00</dd></div>
+            </dl>
+            <div class="acoes">
+              <button class="placa placa-lima" type="button" data-copy>Copiar resultado</button>
+              <button class="placa placa-vidro" type="button" data-share hidden>Compartilhar</button>
+            </div>
+            <p class="status" data-status role="status"></p>
+            <p class="erro" data-error role="alert" hidden></p>
+          </div>
+
+          <div class="fields">
+            <label class="field">
+              <span class="field-nome">Custos fixos mensais <small>CF</small></span>
+              <span class="controle">
+                <span class="adorn" aria-hidden="true">R$</span>
+                <input name="cf" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="3.000,00" aria-describedby="ajuda-cf">
+              </span>
+              <span class="field-help" id="ajuda-cf">O que sai todo mês mesmo sem chamado: ferramentas, contador, internet, deslocamento fixo. Não inclui o que você quer retirar para viver.</span>
+            </label>
+            <label class="field">
+              <span class="field-nome">Retirada desejada <small>R</small></span>
+              <span class="controle">
+                <span class="adorn" aria-hidden="true">R$</span>
+                <input name="r" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="5.000,00" aria-describedby="ajuda-r">
+              </span>
+              <span class="field-help" id="ajuda-r">O que você quer levar para casa no mês. Entra como salário da conta, não como lucro da empresa.</span>
+            </label>
+            <label class="field">
+              <span class="field-nome">Horas faturáveis por mês <small>H</small></span>
+              <span class="controle">
+                <span class="adorn" aria-hidden="true">h</span>
+                <input name="h" data-kind="hours" inputmode="decimal" autocomplete="off" spellcheck="false" value="160" aria-describedby="ajuda-h">
+              </span>
+              <span class="field-help" id="ajuda-h">Só as horas que dá para cobrar de um cliente. Deslocamento, estudo e o tempo de organizar a semana não entram. Precisa ser maior que zero.</span>
+            </label>
+            <label class="field">
+              <span class="field-nome">Impostos <small>I</small></span>
+              <span class="controle">
+                <span class="adorn" aria-hidden="true">%</span>
+                <input name="i" data-kind="percent" inputmode="decimal" autocomplete="off" spellcheck="false" value="10" aria-describedby="ajuda-i">
+              </span>
+              <span class="field-help" id="ajuda-i">Percentual que sai da nota. Some os tributos que incidem sobre o serviço que você emite. O campo é a taxa, não o valor em reais.</span>
+            </label>
+            <label class="field">
+              <span class="field-nome">Margem de lucro <small>M</small></span>
+              <span class="controle">
+                <span class="adorn" aria-hidden="true">%</span>
+                <input name="m" data-kind="percent" inputmode="decimal" autocomplete="off" spellcheck="false" value="10" aria-describedby="ajuda-m">
+              </span>
+              <span class="field-help" id="ajuda-m">O percentual que sobra na empresa depois de cobrir custo, retirada e imposto. Imposto mais margem precisam ficar abaixo de 100%.</span>
+            </label>
+          </div>
+          <div class="dock" aria-hidden="true">
+            <span>Preço mínimo</span>
+            <strong data-out="preco">R$&nbsp;62,50</strong>
+          </div>
+        </form>
+        <p class="planilha"><a href="https://docs.google.com/spreadsheets/d/1T56l2xeBYylC_3cJQ-Hs3r6veyafsEjzD5A6wfoIFFw/copy" target="_blank" rel="noopener noreferrer">Prefere planilha? Faça uma cópia no Google Sheets<span class="sr"> (abre em outra aba)</span></a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape-marca">
+      <img src="/assets/img/logo-nav.webp" alt="" width="480" height="154">
+      <p>TI Ninja · Campinas/SP</p>
+    </div>
+    <nav aria-label="No rodapé">
+      <a href="/">Início</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+    </nav>
+    <nav aria-label="Redes">
+      <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
+      <a href="https://www.instagram.com/consult.tininja/">Instagram</a>
+    </nav>
+    <p>© 2026 TI Ninja</p>
+  </footer>
+  <script type="module" src="/assets/js/site.js"></script>
+</body>
+</html>
