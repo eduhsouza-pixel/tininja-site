@@ -236,28 +236,110 @@ function mountCalc(form) {
   paint();
 }
 
-function mountAviso(doc) {
-  const form = doc.querySelector("[data-aviso]");
+// TODO: colar a URL do formulário E-goi.
+// Enquanto estiver vazia, o formulário não envia e não redireciona.
+// Com a URL, o POST é FormData em modo CORS. Só vai para
+// /quanto-cobrar/obrigado/ se response.ok. Não usar no-cors:
+// resposta opaca não é sucesso. Se o E-goi bloquear CORS, a
+// mensagem de erro permanece nesta página.
+export const LEAD_ENDPOINT = "";
+
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
+
+export function readUtms(search) {
+  const params = new URLSearchParams(String(search || ""));
+  const out = {};
+  for (const key of UTM_KEYS) {
+    out[key] = (params.get(key) || "").trim().slice(0, 200);
+  }
+  return out;
+}
+
+function clearInvalid(form) {
+  form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
+}
+
+function mountLead(doc) {
+  const form = doc.querySelector("[data-lead]");
   if (!form) return;
-  const status = form.querySelector("[data-aviso-status]");
-  form.addEventListener("submit", (event) => {
+  const status = form.querySelector("[data-lead-status]");
+  if (LEAD_ENDPOINT) form.action = LEAD_ENDPOINT;
+
+  const utms = readUtms(typeof location !== "undefined" ? location.search : "");
+  for (const key of UTM_KEYS) {
+    const input = form.querySelector(`[name="${key}"]`);
+    if (input) input.value = utms[key];
+  }
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    clearInvalid(form);
+    const nome = form.nome.value.trim();
     const email = form.email.value.trim();
-    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!ok) {
+    const whatsapp = form.whatsapp.value.trim();
+    const optin = form.optin.checked;
+    form.nome.value = nome;
+    form.email.value = email;
+    form.whatsapp.value = whatsapp;
+
+    if (nome.length < 2) {
+      form.nome.setAttribute("aria-invalid", "true");
+      status.textContent = "Escreva seu nome. Nada foi enviado.";
+      form.nome.focus();
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       form.email.setAttribute("aria-invalid", "true");
       status.textContent = "Escreva um e-mail válido. Nada foi enviado.";
       form.email.focus();
       return;
     }
-    form.email.removeAttribute("aria-invalid");
-    status.textContent = "Nada foi enviado. A lista ainda não está ligada, e este e-mail não saiu do seu navegador.";
+    if (whatsapp) {
+      const digits = whatsapp.replace(/\D/g, "");
+      if (digits.length < 10 || digits.length > 13) {
+        form.whatsapp.setAttribute("aria-invalid", "true");
+        status.textContent = "Se for deixar o WhatsApp, use DDD e número. O campo pode ficar vazio. Nada foi enviado.";
+        form.whatsapp.focus();
+        return;
+      }
+    }
+    if (!optin) {
+      form.optin.setAttribute("aria-invalid", "true");
+      status.textContent = "Marque a autorização pra receber o guia e os avisos. Nada foi enviado.";
+      form.optin.focus();
+      return;
+    }
+    if (!LEAD_ENDPOINT) {
+      status.textContent = "A lista ainda não está ligada. Nada foi enviado, e esta página não redireciona.";
+      return;
+    }
+
+    const button = form.querySelector("[type=submit]");
+    button.disabled = true;
+    status.textContent = "Enviando…";
+    try {
+      const response = await fetch(LEAD_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        mode: "cors",
+        credentials: "omit",
+      });
+      if (!response.ok) {
+        status.textContent = "Não deu para enviar agora. Tente de novo em instantes. Nada foi confirmado.";
+        button.disabled = false;
+        return;
+      }
+      location.assign("/quanto-cobrar/obrigado/");
+    } catch {
+      status.textContent = "Não deu para enviar agora. Tente de novo em instantes. Nada foi confirmado.";
+      button.disabled = false;
+    }
   });
 }
 
 export function mount(doc = document) {
   doc.querySelectorAll("[data-calc]").forEach(mountCalc);
-  mountAviso(doc);
+  mountLead(doc);
 }
 
 if (typeof document !== "undefined") {

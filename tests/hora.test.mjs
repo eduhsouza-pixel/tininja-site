@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { computeHour, parsePt } from "../assets/js/site.js";
+import { readFileSync } from "node:fs";
+import { computeHour, parsePt, readUtms, LEAD_ENDPOINT } from "../assets/js/site.js";
+import { prepareEbookMarkdown } from "../scripts/ebook-text.mjs";
 
 test("exemplo do brief: CF+R = 8000, H = 160, I+M = 20%", () => {
   const result = computeHour({ cf: 3000, r: 5000, h: 160, i: 10, m: 10 });
@@ -34,4 +36,28 @@ test("leitura pt-BR", () => {
   assert.equal(parsePt("R$ 62,50"), 62.5);
   assert.ok(Number.isNaN(parsePt("")));
   assert.ok(Number.isNaN(parsePt("abc")));
+});
+
+test("UTMs da landing e endpoint ainda vazio", () => {
+  assert.equal(LEAD_ENDPOINT, "");
+  const utm = readUtms("?utm_source=instagram&utm_medium=reel&utm_campaign=dhcp&utm_content=169&utm_term=ignora");
+  assert.deepEqual(utm, {
+    utm_source: "instagram",
+    utm_medium: "reel",
+    utm_campaign: "dhcp",
+    utm_content: "169",
+  });
+  assert.equal(readUtms("").utm_source, "");
+});
+
+test("PDF do guia troca só o link da planilha", () => {
+  const raw = readFileSync(new URL("../ebook-src/quanto-cobrar-ti-2026.md", import.meta.url), "utf8");
+  const text = prepareEbookMarkdown(raw);
+  assert.equal(text.includes("Notas de produção"), false);
+  assert.equal(text.includes("O que o Eduardo precisa preencher"), false);
+  assert.equal(text.includes("[LINK DA PLANILHA]"), false);
+  assert.equal(text.includes("https://tininja.net/minha-hora/"), true);
+  assert.equal(text.includes("https://docs.google.com/spreadsheets/d/1T56l2xeBYylC_3cJQ-Hs3r6veyafsEjzD5A6wfoIFFw/copy"), true);
+  assert.equal(text.includes("eu travei"), true);
+  assert.equal(text.includes("EXEMPLO FICTÍCIO"), true);
 });
