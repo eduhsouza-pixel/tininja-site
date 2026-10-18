@@ -55,7 +55,7 @@ function formatMoney(n) {
 const ERRORS = {
   vazio: "Preencha os cinco campos. Onde não houver valor, use zero.",
   negativo: "Não use número negativo. Custo, retirada, imposto e margem entram como zero ou mais.",
-  horas: "Horas faturáveis precisam ser maiores que zero. Coloque as horas que você consegue cobrar no mês.",
+  horas: "Horas faturáveis (não trabalhadas) precisam ser maiores que zero. Coloque as horas que você consegue cobrar no mês.",
   percentual: "Imposto mais margem precisa ficar abaixo de 100%. Baixe um dos dois para sobrar preço.",
 };
 

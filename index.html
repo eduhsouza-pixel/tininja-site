@@ -91,8 +91,8 @@
         <form class="conta-grid" data-calc novalidate>
           <div class="conta-intro">
             <h2 id="conta-titulo">Quanto vale a sua hora</h2>
-            <p>A conta cabe aqui. Troque os números de exemplo pelos seus. O preço mínimo muda enquanto você digita.</p>
-            <p class="nota">Os valores iniciais são só para conferir a fórmula (custos e retirada somam R$ 8.000, 160 horas, imposto e margem somam 20%). Não são um preço sugerido.</p>
+            <p>Exemplo fictício — troque pelos seus números. O preço mínimo muda enquanto você digita.</p>
+            <p class="nota">Custos fixos R$ 1.000, retirada R$ 3.000, 80 horas faturáveis, imposto 10% e margem 10%. A conta dá custo R$ 50,00 e preço mínimo R$ 62,50. Não é um preço sugerido.</p>
           </div>
 
           <div class="resultado">
@@ -112,10 +112,10 @@
               <li><span class="amostra margem" aria-hidden="true"></span> Margem</li>
             </ul>
             <dl class="mes">
-              <div><dt>Faturamento mínimo no mês</dt><dd data-out="faturamento">R$&nbsp;10.000,00</dd></div>
-              <div><dt>Impostos</dt><dd data-out="impostos">R$&nbsp;1.000,00</dd></div>
-              <div><dt>Margem</dt><dd data-out="margem-mes">R$&nbsp;1.000,00</dd></div>
-              <div><dt>Cobre custos e retirada</dt><dd data-out="cobertura">R$&nbsp;8.000,00</dd></div>
+              <div><dt>Faturamento mínimo no mês</dt><dd data-out="faturamento">R$&nbsp;5.000,00</dd></div>
+              <div><dt>Impostos</dt><dd data-out="impostos">R$&nbsp;500,00</dd></div>
+              <div><dt>Margem</dt><dd data-out="margem-mes">R$&nbsp;500,00</dd></div>
+              <div><dt>Cobre custos e retirada</dt><dd data-out="cobertura">R$&nbsp;4.000,00</dd></div>
             </dl>
             <div class="acoes">
               <button class="placa placa-lima" type="button" data-copy>Copiar resultado</button>
@@ -130,7 +130,7 @@
               <span class="field-nome">Custos fixos mensais <small>CF</small></span>
               <span class="controle">
                 <span class="adorn" aria-hidden="true">R$</span>
-                <input name="cf" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="3.000,00" aria-describedby="ajuda-cf">
+                <input name="cf" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="1.000,00" aria-describedby="ajuda-cf">
               </span>
               <span class="field-help" id="ajuda-cf">O que sai todo mês mesmo sem chamado: ferramentas, contador, internet, deslocamento fixo.</span>
             </label>
@@ -138,17 +138,17 @@
               <span class="field-nome">Retirada desejada <small>R</small></span>
               <span class="controle">
                 <span class="adorn" aria-hidden="true">R$</span>
-                <input name="r" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="5.000,00" aria-describedby="ajuda-r">
+                <input name="r" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="3.000,00" aria-describedby="ajuda-r">
               </span>
               <span class="field-help" id="ajuda-r">O que você quer levar para casa no mês, no lugar de um salário.</span>
             </label>
             <label class="field">
-              <span class="field-nome">Horas faturáveis <small>H</small></span>
+              <span class="field-nome">Horas faturáveis (não trabalhadas) <small>H</small></span>
               <span class="controle">
                 <span class="adorn" aria-hidden="true">h</span>
-                <input name="h" data-kind="hours" inputmode="decimal" autocomplete="off" spellcheck="false" value="160" aria-describedby="ajuda-h">
+                <input name="h" data-kind="hours" inputmode="decimal" autocomplete="off" spellcheck="false" value="80" aria-describedby="ajuda-h">
               </span>
-              <span class="field-help" id="ajuda-h">Horas que dá para cobrar. Deslocamento, estudo e administrativo ficam de fora.</span>
+              <span class="field-help" id="ajuda-h">Horas faturáveis (não trabalhadas). Deslocamento, estudo e administrativo ficam de fora.</span>
             </label>
             <label class="field">
               <span class="field-nome">Impostos <small>I</small></span>
