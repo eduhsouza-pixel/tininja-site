@@ -137,18 +137,18 @@ Agora vamos ver isso com números.
 > | Variável | Valor fictício |
 > |---|---|
 > | CF (custos fixos do mês) | R$ 1.000 |
-> | R (quanto quer tirar por mês) | R$ 3.000 |
+> | R (quanto quer tirar por mês) | R$ 5.000 |
 > | H (horas faturáveis por mês, já na média de 11 meses de trabalho no ano) | 80 horas |
 > | I (imposto) | 10% *(inventado, num enquadramento que não é MEI; o seu vem do contador)* |
 > | M (margem) | 10% |
 >
-> **Custo da hora** = (1.000 + 3.000) ÷ 80 = 4.000 ÷ 80 = **R$ 50**
+> **Custo da hora** = (1.000 + 5.000) ÷ 80 = 6.000 ÷ 80 = **R$ 75**
 >
-> **Preço mínimo da hora** = 50 ÷ (1 − 0,10 − 0,10) = 50 ÷ 0,80 = **R$ 62,50**
+> **Preço mínimo da hora** = 75 ÷ (1 − 0,10 − 0,10) = 75 ÷ 0,80 = **R$ 93,75**
 >
 > **Agora o erro clássico.** Imagine que a mesma pessoa contou as horas **trabalhadas** (160 no mês) em vez das **faturáveis** (80):
 >
-> Custo da hora = 4.000 ÷ 160 = R$ 25 → preço mínimo = 25 ÷ 0,80 = **R$ 31,25**
+> Custo da hora = 6.000 ÷ 160 = R$ 37,50 → preço mínimo = 37,50 ÷ 0,80 = **R$ 46,88**
 >
 > **Ela passaria a cobrar a metade do que precisa, sem perceber.** Trabalharia o mês inteiro, e no fim não ia sobrar o que ela planejou. É assim que muito técnico bom acaba no "trabalho muito e não sobra nada".
 
