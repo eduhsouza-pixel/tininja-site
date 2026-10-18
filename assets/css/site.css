@@ -1088,6 +1088,37 @@ button:disabled {
   margin-top: 0.9rem;
 }
 
+.pagina-espera .isca {
+  width: min(40rem, calc(100% - var(--gutter) * 2));
+}
+
+.lightcopy {
+  box-shadow: inset 3px 0 0 var(--lime);
+  padding-left: 0.85rem;
+}
+
+.espera-pontos {
+  margin: 1rem 0 0;
+  padding: 0 0 0 1.15rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.espera-pontos li {
+  max-width: 58ch;
+}
+
+.pagina-espera form {
+  margin-top: 1.15rem;
+}
+
+.miudo {
+  margin-top: 0.9rem;
+  color: var(--ink-dim);
+  font-size: 0.92rem;
+  max-width: 58ch;
+}
+
 .aula {
   margin-top: 2.4rem;
   max-width: 46rem;

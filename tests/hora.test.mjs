@@ -3,6 +3,7 @@ import test from "node:test";
 import { readFileSync } from "node:fs";
 import { computeHour, parsePt, readUtms, LEAD_ENDPOINT, buildLeadParams } from "../assets/js/site.js";
 import { prepareEbookMarkdown } from "../scripts/ebook-text.mjs";
+import { FUNDADORA_COPY } from "../fundadora/copy.js";
 
 test("exemplo fictício do guia: CF 1000, R 5000, H 80, I 10, M 10", () => {
   const result = computeHour({ cf: 1000, r: 5000, h: 80, i: 10, m: 10 });
@@ -58,6 +59,42 @@ test("whatsapp só entra com optin e optin_whatsapp", () => {
   assert.equal(neither.has("whatsapp"), false);
   const blank = buildLeadParams([["whatsapp", "   "]], { optin: true, optinWhatsapp: true });
   assert.equal(blank.has("whatsapp"), false);
+});
+
+test("lista de espera manda o número só com optin_whatsapp e carrega a tag", () => {
+  const entries = [
+    ["nome", "Ana"],
+    ["email", "ana@exemplo.com"],
+    ["whatsapp", "11999998888"],
+    ["tag", "fundadora_espera"],
+    ["utm_source", "instagram"],
+    ["utm_medium", "bio"],
+    ["utm_campaign", "fundadora"],
+    ["utm_content", "story"],
+    ["website", ""],
+  ];
+  const soWhatsapp = buildLeadParams(entries, { optin: false, optinWhatsapp: true, whatsappNeedsOptin: false });
+  assert.equal(soWhatsapp.get("whatsapp"), "11999998888");
+  assert.equal(soWhatsapp.get("tag"), "fundadora_espera");
+  assert.equal(soWhatsapp.has("optin"), false);
+  assert.equal(soWhatsapp.get("utm_campaign"), "fundadora");
+  const semCaixa = buildLeadParams(entries, { optin: false, optinWhatsapp: false, whatsappNeedsOptin: false });
+  assert.equal(semCaixa.has("whatsapp"), false);
+  assert.equal(semCaixa.get("email"), "ana@exemplo.com");
+  assert.equal(semCaixa.get("tag"), "fundadora_espera");
+});
+
+test("textos da Turma Fundadora saem do bloco único", () => {
+  const pagina = readFileSync(new URL("../fundadora/index.html", import.meta.url), "utf8");
+  const obrigado = readFileSync(new URL("../fundadora/obrigado/index.html", import.meta.url), "utf8");
+  for (const text of [FUNDADORA_COPY.headline, FUNDADORA_COPY.subhead, ...FUNDADORA_COPY.bullets, FUNDADORA_COPY.smallPrint, FUNDADORA_COPY.submit]) {
+    assert.equal(pagina.includes(text), true, text);
+  }
+  assert.equal(pagina.includes('name="tag" value="fundadora_espera"'), true);
+  assert.equal(pagina.includes('data-lead="fundadora"'), true);
+  assert.equal(obrigado.includes(FUNDADORA_COPY.thanksTitle), true);
+  assert.equal(obrigado.includes(FUNDADORA_COPY.thanksBody), true);
+  assert.equal(obrigado.includes('content="noindex, nofollow"'), true);
 });
 
 test("UTMs da landing e endpoint do Apps Script", () => {
