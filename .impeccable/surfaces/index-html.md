@@ -9,7 +9,7 @@ related_targets: ["minha-hora/index.html","quanto-cobrar/index.html"]
 
 ## Scope
 
-Home (`index.html`) is Persuade. `/minha-hora/` is the same world in Operate mode: the hour calculator is the working offer. `/quanto-cobrar/` is the e-book holding page.
+Home (`index.html`) is Persuade. `/minha-hora/` is the same world in Operate mode: the hour calculator is the working offer. `/quanto-cobrar/` is Persuade: the lead page for the free guide. `/quanto-cobrar/obrigado/` is the download page and is `noindex`.
 
 ## Audience and action
 
@@ -35,4 +35,4 @@ O tubo de limão acende uma vez na carga. O preço mínimo assenta quando a cont
 
 ## Unresolved
 
-Domínio canônico pretendido https://tininja.net sem CNAME até o DNS. Captura de e-mail sem endpoint.
+`CNAME` com tininja.net já está no repositório; o DNS no provedor continua externo. A captura do guia posta em `LEAD_ENDPOINT` (`assets/js/site.js`), a URL `/exec` do Apps Script.

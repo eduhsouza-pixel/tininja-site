@@ -16,7 +16,7 @@ Técnicos de suporte de TI no Brasil que querem sair do papel de “apagador de 
 
 ## Product Purpose
 
-O site da TI Ninja (tininja.net) apresenta o caminho do técnico até a administração de redes e até um MSP próprio, e entrega duas ferramentas gratuitas: a calculadora “Quanto vale a sua hora” e a futura isca do e-book “Quanto cobrar em TI em 2026”. Sucesso é o visitante entender para quem é, o que se aprende, quem é o Eduardo, e agir (calculadora ou lista do e-book).
+O site da TI Ninja (tininja.net) apresenta o caminho do técnico até a administração de redes e até um MSP próprio, e entrega duas ferramentas gratuitas: a calculadora “Quanto vale a sua hora” e o guia “Quanto cobrar em TI em 2026”. Sucesso é o visitante entender para quem é, o que se aprende, quem é o Eduardo, e agir (calculadora ou o guia).
 
 ## Positioning
 
@@ -24,21 +24,21 @@ Quem ensina é um técnico que virou dono de MSP, não uma escola genérica de c
 
 ## Operating Context
 
-Site estático, sem backend. A captura de e-mail do e-book fica com `action` marcado como TODO, sem serviço falso. A calculadora roda no navegador. Há um atalho para copiar a planilha no Google Sheets. Conteúdo recente aponta para YouTube e Instagram. Idioma visível: português do Brasil.
+Site estático, sem backend. A captura do guia em `/quanto-cobrar/` posta em `LEAD_ENDPOINT` (`assets/js/site.js`), a URL `/exec` do Apps Script, e só redireciona quando o JSON traz `ok: true`. A página `/quanto-cobrar/obrigado/` é `noindex`. A calculadora roda no navegador. Há um atalho para copiar a planilha no Google Sheets. Conteúdo recente aponta para YouTube e Instagram. Idioma visível: português do Brasil.
 
 ## Capabilities and Constraints
 
-- Páginas desta versão: home, `/minha-hora/`, `/quanto-cobrar/` (em breve), 404.
+- Páginas desta versão: home, `/minha-hora/`, `/quanto-cobrar/` (captura do guia), `/quanto-cobrar/obrigado/` (noindex), 404.
 - Novas landing pages entram em `/lp/<name>/`.
 - Calculadora: custos fixos mensais (CF), retirada desejada (R), horas faturáveis (H), impostos % (I), margem % (M). Custo da hora = (CF+R)/H. Preço mínimo = custo/(1−I−M). Exige H>0 e I+M<100%.
 - Conferência: CF+R = R$ 8.000 e H = 160 → custo R$ 50,00; I+M = 20% → preço R$ 62,50.
 - Não inventar números, depoimentos, contagem de alunos, faturamento, nomes de clientes, empresas, fabricantes, preços de curso ou garantias. Sem escassez falsa. O que faltaria dado fica em comentário HTML TODO.
-- Sem arquivo CNAME nesta versão.
+- Arquivo `CNAME` com `tininja.net`. O DNS no provedor do domínio ainda é externo.
 - Imagens de pessoa são as quatro peças enviadas pelo autor; não usar foto de estoque.
 
 ## Brand Commitments
 
-- Nome: TI Ninja. Domínio pretendido: tininja.net (DNS depois; sem CNAME agora).
+- Nome: TI Ninja. Domínio: tininja.net (`CNAME` no repositório; DNS no provedor).
 - Fundador: Eduardo Honorato, Campinas/SP. Começou como técnico, trabalhou numa multinacional (não nomear), hoje toca o próprio MSP (não nomear a empresa nem citar cifras).
 - Logos: `uploads` originais; no site, marca colorida em fundo escuro e marca clara onde o fundo pedir.
 - Cores amostradas do logo colorido: verde-limão `#92C417`, roxo `#44335C`, sobre fundo escuro próximo do preto.

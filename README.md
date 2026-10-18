@@ -4,11 +4,11 @@ Site estático de [tininja.net](https://tininja.net/). HTML, CSS e JavaScript na
 
 ## Como publicar
 
-O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`).
+O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/` e `scripts/` ficam de fora.
 
 No repositório: Settings → Pages → Build and deployment → **GitHub Actions**.
 
-Ainda não existe arquivo `CNAME`. O domínio próprio entra depois que o DNS for aprovado. Enquanto isso, os links canônicos e o Open Graph apontam para `https://tininja.net/`.
+O arquivo `CNAME` contém `tininja.net`. Os links canônicos e o Open Graph já usam `https://tininja.net/`. O DNS no provedor do domínio (apontando para o GitHub Pages) continua sendo um passo fora do repositório.
 
 Para ver localmente, na raiz:
 
@@ -24,7 +24,8 @@ Abra `http://127.0.0.1:4173/`.
 | --- | --- |
 | `/` | Home |
 | `/minha-hora/` | Calculadora “Quanto vale a sua hora” |
-| `/quanto-cobrar/` | E-book “Quanto cobrar em TI em 2026”, em breve, com formulário de e-mail |
+| `/quanto-cobrar/` | Captura do guia gratuito “Quanto cobrar em TI em 2026” |
+| `/quanto-cobrar/obrigado/` | Download do PDF, calculadora e canais. `noindex`, fora do sitemap |
 | `/404.html` | Página não encontrada |
 | `/lp/<nome>/` | Landing pages novas |
 
@@ -35,7 +36,16 @@ A calculadora roda no navegador.
 
 Conferência: custos + retirada = R$ 8.000, 160 horas → custo R$ 50,00; imposto + margem = 20% → preço R$ 62,50. O teste está em `tests/hora.test.mjs` (`node --test tests/hora.test.mjs`).
 
-O formulário do e-book não envia a lugar nenhum. O `action` fica marcado com um comentário `TODO` até existir um serviço de e-mail.
+O formulário de `/quanto-cobrar/` posta na URL de `LEAD_ENDPOINT` em `assets/js/site.js` (o `/exec` do Google Apps Script). O POST usa `URLSearchParams` (pedido CORS simples, sem header customizado), `mode: "cors"` e `credentials: "omit"`. O script responde HTTP 200 com `{ok:true}` ou `{ok:false,error}`. A página só abre `/quanto-cobrar/obrigado/` se `response.ok` e o JSON tem `ok === true`. Caso contrário, mostra o erro e fica na página. Se a constante ficar vazia, o envio é bloqueado e não há redirecionamento.
+
+Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (`sim`, obrigatório), os ocultos `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, lidos da URL, e o honeypot `website` (fora da tela). WhatsApp só segue com a caixa de autorização marcada. O teste em `tests/hora.test.mjs` confere a URL `/exec`.
+
+O PDF público é `assets/ebook/quanto-cobrar-ti-2026.pdf`. O texto-fonte, com as notas que não entram no PDF, está em `ebook-src/quanto-cobrar-ti-2026.md`. O script troca apenas `[LINK DA PLANILHA]` pelo link da calculadora e pela cópia da planilha. Para gerar de novo:
+
+```bash
+npm install --prefix /tmp/ebook-tools marked
+node scripts/build-ebook.mjs
+```
 
 ## Landing page nova
 
