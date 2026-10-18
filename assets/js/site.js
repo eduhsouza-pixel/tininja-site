@@ -238,16 +238,18 @@ function mountCalc(form) {
 
 // URL /exec do Google Apps Script. O POST é URLSearchParams (pedido CORS
 // simples, sem header customizado), mode cors, credentials omit. O script
-// responde HTTP 200 com {ok:true} ou {ok:false,error}. Só redireciona para
-// /quanto-cobrar/obrigado/ se response.ok e o JSON tem ok === true.
+// responde HTTP 200 com {ok:true} ou {ok:false,error}. Só redireciona se
+// response.ok e o JSON tem ok === true. O guia vai para
+// /quanto-cobrar/obrigado/; a lista de espera, para /fundadora/obrigado/.
 // Se esta string ficar vazia, o formulário não envia e não redireciona.
 export const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbwOkdrVslLmQnNrqWqHSnyYxSZsDGhCeW2IMaAEdvDmyCx8_2nDo9YHRCIztUZUyRM/exec";
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
 
-export function buildLeadParams(entries, { optin, optinWhatsapp }) {
+export function buildLeadParams(entries, { optin, optinWhatsapp, whatsappNeedsOptin = true }) {
   const params = new URLSearchParams(entries);
-  if (!(optin && optinWhatsapp)) params.delete("whatsapp");
+  const allowWhatsapp = whatsappNeedsOptin ? Boolean(optin && optinWhatsapp) : Boolean(optinWhatsapp);
+  if (!allowWhatsapp) params.delete("whatsapp");
   if (!(params.get("whatsapp") || "").trim()) params.delete("whatsapp");
   return params;
 }
@@ -265,17 +267,104 @@ function clearInvalid(form) {
   form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
 }
 
-function mountLead(doc) {
-  const form = doc.querySelector("[data-lead]");
-  if (!form) return;
-  const status = form.querySelector("[data-lead-status]");
-  if (LEAD_ENDPOINT) form.action = LEAD_ENDPOINT;
+function validateLeadFields(form, status, { optinWhatsapp, whatsapp }) {
+  const nome = form.nome.value.trim();
+  const email = form.email.value.trim();
+  form.nome.value = nome;
+  form.email.value = email;
+  form.whatsapp.value = whatsapp;
+  if (nome.length < 2) {
+    form.nome.setAttribute("aria-invalid", "true");
+    status.textContent = "Escreva seu nome. Nada foi enviado.";
+    form.nome.focus();
+    return null;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    form.email.setAttribute("aria-invalid", "true");
+    status.textContent = "Escreva um e-mail válido. Nada foi enviado.";
+    form.email.focus();
+    return null;
+  }
+  if (optinWhatsapp && whatsapp) {
+    const digits = whatsapp.replace(/\D/g, "");
+    if (digits.length < 10 || digits.length > 13) {
+      form.whatsapp.setAttribute("aria-invalid", "true");
+      status.textContent = "Se for deixar o WhatsApp, use DDD e número. O campo pode ficar vazio. Nada foi enviado.";
+      form.whatsapp.focus();
+      return null;
+    }
+  }
+  return { nome, email };
+}
 
+function fillUtms(form) {
   const utms = readUtms(typeof location !== "undefined" ? location.search : "");
   for (const key of UTM_KEYS) {
     const input = form.querySelector(`[name="${key}"]`);
     if (input) input.value = utms[key];
   }
+}
+
+async function postLead(form, status, params, thanksPath) {
+  if (!LEAD_ENDPOINT) {
+    status.textContent = "A lista ainda não está ligada. Nada foi enviado, e esta página não redireciona.";
+    return;
+  }
+  const button = form.querySelector("[type=submit]");
+  button.disabled = true;
+  status.textContent = "Enviando…";
+  try {
+    const response = await fetch(LEAD_ENDPOINT, {
+      method: "POST",
+      body: params,
+      mode: "cors",
+      credentials: "omit",
+    });
+    const data = await response.json().catch(() => null);
+    if (!response.ok || !data || data.ok !== true) {
+      status.textContent = "Não deu para enviar agora. Tente de novo em instantes. Nada foi confirmado.";
+      button.disabled = false;
+      return;
+    }
+    location.assign(thanksPath);
+  } catch {
+    status.textContent = "Não deu para enviar agora. Tente de novo em instantes. Nada foi confirmado.";
+    button.disabled = false;
+  }
+}
+
+function mountWaitlist(form) {
+  const status = form.querySelector("[data-lead-status]");
+  if (LEAD_ENDPOINT) form.action = LEAD_ENDPOINT;
+  fillUtms(form);
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    clearInvalid(form);
+    const whatsapp = form.whatsapp.value.trim();
+    const optin = Boolean(form.optin && form.optin.checked);
+    const optinWhatsapp = Boolean(form.optin_whatsapp && form.optin_whatsapp.checked);
+    if (!validateLeadFields(form, status, { optinWhatsapp, whatsapp })) return;
+    await postLead(
+      form,
+      status,
+      buildLeadParams(new FormData(form), { optin, optinWhatsapp, whatsappNeedsOptin: false }),
+      "/fundadora/obrigado/",
+    );
+  });
+}
+
+function mountLead(doc) {
+  const form = doc.querySelector("[data-lead]");
+  if (!form) return;
+  if (form.getAttribute("data-lead") === "fundadora") {
+    mountWaitlist(form);
+    return;
+  }
+  const status = form.querySelector("[data-lead-status]");
+  if (LEAD_ENDPOINT) form.action = LEAD_ENDPOINT;
+
+  fillUtms(form);
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -286,61 +375,15 @@ function mountLead(doc) {
       return;
     }
 
-    const nome = form.nome.value.trim();
-    const email = form.email.value.trim();
     const whatsapp = form.whatsapp.value.trim();
     const optinWhatsapp = Boolean(form.optin_whatsapp && form.optin_whatsapp.checked);
-    form.nome.value = nome;
-    form.email.value = email;
-    form.whatsapp.value = whatsapp;
-
-    if (nome.length < 2) {
-      form.nome.setAttribute("aria-invalid", "true");
-      status.textContent = "Escreva seu nome. Nada foi enviado.";
-      form.nome.focus();
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      form.email.setAttribute("aria-invalid", "true");
-      status.textContent = "Escreva um e-mail válido. Nada foi enviado.";
-      form.email.focus();
-      return;
-    }
-    if (optinWhatsapp && whatsapp) {
-      const digits = whatsapp.replace(/\D/g, "");
-      if (digits.length < 10 || digits.length > 13) {
-        form.whatsapp.setAttribute("aria-invalid", "true");
-        status.textContent = "Se for deixar o WhatsApp, use DDD e número. O campo pode ficar vazio. Nada foi enviado.";
-        form.whatsapp.focus();
-        return;
-      }
-    }
-    if (!LEAD_ENDPOINT) {
-      status.textContent = "A lista ainda não está ligada. Nada foi enviado, e esta página não redireciona.";
-      return;
-    }
-
-    const button = form.querySelector("[type=submit]");
-    button.disabled = true;
-    status.textContent = "Enviando…";
-    try {
-      const response = await fetch(LEAD_ENDPOINT, {
-        method: "POST",
-        body: buildLeadParams(new FormData(form), { optin: true, optinWhatsapp }),
-        mode: "cors",
-        credentials: "omit",
-      });
-      const data = await response.json().catch(() => null);
-      if (!response.ok || !data || data.ok !== true) {
-        status.textContent = "Não deu para enviar agora. Tente de novo em instantes. Nada foi confirmado.";
-        button.disabled = false;
-        return;
-      }
-      location.assign("/quanto-cobrar/obrigado/");
-    } catch {
-      status.textContent = "Não deu para enviar agora. Tente de novo em instantes. Nada foi confirmado.";
-      button.disabled = false;
-    }
+    if (!validateLeadFields(form, status, { optinWhatsapp, whatsapp })) return;
+    await postLead(
+      form,
+      status,
+      buildLeadParams(new FormData(form), { optin: true, optinWhatsapp }),
+      "/quanto-cobrar/obrigado/",
+    );
   });
 }
 

@@ -1088,6 +1088,26 @@ button:disabled {
   margin-top: 0.9rem;
 }
 
+.pagina-espera .isca {
+  width: min(40rem, calc(100% - var(--gutter) * 2));
+}
+
+.espera-tag {
+  margin: 0 0 0.4rem;
+  color: var(--lime);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+
+.pagina-espera .obrigado h1 {
+  font-size: clamp(1.7rem, 5vw, 2.6rem);
+  max-width: 22ch;
+  line-height: 1.02;
+}
+
 .comunidade {
   margin-top: 2.2rem;
   max-width: 40rem;
@@ -1115,6 +1135,17 @@ button:disabled {
   .comunidade .placa {
     width: 100%;
   }
+}
+
+.pagina-espera form {
+  margin-top: 1.15rem;
+}
+
+.miudo {
+  margin-top: 0.9rem;
+  color: var(--ink-dim);
+  font-size: 0.92rem;
+  max-width: 58ch;
 }
 
 .aula {

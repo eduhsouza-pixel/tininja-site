@@ -4,7 +4,7 @@ Site estático de [tininja.net](https://tininja.net/). HTML, CSS e JavaScript na
 
 ## Como publicar
 
-O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `politica-de-privacidade/`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/` e `scripts/` ficam de fora.
+O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `politica-de-privacidade/`, `fundadora/`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/` e `scripts/` ficam de fora.
 
 No repositório: Settings → Pages → Build and deployment → **GitHub Actions**.
 
@@ -28,6 +28,8 @@ Abra `http://127.0.0.1:4173/`.
 | `/quanto-cobrar/obrigado/` | Download do PDF, calculadora e canais. `noindex`, fora do sitemap |
 | `/comandos/` | Índice dos comandos mostrados nos vídeos |
 | `/comandos/<tema>/` | Comandos de um vídeo, com botão de copiar (`assets/js/comandos.js`) e fontes oficiais |
+| `/fundadora/` | Lista de espera da Turma Fundadora. Os textos visíveis estão em `fundadora/copy.js` |
+| `/fundadora/obrigado/` | Confirmação da lista. `noindex`, fora do sitemap |
 | `/politica-de-privacidade/` | Política de privacidade. O controlador é a DIGITAL RAPIDO COMERCIO E SERVICOS LTDA; o contato é contato@tininja.net |
 | `/404.html` | Página não encontrada |
 | `/lp/<nome>/` | Landing pages novas |
@@ -42,6 +44,8 @@ Conferência, o exemplo fictício do guia: custos fixos R$ 1.000, retirada R$ 5.
 O formulário de `/quanto-cobrar/` posta na URL de `LEAD_ENDPOINT` em `assets/js/site.js` (o `/exec` do Google Apps Script). O POST usa `URLSearchParams` (pedido CORS simples, sem header customizado), `mode: "cors"` e `credentials: "omit"`. O script responde HTTP 200 com `{ok:true}` ou `{ok:false,error}`. A página só abre `/quanto-cobrar/obrigado/` se `response.ok` e o JSON tem `ok === true`. Caso contrário, mostra o erro e fica na página. Se a constante ficar vazia, o envio é bloqueado e não há redirecionamento.
 
 Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (opcional, não é condição para o guia), `optin_whatsapp` (opcional) e os ocultos `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, lidos da URL, além do honeypot `website` (fora da tela). Sem `optin`, a página abre o obrigado e não envia nada. O número de WhatsApp só entra no POST se `optin` e `optin_whatsapp` estiverem marcados. O teste em `tests/hora.test.mjs` confere a URL `/exec` e essa regra.
+
+`/fundadora/` usa o mesmo POST. O envio em si é o pedido da lista: nome e e-mail saem mesmo sem a caixa de conteúdos. O campo oculto `fundadora_espera=sim` é separado de `optin` e de `optin_whatsapp`. O número de WhatsApp só entra se `optin_whatsapp` estiver marcado. A ponte já grava esses três campos em separado, então a lista confirma o envio mesmo sem a caixa de conteúdos.
 
 Abaixo do formulário, a aula “Quanto cobrar em TI: a conta que ninguém te ensinou” fica numa capa clicável. O iframe do `youtube-nocookie` só entra depois do clique. A mesma aula está em `/quanto-cobrar/obrigado/`, abaixo do download.
 
