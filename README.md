@@ -4,7 +4,7 @@ Site estático de [tininja.net](https://tininja.net/). HTML, CSS e JavaScript na
 
 ## Como publicar
 
-O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/` e `scripts/` ficam de fora.
+O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `politica-de-privacidade/`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/` e `scripts/` ficam de fora.
 
 No repositório: Settings → Pages → Build and deployment → **GitHub Actions**.
 
@@ -28,6 +28,7 @@ Abra `http://127.0.0.1:4173/`.
 | `/quanto-cobrar/obrigado/` | Download do PDF, calculadora e canais. `noindex`, fora do sitemap |
 | `/comandos/` | Índice dos comandos mostrados nos vídeos |
 | `/comandos/<tema>/` | Comandos de um vídeo, com botão de copiar (`assets/js/comandos.js`) e fontes oficiais |
+| `/politica-de-privacidade/` | Política de privacidade. Os trechos `[CPF ou CNPJ]`, `[endereço completo]` e `[e-mail de contato/privacidade]` continuam em destaque até o Eduardo preencher |
 | `/404.html` | Página não encontrada |
 | `/lp/<nome>/` | Landing pages novas |
 

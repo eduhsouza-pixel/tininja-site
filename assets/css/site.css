@@ -1338,3 +1338,98 @@ button:disabled {
 .comandos-topo + .faixa {
   padding-top: 0.5rem;
 }
+
+/* Política de privacidade: texto corrido, tabela e lacunas ainda sem dado real */
+.politica {
+  width: min(46rem, calc(100% - var(--gutter) * 2));
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 3.4rem) 0 3.2rem;
+}
+
+.politica h1 {
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  line-height: 1.05;
+  margin-bottom: 0.45rem;
+}
+
+.politica h2 {
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  line-height: 1.1;
+  margin: 1.8rem 0 0.5rem;
+}
+
+.politica .data {
+  color: var(--ink-dim);
+  margin-top: 0;
+}
+
+.politica a {
+  color: var(--lime);
+  font-weight: 700;
+}
+
+.politica ul {
+  max-width: var(--measure);
+  padding-left: 1.2rem;
+}
+
+.politica li {
+  margin-bottom: 0.45rem;
+}
+
+.politica table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin: 0.4rem 0 1.1rem;
+}
+
+.politica th,
+.politica td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.55rem 0.65rem;
+  border-bottom: 1px solid var(--purple);
+}
+
+.politica th {
+  color: var(--ink-dim);
+  font-weight: 700;
+}
+
+mark {
+  background: #ffe066;
+  color: #100e12;
+  padding: 0 0.18em;
+  border-radius: 3px;
+}
+
+@media (max-width: 560px) {
+  .politica table,
+  .politica thead,
+  .politica tbody,
+  .politica tr,
+  .politica th,
+  .politica td {
+    display: block;
+  }
+
+  .politica thead {
+    display: none;
+  }
+
+  .politica td {
+    border: 0;
+    padding: 0.12rem 0;
+  }
+
+  .politica tr {
+    display: block;
+    border-bottom: 1px solid var(--purple);
+    padding: 0.55rem 0;
+  }
+
+  .politica td:first-child {
+    font-weight: 700;
+  }
+}
