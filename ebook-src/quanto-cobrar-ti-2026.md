@@ -392,6 +392,12 @@ Te vejo lá.
 **Eduardo Honorato**
 TI Ninja · youtube.com/@tininjaconsult
 
+### Os links deste guia
+
+- A calculadora da hora, que faz a conta do capítulo 2 por você: [tininja.net/minha-hora](https://tininja.net/minha-hora/)
+- O canal, com os vídeos de rede, servidor e firewall: [youtube.com/@tininjaconsult](https://www.youtube.com/@tininjaconsult)
+- O dia a dia, no Instagram: [instagram.com/consult.tininja](https://www.instagram.com/consult.tininja/)
+
 ---
 ---
 
