@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comandos do Firewall do Windows — TI Ninja</title>
+  <meta name="description" content="Os comandos do Short “Aprenda Firewall do Windows em 2 minutos”: testar a porta, ver o perfil da rede e ligar só a regra que falta, sem desligar o firewall.">
+  <link rel="canonical" href="https://tininja.net/comandos/firewall-do-windows/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#100E12">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="Comandos do Firewall do Windows — TI Ninja">
+  <meta property="og:description" content="Porta, etiqueta, regra: os comandos para diagnosticar o firewall do Windows sem desligar nada.">
+  <meta property="og:url" content="https://tininja.net/comandos/firewall-do-windows/">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/darker-grotesque-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <header class="fascia">
+    <div class="tubo" aria-hidden="true"></div>
+    <a class="marca" href="/">
+      <img src="/assets/img/logo-nav.webp" alt="TI Ninja" width="480" height="154">
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/comandos/" aria-current="page">Comandos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="comandos-topo" aria-labelledby="pagina-titulo">
+      <h1 id="pagina-titulo">Comandos do Firewall do Windows</h1>
+      <p class="lede">Os comandos do Short “Aprenda Firewall do Windows em 2 minutos”, na ordem do diagnóstico: primeiro a porta, depois a etiqueta da rede, depois a regra. Rodam no PowerShell. Os que mudam alguma coisa pedem o PowerShell aberto como administrador.</p>
+      <p class="nota">Troque o IP <code>10.78.0.10</code> e as portas pelos do seu servidor. Esses foram os da bancada de laboratório gravada no vídeo (Windows 11 e Windows Server 2025).</p>
+    </section>
+
+    <section class="faixa" aria-label="Diagnóstico em três passos">
+      <div class="passo">
+        <h2><span class="passo-num">1</span> A porta</h2>
+        <p class="onde">No PC que não conecta</p>
+        <p>O ping pode estar bloqueado e o servidor estar perfeito. Teste a porta do serviço que você precisa (53 é DNS, 445 é pasta compartilhada, 3389 é área de trabalho remota).</p>
+        <div class="cmd"><pre>ping -n 2 10.78.0.10</pre><button type="button">Copiar</button></div>
+        <div class="cmd"><pre>Test-NetConnection 10.78.0.10 -Port 53</pre><button type="button">Copiar</button></div>
+        <p class="saida">Leu <code>TcpTestSucceeded : True</code>? O servidor está vivo e o serviço responde. Se o ping falhou, o problema é só o ping, não a rede.</p>
+      </div>
+
+      <div class="passo">
+        <h2><span class="passo-num">2</span> A etiqueta da rede</h2>
+        <p class="onde">No servidor</p>
+        <p>O Windows põe uma de três etiquetas em cada rede: domínio (achou o controlador), privada (marcada como confiável) ou pública. Rede que ele não reconhece vira pública, a mais fechada.</p>
+        <div class="cmd"><pre>Get-NetConnectionProfile | Select-Object InterfaceAlias, NetworkCategory</pre><button type="button">Copiar</button></div>
+        <p class="saida"><code>Public</code> num servidor da empresa costuma ser a pegadinha: servidor novo, rede sem gateway, controlador que não respondeu no boot.</p>
+      </div>
+
+      <div class="passo">
+        <h2><span class="passo-num">3</span> A regra</h2>
+        <p class="onde">No servidor, PowerShell como administrador</p>
+        <p>A regra que deixa o Windows responder ao ping se chama <code>FPS-ICMP4-ERQ-In</code>. Veja se ela está ligada:</p>
+        <div class="cmd"><pre>Get-NetFirewallRule -Name FPS-ICMP4-ERQ-In | Select-Object Name, Enabled, Profile</pre><button type="button">Copiar</button></div>
+        <p>Ligue só essa regra:</p>
+        <div class="cmd"><pre>Enable-NetFirewallRule -Name FPS-ICMP4-ERQ-In</pre><button type="button">Copiar</button></div>
+        <div class="cuidado">
+          <p><strong>Nunca rode <code>Enable-NetFirewallRule</code> sem o nome da regra.</strong> Sem parâmetro, ele liga todas as regras do firewall do computador. A própria documentação da Microsoft avisa.</p>
+        </div>
+      </div>
+
+      <div class="passo">
+        <h2>Liberar só o que o serviço precisa</h2>
+        <p>O certo é abrir só a porta do serviço, e só para a rede da empresa. Exemplo para um sistema na porta TCP 8080 (troque o nome e a porta):</p>
+        <div class="cmd"><pre>New-NetFirewallRule -DisplayName "Sistema" -Direction Inbound -Protocol TCP -LocalPort 8080 -RemoteAddress LocalSubnet -Action Allow</pre><button type="button">Copiar</button></div>
+        <p>Se a rede é sua e é confiável, dá para trocar a etiqueta para privada. O perfil de domínio não se escolhe à mão: ele aparece quando o computador do domínio acha o controlador.</p>
+        <div class="cmd"><pre>Set-NetConnectionProfile -InterfaceAlias "Ethernet" -NetworkCategory Private</pre><button type="button">Copiar</button></div>
+      </div>
+
+      <div class="passo">
+        <h2>O que não fazer</h2>
+        <div class="cuidado">
+          <p><strong>Não desligue o firewall inteiro.</strong> O ping volta, mas junto abre todas as portas do servidor. A Microsoft recomenda não desligar o Windows Firewall: você perde a proteção e outros recursos que dependem dele.</p>
+          <p class="nota">O comando que todo mundo já usou para testar, e que não deve ficar assim: <code>Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False</code></p>
+        </div>
+      </div>
+
+      <div class="passo">
+        <h2>Fontes</h2>
+        <ul class="fontes">
+          <li><a href="https://learn.microsoft.com/windows/security/operating-system-security/network-security/windows-firewall/">Visão geral do Windows Firewall: perfis e por que não desligar (Microsoft Learn)</a></li>
+          <li><a href="https://learn.microsoft.com/windows/security/operating-system-security/network-security/windows-firewall/configure-with-command-line">Gerenciar o Windows Firewall pela linha de comando (Microsoft Learn)</a></li>
+          <li><a href="https://learn.microsoft.com/windows/security/operating-system-security/network-security/windows-firewall/rules">Regras do Windows Firewall (Microsoft Learn)</a></li>
+          <li><a href="https://learn.microsoft.com/troubleshoot/windows-client/networking/domain-joined-machines-cannot-detect-domain-profile">Máquina do domínio que não detecta o perfil de domínio (Microsoft Learn)</a></li>
+          <li><a href="https://learn.microsoft.com/powershell/module/netsecurity/enable-netfirewallrule">Enable-NetFirewallRule (Microsoft Learn)</a></li>
+        </ul>
+        <div class="placas">
+          <a class="placa placa-lima" href="https://www.youtube.com/@tininjaconsult">Ver o canal no YouTube</a>
+          <a class="placa placa-vidro" href="/comandos/">Outros comandos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape-marca">
+      <img src="/assets/img/logo-nav.webp" alt="" width="480" height="154">
+      <p>TI Ninja · Campinas/SP</p>
+    </div>
+    <nav aria-label="No rodapé">
+      <a href="/">Início</a>
+      <a href="/comandos/">Comandos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+    </nav>
+    <nav aria-label="Redes">
+      <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
+      <a href="https://www.instagram.com/consult.tininja/">Instagram</a>
+    </nav>
+    <p>© 2026 TI Ninja</p>
+  </footer>
+  <script type="module" src="/assets/js/comandos.js"></script>
+</body>
+</html>
