@@ -245,6 +245,13 @@ export const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbwOkdrVslL
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
 
+export function buildLeadParams(entries, { optin, optinWhatsapp }) {
+  const params = new URLSearchParams(entries);
+  if (!(optin && optinWhatsapp)) params.delete("whatsapp");
+  if (!(params.get("whatsapp") || "").trim()) params.delete("whatsapp");
+  return params;
+}
+
 export function readUtms(search) {
   const params = new URLSearchParams(String(search || ""));
   const out = {};
@@ -273,10 +280,16 @@ function mountLead(doc) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     clearInvalid(form);
+    const optin = form.optin.checked;
+    if (!optin) {
+      location.assign("/quanto-cobrar/obrigado/");
+      return;
+    }
+
     const nome = form.nome.value.trim();
     const email = form.email.value.trim();
     const whatsapp = form.whatsapp.value.trim();
-    const optin = form.optin.checked;
+    const optinWhatsapp = Boolean(form.optin_whatsapp && form.optin_whatsapp.checked);
     form.nome.value = nome;
     form.email.value = email;
     form.whatsapp.value = whatsapp;
@@ -293,7 +306,7 @@ function mountLead(doc) {
       form.email.focus();
       return;
     }
-    if (whatsapp) {
+    if (optinWhatsapp && whatsapp) {
       const digits = whatsapp.replace(/\D/g, "");
       if (digits.length < 10 || digits.length > 13) {
         form.whatsapp.setAttribute("aria-invalid", "true");
@@ -301,12 +314,6 @@ function mountLead(doc) {
         form.whatsapp.focus();
         return;
       }
-    }
-    if (!optin) {
-      form.optin.setAttribute("aria-invalid", "true");
-      status.textContent = "Marque a autorização pra receber o guia e os avisos. Nada foi enviado.";
-      form.optin.focus();
-      return;
     }
     if (!LEAD_ENDPOINT) {
       status.textContent = "A lista ainda não está ligada. Nada foi enviado, e esta página não redireciona.";
@@ -319,7 +326,7 @@ function mountLead(doc) {
     try {
       const response = await fetch(LEAD_ENDPOINT, {
         method: "POST",
-        body: new URLSearchParams(new FormData(form)),
+        body: buildLeadParams(new FormData(form), { optin: true, optinWhatsapp }),
         mode: "cors",
         credentials: "omit",
       });
