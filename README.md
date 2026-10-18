@@ -45,7 +45,7 @@ Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (opcional, não é condi
 
 Abaixo do formulário, a aula “Quanto cobrar em TI: a conta que ninguém te ensinou” fica numa capa clicável. O iframe do `youtube-nocookie` só entra depois do clique. A mesma aula está em `/quanto-cobrar/obrigado/`, abaixo do download.
 
-O PDF público é `assets/ebook/quanto-cobrar-ti-2026.pdf`. O texto-fonte, com as notas que não entram no PDF, está em `ebook-src/quanto-cobrar-ti-2026.md`. O script troca apenas `[LINK DA PLANILHA]` pelo link da calculadora e pela cópia da planilha. Para gerar de novo:
+O PDF público é `assets/ebook/quanto-cobrar-ti-2026.pdf`. Desde 18/10/2026 ele tem capa, sumário e uma ilustração por capítulo: as artes ficam em `ebook-src/arte/*.jpg`, geradas pelo Codex (`ebook-src/arte/_gerar.sh` com o estilo em `_estilo.txt` e as cenas em `_pedidos.tsv`; o PNG original fica fora do Git) a partir das imagens do site como referência. O texto-fonte, com as notas que não entram no PDF, está em `ebook-src/quanto-cobrar-ti-2026.md`. O script troca apenas `[LINK DA PLANILHA]` pelo link da calculadora e pela cópia da planilha. Para gerar de novo:
 
 ```bash
 npm install --prefix /tmp/ebook-tools marked

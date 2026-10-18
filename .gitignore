@@ -1,0 +1,4 @@
+
+# ebook: originais em PNG e logs do Codex ficam locais; o build usa os JPEG
+ebook-src/arte/*.png
+ebook-src/arte/*.codex.log
