@@ -36,9 +36,9 @@ A calculadora roda no navegador.
 
 Conferência: custos + retirada = R$ 8.000, 160 horas → custo R$ 50,00; imposto + margem = 20% → preço R$ 62,50. O teste está em `tests/hora.test.mjs` (`node --test tests/hora.test.mjs`).
 
-O formulário de `/quanto-cobrar/` posta na URL de `LEAD_ENDPOINT` em `assets/js/site.js`. Essa constante está vazia, com um `TODO`, até a URL `/exec` do Google Apps Script. Enquanto vazia, o envio é bloqueado e a página não redireciona. Com a URL preenchida, o POST usa `URLSearchParams` (pedido CORS simples, sem header customizado), `mode: "cors"` e `credentials: "omit"`. O script responde HTTP 200 com `{ok:true}` ou `{ok:false,error}`. A página só abre `/quanto-cobrar/obrigado/` se `response.ok` e o JSON tem `ok === true`. Caso contrário, mostra o erro e fica na página.
+O formulário de `/quanto-cobrar/` posta na URL de `LEAD_ENDPOINT` em `assets/js/site.js` (o `/exec` do Google Apps Script). O POST usa `URLSearchParams` (pedido CORS simples, sem header customizado), `mode: "cors"` e `credentials: "omit"`. O script responde HTTP 200 com `{ok:true}` ou `{ok:false,error}`. A página só abre `/quanto-cobrar/obrigado/` se `response.ok` e o JSON tem `ok === true`. Caso contrário, mostra o erro e fica na página. Se a constante ficar vazia, o envio é bloqueado e não há redirecionamento.
 
-Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (`sim`, obrigatório), os ocultos `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, lidos da URL, e o honeypot `website` (fora da tela). WhatsApp só segue com a caixa de autorização marcada. O teste em `tests/hora.test.mjs` espera `LEAD_ENDPOINT` vazio; quando a URL `/exec` entrar, atualize a constante e esse teste juntos.
+Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (`sim`, obrigatório), os ocultos `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, lidos da URL, e o honeypot `website` (fora da tela). WhatsApp só segue com a caixa de autorização marcada. O teste em `tests/hora.test.mjs` confere a URL `/exec`.
 
 O PDF público é `assets/ebook/quanto-cobrar-ti-2026.pdf`. O texto-fonte, com as notas que não entram no PDF, está em `ebook-src/quanto-cobrar-ti-2026.md`. O script troca apenas `[LINK DA PLANILHA]` pelo link da calculadora e pela cópia da planilha. Para gerar de novo:
 

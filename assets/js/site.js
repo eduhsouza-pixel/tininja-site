@@ -236,13 +236,12 @@ function mountCalc(form) {
   paint();
 }
 
-// TODO: colar aqui a URL /exec do Google Apps Script.
-// Enquanto estiver vazia, o formulário não envia e não redireciona.
-// O POST é URLSearchParams (pedido CORS simples, sem header customizado),
-// mode cors, credentials omit. O script responde HTTP 200 com
-// {ok:true} ou {ok:false,error}. Só redireciona para
+// URL /exec do Google Apps Script. O POST é URLSearchParams (pedido CORS
+// simples, sem header customizado), mode cors, credentials omit. O script
+// responde HTTP 200 com {ok:true} ou {ok:false,error}. Só redireciona para
 // /quanto-cobrar/obrigado/ se response.ok e o JSON tem ok === true.
-export const LEAD_ENDPOINT = "";
+// Se esta string ficar vazia, o formulário não envia e não redireciona.
+export const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbwOkdrVslLmQnNrqWqHSnyYxSZsDGhCeW2IMaAEdvDmyCx8_2nDo9YHRCIztUZUyRM/exec";
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
 

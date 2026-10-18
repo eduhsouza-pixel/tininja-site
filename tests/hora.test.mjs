@@ -38,8 +38,11 @@ test("leitura pt-BR", () => {
   assert.ok(Number.isNaN(parsePt("abc")));
 });
 
-test("UTMs da landing e endpoint ainda vazio", () => {
-  assert.equal(LEAD_ENDPOINT, "");
+test("UTMs da landing e endpoint do Apps Script", () => {
+  assert.equal(
+    LEAD_ENDPOINT,
+    "https://script.google.com/macros/s/AKfycbwOkdrVslLmQnNrqWqHSnyYxSZsDGhCeW2IMaAEdvDmyCx8_2nDo9YHRCIztUZUyRM/exec",
+  );
   const utm = readUtms("?utm_source=instagram&utm_medium=reel&utm_campaign=dhcp&utm_content=169&utm_term=ignora");
   assert.deepEqual(utm, {
     utm_source: "instagram",
