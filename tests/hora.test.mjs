@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFileSync } from "node:fs";
-import { computeHour, parsePt, readUtms, LEAD_ENDPOINT } from "../assets/js/site.js";
+import { computeHour, parsePt, readUtms, LEAD_ENDPOINT, buildLeadParams } from "../assets/js/site.js";
 import { prepareEbookMarkdown } from "../scripts/ebook-text.mjs";
 
 test("exemplo fictício do guia: CF 1000, R 3000, H 80, I 10, M 10", () => {
@@ -36,6 +36,28 @@ test("leitura pt-BR", () => {
   assert.equal(parsePt("R$ 62,50"), 62.5);
   assert.ok(Number.isNaN(parsePt("")));
   assert.ok(Number.isNaN(parsePt("abc")));
+});
+
+test("whatsapp só entra com optin e optin_whatsapp", () => {
+  const entries = [
+    ["nome", "Ana"],
+    ["email", "ana@exemplo.com"],
+    ["whatsapp", "11999998888"],
+    ["optin", "sim"],
+    ["utm_source", "instagram"],
+    ["website", ""],
+  ];
+  const both = buildLeadParams(entries, { optin: true, optinWhatsapp: true });
+  assert.equal(both.get("whatsapp"), "11999998888");
+  assert.equal(both.get("email"), "ana@exemplo.com");
+  assert.equal(both.get("utm_source"), "instagram");
+  const emailOnly = buildLeadParams(entries, { optin: true, optinWhatsapp: false });
+  assert.equal(emailOnly.has("whatsapp"), false);
+  assert.equal(emailOnly.get("optin"), "sim");
+  const neither = buildLeadParams(entries, { optin: false, optinWhatsapp: true });
+  assert.equal(neither.has("whatsapp"), false);
+  const blank = buildLeadParams([["whatsapp", "   "]], { optin: true, optinWhatsapp: true });
+  assert.equal(blank.has("whatsapp"), false);
 });
 
 test("UTMs da landing e endpoint do Apps Script", () => {

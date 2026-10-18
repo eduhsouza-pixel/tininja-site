@@ -40,7 +40,7 @@ Conferência, o exemplo fictício do guia: custos fixos R$ 1.000, retirada R$ 3.
 
 O formulário de `/quanto-cobrar/` posta na URL de `LEAD_ENDPOINT` em `assets/js/site.js` (o `/exec` do Google Apps Script). O POST usa `URLSearchParams` (pedido CORS simples, sem header customizado), `mode: "cors"` e `credentials: "omit"`. O script responde HTTP 200 com `{ok:true}` ou `{ok:false,error}`. A página só abre `/quanto-cobrar/obrigado/` se `response.ok` e o JSON tem `ok === true`. Caso contrário, mostra o erro e fica na página. Se a constante ficar vazia, o envio é bloqueado e não há redirecionamento.
 
-Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (`sim`, obrigatório), os ocultos `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, lidos da URL, e o honeypot `website` (fora da tela). WhatsApp só segue com a caixa de autorização marcada. O teste em `tests/hora.test.mjs` confere a URL `/exec`.
+Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (opcional, não é condição para o guia), `optin_whatsapp` (opcional) e os ocultos `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, lidos da URL, além do honeypot `website` (fora da tela). Sem `optin`, a página abre o obrigado e não envia nada. O número de WhatsApp só entra no POST se `optin` e `optin_whatsapp` estiverem marcados. O teste em `tests/hora.test.mjs` confere a URL `/exec` e essa regra.
 
 Abaixo do formulário, a aula “Quanto cobrar em TI: a conta que ninguém te ensinou” fica numa capa clicável. O iframe do `youtube-nocookie` só entra depois do clique. A mesma aula está em `/quanto-cobrar/obrigado/`, abaixo do download.
 
