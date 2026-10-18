@@ -4,15 +4,15 @@ import { readFileSync } from "node:fs";
 import { computeHour, parsePt, readUtms, LEAD_ENDPOINT } from "../assets/js/site.js";
 import { prepareEbookMarkdown } from "../scripts/ebook-text.mjs";
 
-test("exemplo do brief: CF+R = 8000, H = 160, I+M = 20%", () => {
-  const result = computeHour({ cf: 3000, r: 5000, h: 160, i: 10, m: 10 });
+test("exemplo fictício do guia: CF 1000, R 3000, H 80, I 10, M 10", () => {
+  const result = computeHour({ cf: 1000, r: 3000, h: 80, i: 10, m: 10 });
   assert.equal(result.ok, true);
   assert.equal(result.custo, 50);
   assert.equal(result.preco, 62.5);
-  assert.equal(result.faturamento, 10000);
-  assert.equal(result.impostos, 1000);
-  assert.equal(result.margem, 1000);
-  assert.equal(result.cobertura, 8000);
+  assert.equal(result.faturamento, 5000);
+  assert.equal(result.impostos, 500);
+  assert.equal(result.margem, 500);
+  assert.equal(result.cobertura, 4000);
 });
 
 test("a soma pode estar toda em CF", () => {

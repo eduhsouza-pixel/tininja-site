@@ -31,7 +31,7 @@ Site estático, sem backend. A captura do guia em `/quanto-cobrar/` posta em `LE
 - Páginas desta versão: home, `/minha-hora/`, `/quanto-cobrar/` (captura do guia), `/quanto-cobrar/obrigado/` (noindex), 404.
 - Novas landing pages entram em `/lp/<name>/`.
 - Calculadora: custos fixos mensais (CF), retirada desejada (R), horas faturáveis (H), impostos % (I), margem % (M). Custo da hora = (CF+R)/H. Preço mínimo = custo/(1−I−M). Exige H>0 e I+M<100%.
-- Conferência: CF+R = R$ 8.000 e H = 160 → custo R$ 50,00; I+M = 20% → preço R$ 62,50.
+- Conferência, exemplo fictício do guia: CF R$ 1.000, R R$ 3.000, H 80 horas faturáveis, I 10%, M 10% → custo R$ 50,00 e preço mínimo R$ 62,50.
 - Não inventar números, depoimentos, contagem de alunos, faturamento, nomes de clientes, empresas, fabricantes, preços de curso ou garantias. Sem escassez falsa. O que faltaria dado fica em comentário HTML TODO.
 - Arquivo `CNAME` com `tininja.net`. O DNS no provedor do domínio ainda é externo.
 - Imagens de pessoa são as quatro peças enviadas pelo autor; não usar foto de estoque.
