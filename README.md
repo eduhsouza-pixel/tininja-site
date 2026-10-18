@@ -37,7 +37,7 @@ A calculadora roda no navegador.
 - Custo da hora = (custos fixos + retirada) / horas faturáveis
 - Preço mínimo = custo / (1 − impostos − margem), com os percentuais somados abaixo de 100% e horas maiores que zero
 
-Conferência, o exemplo fictício do guia: custos fixos R$ 1.000, retirada R$ 3.000, 80 horas faturáveis, imposto 10% e margem 10% → custo R$ 50,00 e preço mínimo R$ 62,50. O teste está em `tests/hora.test.mjs` (`node --test tests/hora.test.mjs`).
+Conferência, o exemplo fictício do guia: custos fixos R$ 1.000, retirada R$ 5.000, 80 horas faturáveis, imposto 10% e margem 10% → custo R$ 75,00 e preço mínimo R$ 93,75. O teste está em `tests/hora.test.mjs` (`node --test tests/hora.test.mjs`).
 
 O formulário de `/quanto-cobrar/` posta na URL de `LEAD_ENDPOINT` em `assets/js/site.js` (o `/exec` do Google Apps Script). O POST usa `URLSearchParams` (pedido CORS simples, sem header customizado), `mode: "cors"` e `credentials: "omit"`. O script responde HTTP 200 com `{ok:true}` ou `{ok:false,error}`. A página só abre `/quanto-cobrar/obrigado/` se `response.ok` e o JSON tem `ok === true`. Caso contrário, mostra o erro e fica na página. Se a constante ficar vazia, o envio é bloqueado e não há redirecionamento.
 
