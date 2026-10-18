@@ -1180,3 +1180,161 @@ button:disabled {
     max-width: 16ch;
   }
 }
+
+/* Comandos dos vídeos (/comandos/): blocos de PowerShell com botão de copiar */
+.comandos-topo {
+  width: min(1120px, calc(100% - var(--gutter) * 2));
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 4.5rem) 0 0.5rem;
+}
+
+.comandos-topo h1 {
+  font-size: clamp(2.5rem, 7vw, 4.8rem);
+  margin-bottom: 1rem;
+}
+
+.lede {
+  font-size: 1.18rem;
+}
+
+.passo {
+  border-top: 1px solid var(--jamb);
+  padding-top: 1.6rem;
+  margin-top: 2rem;
+}
+
+.passo-num {
+  color: var(--lime);
+}
+
+.onde {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--ink-dim);
+  margin-bottom: 0.6rem;
+}
+
+.cmd {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  margin: 0.6rem 0 0.9rem;
+  background: var(--night-2);
+  box-shadow: inset 0 0 0 1px var(--jamb);
+  border-radius: 2px;
+  max-width: 100%;
+}
+
+.cmd pre {
+  margin: 0;
+  padding: 0.85rem 1rem 0.8rem;
+  overflow-x: auto;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: var(--ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.cmd pre::before {
+  content: "PS> ";
+  color: var(--lime);
+}
+
+.cmd button {
+  border: 0;
+  border-left: 1px solid var(--jamb);
+  background: var(--purple-deep);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  padding: 0 1rem;
+  cursor: pointer;
+  min-width: 5.5rem;
+}
+
+.cmd button:hover {
+  background: var(--purple);
+}
+
+.cmd button.copiado {
+  background: var(--lime);
+  color: var(--night);
+}
+
+.saida {
+  color: var(--ink-dim);
+  font-size: 0.98rem;
+}
+
+.saida code,
+.passo p code {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 0.95em;
+  color: var(--ink);
+  background: var(--night-2);
+  padding: 0.05em 0.35em;
+  border-radius: 2px;
+}
+
+.cuidado {
+  background: var(--purple-deep);
+  padding: 1.1rem 1.25rem 0.4rem;
+  margin: 1.2rem 0;
+  max-width: 76ch;
+}
+
+.cuidado strong {
+  color: var(--fault);
+}
+
+.fontes {
+  padding-left: 1.2rem;
+  color: var(--ink-dim);
+  font-size: 0.98rem;
+}
+
+.fontes li {
+  margin-bottom: 0.45rem;
+}
+
+.lista-comandos {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0;
+}
+
+.lista-comandos a {
+  display: block;
+  border-top: 1px solid var(--jamb);
+  padding: 1.1rem 0 1rem;
+  text-decoration: none;
+}
+
+.lista-comandos a:hover strong {
+  color: var(--lime);
+}
+
+.lista-comandos strong {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.lista-comandos span {
+  color: var(--ink-dim);
+}
+
+.comandos-topo + .faixa {
+  padding-top: 0.5rem;
+}
