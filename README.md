@@ -40,6 +40,8 @@ O formulário de `/quanto-cobrar/` posta na URL de `LEAD_ENDPOINT` em `assets/js
 
 Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (`sim`, obrigatório), os ocultos `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, lidos da URL, e o honeypot `website` (fora da tela). WhatsApp só segue com a caixa de autorização marcada. O teste em `tests/hora.test.mjs` confere a URL `/exec`.
 
+Abaixo do formulário, a aula “Quanto cobrar em TI: a conta que ninguém te ensinou” fica numa capa clicável. O iframe do `youtube-nocookie` só entra depois do clique. A mesma aula está em `/quanto-cobrar/obrigado/`, abaixo do download.
+
 O PDF público é `assets/ebook/quanto-cobrar-ti-2026.pdf`. O texto-fonte, com as notas que não entram no PDF, está em `ebook-src/quanto-cobrar-ti-2026.md`. O script troca apenas `[LINK DA PLANILHA]` pelo link da calculadora e pela cópia da planilha. Para gerar de novo:
 
 ```bash

@@ -337,9 +337,26 @@ function mountLead(doc) {
   });
 }
 
+function mountVideo(doc) {
+  doc.querySelectorAll("[data-yt]").forEach((box) => {
+    const button = box.querySelector("button");
+    if (!button) return;
+    button.addEventListener("click", () => {
+      const frame = doc.createElement("iframe");
+      frame.src = box.getAttribute("data-yt-src");
+      frame.title = box.getAttribute("data-yt-title") || "Vídeo";
+      frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = "strict-origin-when-cross-origin";
+      box.replaceChildren(frame);
+    });
+  });
+}
+
 export function mount(doc = document) {
   doc.querySelectorAll("[data-calc]").forEach(mountCalc);
   mountLead(doc);
+  mountVideo(doc);
 }
 
 if (typeof document !== "undefined") {
