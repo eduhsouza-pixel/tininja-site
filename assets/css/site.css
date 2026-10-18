@@ -1088,6 +1088,35 @@ button:disabled {
   margin-top: 0.9rem;
 }
 
+.comunidade {
+  margin-top: 2.2rem;
+  max-width: 40rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(213, 204, 226, 0.35);
+}
+
+.comunidade h2 {
+  margin-top: 0;
+}
+
+.comunidade p {
+  max-width: 58ch;
+}
+
+.comunidade .placa {
+  margin-top: 0.15rem;
+  max-width: 100%;
+  line-height: 1.15;
+  text-align: center;
+  white-space: normal;
+}
+
+@media (max-width: 560px) {
+  .comunidade .placa {
+    width: 100%;
+  }
+}
+
 .aula {
   margin-top: 2.4rem;
   max-width: 46rem;
