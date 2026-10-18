@@ -92,16 +92,16 @@
           <div class="conta-intro">
             <h2 id="conta-titulo">Quanto vale a sua hora</h2>
             <p>Exemplo fictício — troque pelos seus números. O preço mínimo muda enquanto você digita.</p>
-            <p class="nota">Custos fixos R$ 1.000, retirada R$ 3.000, 80 horas faturáveis, imposto 10% e margem 10%. A conta dá custo R$ 50,00 e preço mínimo R$ 62,50. Não é um preço sugerido.</p>
+            <p class="nota">Custos fixos R$ 1.540, retirada R$ 3.675, 88 horas faturáveis, imposto 6% e margem 12%. A conta dá custo R$ 59,26 e preço mínimo R$ 72,27. Não é um preço sugerido.</p>
           </div>
 
           <div class="resultado">
             <span class="tubo-fixo" aria-hidden="true"></span>
             <p class="resultado-rotulo">Preço mínimo da hora</p>
-            <p class="preco-valor" data-out="preco">R$&nbsp;62,50</p>
-            <p class="custo-linha">Custo da hora <strong data-out="custo">R$&nbsp;50,00</strong></p>
+            <p class="preco-valor" data-out="preco">R$&nbsp;72,27</p>
+            <p class="custo-linha">Custo da hora <strong data-out="custo">R$&nbsp;59,26</strong></p>
             <p class="formula">Custo = (fixos + retirada) ÷ horas. Preço mínimo = custo ÷ (1 − imposto − margem).</p>
-            <div class="barra" data-bar role="img" aria-label="Divisão do preço mínimo: 80% cobre custo e retirada, 10% é imposto, 10% é margem.">
+            <div class="barra" data-bar role="img" aria-label="Divisão do preço mínimo: 82% cobre custo e retirada, 6% é imposto, 12% é margem.">
               <span data-seg="custo"></span>
               <span data-seg="imposto"></span>
               <span data-seg="margem"></span>
@@ -112,10 +112,10 @@
               <li><span class="amostra margem" aria-hidden="true"></span> Margem</li>
             </ul>
             <dl class="mes">
-              <div><dt>Faturamento mínimo no mês</dt><dd data-out="faturamento">R$&nbsp;5.000,00</dd></div>
-              <div><dt>Impostos</dt><dd data-out="impostos">R$&nbsp;500,00</dd></div>
-              <div><dt>Margem</dt><dd data-out="margem-mes">R$&nbsp;500,00</dd></div>
-              <div><dt>Cobre custos e retirada</dt><dd data-out="cobertura">R$&nbsp;4.000,00</dd></div>
+              <div><dt>Faturamento mínimo no mês</dt><dd data-out="faturamento">R$&nbsp;6.359,76</dd></div>
+              <div><dt>Impostos</dt><dd data-out="impostos">R$&nbsp;381,59</dd></div>
+              <div><dt>Margem</dt><dd data-out="margem-mes">R$&nbsp;763,17</dd></div>
+              <div><dt>Cobre custos e retirada</dt><dd data-out="cobertura">R$&nbsp;5.215,00</dd></div>
             </dl>
             <div class="acoes">
               <button class="placa placa-lima" type="button" data-copy>Copiar resultado</button>
@@ -130,7 +130,7 @@
               <span class="field-nome">Custos fixos mensais <small>CF</small></span>
               <span class="controle">
                 <span class="adorn" aria-hidden="true">R$</span>
-                <input name="cf" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="1.000,00" aria-describedby="ajuda-cf">
+                <input name="cf" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="1.540,00" aria-describedby="ajuda-cf">
               </span>
               <span class="field-help" id="ajuda-cf">O que sai todo mês mesmo sem chamado: ferramentas, contador, internet, deslocamento fixo.</span>
             </label>
@@ -138,7 +138,7 @@
               <span class="field-nome">Retirada desejada <small>R</small></span>
               <span class="controle">
                 <span class="adorn" aria-hidden="true">R$</span>
-                <input name="r" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="3.000,00" aria-describedby="ajuda-r">
+                <input name="r" data-kind="money" inputmode="decimal" autocomplete="off" spellcheck="false" value="3.675,00" aria-describedby="ajuda-r">
               </span>
               <span class="field-help" id="ajuda-r">O que você quer levar para casa no mês, no lugar de um salário.</span>
             </label>
@@ -146,7 +146,7 @@
               <span class="field-nome">Horas faturáveis (não trabalhadas) <small>H</small></span>
               <span class="controle">
                 <span class="adorn" aria-hidden="true">h</span>
-                <input name="h" data-kind="hours" inputmode="decimal" autocomplete="off" spellcheck="false" value="80" aria-describedby="ajuda-h">
+                <input name="h" data-kind="hours" inputmode="decimal" autocomplete="off" spellcheck="false" value="88" aria-describedby="ajuda-h">
               </span>
               <span class="field-help" id="ajuda-h">Horas faturáveis (não trabalhadas). Deslocamento, estudo e administrativo ficam de fora.</span>
             </label>
@@ -154,7 +154,7 @@
               <span class="field-nome">Impostos <small>I</small></span>
               <span class="controle">
                 <span class="adorn" aria-hidden="true">%</span>
-                <input name="i" data-kind="percent" inputmode="decimal" autocomplete="off" spellcheck="false" value="10" aria-describedby="ajuda-i">
+                <input name="i" data-kind="percent" inputmode="decimal" autocomplete="off" spellcheck="false" value="6" aria-describedby="ajuda-i">
               </span>
               <span class="field-help" id="ajuda-i">Percentual que incide sobre a nota do serviço. Some os tributos que você recolhe.</span>
             </label>
@@ -162,14 +162,14 @@
               <span class="field-nome">Margem de lucro <small>M</small></span>
               <span class="controle">
                 <span class="adorn" aria-hidden="true">%</span>
-                <input name="m" data-kind="percent" inputmode="decimal" autocomplete="off" spellcheck="false" value="10" aria-describedby="ajuda-m">
+                <input name="m" data-kind="percent" inputmode="decimal" autocomplete="off" spellcheck="false" value="12" aria-describedby="ajuda-m">
               </span>
               <span class="field-help" id="ajuda-m">O que fica na empresa depois do custo e do imposto, para ela se manter.</span>
             </label>
           </div>
           <div class="dock" aria-hidden="true">
             <span>Preço mínimo</span>
-            <strong data-out="preco">R$&nbsp;62,50</strong>
+            <strong data-out="preco">R$&nbsp;72,27</strong>
           </div>
         </form>
         <p class="planilha"><a href="https://docs.google.com/spreadsheets/d/1T56l2xeBYylC_3cJQ-Hs3r6veyafsEjzD5A6wfoIFFw/copy" target="_blank" rel="noopener noreferrer">Prefere planilha? Faça uma cópia no Google Sheets<span class="sr"> (abre em outra aba)</span></a></p>

@@ -281,6 +281,11 @@ function mountLead(doc) {
     event.preventDefault();
     clearInvalid(form);
     const optin = form.optin.checked;
+    // Sem a caixa de e-mail não há POST. O Apps Script só recebe
+    // URLSearchParams e responde {ok}; a lista é de e-mail, e um envio
+    // com o endereço preenchido poderia inscrever quem não marcou essa
+    // caixa. O WhatsApp entra só junto com ela (o rótulo avisa). O guia
+    // abre do mesmo jeito, com ou sem as caixas.
     if (!optin) {
       location.assign("/quanto-cobrar/obrigado/");
       return;

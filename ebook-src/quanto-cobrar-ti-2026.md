@@ -383,9 +383,9 @@ Se você fez a conta e montou a proposta, você já sai deste guia com o que eu 
 
 ### O próximo passo
 
-Em breve eu vou te convidar pra uma aula ao vivo onde eu mostro a rede que sustenta o contrato e o caminho até o primeiro cliente fixo. Fica de olho no seu e-mail.
+Em breve eu vou te convidar pra uma aula ao vivo onde eu mostro a rede que sustenta o contrato e o caminho até o primeiro cliente fixo. Se você marcou a caixa de e-mail, o convite chega por lá.
 
-Eu ajudo técnico de informática a sair do balcão e cuidar da TI de empresas, ganhando a partir de cinco mil. Isso é a meta do caminho, não uma garantia: depende do seu trabalho, da sua região e dos seus clientes. O primeiro passo é o que você acabou de fazer: saber quanto vale a sua hora.
+Eu ajudo técnico de informática a sair do balcão e cuidar da TI de empresas. O primeiro passo é o que você acabou de fazer: saber quanto vale a sua hora.
 
 Te vejo lá.
 
