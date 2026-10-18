@@ -37,15 +37,10 @@
   </header>
 
   <main id="conteudo" class="isca" data-fundadora-copy>
-    <div class="lightcopy">
-      <h1 data-copy="headline">[LIGHTCOPY] Fundamentos de Rede — Turma Fundadora</h1>
-      <p class="lede" data-copy="subhead">[LIGHTCOPY] Curso de entrada da TI Ninja. A lista de espera abre em 18/10.</p>
-      <ul class="espera-pontos" data-copy="bullets">
-        <li>[LIGHTCOPY] Turma Fundadora: R$ 97 em vez de R$ 197.</li>
-        <li>[LIGHTCOPY] 30 vagas, por cupom.</li>
-        <li>[LIGHTCOPY] Vendas abrem na live de segunda 26/10 (G0) e vão até 02/11, 23:59. Se as 30 acabarem antes, a Fundadora fecha e o preço volta a R$ 197.</li>
-      </ul>
-    </div>
+    <p class="espera-tag" data-copy="tag">FUNDAMENTOS DE REDE</p>
+    <h1 data-copy="headline">A Turma Fundadora abre em 26/10</h1>
+    <p class="lede" data-copy="subhead">Curso de diagnóstico de rede. Endereço, máscara, gateway, DNS e DHCP, com método.</p>
+    <p data-copy="line">Quem estiver na lista recebe o convite primeiro, no dia 26/10.</p>
 
     <!-- A URL /exec do Apps Script fica só em LEAD_ENDPOINT, em /assets/js/site.js. Não repetir a URL aqui. -->
     <form id="formulario" data-lead="fundadora" action="" method="post" novalidate>
@@ -61,26 +56,26 @@
         <label for="whatsapp">WhatsApp <span class="opcional">(opcional)</span></label>
         <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="DDD e número">
       </div>
-      <p class="optin-nota">Ao enviar, você pede para entrar na lista de espera da Turma Fundadora e receber o aviso de abertura. Esse pedido é o uso do nome e do e-mail.</p>
       <label class="optin">
         <input type="checkbox" name="optin" value="sim">
-        <span>Quero receber outros conteúdos, avisos de aulas ao vivo e novidades da TI Ninja por e-mail. Opcional: não é condição para a lista de espera.</span>
+        <span>Quero receber conteúdos, avisos de aulas ao vivo e novidades da TI Ninja por e-mail. Dá pra sair quando quiser.</span>
       </label>
       <label class="optin">
         <input type="checkbox" name="optin_whatsapp" value="sim">
-        <span>Quero receber o aviso da lista também pelo WhatsApp, no número informado.</span>
+        <span>Quero receber o convite e esses avisos também pelo WhatsApp, no número informado.</span>
       </label>
-      <p class="optin-nota">As duas caixas são opcionais. O número só sai daqui se a caixa do WhatsApp estiver marcada. Você sai quando quiser. <a href="/politica-de-privacidade/">Veja a Política de Privacidade</a>.</p>
-      <input type="hidden" name="tag" value="fundadora_espera">
+      <p class="optin-nota"><a href="/politica-de-privacidade/">Veja a Política de Privacidade</a>.</p>
+      <p class="optin-nota" data-copy="aboveButton">Ao entrar na lista, você recebe o convite da Turma Fundadora no dia 26/10. Só isso.</p>
+      <input type="hidden" name="fundadora_espera" value="sim">
       <input type="hidden" name="utm_source" value="">
       <input type="hidden" name="utm_medium" value="">
       <input type="hidden" name="utm_campaign" value="">
       <input type="hidden" name="utm_content" value="">
       <div class="hp" aria-hidden="true"><label>Site <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-      <button class="placa placa-lima" type="submit" data-copy="submit">[LIGHTCOPY] Entrar na lista de espera</button>
+      <button class="placa placa-lima" type="submit" data-copy="submit">Entrar na lista</button>
       <p class="lead-status" data-lead-status role="status" aria-live="polite"></p>
     </form>
-    <p class="miudo lightcopy" data-copy="smallPrint">[LIGHTCOPY] Texto miúdo da oferta.</p>
+    <p class="miudo" data-copy="smallPrint">Lista gratuita. Sem compromisso de compra.</p>
   </main>
 
   <footer class="rodape">

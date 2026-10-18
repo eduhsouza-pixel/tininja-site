@@ -45,7 +45,7 @@ O formulário de `/quanto-cobrar/` posta na URL de `LEAD_ENDPOINT` em `assets/js
 
 Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (opcional, não é condição para o guia), `optin_whatsapp` (opcional) e os ocultos `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, lidos da URL, além do honeypot `website` (fora da tela). Sem `optin`, a página abre o obrigado e não envia nada. O número de WhatsApp só entra no POST se `optin` e `optin_whatsapp` estiverem marcados. O teste em `tests/hora.test.mjs` confere a URL `/exec` e essa regra.
 
-`/fundadora/` usa o mesmo POST. O envio em si é o pedido da lista de espera: nome e e-mail saem mesmo sem a caixa de outros conteúdos. O campo oculto `tag` vai como `fundadora_espera`. O número de WhatsApp só entra se `optin_whatsapp` estiver marcado. O `Code.gs` da ponte não está neste repositório e, hoje, recusa contato sem `optin`. Até essa ponte aceitar a tag, o formulário não confirma o envio.
+`/fundadora/` usa o mesmo POST. O envio em si é o pedido da lista: nome e e-mail saem mesmo sem a caixa de conteúdos. O campo oculto `fundadora_espera=sim` é separado de `optin` e de `optin_whatsapp`. O número de WhatsApp só entra se `optin_whatsapp` estiver marcado. O `Code.gs` da ponte não está neste repositório e, hoje, recusa contato sem `optin`. Até essa ponte gravar os três campos em separado, o formulário não confirma o envio.
 
 Abaixo do formulário, a aula “Quanto cobrar em TI: a conta que ninguém te ensinou” fica numa capa clicável. O iframe do `youtube-nocookie` só entra depois do clique. A mesma aula está em `/quanto-cobrar/obrigado/`, abaixo do download.
 

@@ -1092,20 +1092,49 @@ button:disabled {
   width: min(40rem, calc(100% - var(--gutter) * 2));
 }
 
-.lightcopy {
-  box-shadow: inset 3px 0 0 var(--lime);
-  padding-left: 0.85rem;
+.espera-tag {
+  margin: 0 0 0.4rem;
+  color: var(--lime);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  line-height: 1;
 }
 
-.espera-pontos {
-  margin: 1rem 0 0;
-  padding: 0 0 0 1.15rem;
-  display: grid;
-  gap: 0.55rem;
+.pagina-espera .obrigado h1 {
+  font-size: clamp(1.7rem, 5vw, 2.6rem);
+  max-width: 22ch;
+  line-height: 1.02;
 }
 
-.espera-pontos li {
+.comunidade {
+  margin-top: 2.2rem;
+  max-width: 40rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(213, 204, 226, 0.35);
+}
+
+.comunidade h2 {
+  margin-top: 0;
+}
+
+.comunidade p {
   max-width: 58ch;
+}
+
+.comunidade .placa {
+  margin-top: 0.15rem;
+  max-width: 100%;
+  line-height: 1.15;
+  text-align: center;
+  white-space: normal;
+}
+
+@media (max-width: 560px) {
+  .comunidade .placa {
+    width: 100%;
+  }
 }
 
 .pagina-espera form {

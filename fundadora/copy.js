@@ -1,47 +1,22 @@
-/**
- * Único bloco de texto da Turma Fundadora. A Lightcopy troca só estas strings.
- * Fatos permitidos, e só estes:
- * - Fundamentos de Rede é o curso de entrada da TI Ninja.
- * - Turma Fundadora paga R$ 97 em vez de R$ 197.
- * - 30 vagas, por cupom.
- * - As vendas abrem na live de segunda 26/10 (G0) e vão até 02/11, 23:59.
- * - Se as 30 acabarem antes, a Fundadora fecha e o preço volta a R$ 197.
- * - A lista de espera abre em 18/10.
- */
+/** Texto aprovado da Turma Fundadora. Trocar só estas strings. */
 export const FUNDADORA_COPY = {
-  headline: "[LIGHTCOPY] Fundamentos de Rede — Turma Fundadora",
-  subhead: "[LIGHTCOPY] Curso de entrada da TI Ninja. A lista de espera abre em 18/10.",
-  bullets: [
-    "[LIGHTCOPY] Turma Fundadora: R$ 97 em vez de R$ 197.",
-    "[LIGHTCOPY] 30 vagas, por cupom.",
-    "[LIGHTCOPY] Vendas abrem na live de segunda 26/10 (G0) e vão até 02/11, 23:59. Se as 30 acabarem antes, a Fundadora fecha e o preço volta a R$ 197.",
-  ],
-  smallPrint: "[LIGHTCOPY] Texto miúdo da oferta.",
-  submit: "[LIGHTCOPY] Entrar na lista de espera",
-  thanksTitle: "[LIGHTCOPY] Pedido de lista recebido",
-  thanksBody: "[LIGHTCOPY] O aviso de abertura da Turma Fundadora chega no e-mail que você deixou.",
+  tag: "FUNDAMENTOS DE REDE",
+  headline: "A Turma Fundadora abre em 26/10",
+  subhead: "Curso de diagnóstico de rede. Endereço, máscara, gateway, DNS e DHCP, com método.",
+  line: "Quem estiver na lista recebe o convite primeiro, no dia 26/10.",
+  aboveButton: "Ao entrar na lista, você recebe o convite da Turma Fundadora no dia 26/10. Só isso.",
+  smallPrint: "Lista gratuita. Sem compromisso de compra.",
+  submit: "Entrar na lista",
+  thanksTitle: "Pronto, seu nome está na lista de espera da Turma Fundadora do Fundamentos de Rede.",
+  thanksBody: "No dia 26/10, a partir das 20h, o convite chega primeiro pra quem está nesta lista, com todos os detalhes.",
+  thanksNote: "Estar na lista não reserva vaga e não obriga a comprar. Se mudar de ideia, é só clicar em descadastrar no e-mail.",
 };
 
 export function applyFundadoraCopy(doc = document) {
   const root = doc.querySelector("[data-fundadora-copy]");
   if (!root) return;
-  const set = (key, value) => {
+  for (const [key, value] of Object.entries(FUNDADORA_COPY)) {
     const el = root.querySelector(`[data-copy="${key}"]`);
     if (el) el.textContent = value;
-  };
-  set("headline", FUNDADORA_COPY.headline);
-  set("subhead", FUNDADORA_COPY.subhead);
-  set("smallPrint", FUNDADORA_COPY.smallPrint);
-  set("submit", FUNDADORA_COPY.submit);
-  set("thanksTitle", FUNDADORA_COPY.thanksTitle);
-  set("thanksBody", FUNDADORA_COPY.thanksBody);
-  const list = root.querySelector('[data-copy="bullets"]');
-  if (!list) return;
-  list.replaceChildren(
-    ...FUNDADORA_COPY.bullets.map((text) => {
-      const li = doc.createElement("li");
-      li.textContent = text;
-      return li;
-    }),
-  );
+  }
 }
