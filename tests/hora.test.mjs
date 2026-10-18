@@ -15,6 +15,33 @@ test("exemplo fictício do guia: CF 1000, R 3000, H 80, I 10, M 10", () => {
   assert.equal(result.cobertura, 4000);
 });
 
+test("exemplo da calculadora não cai em 5.000", () => {
+  const pages = ["../minha-hora/index.html", "../index.html"].map((file) =>
+    readFileSync(new URL(file, import.meta.url), "utf8"),
+  );
+  for (const html of pages) {
+    const value = (name) => {
+      const match = html.match(new RegExp(`name="${name}"[^>]*value="([^"]+)"`));
+      assert.ok(match, `campo ${name}`);
+      return match[1];
+    };
+    const result = computeHour({
+      cf: Number(value("cf").replace(/\./g, "").replace(",", ".")),
+      r: Number(value("r").replace(/\./g, "").replace(",", ".")),
+      h: Number(value("h")),
+      i: Number(value("i")),
+      m: Number(value("m")),
+    });
+    assert.equal(result.ok, true);
+    assert.notEqual(result.faturamento, 5000);
+    assert.equal(result.custo, 59.26);
+    assert.equal(result.preco, 72.27);
+    assert.equal(result.faturamento, 6359.76);
+    assert.equal(html.includes("5.000,00"), false);
+    assert.equal(html.includes("R$&nbsp;72,27"), true);
+  }
+});
+
 test("a soma pode estar toda em CF", () => {
   const result = computeHour({ cf: 8000, r: 0, h: 160, i: 15, m: 5 });
   assert.equal(result.custo, 50);
@@ -85,4 +112,8 @@ test("PDF do guia troca só o link da planilha", () => {
   assert.equal(text.includes("https://docs.google.com/spreadsheets/d/1T56l2xeBYylC_3cJQ-Hs3r6veyafsEjzD5A6wfoIFFw/copy"), true);
   assert.equal(text.includes("eu travei"), true);
   assert.equal(text.includes("EXEMPLO FICTÍCIO"), true);
+  assert.equal(text.includes("cinco mil"), false);
+  assert.equal(text.includes("Fica de olho no seu e-mail"), false);
+  assert.equal(text.includes("Se você marcou a caixa de e-mail, o convite chega por lá."), true);
+  assert.equal(text.includes("ganhando a partir de"), false);
 });
