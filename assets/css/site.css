@@ -1397,13 +1397,6 @@ button:disabled {
   font-weight: 700;
 }
 
-mark {
-  background: #ffe066;
-  color: #100e12;
-  padding: 0 0.18em;
-  border-radius: 3px;
-}
-
 @media (max-width: 560px) {
   .politica table,
   .politica thead,

@@ -28,7 +28,7 @@ Abra `http://127.0.0.1:4173/`.
 | `/quanto-cobrar/obrigado/` | Download do PDF, calculadora e canais. `noindex`, fora do sitemap |
 | `/comandos/` | Índice dos comandos mostrados nos vídeos |
 | `/comandos/<tema>/` | Comandos de um vídeo, com botão de copiar (`assets/js/comandos.js`) e fontes oficiais |
-| `/politica-de-privacidade/` | Política de privacidade. Os trechos `[CPF ou CNPJ]`, `[endereço completo]` e `[e-mail de contato/privacidade]` continuam em destaque até o Eduardo preencher |
+| `/politica-de-privacidade/` | Política de privacidade. O controlador é a DIGITAL RAPIDO COMERCIO E SERVICOS LTDA; o contato é contato@tininja.net |
 | `/404.html` | Página não encontrada |
 | `/lp/<nome>/` | Landing pages novas |
 
