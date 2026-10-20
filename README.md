@@ -4,7 +4,7 @@ Site estático de [tininja.net](https://tininja.net/). HTML, CSS e JavaScript na
 
 ## Como publicar
 
-O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `politica-de-privacidade/`, `fundadora/`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/` e `scripts/` ficam de fora.
+O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `politica-de-privacidade/`, `fundadora/`, `calculadora-sub-rede/index.html`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/`, `scripts/` e `calculadora-sub-rede/src/` ficam de fora.
 
 No repositório: Settings → Pages → Build and deployment → **GitHub Actions**.
 
@@ -24,6 +24,7 @@ Abra `http://127.0.0.1:4173/`.
 | --- | --- |
 | `/` | Home |
 | `/minha-hora/` | Calculadora “Quanto vale a sua hora” |
+| `/calculadora-sub-rede/` | Calculadora de sub-rede (IPv4, CIDR e VLSM). A página publicada é `calculadora-sub-rede/index.html` |
 | `/quanto-cobrar/` | Captura do guia gratuito “Quanto cobrar em TI em 2026” |
 | `/quanto-cobrar/obrigado/` | Download do PDF, calculadora e canais. `noindex`, fora do sitemap |
 | `/comandos/` | Índice dos comandos mostrados nos vídeos |
@@ -34,7 +35,16 @@ Abra `http://127.0.0.1:4173/`.
 | `/404.html` | Página não encontrada |
 | `/lp/<nome>/` | Landing pages novas |
 
-A calculadora roda no navegador.
+A calculadora de hora roda no navegador.
+
+A calculadora de sub-rede também roda no navegador. O código-fonte (`template.html`, `core.js`, `build.py`, `test.js`, `oracle.py`) fica em `calculadora-sub-rede/src/` e não entra no site publicado. Para gerar de novo a página:
+
+```bash
+python3 calculadora-sub-rede/src/build.py
+node test.js   # dentro de calculadora-sub-rede/src/
+```
+
+O `build.py` lê o template e o núcleo e grava `calculadora-sub-rede/index.html`. Os placeholders `VIDEO_ID` (“Vídeo em breve”) e `OG_IMAGE` ficam como estão até o vídeo e a imagem existirem.
 
 - Custo da hora = (custos fixos + retirada) / horas faturáveis
 - Preço mínimo = custo / (1 − impostos − margem), com os percentuais somados abaixo de 100% e horas maiores que zero

@@ -28,6 +28,8 @@ jobs:
         run: |
           mkdir -p _site
           cp -a index.html 404.html robots.txt sitemap.xml site.webmanifest CNAME assets minha-hora quanto-cobrar comandos politica-de-privacidade fundadora _site/
+          mkdir -p _site/calculadora-sub-rede
+          cp calculadora-sub-rede/index.html _site/calculadora-sub-rede/index.html
           if [ -d lp ]; then cp -a lp _site/; fi
 
       - name: Publicar artefato
