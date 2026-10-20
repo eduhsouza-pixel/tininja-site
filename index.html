@@ -7,29 +7,29 @@
   <meta name="description" content="Para técnicos de TI que querem sair do chamado avulso, administrar redes e montar um MSP. Calcule o preço mínimo da sua hora. Guia gratuito Quanto cobrar em TI em 2026.">
   <link rel="canonical" href="https://tininja.net/">
   <meta name="author" content="Eduardo Honorato">
-  <meta name="theme-color" content="#100E12">
+  <meta name="theme-color" content="#FFFFFF">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
   <meta property="og:title" content="TI Ninja — do suporte à rede e ao seu MSP">
   <meta property="og:description" content="Para técnicos de TI que querem sair do chamado avulso, administrar redes e montar um MSP. Calcule o preço mínimo da sua hora.">
   <meta property="og:url" content="https://tininja.net/">
-  <meta property="og:image" content="https://tininja.net/assets/img/hero-1280.jpg">
-  <meta property="og:image:width" content="1280">
-  <meta property="og:image:height" content="720">
-  <meta property="og:image:alt" content="Ilustração de um ninja em uma sala de servidores escura, com espaço livre à esquerda.">
+  <meta property="og:image" content="https://tininja.net/assets/img/og-tininja.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Página do TI Ninja: um cabo de rede preto com os fios laranja, verde, azul e marrom saindo para o curso, a calculadora de sub-rede, a calculadora da hora e o e-book.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TI Ninja — do suporte à rede e ao seu MSP">
   <meta name="twitter:description" content="Saia do chamado avulso. Aprenda rede e a conta de um MSP. Calcule o preço mínimo da sua hora.">
-  <meta name="twitter:image" content="https://tininja.net/assets/img/hero-1280.jpg">
+  <meta name="twitter:image" content="https://tininja.net/assets/img/og-tininja.jpg">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" href="/assets/fonts/darker-grotesque-latin-800.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/darker-grotesque-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/img/hero-1280.webp" as="image" type="image/webp" imagesrcset="/assets/img/hero-640.webp 640w, /assets/img/hero-960.webp 960w, /assets/img/hero-1280.webp 1280w" imagesizes="100vw">
+  <link rel="preload" href="/assets/plates/cabo.png" as="image">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <script type="application/ld+json">
   {
@@ -57,41 +57,65 @@
 </head>
 <body>
   <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <!-- nav:inicio -->
   <header class="fascia">
-    <div class="tubo" aria-hidden="true"></div>
     <a class="marca" href="/">
-      <img src="/assets/img/logo-nav.webp" alt="TI Ninja" width="480" height="154">
+      <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+      TI Ninja
     </a>
     <nav aria-label="Principal">
       <a href="/" aria-current="page">Início</a>
-      <a href="/minha-hora/">Minha hora</a>
       <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/minha-hora/">Minha hora</a>
       <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
     </nav>
   </header>
+  <!-- nav:fim -->
 
   <main id="conteudo">
-    <section class="vitrine" aria-labelledby="hero-titulo">
-      <picture class="hero-media">
-        <source type="image/webp" srcset="/assets/img/hero-640.webp 640w, /assets/img/hero-960.webp 960w, /assets/img/hero-1280.webp 1280w" sizes="100vw">
-        <img src="/assets/img/hero-1280.jpg" alt="" width="1280" height="720" fetchpriority="high" decoding="async">
-      </picture>
-      <div class="hero-shade" aria-hidden="true"></div>
-      <div class="vitrine-copy">
-        <h1 id="hero-titulo">Pare de apagar incêndio. <span class="destaque">Administre a rede e o seu MSP.</span></h1>
-        <p class="lede">Para o técnico de suporte que quer entender a rede de verdade e passar a cobrar um serviço todo mês.</p>
-        <div class="placas">
-          <a class="placa placa-lima" href="#conta">Calcular minha hora</a>
-          <a class="placa placa-vidro" href="/quanto-cobrar/">E-book gratuito</a>
-        </div>
+    <section class="espinha" aria-labelledby="hero-titulo">
+      <figure class="cabo">
+        <img src="/assets/plates/cabo.png" alt="" width="822" height="1376" fetchpriority="high" decoding="async">
+      </figure>
+      <div class="espinha-copy">
+        <h1 id="hero-titulo">Pare de apagar incêndio.<br> Administre a rede.</h1>
+        <p class="lede">Para o técnico de suporte que quer entender a rede de verdade e cobrar um serviço todo mês.</p>
       </div>
+      <ul class="fios">
+        <li>
+          <div class="fio fio-laranja">
+            <span class="fio-titulo">Fundamentos de Rede</span>
+            <a class="placa placa-branca" href="/fundadora/">Entrar na lista do Fundamentos de Rede</a>
+          </div>
+        </li>
+        <li>
+          <a class="fio fio-verde" href="/calculadora-sub-rede/">
+            <span class="fio-titulo">Calculadora de sub-rede</span>
+            <span class="fio-valor">192.168.1.0/24 · 254 hosts</span>
+          </a>
+        </li>
+        <li>
+          <a class="fio fio-azul" href="#conta">
+            <span class="fio-titulo">Quanto vale a sua hora</span>
+            <span class="fio-valor">R$&nbsp;93,75</span>
+          </a>
+        </li>
+        <li>
+          <a class="fio fio-marrom" href="/quanto-cobrar/">
+            <span class="fio-titulo">E-book</span>
+            <span class="fio-valor">Quanto cobrar em TI</span>
+          </a>
+        </li>
+      </ul>
     </section>
 
+    <div class="segue-cabo">
     <section class="conta" id="conta" aria-labelledby="conta-titulo">
       <div class="faixa">
         <form class="conta-grid" data-calc novalidate>
           <div class="conta-intro">
-            <h2 id="conta-titulo">Quanto vale a sua hora</h2>
+            <h2 id="conta-titulo" class="sai-do-cabo sai-azul">Quanto vale a sua hora</h2>
             <p>Exemplo fictício — troque pelos seus números. O preço mínimo muda enquanto você digita.</p>
             <p class="nota">Custos fixos R$ 1.000, retirada R$ 5.000, 80 horas faturáveis, imposto 10% e margem 10%. A conta dá custo R$ 75,00 e preço mínimo R$ 93,75. Não é um preço sugerido.</p>
           </div>
@@ -149,7 +173,7 @@
                 <span class="adorn" aria-hidden="true">h</span>
                 <input name="h" data-kind="hours" inputmode="decimal" autocomplete="off" spellcheck="false" value="80" aria-describedby="ajuda-h">
               </span>
-              <span class="field-help" id="ajuda-h">Horas faturáveis (não trabalhadas). Deslocamento, estudo e administrativo ficam de fora.</span>
+              <span class="field-help" id="ajuda-h">Só as horas que viram nota. Deslocamento, estudo e administrativo ficam de fora.</span>
             </label>
             <label class="field">
               <span class="field-nome">Impostos <small>I</small></span>
@@ -179,7 +203,7 @@
     </section>
 
     <section class="faixa" id="para-quem" aria-labelledby="para-quem-titulo">
-      <h2 id="para-quem-titulo">Para quem ainda atende o incêndio</h2>
+      <h2 id="para-quem-titulo" class="sai-do-cabo sai-laranja">Para quem ainda atende o incêndio</h2>
       <p>Se o dia é senha, impressora e o Wi-Fi que caiu, e você quer ser a pessoa que desenha a rede e segura um contrato, a casa é esta. Não é atalho. É o ofício, na ordem em que ele se aprende.</p>
       <ol class="caminho">
         <li>Técnico que apaga incêndio</li>
@@ -189,7 +213,7 @@
     </section>
 
     <section class="faixa" id="oficio" aria-labelledby="oficio-titulo">
-      <div class="duo">
+      <div class="duo inverso">
         <div class="janela">
           <picture>
             <source type="image/webp" srcset="/assets/img/rede-640.webp 640w, /assets/img/rede-960.webp 960w, /assets/img/rede-1280.webp 1280w" sizes="(min-width: 900px) 46vw, 100vw">
@@ -197,7 +221,7 @@
           </picture>
         </div>
         <div>
-          <h2 id="oficio-titulo">O que entra na cabeça</h2>
+          <h2 id="oficio-titulo" class="sai-do-cabo sai-verde">O que entra na cabeça</h2>
           <dl class="oficio-lista">
             <div>
               <dt>Rede</dt>
@@ -219,7 +243,7 @@
     <section class="faixa" id="msp" aria-labelledby="msp-titulo">
       <div class="duo inverso">
         <div>
-          <h2 id="msp-titulo">Ter o próprio negócio de TI</h2>
+          <h2 id="msp-titulo" class="sai-do-cabo sai-marrom">Ter o próprio negócio de TI</h2>
           <p>MSP é o cliente pagando para a rede ficar de pé, não para você aparecer só quando ela cai. O passo é esse: sair do chamado avulso e montar um serviço gerenciado, com preço que fecha a conta.</p>
           <p><a class="placa placa-lima" href="#conta">Ver o preço da hora</a></p>
         </div>
@@ -233,14 +257,14 @@
     </section>
 
     <section class="faixa eduardo" id="eduardo" aria-labelledby="eduardo-titulo">
-      <h2 id="eduardo-titulo">Eduardo Honorato</h2>
+      <h2 id="eduardo-titulo" class="sai-do-cabo sai-azul">Eduardo Honorato</h2>
       <p>Técnico de TI em Campinas/SP. Começou no suporte, trabalhou numa multinacional e hoje toca o próprio MSP. O que ele ensina é o que precisou aprender nesse caminho: rede, infraestrutura e a conta do serviço recorrente.</p>
     </section>
 
     <!-- TODO: prova social (depoimentos, alunos, clientes, faturamento) somente com dado real. Não inventar. -->
 
     <section class="faixa" id="no-ar" aria-labelledby="no-ar-titulo">
-      <h2 id="no-ar-titulo">No ar</h2>
+      <h2 id="no-ar-titulo" class="sai-do-cabo sai-verde">No ar</h2>
       <p>O conteúdo público está nestes dois canais.</p>
       <div class="canais">
         <a href="https://www.youtube.com/@tininjaconsult">
@@ -259,7 +283,17 @@
         </a>
       </div>
     </section>
-  <section class="ebook" aria-labelledby="ebook-titulo">
+    </div>
+
+    <section class="chamada" aria-labelledby="curso-titulo">
+      <div class="miolo">
+        <h2 id="curso-titulo">Fundamentos de Rede</h2>
+        <p>Curso de diagnóstico de rede. Endereço, máscara, gateway, DNS e DHCP, com método.</p>
+        <a class="placa placa-lima" href="/fundadora/">Entrar na lista do Fundamentos de Rede</a>
+      </div>
+    </section>
+
+    <section class="ebook" aria-labelledby="ebook-titulo">
     <div class="miolo">
       <h2 id="ebook-titulo">Quanto cobrar em TI em 2026</h2>
       <p>Guia gratuito: o preço mínimo da sua hora e uma proposta de uma página.</p>
@@ -268,16 +302,22 @@
   </section>
   </main>
 
+  <!-- rodape:inicio -->
   <footer class="rodape">
     <div class="rodape-marca">
-      <img src="/assets/img/logo-nav.webp" alt="" width="480" height="154">
+      <a class="marca" href="/">
+        <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+        TI Ninja
+      </a>
       <p>TI Ninja · Campinas/SP</p>
     </div>
     <nav aria-label="No rodapé">
-      <a href="/">Início</a>
-      <a href="/minha-hora/">Minha hora</a>
+      <a href="/" aria-current="page">Início</a>
       <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/minha-hora/">Minha hora</a>
       <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+      <a href="/comandos/">Comandos dos vídeos</a>
     </nav>
     <nav aria-label="Redes">
       <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
@@ -286,6 +326,7 @@
     <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
     <p>© 2026 TI Ninja</p>
   </footer>
+  <!-- rodape:fim -->
   <script type="module" src="/assets/js/site.js"></script>
 </body>
 </html>

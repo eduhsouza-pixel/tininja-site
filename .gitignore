@@ -3,3 +3,12 @@
 ebook-src/arte/*.png
 ebook-src/arte/*.codex.log
 .claude/
+
+# Impeccable: rascunhos, capturas e relatórios internos ficam locais (repo público)
+.impeccable/build/
+.impeccable/mocks/
+.impeccable/logo/
+.impeccable/review/
+.impeccable/questions/
+.impeccable/copy-review-light-copy.md
+.impeccable/seo-plan.md
