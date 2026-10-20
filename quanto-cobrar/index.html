@@ -7,48 +7,53 @@
   <meta name="description" content="Você resolve o DHCP, o DNS e o gateway do cliente. O guia gratuito mostra o preço mínimo da sua hora e uma proposta de uma página.">
   <link rel="canonical" href="https://tininja.net/quanto-cobrar/">
   <meta name="author" content="Eduardo Honorato">
-  <meta name="theme-color" content="#100E12">
+  <meta name="theme-color" content="#FFFFFF">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
   <meta property="og:title" content="Quanto cobrar em TI em 2026 — guia grátis">
   <meta property="og:description" content="Você resolve o DHCP, o DNS e o gateway do cliente. O guia gratuito mostra o preço mínimo da sua hora e uma proposta de uma página.">
   <meta property="og:url" content="https://tininja.net/quanto-cobrar/">
-  <meta property="og:image" content="https://tininja.net/assets/img/hero-1280.jpg">
-  <meta property="og:image:width" content="1280">
-  <meta property="og:image:height" content="720">
-  <meta property="og:image:alt" content="Ilustração de um ninja em uma sala de servidores escura.">
+  <meta property="og:image" content="https://tininja.net/assets/img/og-tininja.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Página do TI Ninja: um cabo de rede preto com os fios laranja, verde, azul e marrom saindo para o curso, a calculadora de sub-rede, a calculadora da hora e o e-book.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Quanto cobrar em TI em 2026 — guia grátis">
   <meta name="twitter:description" content="Você resolve o DHCP, o DNS e o gateway do cliente. Guia gratuito da TI Ninja.">
-  <meta name="twitter:image" content="https://tininja.net/assets/img/hero-1280.jpg">
+  <meta name="twitter:image" content="https://tininja.net/assets/img/og-tininja.jpg">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" href="/assets/fonts/darker-grotesque-latin-800.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body class="pagina-isca">
   <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <!-- nav:inicio -->
   <header class="fascia">
-    <div class="tubo" aria-hidden="true"></div>
     <a class="marca" href="/">
-      <img src="/assets/img/logo-nav.webp" alt="TI Ninja" width="480" height="154">
+      <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+      TI Ninja
     </a>
     <nav aria-label="Principal">
       <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
       <a href="/minha-hora/">Minha hora</a>
       <a href="/quanto-cobrar/" aria-current="page">E-book</a>
+      <a href="/fundadora/">Curso</a>
     </nav>
   </header>
+  <!-- nav:fim -->
 
   <main id="conteudo" class="isca">
     <div class="isca-topo">
       <div class="isca-copy">
-        <h1>Você resolve o DHCP, o DNS e o gateway do cliente... e cobra quanto por isso?</h1>
-        <p class="lede">Do 169.254 ao DNS: guia gratuito com o preço mínimo da sua hora e uma proposta de uma página.</p>
+        <h1 data-ab="h1" data-b="Resolver o DHCP, o DNS e o gateway do cliente vale dinheiro. Só falta a conta.">Você resolve o DHCP, o DNS e o gateway do cliente... e cobra quanto por isso?</h1>
+        <p class="lede">Do 169.254 (a máquina que pediu endereço e ninguém respondeu) ao DNS: um guia gratuito com o preço mínimo da sua hora e uma proposta de uma página.</p>
       </div>
 
       <!-- A URL /exec do Apps Script fica só em LEAD_ENDPOINT, em /assets/js/site.js. Não repetir a URL aqui. -->
@@ -86,7 +91,7 @@
 
     <section class="aula" aria-labelledby="aula-titulo">
       <h2 id="aula-titulo">Assista: o método completo em 8 minutos</h2>
-      <p>O e-book traz a conta passo a passo e a planilha.</p>
+      <p>O vídeo mostra a conta; o e-book a deixa pronta para usar, com a planilha.</p>
       <div class="yt" data-yt data-yt-src="https://www.youtube-nocookie.com/embed/qQ3zJOUw_SA?autoplay=1&amp;rel=0" data-yt-title="Quanto cobrar em TI: a conta que ninguém te ensinou">
         <button type="button" class="yt-face" aria-label="Assistir Quanto cobrar em TI: a conta que ninguém te ensinou">
           <img src="https://i.ytimg.com/vi/qQ3zJOUw_SA/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/qQ3zJOUw_SA/hqdefault.jpg'">
@@ -104,25 +109,32 @@
     <section class="isca-baixo" aria-labelledby="guia-titulo">
       <h2 id="guia-titulo">No guia</h2>
       <ol class="caminho">
-        <li>Preço mínimo da hora</li>
-        <li>O que entra e o que fica de fora</li>
-        <li>Proposta de uma página</li>
+        <li>A conta do preço mínimo da hora, do custo ao imposto</li>
+        <li>O que entra nos custos fixos, do notebook dividido em 36 meses ao DAS</li>
+        <li>A proposta de uma página que você leva ao cliente</li>
+        <li>A planilha para copiar no Google Sheets</li>
       </ol>
       <p>A mesma conta, sem cadastro, está na <a href="/minha-hora/">calculadora</a>.</p>
       <p class="quem">Eduardo Honorato · Campinas/SP. Técnico de suporte que hoje toca o próprio MSP.</p>
     </section>
   </main>
 
+  <!-- rodape:inicio -->
   <footer class="rodape">
     <div class="rodape-marca">
-      <img src="/assets/img/logo-nav.webp" alt="" width="480" height="154">
+      <a class="marca" href="/">
+        <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+        TI Ninja
+      </a>
       <p>TI Ninja · Campinas/SP</p>
     </div>
     <nav aria-label="No rodapé">
       <a href="/">Início</a>
-      <a href="/minha-hora/">Minha hora</a>
       <a href="/calculadora-sub-rede/">Sub-rede</a>
-      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/" aria-current="page">E-book</a>
+      <a href="/fundadora/">Curso</a>
+      <a href="/comandos/">Comandos dos vídeos</a>
     </nav>
     <nav aria-label="Redes">
       <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
@@ -131,6 +143,7 @@
     <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
     <p>© 2026 TI Ninja</p>
   </footer>
+  <!-- rodape:fim -->
   <script type="module" src="/assets/js/site.js"></script>
 </body>
 </html>

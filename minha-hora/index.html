@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quanto vale a sua hora — TI Ninja</title>
+  <title>Quanto vale a sua hora — calculadora de preço mínimo | TI Ninja</title>
   <meta name="description" content="Calcule o custo e o preço mínimo da sua hora técnica a partir dos custos fixos, da retirada, das horas faturáveis, dos impostos e da margem.">
   <link rel="canonical" href="https://tininja.net/minha-hora/">
   <meta name="author" content="Eduardo Honorato">
-  <meta name="theme-color" content="#100E12">
+  <meta name="theme-color" content="#FFFFFF">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
-  <meta property="og:title" content="Quanto vale a sua hora — TI Ninja">
+  <meta property="og:title" content="Quanto vale a sua hora — calculadora de preço mínimo | TI Ninja">
   <meta property="og:description" content="Custo da hora e preço mínimo, com imposto e margem. A conta atualiza enquanto você digita.">
   <meta property="og:url" content="https://tininja.net/minha-hora/">
   <meta property="og:image" content="https://tininja.net/assets/img/calculadora-1280.jpg">
@@ -19,44 +19,48 @@
   <meta property="og:image:height" content="720">
   <meta property="og:image:alt" content="Ilustração de um ninja ao lado de uma calculadora e notas, em luz verde e roxa.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Quanto vale a sua hora — TI Ninja">
+  <meta name="twitter:title" content="Quanto vale a sua hora — calculadora de preço mínimo | TI Ninja">
   <meta name="twitter:description" content="Custo da hora e preço mínimo, com imposto e margem.">
   <meta name="twitter:image" content="https://tininja.net/assets/img/calculadora-1280.jpg">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" href="/assets/fonts/darker-grotesque-latin-800.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/darker-grotesque-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/img/calculadora-1280.webp" as="image" type="image/webp" imagesrcset="/assets/img/calculadora-640.webp 640w, /assets/img/calculadora-960.webp 960w, /assets/img/calculadora-1280.webp 1280w" imagesizes="(min-width: 900px) 52vw, 100vw">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
   <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <!-- nav:inicio -->
   <header class="fascia">
-    <div class="tubo" aria-hidden="true"></div>
     <a class="marca" href="/">
-      <img src="/assets/img/logo-nav.webp" alt="TI Ninja" width="480" height="154">
+      <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+      TI Ninja
     </a>
     <nav aria-label="Principal">
       <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
       <a href="/minha-hora/" aria-current="page">Minha hora</a>
       <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
     </nav>
   </header>
+  <!-- nav:fim -->
 
   <main id="conteudo">
     <section class="fachada" aria-labelledby="pagina-titulo">
       <div>
         <h1 id="pagina-titulo">Quanto vale a sua hora</h1>
-        <p class="lede">Some o que a operação custa e o que você quer retirar. Divida pelas horas que realmente fatura. O preço mínimo ainda cabe imposto e margem.</p>
-        <a class="placa placa-lima" href="#conta">Ir para a conta</a>
+        <p class="lede"><strong>Cobrar o que o vizinho cobra não é conta; é palpite.</strong> Aqui a conta tem cinco números: o que a operação custa, o que você quer retirar, as horas que de fato dá para faturar, o imposto e a margem. O preço mínimo aparece enquanto você digita.</p>
+        <a class="placa placa-lima" href="#conta">Fazer a minha conta</a>
       </div>
       <div class="janela">
         <picture>
           <source type="image/webp" srcset="/assets/img/calculadora-640.webp 640w, /assets/img/calculadora-960.webp 960w, /assets/img/calculadora-1280.webp 1280w" sizes="(min-width: 900px) 52vw, 100vw">
-          <img src="/assets/img/calculadora-1280.jpg" width="1280" height="720" alt="Ilustração de um ninja ao lado de uma calculadora e notas, em luz verde e roxa." fetchpriority="high" decoding="async">
+          <img src="/assets/img/calculadora-1280.jpg" width="1280" height="960" alt="Vista de cima de um alicate de crimpar, conectores RJ45, um cabo descascado com os oito fios coloridos e uma calculadora." fetchpriority="high" decoding="async">
         </picture>
       </div>
     </section>
@@ -66,7 +70,7 @@
         <form class="conta-grid" data-calc novalidate>
           <div class="conta-intro">
             <h2 id="conta-titulo">A conta</h2>
-            <p>Exemplo fictício — troque pelos seus números. Cada campo abaixo diz o que entra nele.</p>
+            <p>Exemplo fictício: troque pelos seus números. Cada campo abaixo diz o que entra nele.</p>
             <p class="nota">Custos fixos R$ 1.000, retirada R$ 5.000, 80 horas faturáveis, imposto 10% e margem 10%. A conta dá custo R$ 75,00 e preço mínimo R$ 93,75. Não é um preço sugerido.</p>
           </div>
 
@@ -119,12 +123,12 @@
               <span class="field-help" id="ajuda-r">O que você quer levar para casa no mês. Entra como salário da conta, não como lucro da empresa.</span>
             </label>
             <label class="field">
-              <span class="field-nome">Horas faturáveis (não trabalhadas) <small>H</small></span>
+              <span class="field-nome">Horas faturáveis, não trabalhadas <small>H</small></span>
               <span class="controle">
                 <span class="adorn" aria-hidden="true">h</span>
                 <input name="h" data-kind="hours" inputmode="decimal" autocomplete="off" spellcheck="false" value="80" aria-describedby="ajuda-h">
               </span>
-              <span class="field-help" id="ajuda-h">Horas faturáveis (não trabalhadas): só as que dá para cobrar de um cliente. Deslocamento, estudo e o tempo de organizar a semana não entram. Precisa ser maior que zero.</span>
+              <span class="field-help" id="ajuda-h">Só as que dá para cobrar de um cliente. Deslocamento, estudo e o tempo de organizar a semana não entram. Precisa ser maior que zero.</span>
             </label>
             <label class="field">
               <span class="field-nome">Impostos <small>I</small></span>
@@ -149,20 +153,31 @@
           </div>
         </form>
         <p class="planilha"><a href="https://docs.google.com/spreadsheets/d/1T56l2xeBYylC_3cJQ-Hs3r6veyafsEjzD5A6wfoIFFw/copy" target="_blank" rel="noopener noreferrer">Prefere planilha? Faça uma cópia no Google Sheets<span class="sr"> (abre em outra aba)</span></a></p>
+        <div class="com-numero">
+          <h3>Com o número na mão</h3>
+          <p>O preço mínimo é o piso. O cliente só vê uma proposta. O guia gratuito mostra como fechar essa conta em uma página e o que fica fora dela.</p>
+          <p><a class="placa placa-lima" href="/quanto-cobrar/">Baixar o guia Quanto cobrar em TI</a></p>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- rodape:inicio -->
   <footer class="rodape">
     <div class="rodape-marca">
-      <img src="/assets/img/logo-nav.webp" alt="" width="480" height="154">
+      <a class="marca" href="/">
+        <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+        TI Ninja
+      </a>
       <p>TI Ninja · Campinas/SP</p>
     </div>
     <nav aria-label="No rodapé">
       <a href="/">Início</a>
-      <a href="/minha-hora/">Minha hora</a>
       <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/minha-hora/" aria-current="page">Minha hora</a>
       <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+      <a href="/comandos/">Comandos dos vídeos</a>
     </nav>
     <nav aria-label="Redes">
       <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
@@ -171,6 +186,7 @@
     <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
     <p>© 2026 TI Ninja</p>
   </footer>
+  <!-- rodape:fim -->
   <script type="module" src="/assets/js/site.js"></script>
 </body>
 </html>

@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Calculadora de Sub-rede IP (CIDR, Máscara e VLSM) | TI Ninja</title>
-<meta name="description" content="Calculadora de sub rede grátis: IP com /CIDR ou máscara e você vê rede, broadcast, hosts e o binário na hora. Divisão por setor (VLSM) e explicação em português.">
+<title>Calculadora de Sub-rede Online: IP, CIDR, Máscara e VLSM | TI Ninja</title>
+<meta name="description" content="Calculadora de sub-rede grátis e online: digite o IP com /CIDR ou a máscara e veja rede, broadcast, faixa de hosts e binário na hora. Divida a rede por setor com VLSM. Explicação em português.">
 <link rel="canonical" href="https://tininja.net/calculadora-sub-rede/">
 <meta name="author" content="Eduardo Honorato">
-<meta name="theme-color" content="#100E12">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="TI Ninja">
-<meta property="og:title" content="Calculadora de Sub-rede (IP, CIDR e VLSM) | TI Ninja">
+<meta property="og:title" content="Calculadora de Sub-rede Online (IP, CIDR e VLSM) | TI Ninja">
 <meta property="og:description" content="Rede, broadcast, hosts, máscara e binário na hora. Divida a rede por setor com VLSM. Grátis, roda no seu navegador.">
 <meta property="og:url" content="https://tininja.net/calculadora-sub-rede/">
 <meta property="og:image" content="https://tininja.net/assets/img/sub-rede-og.jpg">
@@ -19,96 +19,113 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Rede de computadores dividida em quatro sub-redes por paredes de luz verde">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Calculadora de Sub-rede (IP, CIDR e VLSM) | TI Ninja">
+<meta name="twitter:title" content="Calculadora de Sub-rede Online (IP, CIDR e VLSM) | TI Ninja">
 <meta name="twitter:description" content="Rede, broadcast, hosts, máscara e binário na hora. Divida a rede por setor com VLSM.">
 <meta name="twitter:image" content="https://tininja.net/assets/img/sub-rede-og.jpg">
-<link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preload" href="/assets/fonts/darker-grotesque-latin-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/atkinson-hyperlegible-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
 <style>
-:root{--bg:var(--night);--bg2:var(--night-2);--card:#1a1520;--line:#352c42;--tx:var(--ink);--mut:var(--ink-dim);--ac:var(--lime);--ac2:var(--lime);--net:#7aa7ff;--host:var(--lime);--err:var(--fault);--on:var(--night);--r:2px;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+:root{--bg:#fff;--bg2:var(--papel);--card:#fff;--line:var(--linha);--tx:var(--tinta);--mut:var(--tinta-2);--ac:var(--laranja);--ac2:#1B7A33;--net:var(--azul-escuro);--host:var(--laranja-escuro);--err:var(--falha);--on:var(--tinta);--vf:#1F8638;--r:6px}
 *{box-sizing:border-box}
-a{color:var(--ac2)}a:hover{text-decoration-thickness:2px}
+a{color:var(--azul-escuro);font-weight:700}a:hover{text-decoration-thickness:3px}
 .w{max-width:1040px;margin:0 auto;padding:0 var(--gutter)}
 main p,main dd,main li{max-width:none}
-nav.crumb{font-size:.85rem;color:var(--mut);margin:18px 0 4px}nav.crumb ol{list-style:none;padding:0;margin:0;display:flex;gap:6px}nav.crumb li+li:before{content:"›";margin-right:6px}
-main h1{font-size:clamp(2.2rem,6vw,4rem);margin:.1em 0 .25em}
-main h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:2.2em 0 .5em}
-main h3{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1;font-size:1.5rem;margin:1.2em 0 .35em}
-.lead{color:var(--mut);max-width:62ch;margin:0 0 18px;font-size:1.12rem}
+nav.crumb{font-size:.9rem;color:var(--mut);margin:18px 0 4px}nav.crumb ol{list-style:none;padding:0;margin:0;display:flex;gap:6px}nav.crumb li+li:before{content:"›";margin-right:6px}nav.crumb a{font-weight:400;color:var(--mut)}
+main h1{font-size:clamp(2.1rem,5.2vw,3.6rem);margin:.1em 0 .3em;max-width:20ch}
+main h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin:2.2em 0 .5em;padding-top:.7em;border-top:6px solid var(--verde)}
+main h2.sr{border:0;padding:0;margin:-1px}
+main h3{font-family:var(--fonte);font-weight:800;letter-spacing:-.025em;line-height:1.1;font-size:1.35rem;margin:1.2em 0 .35em}
+.lead{color:var(--mut);max-width:62ch;margin:0 0 22px;font-size:1.15rem}
+.ponte,.meio{color:var(--mut);max-width:62ch;margin:0 0 22px}
+.meio{margin:32px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .grid{display:grid;gap:14px}
 @media(min-width:760px){.g2{grid-template-columns:1fr 1fr}.form{grid-template-columns:2fr 1.3fr}}
-label{display:block;font-weight:700;font-size:.95rem;margin-bottom:6px}
-.hint{font-size:.85rem;color:var(--mut);margin-top:4px}
-input,select,textarea{width:100%;font:inherit;font-family:var(--mono);color:var(--tx);background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:11px 12px;min-height:46px}
+label{display:block;font-weight:700;font-size:1rem;margin-bottom:6px}
+.hint{font-size:.9rem;color:var(--mut);margin-top:4px}
+input,select,textarea{width:100%;font:inherit;font-family:var(--mono);color:var(--tx);background:#fff;border:2px solid #c9c7c0;border-radius:var(--r);padding:10px 12px;min-height:48px}
+input:hover,select:hover,textarea:hover{border-color:var(--tinta-3)}
+input:focus,select:focus,textarea:focus{border-color:var(--azul);outline:none;box-shadow:0 0 0 3px rgba(43,108,217,.22)}
 textarea{min-height:130px;resize:vertical}
-input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
-button{font:inherit;cursor:pointer;border-radius:var(--r);border:1px solid var(--line);background:var(--bg2);color:var(--tx);padding:8px 14px;min-height:44px}
-button.pri{background:var(--ac);color:var(--on);border-color:var(--ac);font-weight:700}
-button.pri:hover{background:var(--lime-deep)}
-.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}.tabs button[aria-selected=true]{background:var(--ac);color:var(--on);border-color:var(--ac);font-weight:700}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:var(--r);border:0;box-shadow:inset 0 0 0 2px var(--tinta);background:#fff;color:var(--tx);padding:8px 14px;min-height:44px}
+button:hover{background:var(--papel)}
+button.pri{background:var(--laranja);color:var(--tinta);box-shadow:none}
+button.pri:hover{background:#f6943d}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}.tabs button[aria-selected=true]{background:var(--vf);color:#fff;box-shadow:none}
 .err{color:var(--err);font-weight:700;margin:8px 0 0}.err:empty{margin:0}
 dl.res{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:16px 0 0}
-dl.res div{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;position:relative}
-dt{font-size:.78rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
-dd{margin:2px 0 0;position:static;font-family:var(--mono);font-size:1.02rem;overflow-wrap:break-word;padding-right:52px}
-.cp{position:absolute;right:6px;top:6px;min-height:36px;padding:4px 9px;font-size:.78rem;background:transparent}
-.tag{display:inline-block;padding:1px 9px;border-radius:99px;font-family:var(--body);font-size:.85rem;border:1px solid var(--line)}
-.tag.priv{color:var(--ac);border-color:var(--ac)}.tag.pub{color:var(--net);border-color:var(--net)}.tag.esp{color:var(--imposto);border-color:var(--imposto)}
-.bin{font-family:var(--mono);font-size:clamp(.72rem,2.3vw,1rem);overflow-x:auto;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-top:12px;line-height:1.9}
-.bin .n{color:var(--net)}.bin .h{color:var(--host)}.bin .k{display:inline-block;width:9.5ch;color:var(--mut);font-family:var(--body)}
-.leg{font-size:.85rem;color:var(--mut)}.leg b.n{color:var(--net)}.leg b.h{color:var(--host)}
+dl.res div{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;position:relative}
+dl.res div:first-child{background:var(--vf);border-color:var(--vf);color:#fff;grid-column:1/-1}
+dl.res div:first-child dt{color:#fff;font-weight:700}
+dl.res div:first-child dd{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.2}
+dl.res div:first-child .cp{background:#fff;color:var(--tinta)}
+dt{padding-right:60px;font-size:.78rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+dd{margin:2px 0 0;position:static;font-family:var(--mono);font-size:1.02rem;overflow-wrap:break-word;padding-right:64px}
+.cp{position:absolute;right:6px;top:6px;min-height:36px;padding:4px 9px;font-size:.8rem;background:#fff;box-shadow:inset 0 0 0 1px var(--tinta)}
+.tag{display:inline-block;white-space:nowrap;padding:1px 9px;border-radius:99px;font-family:var(--fonte);font-size:.88rem;border:1px solid var(--line)}
+.tag.priv{color:#1B7A33;border-color:#1B7A33}.tag.pub{color:var(--azul-escuro);border-color:var(--azul-escuro)}.tag.esp{color:var(--laranja-escuro);border-color:var(--laranja-escuro)}
+.bin{font-family:var(--mono);font-size:clamp(.72rem,2.3vw,1rem);overflow-x:auto;background:var(--papel);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-top:12px;line-height:1.9}
+.bin .n{color:var(--net);font-weight:700}.bin .h{color:var(--host);font-weight:700}.bin .k{display:inline-block;width:9.5ch;color:var(--mut);font-family:var(--fonte);font-weight:400}
+.leg{font-size:.9rem;color:var(--mut)}.leg b.n{color:var(--net)}.leg b.h{color:var(--host)}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
 .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);margin-top:12px}
-table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
-th{background:var(--bg2);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}td{font-family:var(--mono)}td.t{font-family:inherit}
-tbody tr:hover{background:var(--bg2)}tr.sel{background:color-mix(in srgb,var(--ac) 16%,transparent)}
+table{border-collapse:collapse;width:100%;font-size:.95rem}th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--papel);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}td{font-family:var(--mono)}td.t{font-family:inherit}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--papel)}tr.sel,tr.sel:hover{background:#e3f3e7}
 .ref button{min-height:32px;padding:2px 8px;font-family:var(--mono)}
-.video{max-width:860px;margin:0 auto;position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:#000 radial-gradient(circle at 30% 20%,#44335c,#100E12 70%) center/cover no-repeat;border:1px solid var(--line)}
-.video button{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.65));color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;font-weight:700}
+.video{max-width:860px;margin:0 auto;position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--tinta) center/cover no-repeat}
+.video button{position:absolute;inset:0;width:100%;height:100%;border:0;box-shadow:none;border-radius:0;background:linear-gradient(180deg,transparent 50%,rgba(22,24,29,.7));color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;font-weight:700}
+.video button:hover{background:linear-gradient(180deg,transparent 50%,rgba(22,24,29,.7))}
 .video .play{width:74px;height:52px;border-radius:14px;background:#e62117;display:grid;place-items:center}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .tips{display:grid;gap:12px}@media(min-width:760px){.tips{grid-template-columns:1fr 1fr}}
 .tips .card h3{margin-top:0}
-details{border:1px solid var(--line);border-radius:var(--r);background:var(--card);margin:8px 0}summary{cursor:pointer;font-weight:700;padding:14px 16px;list-style-position:inside}details p{margin:0;padding:0 16px 14px}
-code{font-family:var(--mono);background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:.92em}
-.fig{margin:22px 0}.fig img{width:100%;height:auto;display:block;border-radius:var(--r);border:1px solid var(--line)}.fig figcaption{font-size:.85rem;color:var(--mut);margin-top:8px}
-.duas{display:grid;gap:18px}@media(min-width:760px){.duas{grid-template-columns:1fr 1fr;align-items:start}}
+details{border:1px solid var(--line);border-radius:var(--r);background:#fff;margin:8px 0}summary{cursor:pointer;font-weight:700;padding:14px 16px;list-style-position:inside}details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}details p{margin:0;padding:0 16px 14px}
+code{font-family:var(--mono);background:var(--papel);border-radius:3px;padding:0 5px;font-size:.92em;color:var(--tinta)}
+.fig{margin:22px 0}.fig img{width:100%;height:auto;display:block;border-radius:var(--r);border:0;background:var(--papel)}.fig figcaption{font-size:.9rem;color:var(--mut);margin-top:8px}
+.duas{display:grid;gap:18px}.duas .fig-larga{grid-column:1/-1}@media(min-width:760px){.duas{grid-template-columns:1fr 1fr;align-items:start}}
 .prosa p{max-width:68ch}
-.cta{border:1px solid var(--ac);background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 10%,var(--card)),var(--card));padding:clamp(1.2rem,4vw,2.2rem)}
-.cta h2{margin-top:0;font-size:clamp(1.7rem,3.2vw,2.4rem)}
+.cta{border:0;background:var(--verde-faixa);color:#fff;padding:clamp(1.4rem,4vw,2.4rem)}
+.cta h2{margin-top:0;padding-top:0;border-top:0;font-size:clamp(1.6rem,3.2vw,2.3rem)}
 .cta p{max-width:62ch}
-.cta .placa{margin-top:10px}
-.miudo-cta{font-size:.85rem;color:var(--mut);margin:12px 0 0}
-.priv-note{font-size:.85rem;color:var(--mut)}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.mt{margin-top:12px}.mt40{margin-top:40px}[hidden]{display:none!important}
+.cta .placa{margin-top:10px;background:#fff;color:var(--tinta)}
+.cta .placa:hover{background:var(--papel)}
+.miudo-cta{font-size:.9rem;margin:12px 0 0}
+.priv-note{font-size:.9rem;color:var(--mut)}
+.mt{margin-top:12px}.mt40{margin-top:40px}
 @media (prefers-reduced-motion:no-preference){button,dl.res div{transition:background .15s,border-color .15s}}
 </style>
 </head>
 <body>
 <a class="skip" href="#conteudo">Ir para o conteúdo</a>
-<header class="fascia">
-  <div class="tubo" aria-hidden="true"></div>
-  <a class="marca" href="/">
-    <img src="/assets/img/logo-nav.webp" alt="TI Ninja" width="480" height="154">
-  </a>
-  <nav aria-label="Principal">
-    <a href="/">Início</a>
-    <a href="/minha-hora/">Minha hora</a>
-    <a href="/calculadora-sub-rede/" aria-current="page">Sub-rede</a>
-    <a href="/quanto-cobrar/">E-book</a>
-  </nav>
-</header>
+<!-- nav:inicio -->
+  <header class="fascia">
+    <a class="marca" href="/">
+      <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+      TI Ninja
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/" aria-current="page">Sub-rede</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+    </nav>
+  </header>
+  <!-- nav:fim -->
 <main id="conteudo" class="w">
 <nav class="crumb" aria-label="Trilha de navegação"><ol><li><a href="https://tininja.net/">Início</a></li><li aria-current="page">Calculadora de sub-rede</li></ol></nav>
-<h1>Calculadora de Sub&#8209;rede (IP, CIDR e VLSM)</h1>
-<p class="lead">Quatro números que quase ninguém lê: a máscara. Digite o IP com a barra (<code>192.168.1.10/24</code>) ou com a máscara (<code>255.255.255.0</code>) e a rede, o broadcast, a faixa de hosts e a conta em binário aparecem na hora. Pra dividir a rede por setor, o VLSM está logo abaixo.</p>
+<h1>Calculadora de sub-rede online (IP, CIDR, máscara e VLSM)</h1>
+<p class="lead">Quatro números que quase ninguém lê: a máscara. Digite o IP com a barra (<code>192.168.1.10/24</code>) ou com a máscara (<code>255.255.255.0</code>) e a rede, o broadcast, a faixa de hosts e a conta em binário aparecem na hora. Para dividir a rede por setor, o VLSM está logo abaixo.</p>
+<p class="ponte">Prefere começar pela história? A impressora que atende só metade do escritório está <a href="#t-video">em vídeo, mais abaixo</a>.</p>
 
 <section class="card" aria-labelledby="t-calc">
 <h2 id="t-calc" class="sr">Calcular sub-rede</h2>
@@ -164,14 +181,16 @@ Link ponto a ponto 2</textarea><p class="hint">Para 2 hosts usamos /30. Se o equ
 </div>
 </section>
 
+<p class="meio">Máscara, gateway, DNS e DHCP: se quiser aprender a achar a falha nas quatro, a lista do Fundamentos de Rede está aberta. <a href="https://tininja.net/fundadora/?utm_source=site&amp;utm_medium=calculadora&amp;utm_content=sub-rede-meio">Entrar na lista</a></p>
+
 <section class="prosa" aria-labelledby="t-oque">
 <h2 id="t-oque">O que é sub-rede (e o que a máscara faz)</h2>
-<figure class="fig"><picture><source type="image/webp" srcset="/assets/img/sub-rede-hero-640.webp 640w, /assets/img/sub-rede-hero-960.webp 960w, /assets/img/sub-rede-hero-1280.webp 1280w" sizes="(min-width: 1080px) 1000px, 94vw"><img src="/assets/img/sub-rede-hero-1280.jpg" width="1280" height="720" alt="Rede de computadores vista de cima, dividida em quatro grupos por paredes de luz verde, com um roteador no centro ligando os grupos" loading="lazy" decoding="async"></picture><figcaption>Uma rede grande recortada em quatro sub-redes. Quem passa de uma pra outra passa pelo roteador do meio.</figcaption></figure>
+<figure class="fig"><picture><source type="image/webp" srcset="/assets/img/sub-rede-hero-640.webp 640w, /assets/img/sub-rede-hero-960.webp 960w, /assets/img/sub-rede-hero-1280.webp 1280w" sizes="(min-width: 1080px) 1000px, 94vw"><img src="/assets/img/sub-rede-hero-1280.jpg" width="1280" height="720" alt="Rede de escritório dividida em três grupos de computadores e impressora, cada um sobre um piso de cor diferente, ligados a um roteador no meio" loading="lazy" decoding="async"></picture><figcaption>Uma rede recortada em três sub-redes. Quem passa de uma pra outra passa pelo roteador do meio.</figcaption></figure>
 <p>Um endereço IP tem duas partes. Uma diz qual é a rede; a outra, qual é o aparelho dentro dela. Bairro e número da casa.</p>
 <p>A máscara diz onde termina o bairro. Em <code>192.168.10.50</code> com <code>255.255.255.0</code>, os três primeiros números são a rede e o último é o aparelho. Na forma curta, <code>/24</code>: 24 bits de rede, 8 de aparelho, 256 endereços. O primeiro é o endereço da rede, o último é o broadcast. Sobram 254.</p>
 <div class="duas">
-<figure class="fig"><picture><source type="image/webp" srcset="/assets/img/sub-rede-mascara-640.webp 640w, /assets/img/sub-rede-mascara-960.webp 960w, /assets/img/sub-rede-mascara-1280.webp 1280w" sizes="(min-width: 760px) 500px, 94vw"><img src="/assets/img/sub-rede-mascara-1280.jpg" width="1280" height="720" alt="Fileira de cubos atravessada por uma parede de luz: os da esquerda acesos em verde, os da direita apagados" loading="lazy" decoding="async"></picture><figcaption>A máscara é essa parede: de um lado os bits da rede, do outro os do aparelho.</figcaption></figure>
-<figure class="fig"><picture><source type="image/webp" srcset="/assets/img/sub-rede-gateway-640.webp 640w, /assets/img/sub-rede-gateway-960.webp 960w, /assets/img/sub-rede-gateway-1280.webp 1280w" sizes="(min-width: 760px) 500px, 94vw"><img src="/assets/img/sub-rede-gateway-1280.jpg" width="1280" height="720" alt="Dois grupos de equipamentos de rede com um roteador em forma de portal entre eles e um feixe de luz verde atravessando" loading="lazy" decoding="async"></picture><figcaption>O gateway é a porta. Destino fora do bloco passa por ele, e ele precisa morar dentro do bloco.</figcaption></figure>
+<figure class="fig fig-larga"><img src="/assets/img/sub-rede-mascara.svg" width="1274" height="330" alt="Os 32 bits de uma máscara /24 em quatro grupos de 8: os 24 primeiros, em azul, são a rede; os 8 últimos, vazios, são o aparelho. Uma parede preta separa as duas partes." loading="lazy" decoding="async"><figcaption>A máscara é essa parede: de um lado os bits da rede, do outro os do aparelho.</figcaption></figure>
+<figure class="fig"><picture><source type="image/webp" srcset="/assets/img/sub-rede-gateway-640.webp 640w, /assets/img/sub-rede-gateway-960.webp 960w, /assets/img/sub-rede-gateway-1280.webp 1280w" sizes="(min-width: 760px) 500px, 94vw"><img src="/assets/img/sub-rede-gateway-1280.jpg" width="1280" height="720" alt="Dois grupos de computadores, um sobre piso verde e outro sobre piso azul, com um roteador entre eles e um cabo laranja saindo dele em direção à internet" loading="lazy" decoding="async"></picture><figcaption>O gateway é a porta. Destino fora do bloco passa por ele, e ele precisa morar dentro do bloco.</figcaption></figure>
 </div>
 <p>Antes de mandar qualquer pacote, o computador faz uma conta: o destino está no meu bloco? Se está, ele descobre a placa do vizinho e entrega direto. Se não está, ele manda pro gateway, que precisa ser um vizinho do mesmo bloco.</p>
 <p>É por isso que máscara errada quase nunca derruba tudo. Derruba pela metade: a impressora que atende metade do escritório, o servidor que uns acessam e outros não. Nenhum cabo errado, nenhum switch ruim. Quatro números.</p>
@@ -241,31 +260,38 @@ Link ponto a ponto 2</textarea><p class="hint">Para 2 hosts usamos /30. Se o equ
 </section>
 
 <section class="card cta mt40" aria-labelledby="t-cta">
-<h2 id="t-cta">Máscara, gateway, DNS e DHCP. Quase toda rede que funciona pela metade cai numa dessas quatro.</h2>
+<h2 id="t-cta">Máscara, gateway, DNS e DHCP. Na minha experiência, quase toda rede que funciona pela metade cai numa dessas quatro.</h2>
 <p>Calcular a sub-rede é a primeira. As outras três têm a mesma cara: o cabo está bom, o switch está bom, e mesmo assim não anda. O Fundamentos de Rede é um curso de diagnóstico de rede: endereço, máscara, gateway, DNS e DHCP, com método, pra achar o que está errado antes de trocar peça.</p>
 <p>A Turma Fundadora abre em 26/10. Quem estiver na lista recebe o convite primeiro.</p>
 <a class="placa placa-lima" href="https://tininja.net/fundadora/?utm_source=site&amp;utm_medium=calculadora&amp;utm_content=sub-rede">Entrar na lista</a>
 <p class="miudo-cta">Lista gratuita. Sem compromisso de compra.</p>
 </section>
 </main>
-<footer class="rodape">
-  <div class="rodape-marca">
-    <img src="/assets/img/logo-nav.webp" alt="" width="480" height="154">
-    <p>TI Ninja · Campinas/SP</p>
-  </div>
-  <nav aria-label="No rodapé">
-    <a href="/">Início</a>
-    <a href="/minha-hora/">Minha hora</a>
-    <a href="/calculadora-sub-rede/">Sub-rede</a>
-    <a href="/quanto-cobrar/">E-book</a>
-  </nav>
-  <nav aria-label="Redes">
-    <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
-    <a href="https://www.instagram.com/consult.tininja/">Instagram</a>
-  </nav>
-  <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
-  <p>© 2026 TI Ninja</p>
-</footer>
+<!-- rodape:inicio -->
+  <footer class="rodape">
+    <div class="rodape-marca">
+      <a class="marca" href="/">
+        <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+        TI Ninja
+      </a>
+      <p>TI Ninja · Campinas/SP</p>
+    </div>
+    <nav aria-label="No rodapé">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/" aria-current="page">Sub-rede</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+      <a href="/comandos/">Comandos dos vídeos</a>
+    </nav>
+    <nav aria-label="Redes">
+      <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
+      <a href="https://www.instagram.com/consult.tininja/">Instagram</a>
+    </nav>
+    <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+    <p>© 2026 TI Ninja</p>
+  </footer>
+  <!-- rodape:fim -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calculadora de Sub-rede TI Ninja","url":"https://tininja.net/calculadora-sub-rede/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","description":"Calculadora de sub-rede IPv4 e IPv6 com CIDR, máscara, wildcard, binário e divisão VLSM.","offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Eduardo Honorato","sameAs":["https://www.youtube.com/@tininjaconsult"]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://tininja.net/"},{"@type":"ListItem","position":2,"name":"Calculadora de sub-rede","item":"https://tininja.net/calculadora-sub-rede/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é uma sub-rede?","acceptedAnswer":{"@type":"Answer","text":"É um pedaço menor de uma rede IP, com o próprio endereço de rede, a própria faixa de hosts e o próprio broadcast. Quem define onde um pedaço termina e o outro começa é a máscara de sub-rede."}},{"@type":"Question","name":"O que significa /24 (notação CIDR)?","acceptedAnswer":{"@type":"Answer","text":"O número depois da barra é a quantidade de bits da parte de rede. /24 equivale à máscara 255.255.255.0 e deixa 8 bits para os hosts, ou seja, 256 endereços."}},{"@type":"Question","name":"Quantos hosts tem uma rede /24?","acceptedAnswer":{"@type":"Answer","text":"Uma /24 tem 256 endereços e 254 hosts utilizáveis, porque o primeiro é o endereço de rede e o último é o broadcast. A fórmula é 2^(32 − prefixo) − 2."}},{"@type":"Question","name":"Quantos hosts tem uma rede /26, /27, /28, /29 e /30?","acceptedAnswer":{"@type":"Answer","text":"São 62, 30, 14, 6 e 2 hosts utilizáveis. Uma /31 tem 2 em enlaces ponto a ponto (RFC 3021) e uma /32 identifica um único host."}},{"@type":"Question","name":"Quantos hosts tem uma rede /16 e uma /22?","acceptedAnswer":{"@type":"Answer","text":"Uma /16 tem 65.534 hosts utilizáveis e uma /22 tem 1.022."}},{"@type":"Question","name":"Quantas sub-redes /26 cabem em uma /24?","acceptedAnswer":{"@type":"Answer","text":"Cabem 4 (2^(26 − 24)), cada uma com 64 endereços e 62 hosts utilizáveis: .0, .64, .128 e .192."}},{"@type":"Question","name":"Qual a diferença entre máscara de sub-rede e CIDR?","acceptedAnswer":{"@type":"Answer","text":"São duas formas de escrever a mesma informação. 255.255.255.0 é a máscara em decimal e /24 é o mesmo valor em notação CIDR (RFC 4632), que substituiu as classes A, B e C."}},{"@type":"Question","name":"Qual é a máscara de sub-rede padrão?","acceptedAnswer":{"@type":"Answer","text":"Desde o CIDR não existe máscara padrão. No antigo sistema de classes, eram 255.0.0.0 (A), 255.255.0.0 (B) e 255.255.255.0 (C). Roteadores domésticos costumam vir com 255.255.255.0, que é a /24."}},{"@type":"Question","name":"Como descobrir a máscara de sub-rede no PC ou no celular?","acceptedAnswer":{"@type":"Answer","text":"No Windows, rode ipconfig no Prompt de Comando e leia as linhas Endereço IPv4, Máscara de Sub-rede e Gateway Padrão. No Linux, ip a; no macOS, ifconfig. No iPhone, vá em Ajustes, Wi-Fi e toque no (i) da rede. No Android, abra os detalhes da rede Wi-Fi conectada."}},{"@type":"Question","name":"Qual a diferença entre máscara de sub-rede e gateway?","acceptedAnswer":{"@type":"Answer","text":"A máscara define o tamanho da sua rede local, ou seja, quais endereços estão \"do seu lado\". O gateway é o endereço do roteador ou firewall que leva o tráfego pra fora dessa rede, e ele precisa estar dentro da mesma sub-rede."}},{"@type":"Question","name":"Quais são as faixas de IP privado?","acceptedAnswer":{"@type":"Answer","text":"10.0.0.0/8, 172.16.0.0/12 e 192.168.0.0/16, definidas na RFC 1918. Esses endereços não circulam na internet pública. A faixa 100.64.0.0/10 é o espaço compartilhado usado por provedores em CGNAT (RFC 6598) e não deve ser usada em rede interna comum."}},{"@type":"Question","name":"O que é VLSM?","acceptedAnswer":{"@type":"Answer","text":"É usar máscaras de tamanhos diferentes dentro da mesma rede, para dar a cada setor ou VLAN só o tamanho de que ele precisa, em vez de dividir tudo em partes iguais. O modo \"VLSM por hosts\" desta página faz essa conta."}},{"@type":"Question","name":"O que é máscara curinga (wildcard)?","acceptedAnswer":{"@type":"Answer","text":"É o inverso bit a bit da máscara: para 255.255.255.0, a wildcard é 0.0.0.255. Aparece em listas de acesso e em protocolos de roteamento de alguns equipamentos."}}]}]}
 </script>

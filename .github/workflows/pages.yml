@@ -24,6 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Conferir menu e rodapé únicos
+        run: python3 scripts/layout.py --check
+
       - name: Montar o site público
         run: |
           mkdir -p _site
