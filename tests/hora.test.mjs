@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFileSync } from "node:fs";
-import { computeHour, parsePt, readUtms, LEAD_ENDPOINT, buildLeadParams } from "../assets/js/site.js";
+import { computeHour, parsePt, readUtms, LEAD_ENDPOINT, buildLeadParams, pickVariant, applyVariant, AB_KEY } from "../assets/js/site.js";
 import { prepareEbookMarkdown } from "../scripts/ebook-text.mjs";
 import { FUNDADORA_COPY } from "../fundadora/copy.js";
 
@@ -125,4 +125,67 @@ test("PDF do guia troca só o link da planilha", () => {
   assert.equal(text.includes("https://docs.google.com/spreadsheets/d/1T56l2xeBYylC_3cJQ-Hs3r6veyafsEjzD5A6wfoIFFw/copy"), true);
   assert.equal(text.includes("eu travei"), true);
   assert.equal(text.includes("EXEMPLO FICTÍCIO"), true);
+});
+
+function fakeStorage(initial = {}) {
+  const data = { ...initial };
+  return { data, getItem: (k) => (k in data ? data[k] : null), setItem: (k, v) => { data[k] = String(v); } };
+}
+
+test("A/B do H1: o sorteio respeita o valor guardado", () => {
+  assert.equal(AB_KEY, "tininja_ab_h1");
+  assert.equal(pickVariant(fakeStorage({ tininja_ab_h1: "B" }), () => 0), "B");
+  assert.equal(pickVariant(fakeStorage({ tininja_ab_h1: "A" }), () => 0.99), "A");
+  const novo = fakeStorage();
+  assert.equal(pickVariant(novo, () => 0.2), "A");
+  assert.equal(novo.data.tininja_ab_h1, "A");
+  assert.equal(pickVariant(novo, () => 0.9), "A");
+  const outro = fakeStorage();
+  assert.equal(pickVariant(outro, () => 0.5), "B");
+  assert.equal(outro.data.tininja_ab_h1, "B");
+  assert.equal(pickVariant(fakeStorage({ tininja_ab_h1: "lixo" }), () => 0.9), "B");
+});
+
+test("A/B do H1: sem storage ou com storage que falha, sorteia sem guardar", () => {
+  assert.equal(pickVariant(null, () => 0.9), "B");
+  const quebrado = { getItem() { throw new Error("bloqueado"); }, setItem() { throw new Error("bloqueado"); } };
+  assert.equal(pickVariant(quebrado, () => 0.1), "A");
+  assert.equal(pickVariant(quebrado, () => 0.7), "B");
+});
+
+test("A/B do H1: só a variante B troca o texto", () => {
+  const mk = () => {
+    const h1 = { text: "A", getAttribute: (n) => (n === "data-b" ? "B texto" : null), set textContent(v) { this.text = v; } };
+    return { h1, doc: { querySelector: () => h1 } };
+  };
+  const a = mk();
+  applyVariant(a.doc, "A");
+  assert.equal(a.h1.text, "A");
+  const b = mk();
+  applyVariant(b.doc, "B");
+  assert.equal(b.h1.text, "B texto");
+  assert.equal(applyVariant({ querySelector: () => null }, "B"), null);
+});
+
+test("A/B do H1: o POST leva variante e as regras de optin não mudam", () => {
+  const entries = [["nome", "Ana"], ["email", "ana@exemplo.com"], ["whatsapp", "11999998888"], ["optin", "sim"]];
+  assert.equal(buildLeadParams(entries, { optin: true, optinWhatsapp: true, variante: "B" }).get("variante"), "B");
+  assert.equal(buildLeadParams(entries, { optin: true, optinWhatsapp: true, variante: "A" }).get("variante"), "A");
+  assert.equal(buildLeadParams(entries, { optin: true, optinWhatsapp: true }).has("variante"), false);
+  assert.equal(buildLeadParams(entries, { optin: true, optinWhatsapp: true, variante: "x" }).has("variante"), false);
+  const soEmail = buildLeadParams(entries, { optin: true, optinWhatsapp: false, variante: "B" });
+  assert.equal(soEmail.has("whatsapp"), false);
+  assert.equal(soEmail.get("variante"), "B");
+  const semOptin = buildLeadParams(entries, { optin: false, optinWhatsapp: true, variante: "B" });
+  assert.equal(semOptin.has("whatsapp"), false);
+  const comWhats = buildLeadParams(entries, { optin: true, optinWhatsapp: true, variante: "B" });
+  assert.equal(comWhats.get("whatsapp"), "11999998888");
+  assert.equal(comWhats.get("email"), "ana@exemplo.com");
+});
+
+test("página de captura marca o H1 com A no HTML e B em data-b", () => {
+  const html = readFileSync(new URL("../quanto-cobrar/index.html", import.meta.url), "utf8");
+  assert.equal(html.includes('data-ab="h1"'), true);
+  assert.equal(html.includes("Você resolve o DHCP, o DNS e o gateway do cliente... e cobra quanto por isso?</h1>"), true);
+  assert.equal(html.includes('data-b="Resolver o DHCP, o DNS e o gateway do cliente vale dinheiro. Só falta a conta."'), true);
 });

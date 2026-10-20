@@ -246,8 +246,9 @@ export const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbwOkdrVslL
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
 
-export function buildLeadParams(entries, { optin, optinWhatsapp, whatsappNeedsOptin = true }) {
+export function buildLeadParams(entries, { optin, optinWhatsapp, whatsappNeedsOptin = true, variante = "" }) {
   const params = new URLSearchParams(entries);
+  if (variante === "A" || variante === "B") params.set("variante", variante);
   const allowWhatsapp = whatsappNeedsOptin ? Boolean(optin && optinWhatsapp) : Boolean(optinWhatsapp);
   if (!allowWhatsapp) params.delete("whatsapp");
   if (!(params.get("whatsapp") || "").trim()) params.delete("whatsapp");
@@ -261,6 +262,48 @@ export function readUtms(search) {
     out[key] = (params.get(key) || "").trim().slice(0, 200);
   }
   return out;
+}
+
+// Teste A/B do H1 de /quanto-cobrar/. Sorteio 50/50 na primeira visita da
+// sessão, guardado em sessionStorage (sem cookie). Se o storage falhar,
+// sorteia sem guardar. O HTML traz sempre o texto A (SEO e sem JS).
+export const AB_KEY = "tininja_ab_h1";
+
+export function pickVariant(storage, random = Math.random) {
+  try {
+    const saved = storage && storage.getItem(AB_KEY);
+    if (saved === "A" || saved === "B") return saved;
+  } catch {
+    // storage bloqueado: segue para o sorteio sem guardar
+  }
+  const chosen = random() < 0.5 ? "A" : "B";
+  try {
+    if (storage) storage.setItem(AB_KEY, chosen);
+  } catch {
+    // sem guardar
+  }
+  return chosen;
+}
+
+export function applyVariant(doc, variant) {
+  const h1 = doc.querySelector('[data-ab="h1"]');
+  if (!h1) return null;
+  const b = h1.getAttribute("data-b");
+  if (variant === "B" && b) h1.textContent = b;
+  return h1;
+}
+
+function mountAb(doc) {
+  if (!doc.querySelector('[data-ab="h1"]')) return "";
+  let storage = null;
+  try {
+    storage = typeof sessionStorage !== "undefined" ? sessionStorage : null;
+  } catch {
+    storage = null;
+  }
+  const variant = pickVariant(storage);
+  applyVariant(doc, variant);
+  return variant;
 }
 
 function clearInvalid(form) {
@@ -365,6 +408,7 @@ function mountLead(doc) {
   if (LEAD_ENDPOINT) form.action = LEAD_ENDPOINT;
 
   fillUtms(form);
+  const variante = mountAb(doc);
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -381,7 +425,7 @@ function mountLead(doc) {
     await postLead(
       form,
       status,
-      buildLeadParams(new FormData(form), { optin: true, optinWhatsapp }),
+      buildLeadParams(new FormData(form), { optin: true, optinWhatsapp, variante }),
       "/quanto-cobrar/obrigado/",
     );
   });

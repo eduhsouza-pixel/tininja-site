@@ -1815,3 +1815,112 @@ a.fio:hover .fio-titulo {
     font-weight: 700;
   }
 }
+
+/* ---------- Pontes entre páginas ---------- */
+
+.comecar {
+  list-style: none;
+  margin: 1.3rem 0 1.4rem;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.comecar li {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  column-gap: 0.9rem;
+  align-items: baseline;
+}
+
+.comecar li::before {
+  content: "";
+  grid-row: 1 / span 2;
+  width: 2.6rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--c, var(--laranja));
+  transform: translateY(-0.15rem);
+}
+
+.comecar li:nth-child(1) { --c: var(--azul); }
+.comecar li:nth-child(2) { --c: var(--verde); }
+.comecar li:nth-child(3) { --c: var(--marrom); }
+
+.comecar strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.com-numero {
+  margin-top: 3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--linha);
+  max-width: 40rem;
+}
+
+.com-numero h3 {
+  margin: 0 0 0.5rem;
+}
+
+.isca-baixo .caminho li {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.isca-baixo .caminho li:nth-child(4) { --c: var(--marrom); }
+
+.obrigado .ponte {
+  margin-top: 2.4rem;
+  padding: 1.5rem 1.4rem 1.4rem;
+  background: var(--laranja-faixa);
+  color: var(--branco);
+  border-radius: 4px;
+  max-width: 46rem;
+}
+
+.obrigado .ponte h2 {
+  margin-top: 0;
+  color: var(--branco);
+}
+
+.obrigado .ponte p {
+  max-width: 52ch;
+}
+
+.obrigado .ponte .miudo,
+.obrigado .ponte .optin-nota {
+  color: var(--branco);
+  margin-bottom: 0;
+}
+
+.obrigado .ponte .placa-lima {
+  background: var(--branco);
+  color: var(--tinta);
+}
+
+.obrigado .ponte .placa-lima:hover {
+  background: var(--papel);
+}
+
+.pagina-espera .isca .lede {
+  margin-bottom: 1rem;
+}
+
+.pagina-espera .isca > p,
+.pagina-espera .isca > div > p {
+  max-width: 54ch;
+}
+
+.isca .miudo a {
+  font-size: 1rem;
+}
+
+@media (min-width: 900px) {
+  /* Na home a conta divide a coluna ao lado do cabo: o preço acompanha a largura. */
+  .segue-cabo .preco-valor {
+    font-size: min(5.2rem, 4.3vw);
+  }
+}

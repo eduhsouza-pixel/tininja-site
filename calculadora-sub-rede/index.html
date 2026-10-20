@@ -42,6 +42,8 @@ main h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin:2.2em 0 .5em;padding-top:.7e
 main h2.sr{border:0;padding:0;margin:-1px}
 main h3{font-family:var(--fonte);font-weight:800;letter-spacing:-.025em;line-height:1.1;font-size:1.35rem;margin:1.2em 0 .35em}
 .lead{color:var(--mut);max-width:62ch;margin:0 0 22px;font-size:1.15rem}
+.ponte,.meio{color:var(--mut);max-width:62ch;margin:0 0 22px}
+.meio{margin:32px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
 .grid{display:grid;gap:14px}
 @media(min-width:760px){.g2{grid-template-columns:1fr 1fr}.form{grid-template-columns:2fr 1.3fr}}
@@ -122,7 +124,8 @@ code{font-family:var(--mono);background:var(--papel);border-radius:3px;padding:0
 <main id="conteudo" class="w">
 <nav class="crumb" aria-label="Trilha de navegação"><ol><li><a href="https://tininja.net/">Início</a></li><li aria-current="page">Calculadora de sub-rede</li></ol></nav>
 <h1>Calculadora de sub-rede online (IP, CIDR, máscara e VLSM)</h1>
-<p class="lead">Quatro números que quase ninguém lê: a máscara. Digite o IP com a barra (<code>192.168.1.10/24</code>) ou com a máscara (<code>255.255.255.0</code>) e a rede, o broadcast, a faixa de hosts e a conta em binário aparecem na hora. Pra dividir a rede por setor, o VLSM está logo abaixo.</p>
+<p class="lead">Quatro números que quase ninguém lê: a máscara. Digite o IP com a barra (<code>192.168.1.10/24</code>) ou com a máscara (<code>255.255.255.0</code>) e a rede, o broadcast, a faixa de hosts e a conta em binário aparecem na hora. Para dividir a rede por setor, o VLSM está logo abaixo.</p>
+<p class="ponte">Prefere começar pela história? A impressora que atende só metade do escritório está <a href="#t-video">em vídeo, mais abaixo</a>.</p>
 
 <section class="card" aria-labelledby="t-calc">
 <h2 id="t-calc" class="sr">Calcular sub-rede</h2>
@@ -177,6 +180,8 @@ Link ponto a ponto 2</textarea><p class="hint">Para 2 hosts usamos /30. Se o equ
 <div class="row"><button type="button" id="vshare">Copiar link desta divisão</button><button type="button" id="vcsv">Copiar tabela (CSV)</button></div>
 </div>
 </section>
+
+<p class="meio">Máscara, gateway, DNS e DHCP: se quiser aprender a achar a falha nas quatro, a lista do Fundamentos de Rede está aberta. <a href="https://tininja.net/fundadora/?utm_source=site&amp;utm_medium=calculadora&amp;utm_content=sub-rede-meio">Entrar na lista</a></p>
 
 <section class="prosa" aria-labelledby="t-oque">
 <h2 id="t-oque">O que é sub-rede (e o que a máscara faz)</h2>
@@ -255,7 +260,7 @@ Link ponto a ponto 2</textarea><p class="hint">Para 2 hosts usamos /30. Se o equ
 </section>
 
 <section class="card cta mt40" aria-labelledby="t-cta">
-<h2 id="t-cta">Máscara, gateway, DNS e DHCP. Quase toda rede que funciona pela metade cai numa dessas quatro.</h2>
+<h2 id="t-cta">Máscara, gateway, DNS e DHCP. Na minha experiência, quase toda rede que funciona pela metade cai numa dessas quatro.</h2>
 <p>Calcular a sub-rede é a primeira. As outras três têm a mesma cara: o cabo está bom, o switch está bom, e mesmo assim não anda. O Fundamentos de Rede é um curso de diagnóstico de rede: endereço, máscara, gateway, DNS e DHCP, com método, pra achar o que está errado antes de trocar peça.</p>
 <p>A Turma Fundadora abre em 26/10. Quem estiver na lista recebe o convite primeiro.</p>
 <a class="placa placa-lima" href="https://tininja.net/fundadora/?utm_source=site&amp;utm_medium=calculadora&amp;utm_content=sub-rede">Entrar na lista</a>
