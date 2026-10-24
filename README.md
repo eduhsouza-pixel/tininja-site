@@ -4,7 +4,7 @@ Site estático de [tininja.net](https://tininja.net/). HTML, CSS e JavaScript na
 
 ## Como publicar
 
-O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `artigos/` (sem o README editorial), `politica-de-privacidade/`, `fundadora/`, `calculadora-sub-rede/index.html`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/`, `scripts/` e `calculadora-sub-rede/src/` ficam de fora.
+O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `artigos/` (sem os arquivos Markdown editoriais), `politica-de-privacidade/`, `fundadora/`, `calculadora-sub-rede/index.html`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/`, `scripts/` e `calculadora-sub-rede/src/` ficam de fora.
 
 No repositório: Settings → Pages → Build and deployment → **GitHub Actions**.
 

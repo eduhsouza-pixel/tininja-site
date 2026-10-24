@@ -19,7 +19,7 @@ Escreva em português do Brasil, de técnico para técnico. Use sempre **Analist
 5. Mantenha um único H1. Use H2 para seções e H3 para subdivisões. Cada seção recebe um `id` único e um link no sumário. Migalhas e sumário têm seus próprios nomes acessíveis; FAQ usa `details`/`summary` nativos.
 6. Use `.cuidado` com o rótulo textual “Dica” ou “Cuidado”; não dependa só da cor. Tabelas precisam de `caption`, cabeçalhos e `scope`. Imagens adicionais precisam de `alt`, largura e altura. Evite imagem se ela não ajudar a explicar.
 7. Abra e leia as fontes oficiais. Confira também a resposta HTTP com `curl -fL --max-time 30 -o /tmp/fonte.html -w '%{http_code}\n' 'URL'`. HTTP 200 sozinho não basta: confira se o corpo contém a documentação, e não uma página de bloqueio. Ligue cada afirmação técnica à fonte que a sustenta e registre a data de consulta no bloco “Fontes oficiais”.
-8. Atualize “Leia também” e os links contextuais para `/calculadora-sub-rede/` e `/comandos/` quando úteis. Preserve o CTA final para `/quanto-cobrar/` e `/fundadora/`, sem dependências ou rastreadores novos.
+8. Atualize “Leia também” e os links contextuais para `/calculadora-sub-rede/` e `/comandos/` quando úteis. Siga o CTA do brief: nesta rodada B01–B07 usam convite neutro à lista de espera em `/fundadora/`; `/quanto-cobrar/` só é secundário opcional em B03/B04/B06. Não acrescente dependências ou rastreadores.
 
 ## Adicionar ao hub e integrar
 
@@ -28,7 +28,7 @@ Escreva em português do Brasil, de técnico para técnico. Use sempre **Analist
 - Acrescente a URL em `CollectionPage.hasPart` no JSON-LD do hub. Revise a data do hub após modificar seu conteúdo editorial.
 - Acrescente `<url>`, `<loc>` e `<lastmod>` em `sitemap.xml`. Nunca acrescente páginas de obrigado ou um modelo vazio.
 - Rode `python3 scripts/layout.py` e `python3 calculadora-sub-rede/src/build.py`. O script descobre automaticamente `artigos/**/index.html`; não é preciso cadastrar cada artigo. Só o hub marca “Artigos” com `aria-current="page"`; os artigos têm a própria migalha atual.
-- O workflow copia `artigos/` para o artefato e remove este README. Não são necessários builds nem configuração de publicação por artigo. Executar o script da calculadora aqui apenas mantém seu HTML já versionado sincronizado.
+- O workflow copia `artigos/` para o artefato e remove os arquivos Markdown editoriais, incluindo este README e `PENDENCIAS-REVISAO.md`. Não são necessários builds nem configuração de publicação por artigo. Executar o script da calculadora aqui apenas mantém seu HTML já versionado sincronizado.
 
 ## Conferência antes do commit
 
@@ -48,11 +48,15 @@ No console do navegador, valide os dados estruturados com:
   .map(node => JSON.parse(node.textContent));
 ```
 
-Confira também links internos (incluindo fragmentos e recursos locais), ordem dos headings, imagens com dimensões e correspondência das respostas do FAQ. Nos pilotos, mantenha de 800 a 1.400 palavras por artigo. As capturas desta entrega ficam fora do repositório, em `/workspace/screens-artigos/`.
+Confira também links internos (incluindo fragmentos e recursos locais), ordem dos headings, imagens com dimensões e correspondência das respostas do FAQ. Nesta rodada, mantenha de 900 a 1.500 palavras por artigo, com 5–6 perguntas na FAQ. As capturas desta entrega ficam fora do repositório, em `/workspace/screens-artigos/`.
 
 JSON válido não garante exibição especial no Google; o conteúdo visível é a referência editorial. A entrega local não publica as páginas: commits são feitos em `artigos-seo`, sem push.
 
-## Fontes conferidas nesta rodada
+## Revisão dos briefs B01–B07
+
+Os briefs externos em `/workspace/seo-aeo/briefs.md` são somente leitura. A conferência das fontes, os ajustes de precisão e as pendências para Eduardo e Lightcopy estão em [`PENDENCIAS-REVISAO.md`](PENDENCIAS-REVISAO.md). As seções editoriais de carreira levam `<!-- REVISAR: Eduardo -->`. B08 permanece fora até aprovação do Eduardo.
+
+## Histórico: fontes conferidas na rodada dos pilotos
 
 Todas as URLs citadas nos pilotos responderam HTTP 200 via `curl -fL` em 24/10/2026, com conteúdo lido:
 
