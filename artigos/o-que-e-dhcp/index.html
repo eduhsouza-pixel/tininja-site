@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O que é DHCP e como funciona (DORA) — TI Ninja</title>
+  <meta name="description" content="Entenda o que é DHCP, as etapas DORA, concessão, escopo e reserva. Veja exemplos e como iniciar o diagnóstico no Windows com ipconfig.">
+  <link rel="canonical" href="https://tininja.net/artigos/o-que-e-dhcp/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="O que é DHCP e como funciona (DORA) — TI Ninja">
+  <meta property="og:description" content="Entenda o que é DHCP, as etapas DORA, concessão, escopo e reserva. Veja exemplos e como iniciar o diagnóstico no Windows com ipconfig.">
+  <meta property="og:url" content="https://tininja.net/artigos/o-que-e-dhcp/">
+  <meta property="og:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta property="og:image:width" content="192">
+  <meta property="og:image:height" content="192">
+  <meta property="og:image:alt" content="Marca TI Ninja">
+  <meta property="article:published_time" content="2026-10-24">
+  <meta property="article:modified_time" content="2026-10-24">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="O que é DHCP e como funciona (DORA) — TI Ninja">
+  <meta name="twitter:description" content="Entenda o que é DHCP, as etapas DORA, concessão, escopo e reserva. Veja exemplos e como iniciar o diagnóstico no Windows com ipconfig.">
+  <meta name="twitter:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta name="twitter:image:alt" content="Marca TI Ninja">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://tininja.net/artigos/o-que-e-dhcp/#artigo",
+      "headline": "O que é DHCP e como funciona (DORA)",
+      "description": "Entenda o que é DHCP, as etapas DORA, concessão, escopo e reserva. Veja exemplos e como iniciar o diagnóstico no Windows com ipconfig.",
+      "inLanguage": "pt-BR",
+      "mainEntityOfPage": "https://tininja.net/artigos/o-que-e-dhcp/",
+      "author": {
+        "@type": "Person",
+        "name": "Eduardo Honorato"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "TI Ninja",
+        "url": "https://tininja.net/"
+      },
+      "datePublished": "2026-10-24",
+      "dateModified": "2026-10-24",
+      "articleSection": "Fundamentos de rede"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://tininja.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Artigos",
+          "item": "https://tininja.net/artigos/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "O que é DHCP e como funciona (DORA)",
+          "item": "https://tininja.net/artigos/o-que-e-dhcp/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tininja.net/artigos/o-que-e-dhcp/#perguntas",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que significa DORA no DHCP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DORA é a sequência Discover, Offer, Request e ACK da negociação inicial: o cliente procura um servidor, recebe uma oferta, solicita a configuração escolhida e recebe a confirmação."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "DHCP e DNS são a mesma coisa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. DHCP distribui a configuração de rede; DNS resolve nomes. O endereço do servidor DNS pode ser entregue ao cliente como uma opção DHCP."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Um IP 169.254 indica problema no provedor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não necessariamente. Um endereço de autoconfiguração 169.254.x.x pode indicar que o Windows não obteve uma concessão DHCP. Investigue a conexão local e o serviço DHCP antes de concluir que a falha é do provedor."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <!-- nav:inicio -->
+  <header class="fascia">
+    <a class="marca" href="/">
+      <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+      TI Ninja
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+    </nav>
+  </header>
+  <!-- nav:fim -->
+  <main id="conteudo" class="artigos artigo">
+    <nav class="migalhas" aria-label="Migalha de pão"><ol><li><a href="/">Início</a></li><li><a href="/artigos/">Artigos</a></li><li><span aria-current="page">O que é DHCP e como funciona (DORA)</span></li></ol></nav>
+    <article>
+      <header class="artigo-topo">
+        <h1>O que é DHCP e como funciona (DORA)</h1>
+        <p class="lede">Conectou o computador e ele recebeu um IP sozinho? Entenda quem entregou essa configuração, o que acontece nas etapas DORA e por onde começar quando a distribuição falha.</p>
+        <p class="nota artigo-meta">Por Eduardo Honorato · Publicado em <time datetime="2026-10-24">24/10/2026</time> · Atualizado em <time datetime="2026-10-24">24/10/2026</time></p>
+      </header>
+      <nav class="artigo-sumario" aria-labelledby="sumario-titulo"><h2 id="sumario-titulo">Neste artigo</h2><ul><li><a href="#conceito">O que é DHCP?</a></li><li><a href="#dora">Como funciona o DORA</a></li><li><a href="#configuracao">IP, máscara, gateway e DNS: cada um tem seu papel</a></li><li><a href="#concessao">Concessão, escopo e reserva</a></li><li><a href="#diagnostico">Como começar o diagnóstico no Windows</a></li><li><a href="#fontes">Fontes oficiais</a></li><li><a href="#leia-tambem">Leia também</a></li><li><a href="#perguntas">Perguntas frequentes</a></li></ul></nav><section class="passo" id="conceito"><h2>O que é DHCP?</h2>
+<p>DHCP é o protocolo que entrega automaticamente a configuração de rede a um dispositivo. Em vez de preencher endereço IP, máscara, gateway e DNS em cada computador, você define a distribuição no servidor. O cliente solicita os dados e recebe uma concessão: a autorização para usar aquele endereço por um período.</p>
+<p>Neste artigo, o foco é DHCP para IPv4. Pense no atendimento de um notebook novo: conectar o cabo não basta para preencher toda a configuração. Com o cliente em modo automático e um serviço DHCP acessível, essa etapa pode acontecer sem digitação. O servidor pode estar no roteador ou em outro equipamento da infraestrutura.</p>
+<p>O protocolo organiza endereços; ele não comprova que a internet ou um sistema esteja funcionando. Receber um IP é uma etapa do diagnóstico, não o encerramento do chamado. A <a href="https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-top">visão geral da Microsoft</a> apresenta essa distribuição centralizada e as informações entregues ao cliente.</p></section>
+<section class="passo" id="dora"><h2>Como funciona o DORA</h2>
+<p>DORA ajuda a memorizar a troca inicial descrita na <a href="https://www.rfc-editor.org/rfc/rfc2131.txt">RFC 2131, seção 3.1</a>. Imagine um computador entrando na rede sem uma concessão anterior:</p>
+<div class="artigo-tabela"><table><caption>Troca inicial de mensagens DHCP</caption><thead><tr><th scope="col">Etapa</th><th scope="col">Mensagem</th><th scope="col">O que acontece</th></tr></thead><tbody>
+<tr><th scope="row">D</th><td>Discover</td><td>O cliente procura servidores usando broadcast na rede local.</td></tr>
+<tr><th scope="row">O</th><td>Offer</td><td>Um servidor oferece um endereço e parâmetros.</td></tr>
+<tr><th scope="row">R</th><td>Request</td><td>O cliente indica a oferta escolhida e solicita a configuração.</td></tr>
+<tr><th scope="row">A</th><td>ACK</td><td>O servidor confirma a concessão e seus parâmetros.</td></tr>
+</tbody></table></div>
+<p>Pode existir mais de uma oferta. No processo inicial, o Request identifica o servidor escolhido, permitindo aos demais perceber que suas ofertas não foram aceitas. O ACK é a confirmação; receber apenas uma oferta não equivale a concluir a negociação.</p>
+<h3>E quando o computador já tinha IP?</h3>
+<p>Nem toda conversa repete as quatro etapas. Um cliente pode tentar reutilizar uma configuração conhecida ou renovar uma concessão. Por isso, ver um Request sem um Discover imediatamente antes não basta para concluir que a captura está errada.</p>
+<div class="cuidado"><p><strong>Dica de bancada:</strong> antes de interpretar uma captura, anote se o computador acabou de entrar na rede ou já estava conectado. Esse contexto muda o que você espera encontrar.</p></div></section>
+<section class="passo" id="configuracao"><h2>IP, máscara, gateway e DNS: cada um tem seu papel</h2>
+<p>Use este exemplo didático, sem copiar os valores para uma rede real: computador <code>192.168.10.50</code>, máscara <code>255.255.255.0</code>, gateway <code>192.168.10.1</code> e DNS <code>192.168.10.2</code>. Os endereços foram escolhidos apenas para explicar a configuração.</p>
+<ul><li><strong>IP:</strong> identifica a interface naquela rede.</li><li><strong>Máscara:</strong> delimita a sub-rede usada pelo computador.</li><li><strong>Gateway padrão:</strong> indica o próximo salto para destinos sem uma rota mais específica.</li><li><strong>DNS:</strong> indica o servidor consultado para resolver nomes.</li></ul>
+<p>Máscara, roteador e servidores DNS aparecem como opções na <a href="https://www.rfc-editor.org/rfc/rfc2132.txt">RFC 2132, seções 3.3, 3.5 e 3.8</a>. Não confunda o servidor DHCP com o gateway: no exemplo, quem distribui a configuração pode ser outro equipamento. Também não trate DNS como sinônimo de acesso à internet.</p>
+<p>Para praticar, coloque <code>192.168.10.50/24</code> na <a href="/calculadora-sub-rede/">calculadora de sub-rede</a>. Compare rede, broadcast e faixa de hosts com os endereços do exemplo. Depois altere o prefixo e observe por que olhar só os primeiros números do IP não é suficiente.</p></section>
+<section class="passo" id="concessao"><h2>Concessão, escopo e reserva</h2>
+<p>A concessão tem prazo. O cliente tenta renová-la antes do vencimento; se ela expirar sem renovação, não pode continuar usando o endereço concedido. Isso permite reutilizar endereços sem tratar cada computador que passou pela rede como um cadastro permanente.</p>
+<p>O escopo reúne a faixa de distribuição e suas configurações. Uma reserva associa um endereço a um cliente específico, mantendo a entrega pelo DHCP. Já a configuração manual é preenchida no próprio dispositivo. A documentação da Microsoft diferencia endereços disponíveis, excluídos e reservados.</p>
+<h3>Um exercício de planejamento</h3>
+<p>No laboratório do exemplo, anote primeiro o endereço do gateway e do DNS. Depois escolha quais endereços ficarão sob distribuição automática e quais precisarão de tratamento separado. Antes de aplicar, confira se algum dispositivo já usa o endereço escolhido. O objetivo é ter um registro que outro técnico consiga entender.</p>
+<div class="cuidado"><p><strong>Cuidado:</strong> não configure um IP manual dentro de uma faixa distribuída automaticamente sem coordenar a exclusão ou o planejamento. Duas configurações independentes podem acabar usando o mesmo endereço.</p></div></section>
+<section class="passo" id="diagnostico"><h2>Como começar o diagnóstico no Windows</h2>
+<p>Abra o Prompt de Comando ou o PowerShell e consulte a configuração completa:</p>
+<div class="cmd"><pre><code>ipconfig /all</code></pre></div>
+<p>Localize o adaptador realmente conectado. Registre IP, máscara, gateway, DNS e os dados de DHCP apresentados. Não misture a saída de Wi-Fi, Ethernet e interfaces virtuais. A <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig">documentação de ipconfig</a> explica a consulta e a renovação.</p>
+<ol><li><strong>Confirme a conexão:</strong> confira cabo, Wi-Fi e a rede selecionada.</li><li><strong>Compare a configuração:</strong> o endereço pertence à sub-rede esperada? Existe gateway?</li><li><strong>Investigue a distribuição:</strong> confira se o serviço está disponível e se há endereços livres no escopo.</li><li><strong>Registre o resultado:</strong> salve o que mudou após cada teste, em vez de executar várias alterações juntas.</li></ol>
+<p>Um endereço de autoconfiguração <code>169.254.x.x</code> pode indicar que o Windows não conseguiu obter uma concessão DHCP. A <a href="https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh">explicação da Microsoft sobre APIPA</a> descreve esse comportamento. É uma pista para investigar a comunicação local, não prova de defeito no provedor.</p>
+<p>Se a interface usa DHCP e você precisa tentar renovar, o comando é <code>ipconfig /renew</code>. Evite executar <code>ipconfig /release</code> durante um atendimento remoto: ele descarta a configuração atual e pode interromper a sessão. Primeiro entenda o efeito, depois decida se o teste é necessário.</p>
+<p>Se o endereço está correto, avance para o serviço que falha. A seção de <a href="/comandos/">comandos dos vídeos</a> ajuda a organizar os próximos testes. Não transforme toda falha de acesso em “problema de DHCP”.</p></section>
+<section class="passo" id="fontes"><h2>Fontes oficiais</h2><ul class="fontes">
+<li><a href="https://www.rfc-editor.org/rfc/rfc2131.txt">IETF — RFC 2131: DHCP, negociação e concessão</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc2132.txt">IETF — RFC 2132: opções de configuração</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-top">Microsoft Learn — visão geral de DHCP</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig">Microsoft Learn — ipconfig</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh">Microsoft Learn — autoconfiguração APIPA</a></li>
+</ul><p class="nota">Links e conteúdo conferidos em 24/10/2026.</p></section>
+<section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/192-168-1-1-nao-abre/">192.168.1.1 não abre: como acessar o roteador e o que fazer</a></li><li><a href="/comandos/firewall-do-windows/">Comandos para diagnosticar o Firewall do Windows</a></li></ul></section>
+
+      <section class="passo" id="perguntas"><h2>Perguntas frequentes</h2>
+<details><summary>O que significa DORA no DHCP?</summary><p>DORA é a sequência Discover, Offer, Request e ACK da negociação inicial: o cliente procura um servidor, recebe uma oferta, solicita a configuração escolhida e recebe a confirmação.</p></details>
+<details><summary>DHCP e DNS são a mesma coisa?</summary><p>Não. DHCP distribui a configuração de rede; DNS resolve nomes. O endereço do servidor DNS pode ser entregue ao cliente como uma opção DHCP.</p></details>
+<details><summary>Um IP 169.254 indica problema no provedor?</summary><p>Não necessariamente. Um endereço de autoconfiguração 169.254.x.x pode indicar que o Windows não obteve uma concessão DHCP. Investigue a conexão local e o serviço DHCP antes de concluir que a falha é do provedor.</p></details>
+</section>
+    </article>
+    <section class="artigo-cta" id="proximo-passo" aria-labelledby="cta-titulo">
+<h2 id="cta-titulo">Seu próximo passo em TI</h2>
+<p>Quer organizar a cobrança dos seus serviços? Pegue o guia gratuito. Para acompanhar a formação de Analista de Infraestrutura e Redes pelo NOC (Ninja Official Curriculum), entre na lista da Turma Fundadora.</p>
+<div class="placas"><a class="placa placa-vidro" href="/quanto-cobrar/">Quero o guia gratuito</a><a class="placa placa-lima" href="/fundadora/">Entrar na lista da Turma Fundadora</a></div>
+</section>
+  </main>
+  <!-- rodape:inicio -->
+  <footer class="rodape">
+    <div class="rodape-marca">
+      <a class="marca" href="/">
+        <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+        TI Ninja
+      </a>
+      <p>TI Ninja · Campinas/SP</p>
+    </div>
+    <nav aria-label="No rodapé">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+      <a href="/comandos/">Comandos dos vídeos</a>
+    </nav>
+    <nav aria-label="Redes">
+      <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
+      <a href="https://www.instagram.com/consult.tininja/">Instagram</a>
+    </nav>
+    <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+    <p>© 2026 TI Ninja</p>
+  </footer>
+  <!-- rodape:fim -->
+</body>
+</html>
