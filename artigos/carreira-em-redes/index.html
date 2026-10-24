@@ -155,17 +155,14 @@
         <p class="nota artigo-meta">Por Eduardo Honorato · Publicado em <time datetime="2026-10-24">24/10/2026</time> · Atualizado em <time datetime="2026-10-24">24/10/2026</time></p>
       </header>
       <nav class="artigo-sumario" aria-labelledby="sumario-titulo"><h2 id="sumario-titulo">Neste artigo</h2><ul><li><a href="#area">O que é infraestrutura e redes?</a></li><li><a href="#dia-a-dia">O dia a dia de um Analista de Infraestrutura e Redes</a></li><li><a href="#trilha">Trilha de estudo: da configuração ao monitoramento</a></li><li><a href="#ferramentas">Comandos para começar: ipconfig, ping, tracert e nslookup</a></li><li><a href="#laboratorio">Como praticar: laboratório simples e mudanças controladas</a></li><li><a href="#documentacao">Documente: diagrama de rede e caderno de comandos</a></li><li><a href="#erros">Erros de iniciante: decorar e pular endereçamento</a></li><li><a href="#depois">Para onde ir depois</a></li><li><a href="#perguntas">Perguntas frequentes</a></li><li><a href="#fontes">Fontes oficiais</a></li><li><a href="#leia-tambem">Leia também</a></li></ul></nav>
-<!-- REVISAR: Eduardo -->
 <section class="passo" id="area"><h2>O que é infraestrutura e redes?</h2>
 <p>Para começar uma carreira em redes de computadores, vale entender o ambiente antes de decorar comandos. Infraestrutura e redes reúne o trabalho de manter a base tecnológica que permite aos dispositivos, sistemas e pessoas se comunicarem.</p>
 <p>Suporte técnico costuma começar pela dificuldade apresentada por uma pessoa; infraestrutura amplia o olhar para o ambiente compartilhado. Desenvolvimento trabalha na construção e evolução de software. Essas atividades podem se cruzar, e a divisão depende da equipe: não são fronteiras rígidas nem uma classificação de importância.</p>
 <p>O estudo parte do que você consegue observar em uma conexão. Saber explicar endereço, máscara e gateway ajuda a transformar “a internet não funciona” em perguntas que podem ser testadas.</p></section>
-<!-- REVISAR: Eduardo -->
 <section class="passo" id="dia-a-dia"><h2>O dia a dia de um Analista de Infraestrutura e Redes</h2>
 <p>O trabalho costuma envolver endereçamento, DHCP e DNS, switches, VLANs, firewall, monitoramento e documentação. A combinação muda conforme o ambiente.</p>
 <p>No chamado ilustrativo da abertura, leia a configuração recebida pelo computador. Investigue a porta, a distribuição de endereços e o caminho até o serviço.</p>
 <p>O registro do resultado faz parte do exercício. Uma solução que só fica na memória de quem atendeu dificulta a próxima análise. Explique qual hipótese foi testada, o que mudou e o que continuou igual.</p></section>
-<!-- REVISAR: Eduardo -->
 <section class="passo" id="trilha"><h2>Trilha de estudo: da configuração ao monitoramento</h2>
 <p>Use esta sequência para organizar a prática. Não há prazo: repita uma etapa até conseguir explicar o resultado com suas próprias palavras.</p>
 <h3>Endereço: identifique a interface</h3>
@@ -188,24 +185,19 @@
 <p>As referências oficiais dos comandos explicam o papel de cada ferramenta. Aprenda a pergunta que ela responde antes de copiar a linha de comando:</p>
 <ul><li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">ipconfig</a>: mostra a configuração IP; com <code>/all</code>, apresenta os detalhes dos adaptadores.</li><li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ping">ping</a>: envia solicitações de eco ICMP e observa as respostas.</li><li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/tracert">tracert</a>: investiga o caminho até um destino por respostas dos saltos.</li><li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/nslookup">nslookup</a>: consulta informações de DNS.</li></ul>
 <p>Um ping respondido não testa todas as funções de uma aplicação. No tracert, a própria documentação explica que alguns roteadores não respondem e aparecem como asteriscos. Interprete a saída junto com o sintoma, sem transformar uma linha isolada em diagnóstico definitivo.</p></section>
-<!-- REVISAR: Eduardo -->
 <section class="passo" id="laboratorio"><h2>Como praticar: laboratório simples e mudanças controladas</h2>
 <p>Use um ambiente simulado ou equipamentos próprios destinados ao laboratório. Desenhe o estado inicial, escolha uma alteração e escreva o resultado esperado. Mantenha a configuração anterior registrada para poder restaurá-la.</p>
 <p>Você pode começar só lendo a configuração e consultando nomes, antes de alterar qualquer coisa. Depois, em ambiente isolado, simule uma configuração incorreta, observe o sintoma e volte ao estado conhecido. O objetivo é aprender a explicar o efeito, não provocar falhas na rede de trabalho.</p>
 <div class="cuidado"><p><strong>Cuidado:</strong> exercícios que liberam uma concessão ou alteram a interface podem derrubar a conexão; faça-os em laboratório, com acesso local e um caminho de recuperação.</p></div></section>
-<!-- REVISAR: Eduardo -->
 <section class="passo" id="documentacao"><h2>Documente: diagrama de rede e caderno de comandos</h2>
 <p>Monte um desenho com dispositivos, conexões e funções. Ao lado, mantenha um caderno com hipótese, comando usado, saída relevante e conclusão. Identifique valores de exemplo e o que foi observado no seu próprio laboratório.</p>
 <p>Antes de compartilhar uma captura, retire senhas e informações privadas. Uma boa anotação permite repetir o teste e entender por que você escolheu a próxima etapa. Copiar uma saída inteira sem contexto costuma esconder a informação que você queria comparar.</p></section>
-<!-- REVISAR: Eduardo -->
 <section class="passo" id="erros"><h2>Erros de iniciante: decorar e pular endereçamento</h2>
 <p>Evite colecionar comandos sem ler o resultado. Volte à base quando não souber dizer qual interface está conectada, qual é a sub-rede ou de onde veio o endereço. Alterar várias coisas juntas também dificulta descobrir qual hipótese estava correta.</p>
 <p>Use uma pergunta simples para revisar o exercício: outra pessoa conseguiria repetir meu teste com estas anotações? Se a resposta for não, complete o registro antes de avançar para um cenário mais complexo.</p></section>
-<!-- REVISAR: Eduardo -->
 <section class="passo" id="depois"><h2>Para onde ir depois</h2>
 <p>Volte ao laboratório e escolha a parte que ainda não consegue explicar: distribuição de endereços, separação por VLAN ou acesso entre redes. Aprofunde uma delas usando os artigos e os manuais correspondentes. Amplie sua capacidade de observar, testar e documentar, respeitando o contexto de cada ambiente.</p></section>
 
-<!-- REVISAR: Eduardo -->
 <section class="passo" id="perguntas"><h2>Perguntas frequentes</h2>
 <details><summary>O que faz um Analista de Infraestrutura e Redes?</summary><p>Cuida da rede e dos servidores, incluindo endereçamento, DHCP/DNS, switches, firewall, monitoramento e documentação, conforme as responsabilidades do ambiente.</p></details>
 <details><summary>Por onde começar a estudar redes?</summary><p>Comece por endereço IP, máscara, gateway, DNS e DHCP, praticando a leitura da configuração e os comandos de diagnóstico.</p></details>
@@ -219,7 +211,7 @@
 <li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/tracert">Microsoft Learn — tracert</a></li>
 <li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/nslookup">Microsoft Learn — nslookup</a></li>
 <li><a href="https://learn.microsoft.com/pt-br/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting">Microsoft Learn — endereçamento TCP/IP e sub-redes</a></li>
-</ul><p class="nota">Links e trechos utilizados conferidos por curl e leitura de texto em 24/10/2026; guias de fabricante não definem menus universais.</p></section>
+</ul><p class="nota">Links conferidos em 24/10/2026. Guias de fabricante não definem menus universais.</p></section>
 <section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/o-que-e-dhcp/">O que é DHCP e como funciona: IP, máscara, gateway e DNS</a></li><li><a href="/artigos/o-que-e-vlan/">O que é VLAN e quando separar uma rede em VLANs</a></li><li><a href="/artigos/192-168-1-1-nao-abre/">192.168.1.1 não abre? Como achar o IP do roteador</a></li><li><a href="/artigos/como-configurar-roteador/">Como configurar um roteador do zero: WAN, LAN e Wi-Fi</a></li></ul></section>
     </article>
     <section class="artigo-cta" id="proximo-passo" aria-labelledby="cta-titulo">
