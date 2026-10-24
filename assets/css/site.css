@@ -1924,3 +1924,195 @@ a.fio:hover .fio-titulo {
     font-size: min(5.2rem, 4.3vw);
   }
 }
+
+/* ---------- Artigos: leitura e índice no sistema T568B ---------- */
+
+.artigos {
+  width: min(70rem, calc(100% - var(--gutter) * 2));
+  margin: 0 auto;
+  padding: 1.5rem 0 3.5rem;
+  overflow-wrap: break-word;
+}
+
+.artigo {
+  max-width: 52rem;
+}
+
+.migalhas {
+  font-size: 0.95rem;
+  color: var(--tinta-2);
+  margin-bottom: 1.6rem;
+}
+
+.migalhas ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.migalhas li + li::before {
+  content: "/";
+  margin-right: 0.6rem;
+}
+
+.artigo-topo h1 {
+  font-size: clamp(2.2rem, 5.5vw, 4.4rem);
+  margin-bottom: 1.2rem;
+}
+
+.artigo-topo {
+  margin-bottom: 2rem;
+}
+
+.artigo-meta {
+  margin-top: 1.2rem;
+}
+
+.artigos h2 {
+  font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.artigos h3 {
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  line-height: 1.2;
+  margin-top: 1.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.artigos :is(section[id], h2[id]) {
+  scroll-margin-top: 8rem;
+}
+
+.artigos :is(ul, ol) {
+  padding-left: 1.4rem;
+}
+
+.artigos .migalhas ol,
+.artigos .lista-comandos {
+  padding-left: 0;
+}
+
+.artigo li {
+  max-width: var(--measure);
+  margin-bottom: 0.6rem;
+}
+
+.artigo-sumario {
+  background: var(--papel);
+  border-radius: var(--raio);
+  padding: 1.3rem;
+}
+
+.artigo-sumario ul {
+  margin-bottom: 0;
+}
+
+.artigos a:not(.placa) {
+  color: var(--azul-escuro);
+}
+
+.artigo-sumario a {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0.3rem 0;
+}
+
+.artigos-grade {
+  display: grid;
+  gap: 1.3rem;
+  margin-top: 1.5rem;
+}
+
+.artigo-card {
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 1.4rem;
+}
+
+.artigo-card h3 {
+  margin-top: 0;
+}
+
+.artigo-card > a {
+  display: inline-block;
+  font-weight: 700;
+  padding: 0.4rem 0;
+}
+
+.artigo-card .nota {
+  margin: 0.8rem 0 0;
+}
+
+.artigos code {
+  font-family: var(--mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+}
+
+.artigos .cmd pre::before {
+  content: none;
+}
+
+.artigos .cmd {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.artigo-tabela {
+  margin: 1.4rem 0;
+}
+
+.artigo-tabela table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.artigo-tabela caption {
+  text-align: left;
+  color: var(--tinta-2);
+  margin-bottom: 0.65rem;
+}
+
+.artigo-tabela :is(th, td) {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.65rem 0.45rem;
+  border-bottom: 1px solid var(--linha);
+  overflow-wrap: anywhere;
+}
+
+.artigo-tabela thead {
+  background: var(--papel);
+}
+
+.artigos details {
+  border-bottom: 1px solid var(--linha);
+}
+
+.artigos summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 1rem 0;
+}
+
+.artigos details p {
+  padding-bottom: 0.6rem;
+}
+
+.artigo-cta {
+  margin-top: 3rem;
+  padding: clamp(1.3rem, 4vw, 2.2rem);
+  background: var(--papel);
+  border-top: 6px solid var(--marrom);
+  border-radius: var(--raio);
+}
+
+@media (min-width: 760px) {
+  .artigos-grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
