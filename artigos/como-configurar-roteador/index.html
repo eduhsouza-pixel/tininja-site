@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa — TI Ninja</title>
+  <meta name="description" content="Configure um roteador com uma sequência de conferência: conexão da operadora, WAN, LAN, DHCP, Wi-Fi, firmware e testes documentados.">
+  <link rel="canonical" href="https://tininja.net/artigos/como-configurar-roteador/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa — TI Ninja">
+  <meta property="og:description" content="Configure um roteador com uma sequência de conferência: conexão da operadora, WAN, LAN, DHCP, Wi-Fi, firmware e testes documentados.">
+  <meta property="og:url" content="https://tininja.net/artigos/como-configurar-roteador/">
+  <meta property="og:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta property="og:image:width" content="192">
+  <meta property="og:image:height" content="192">
+  <meta property="og:image:alt" content="Marca TI Ninja">
+  <meta property="article:published_time" content="2026-10-24">
+  <meta property="article:modified_time" content="2026-10-24">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa — TI Ninja">
+  <meta name="twitter:description" content="Configure um roteador com uma sequência de conferência: conexão da operadora, WAN, LAN, DHCP, Wi-Fi, firmware e testes documentados.">
+  <meta name="twitter:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta name="twitter:image:alt" content="Marca TI Ninja">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://tininja.net/artigos/como-configurar-roteador/#artigo",
+      "headline": "Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa",
+      "description": "Configure um roteador com uma sequência de conferência: conexão da operadora, WAN, LAN, DHCP, Wi-Fi, firmware e testes documentados.",
+      "inLanguage": "pt-BR",
+      "mainEntityOfPage": "https://tininja.net/artigos/como-configurar-roteador/",
+      "author": {
+        "@type": "Person",
+        "name": "Eduardo Honorato"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "TI Ninja",
+        "url": "https://tininja.net/"
+      },
+      "datePublished": "2026-10-24",
+      "dateModified": "2026-10-24",
+      "articleSection": "Endereçamento e sub-redes"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://tininja.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Artigos",
+          "item": "https://tininja.net/artigos/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa",
+          "item": "https://tininja.net/artigos/como-configurar-roteador/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tininja.net/artigos/como-configurar-roteador/#perguntas",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que é a porta WAN do roteador?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "É a porta que recebe a conexão de internet do provedor; as demais portas (LAN) distribuem a rede para os seus dispositivos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso desativar o roteador do provedor ao instalar o meu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende da instalação: confirme com a operadora e siga os manuais para escolher o modo de operação dos dois equipamentos sem aplicar uma mudança universal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que fazer logo depois do primeiro acesso ao painel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Troque a senha padrão e o usuário de administrador quando permitido e confira as atualizações de firmware conforme o manual."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como saber se minha conexão usa DHCP, PPPoE ou IP estático?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende do provedor; confirme no contrato ou com o suporte do provedor e escolha o mesmo tipo nas configurações WAN do roteador."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais recursos de segurança vale ativar no roteador?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Os guias citados mencionam firewall, controles de acesso e filtragem, além de desativar recursos que você não usa, como o gerenciamento remoto."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <!-- nav:inicio -->
+  <header class="fascia">
+    <a class="marca" href="/">
+      <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+      TI Ninja
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+    </nav>
+  </header>
+  <!-- nav:fim -->
+  <main id="conteudo" class="artigos artigo">
+    <nav class="migalhas" aria-label="Migalha de pão"><ol><li><a href="/">Início</a></li><li><a href="/artigos/">Artigos</a></li><li><span aria-current="page">Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa</span></li></ol></nav>
+    <article>
+      <header class="artigo-topo">
+        <h1>Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa</h1>
+        <p class="lede">Organize a instalação por etapas, confira os dados da operadora e teste a configuração recebida antes de encerrar o atendimento.</p>
+        <p class="nota artigo-meta">Por Eduardo Honorato · Publicado em <time datetime="2026-10-24">24/10/2026</time> · Atualizado em <time datetime="2026-10-24">24/10/2026</time></p>
+      </header>
+      <nav class="artigo-sumario" aria-labelledby="sumario-titulo"><h2 id="sumario-titulo">Neste artigo</h2><ul><li><a href="#antes">Antes de começar: identifique os equipamentos e anote tudo</a></li><li><a href="#cabos">Ligações físicas: WAN/Internet e portas LAN</a></li><li><a href="#operadora">Roteador do provedor e roteador próprio: escolha o modo adequado</a></li><li><a href="#painel">Acesse o painel e troque a credencial de administrador</a></li><li><a href="#wan">WAN: DHCP, PPPoE ou IP estático?</a></li><li><a href="#lan">LAN e DHCP: faixa, escopo e reservas</a></li><li><a href="#wifi">Wi-Fi: nome, senha forte e segurança compatível</a></li><li><a href="#seguranca">Segurança inicial: firmware e recursos em uso</a></li><li><a href="#testes">Teste e documente: ipconfig, ping e tracert</a></li><li><a href="#checklist">Checklist final da configuração</a></li><li><a href="#perguntas">Perguntas frequentes</a></li><li><a href="#fontes">Fontes oficiais</a></li><li><a href="#leia-tambem">Leia também</a></li></ul></nav>
+<section class="passo" id="antes"><h2>Antes de começar: identifique os equipamentos e anote tudo</h2>
+<p>Configurar um roteador começa pelo desenho da conexão. Identifique a ONU ou modem entregue pela operadora, o roteador que será instalado e o computador usado no teste. Confira etiquetas, documentação e quem tem autorização para mudar a rede. Os nomes dos aparelhos não substituem a descrição da função de cada um.</p>
+<p>O <a href="https://www.cisco.com/c/pt_br/solutions/small-business/resource-center/networking/how-to-set-up-router.html">guia de configuração Cisco</a> recomenda reunir a documentação e conferir a conexão antes da instalação. Em um atendimento, anote o estado inicial e o que precisa continuar funcionando. Se houver uma rede em uso, combine a interrupção e prepare um caminho para retornar à configuração anterior.</p></section>
+<section class="passo" id="cabos"><h2>Ligações físicas: WAN/Internet e portas LAN</h2>
+<p>Na instalação típica descrita pelo guia, a porta WAN ou Internet recebe a conexão vinda do equipamento do provedor. As portas LAN atendem os dispositivos locais. Use os rótulos e o manual: a cor da porta pode ajudar, mas não é uma regra universal.</p>
+<p>Conecte um computador para conferir o acesso por cabo e observe os LEDs conforme a documentação do modelo. Luz acesa é uma observação da conexão, não um laudo de funcionamento de todos os serviços. Registre qual cabo entra em qual porta para que a montagem possa ser conferida depois.</p></section>
+<section class="passo" id="operadora"><h2>Roteador do provedor e roteador próprio: escolha o modo adequado</h2>
+<p>Alguns equipamentos do provedor já incluem roteamento. O guia Cisco apresenta um cenário em que essa função é desativada para repassar a conexão ao novo roteador. Essa orientação de fabricante depende da instalação; não significa que todo equipamento da operadora deva ser alterado.</p>
+<p>Confirme com o suporte da operadora e siga os manuais antes de escolher modo de ponte, ponto de acesso ou outro modo disponível. Anote quem ficará responsável por rotear e distribuir endereços. Evite experimentar modos durante um atendimento sem saber como recuperar o acesso.</p></section>
+<section class="passo" id="painel"><h2>Acesse o painel e troque a credencial de administrador</h2>
+<p>Consulte o endereço de gerenciamento na documentação ou comece pelo gateway da conexão. O artigo <a href="/artigos/192-168-1-1-nao-abre/">192.168.1.1 não abre</a> mostra como localizar essa informação e separar falha de acesso de falha no login.</p>
+<p>Depois do primeiro acesso, troque a senha padrão e o nome de administrador quando o equipamento permitir, conforme o guia Cisco. Guarde a credencial em um cofre de senhas com acesso controlado. Não confunda essa conta com a senha que será entregue às pessoas para usar o Wi-Fi.</p></section>
+<section class="passo" id="wan"><h2>WAN: DHCP, PPPoE ou IP estático?</h2>
+<p>A WAN precisa seguir o tipo de entrega da operadora. Na configuração dinâmica por DHCP, os parâmetros são obtidos automaticamente. PPPoE pode exigir usuário e senha fornecidos pela operadora; na configuração estática, ela fornece os parâmetros a preencher.</p>
+<p>A <a href="https://www.tp-link.com/br/support/faq/3841/">FAQ 3841 da TP-Link</a> apresenta essas opções em um assistente específico. Use essa referência apenas para reconhecer os nomes: confirme o seu caso com o provedor e siga o manual do fabricante. Não deduza o tipo de conexão pelo bairro, pelo cabo ou pela ausência de uma senha anotada.</p>
+<div class="cuidado"><p><strong>Cuidado:</strong> IP fixo na WAN e endereço manual de um computador na LAN são decisões diferentes; não copie um endereço do computador para preencher a conexão da operadora.</p></div></section>
+<section class="passo" id="lan"><h2>LAN e DHCP: faixa, escopo e reservas</h2>
+<p>Planeje o endereço do roteador na rede local e a faixa que será distribuída aos dispositivos. O <a href="https://learn.microsoft.com/pt-br/windows-server/networking/technologies/dhcp/dhcp-top">guia do servidor DHCP da Microsoft</a> explica a entrega centralizada de configurações e o gerenciamento de endereços. O suporte a escopos e reservas no painel depende do equipamento.</p>
+<p>Em um exemplo didático, desenhe uma sub-rede para o laboratório, separe o endereço do gateway e identifique equipamentos que precisam de endereço previsível. Confira os limites na <a href="/calculadora-sub-rede/">calculadora de sub-rede</a> e estude a diferença entre reserva e configuração manual no artigo <a href="/artigos/o-que-e-dhcp/">o que é DHCP</a>.</p>
+<p>Antes de salvar, compare o plano com a rede que já existe. Documente exclusões e reservas de acordo com o manual; não escolha uma faixa apenas porque apareceu em um tutorial. Após a alteração, confira os dados recebidos pelo computador de teste.</p></section>
+<section class="passo" id="wifi"><h2>Wi-Fi: nome, senha forte e segurança compatível</h2>
+<p>Defina um nome que permita reconhecer a rede e uma senha forte, diferente da credencial de administração. Reconecte o dispositivo de teste depois de salvar. O guia Cisco recomenda revisar o nome e a senha sem fio durante a instalação.</p>
+<p>Para escolher entre opções como WPA2 e WPA3, siga a recomendação atual do fabricante para o modelo e os dispositivos atendidos. Não há aqui uma combinação universal de modo e criptografia: confira compatibilidade no manual, teste o acesso e registre a opção escolhida.</p></section>
+<section class="passo" id="seguranca"><h2>Segurança inicial: firmware e recursos em uso</h2>
+<p>Confira a versão de firmware e as atualizações oficiais para o modelo. Siga as instruções de aplicação e recuperação do fabricante. O guia Cisco recomenda essa revisão; a orientação <a href="https://www.cisa.gov/news-events/news/home-network-security">Home Network Security da CISA, conteúdo arquivado de fevereiro de 2021</a>, também aborda firmware e administração remota.</p>
+<p>Desative o gerenciamento remoto quando não houver necessidade e revise os demais serviços. Para UPnP, leia <a href="/artigos/upnp-e-seguro-desativar/">como avaliar dependências antes de desativar</a>. Firewall e controles de acesso merecem configuração consciente: uma caixa marcada não demonstra que todas as regras atendem ao uso da rede.</p></section>
+<section class="passo" id="testes"><h2>Teste e documente: ipconfig, ping e tracert</h2>
+<p>Comece consultando a configuração no Windows:</p>
+<div class="cmd"><pre><code>ipconfig /all</code></pre></div>
+<p>A <a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">documentação de ipconfig</a> sustenta a conferência dos adaptadores e parâmetros. Use <a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ping">ping</a> com um destino autorizado para testar resposta ICMP; use <a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/tracert">tracert</a> para observar o caminho. Asteriscos no tracert podem ocorrer quando roteadores não respondem, sem provar sozinhos uma interrupção.</p>
+<p>Depois teste os serviços realmente usados: abrir o painel, navegar e acessar o recurso necessário ao atendimento. Consulte os <a href="/comandos/">comandos dos vídeos</a> para organizar o registro. Anote IPs, modo de operação, versão de firmware, resultados e onde as credenciais estão guardadas; evite espalhar senhas em capturas de tela.</p></section>
+<section class="passo" id="checklist"><h2>Checklist final da configuração</h2>
+<ul><li>Equipamentos identificados e cabos conferidos.</li><li>Modo de operação combinado com a operadora.</li><li>WAN preenchida conforme os dados do provedor.</li><li>LAN e distribuição DHCP documentadas.</li><li>Credenciais e segurança Wi-Fi revisadas pelo manual.</li><li>Firmware e serviços desnecessários conferidos.</li><li>Conexão e serviços testados, com registro para o próximo atendimento.</li></ul>
+<p>Se algo falhar, volte ao último resultado confirmado. Ter um estado inicial e uma alteração registrada por etapa ajuda mais que repetir o assistente inteiro sem saber qual campo mudou.</p></section>
+
+<section class="passo" id="perguntas"><h2>Perguntas frequentes</h2>
+<details><summary>O que é a porta WAN do roteador?</summary><p>É a porta que recebe a conexão de internet do provedor; as demais portas (LAN) distribuem a rede para os seus dispositivos.</p></details>
+<details><summary>Preciso desativar o roteador do provedor ao instalar o meu?</summary><p>Depende da instalação: confirme com a operadora e siga os manuais para escolher o modo de operação dos dois equipamentos sem aplicar uma mudança universal.</p></details>
+<details><summary>O que fazer logo depois do primeiro acesso ao painel?</summary><p>Troque a senha padrão e o usuário de administrador quando permitido e confira as atualizações de firmware conforme o manual.</p></details>
+<details><summary>Como saber se minha conexão usa DHCP, PPPoE ou IP estático?</summary><p>Depende do provedor; confirme no contrato ou com o suporte do provedor e escolha o mesmo tipo nas configurações WAN do roteador.</p></details>
+<details><summary>Quais recursos de segurança vale ativar no roteador?</summary><p>Os guias citados mencionam firewall, controles de acesso e filtragem, além de desativar recursos que você não usa, como o gerenciamento remoto.</p></details>
+</section>
+<section class="passo" id="fontes"><h2>Fontes oficiais</h2><ul class="fontes">
+<li><a href="https://www.cisco.com/c/pt_br/solutions/small-business/resource-center/networking/how-to-set-up-router.html">Cisco — configuração de roteador (guia de fabricante)</a></li>
+<li><a href="https://www.tp-link.com/br/support/faq/3841/">TP-Link — FAQ 3841: configuração WAN (exemplo de fabricante)</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/networking/technologies/dhcp/dhcp-top">Microsoft Learn — servidor DHCP</a></li>
+<li><a href="https://www.cisa.gov/news-events/news/home-network-security">CISA — Home Network Security (conteúdo arquivado, fevereiro de 2021)</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">Microsoft Learn — ipconfig</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ping">Microsoft Learn — ping</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/tracert">Microsoft Learn — tracert</a></li>
+</ul><p class="nota">Links e trechos utilizados conferidos por curl e leitura de texto em 24/10/2026; guias de fabricante não definem menus universais.</p></section>
+<section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/192-168-1-1-nao-abre/">192.168.1.1 não abre: como achar o IP certo do roteador e entrar no painel</a></li><li><a href="/artigos/o-que-e-dhcp/">O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo</a></li><li><a href="/artigos/upnp-e-seguro-desativar/">UPnP: o que é, por que gera risco e como desativar sem quebrar o que você usa</a></li><li><a href="/artigos/seguranca-de-rede-pequena-empresa/">Segurança de rede para pequena empresa: checklist básico de quem cuida da TI</a></li></ul></section>
+    </article>
+    <section class="artigo-cta" id="proximo-passo" aria-labelledby="cta-titulo">
+<h2 id="cta-titulo">Continue estudando redes</h2>
+<p>Para acompanhar a formação de Analista de Infraestrutura e Redes, <a class="placa placa-lima" href="/fundadora/">entre na lista de espera</a>.</p>
+</section>
+  </main>
+  <!-- rodape:inicio -->
+  <footer class="rodape">
+    <div class="rodape-marca">
+      <a class="marca" href="/">
+        <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+        TI Ninja
+      </a>
+      <p>TI Ninja · Campinas/SP</p>
+    </div>
+    <nav aria-label="No rodapé">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+      <a href="/comandos/">Comandos dos vídeos</a>
+    </nav>
+    <nav aria-label="Redes">
+      <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
+      <a href="https://www.instagram.com/consult.tininja/">Instagram</a>
+    </nav>
+    <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+    <p>© 2026 TI Ninja</p>
+  </footer>
+  <!-- rodape:fim -->
+</body>
+</html>

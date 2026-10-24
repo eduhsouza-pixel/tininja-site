@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O que é VLAN e quando separar uma rede em VLANs — TI Ninja</title>
+  <meta name="description" content="Entenda o que é VLAN, portas de acesso e trunk, sub-redes, roteamento e DHCP, com um exemplo didático de administrativo, convidados e câmeras.">
+  <link rel="canonical" href="https://tininja.net/artigos/o-que-e-vlan/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="O que é VLAN e quando separar uma rede em VLANs — TI Ninja">
+  <meta property="og:description" content="Entenda o que é VLAN, portas de acesso e trunk, sub-redes, roteamento e DHCP, com um exemplo didático de administrativo, convidados e câmeras.">
+  <meta property="og:url" content="https://tininja.net/artigos/o-que-e-vlan/">
+  <meta property="og:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta property="og:image:width" content="192">
+  <meta property="og:image:height" content="192">
+  <meta property="og:image:alt" content="Marca TI Ninja">
+  <meta property="article:published_time" content="2026-10-24">
+  <meta property="article:modified_time" content="2026-10-24">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="O que é VLAN e quando separar uma rede em VLANs — TI Ninja">
+  <meta name="twitter:description" content="Entenda o que é VLAN, portas de acesso e trunk, sub-redes, roteamento e DHCP, com um exemplo didático de administrativo, convidados e câmeras.">
+  <meta name="twitter:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta name="twitter:image:alt" content="Marca TI Ninja">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://tininja.net/artigos/o-que-e-vlan/#artigo",
+      "headline": "O que é VLAN e quando separar uma rede em VLANs",
+      "description": "Entenda o que é VLAN, portas de acesso e trunk, sub-redes, roteamento e DHCP, com um exemplo didático de administrativo, convidados e câmeras.",
+      "inLanguage": "pt-BR",
+      "mainEntityOfPage": "https://tininja.net/artigos/o-que-e-vlan/",
+      "author": {
+        "@type": "Person",
+        "name": "Eduardo Honorato"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "TI Ninja",
+        "url": "https://tininja.net/"
+      },
+      "datePublished": "2026-10-24",
+      "dateModified": "2026-10-24",
+      "articleSection": "Fundamentos de rede"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://tininja.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Artigos",
+          "item": "https://tininja.net/artigos/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "O que é VLAN e quando separar uma rede em VLANs",
+          "item": "https://tininja.net/artigos/o-que-e-vlan/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tininja.net/artigos/o-que-e-vlan/#perguntas",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que é VLAN?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "VLAN é uma rede local virtual: uma divisão lógica de uma rede física em redes separadas, cada uma com seu próprio domínio de broadcast."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Para que serve uma VLAN?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para separar tráfego por setor, função ou tipo de dispositivo, reduzindo broadcast desnecessário e facilitando organização e controle entre redes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre porta de acesso e porta trunk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No cenário básico, uma porta de acesso atende uma VLAN e uma porta trunk transporta várias VLANs, normalmente com marcação IEEE 802.1Q e possíveis exceções como a VLAN nativa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso de roteamento para duas VLANs conversarem?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim: VLANs diferentes são redes diferentes, então a comunicação entre elas passa por um dispositivo de camada 3 (roteador ou switch L3)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Uma VLAN equivale a uma sub-rede?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "São conceitos diferentes, mas no planejamento comum cada VLAN costuma ser associada a uma sub-rede IP própria."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "VLAN e VPN são a mesma coisa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não: VLAN separa redes dentro da infraestrutura local; VPN cria um túnel entre redes ou dispositivos por outra rede, como a internet."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <!-- nav:inicio -->
+  <header class="fascia">
+    <a class="marca" href="/">
+      <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+      TI Ninja
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+    </nav>
+  </header>
+  <!-- nav:fim -->
+  <main id="conteudo" class="artigos artigo">
+    <nav class="migalhas" aria-label="Migalha de pão"><ol><li><a href="/">Início</a></li><li><a href="/artigos/">Artigos</a></li><li><span aria-current="page">O que é VLAN e quando separar uma rede em VLANs</span></li></ol></nav>
+    <article>
+      <header class="artigo-topo">
+        <h1>O que é VLAN e quando separar uma rede em VLANs</h1>
+        <p class="lede">VLAN separa grupos lógicos na infraestrutura: veja como planejar portas, endereços e comunicação sem confundir segmentação com firewall.</p>
+        <p class="nota artigo-meta">Por Eduardo Honorato · Publicado em <time datetime="2026-10-24">24/10/2026</time> · Atualizado em <time datetime="2026-10-24">24/10/2026</time></p>
+      </header>
+      <nav class="artigo-sumario" aria-labelledby="sumario-titulo"><h2 id="sumario-titulo">Neste artigo</h2><ul><li><a href="#rede-plana">Rede plana: tudo no mesmo domínio de broadcast</a></li><li><a href="#conceito">O que é VLAN: uma rede física, redes lógicas separadas</a></li><li><a href="#portas">Porta de acesso e porta trunk: qual a diferença?</a></li><li><a href="#sub-rede">Uma VLAN, uma sub-rede: por que costumam andar juntas?</a></li><li><a href="#roteamento">Como VLANs conversam: roteamento entre redes</a></li><li><a href="#exemplo">Exemplo ilustrativo: administrativo, convidados e câmeras</a></li><li><a href="#dhcp">DHCP em cada VLAN: servidor local ou relay</a></li><li><a href="#erros">Erros comuns: porta errada e trunk sem a VLAN</a></li><li><a href="#limites">VLAN não é firewall</a></li><li><a href="#depois">Próximos passos</a></li><li><a href="#perguntas">Perguntas frequentes</a></li><li><a href="#fontes">Fontes oficiais</a></li><li><a href="#leia-tambem">Leia também</a></li></ul></nav>
+<section class="passo" id="rede-plana"><h2>Rede plana: tudo no mesmo domínio de broadcast</h2>
+<p>Imagine um escritório em que computadores, câmeras e dispositivos de visitantes compartilham a mesma rede lógica. Quando um equipamento envia broadcast, esse tráfego alcança o domínio correspondente. Antes de separar a rede, o suporte precisa entender quem está junto e quais comunicações são necessárias.</p>
+<p>Esse cenário é didático, não um caso de cliente. A pergunta prática é: os visitantes precisam estar no mesmo grupo dos computadores administrativos? Organizar essa resposta evita criar VLANs apenas porque existe a opção no switch. Comece pelo uso da rede, depois passe à configuração.</p></section>
+<section class="passo" id="conceito"><h2>O que é VLAN: uma rede física, redes lógicas separadas</h2>
+<p>VLAN significa rede local virtual. Ela permite dividir uma infraestrutura de switches em grupos lógicos, em vez de depender apenas de onde o cabo está conectado. O <a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr2-fwd/vlan/vlan-configuration-guide/configure-vlan.html">guia Configure VLAN da Cisco</a> descreve essa organização por função ou aplicação; usamos os conceitos, não uma recomendação de produto.</p>
+<h3>Um domínio de broadcast por VLAN</h3>
+<p>Um broadcast de uma VLAN permanece naquele domínio. Assim, os dispositivos de um grupo não passam a compartilhar o mesmo broadcast dos demais apenas porque usam o mesmo switch físico. A configuração das portas e das ligações entre switches precisa refletir essa separação.</p>
+<p>Na bancada, desenhe os grupos antes de abrir o painel: nome da VLAN, função e portas que pertencem a ela. Se outro técnico trocar um cabo, esse registro ajuda a perceber que a mudança física pode ter colocado o dispositivo em outra rede lógica.</p></section>
+<section class="passo" id="portas"><h2>Porta de acesso e porta trunk: qual a diferença?</h2>
+<p>No cenário básico, uma porta de acesso conecta um dispositivo a uma VLAN. Uma porta trunk transporta várias VLANs por uma ligação, como a conexão entre switches, usando a identificação prevista pelo padrão IEEE 802.1Q. Não basta criar o nome da VLAN e esquecer por onde seu tráfego vai passar.</p>
+<p>O guia Cisco diferencia associação de porta de acesso e trunk, inclusive a lista de VLANs permitidas. Os comandos e os padrões do equipamento variam: siga o manual do fabricante. Não copie uma linha de configuração encontrada para outro sistema como se fosse universal.</p>
+<div class="cuidado"><p><strong>Cuidado:</strong> em um trunk pode existir uma VLAN nativa cujo tráfego segue sem marcação; confira a configuração dos dois lados, em vez de assumir que todo quadro sempre leva uma etiqueta.</p></div></section>
+<section class="passo" id="sub-rede"><h2>Uma VLAN, uma sub-rede: por que costumam andar juntas?</h2>
+<p>VLAN é a separação lógica na rede comutada; sub-rede é a organização do endereçamento IP. Na prática comum, você associa uma sub-rede a cada VLAN. O próprio guia Cisco descreve essa associação frequente, sem transformar os dois conceitos em sinônimos.</p>
+<p>Planeje endereço de rede, máscara, gateway e faixa de distribuição de cada grupo. Use a <a href="/calculadora-sub-rede/">calculadora de sub-rede</a> para conferir limites. Um nome como “Convidados” ajuda humanos, mas não substitui a configuração IP nem determina quais acessos serão permitidos.</p></section>
+<section class="passo" id="roteamento"><h2>Como VLANs conversam: roteamento entre redes</h2>
+<p>Para a comunicação IP entre VLANs, entra um dispositivo de camada 3, como roteador ou switch com essa capacidade. O guia Cisco afirma que o tráfego entre VLANs precisa ser roteado. Criar duas VLANs no switch não configura automaticamente esse caminho.</p>
+<p>Antes de permitir a comunicação, escreva a necessidade: qual origem precisa acessar qual destino e para fazer o quê? No atendimento, “precisa funcionar tudo” é uma descrição insuficiente. Uma impressora compartilhada e um painel de administração podem exigir decisões diferentes.</p></section>
+<section class="passo" id="exemplo"><h2>Exemplo ilustrativo: administrativo, convidados e câmeras</h2>
+<p>Considere este laboratório com endereços privados da <a href="https://www.rfc-editor.org/rfc/rfc1918">RFC 1918</a>. Os números são exemplos de planejamento, não dimensionamento de uma empresa real nem valores a copiar para a rede em produção.</p>
+<div class="artigo-tabela"><table><caption>Plano didático de separação lógica</caption><thead><tr><th scope="col">Grupo</th><th scope="col">VLAN de exemplo</th><th scope="col">Sub-rede de exemplo</th></tr></thead><tbody><tr><th scope="row">Administrativo</th><td>10</td><td>192.168.10.0/24</td></tr><tr><th scope="row">Convidados</th><td>20</td><td>192.168.20.0/24</td></tr><tr><th scope="row">Câmeras</th><td>30</td><td>192.168.30.0/24</td></tr></tbody></table></div>
+<p>Como proposta editorial para o exercício, convidados não precisam alcançar o administrativo. Para câmeras, liste quais equipamentos autorizados precisam consultá-las. Transforme essa intenção em regras no dispositivo responsável pelo controle entre redes e teste os acessos permitidos e os bloqueados.</p>
+<p>Guarde também o mapa das portas. Se um computador do administrativo receber configuração de convidados depois de mudar de mesa, a primeira pergunta será em qual porta ele entrou e a qual VLAN essa porta pertence.</p></section>
+<section class="passo" id="dhcp"><h2>DHCP em cada VLAN: servidor local ou relay</h2>
+<p>O cliente começa a descoberta DHCP por broadcast. Como roteadores não encaminham esse broadcast por padrão, um servidor em outra sub-rede exige configuração adicional, como DHCP relay. O <a href="https://www.cisco.com/c/pt_br/support/docs/ip/dynamic-address-allocation-resolution/27470-100.html">guia de diagnóstico DHCP da Cisco</a> descreve esse caminho.</p>
+<p>Confira o atendimento de cada sub-rede, os parâmetros entregues e a configuração do relay conforme o fabricante. Ter um serviço DHCP funcionando no administrativo não demonstra que os convidados chegarão a ele. O artigo <a href="/artigos/o-que-e-dhcp/">o que é DHCP</a> detalha a negociação e a concessão.</p></section>
+<section class="passo" id="erros"><h2>Erros comuns: porta errada e trunk sem a VLAN</h2>
+<ul><li><strong>VLAN criada, porta sem associação:</strong> confira onde o dispositivo entrou e qual VLAN está atribuída à porta.</li><li><strong>Trunk sem a VLAN permitida:</strong> verifique a lista de passagem ao longo da ligação entre switches.</li><li><strong>VLAN nativa diferente entre as pontas:</strong> compare os dois lados conforme o manual.</li><li><strong>Endereçamento incoerente:</strong> compare IP, máscara, gateway e escopo com o plano daquela VLAN.</li></ul>
+<p>Altere uma condição por vez e registre o resultado. Se você muda porta, endereço e regra juntos, fica difícil saber qual alteração resolveu o sintoma. Comece no ponto de conexão do cliente e acompanhe o caminho desenhado.</p></section>
+<section class="passo" id="limites"><h2>VLAN não é firewall</h2>
+<p>A separação de domínios ajuda a organizar a rede, mas não define sozinha toda a política de acesso. Se houver roteamento e permissões amplas entre os grupos, a divisão não substitui regras. O guia Cisco também alerta para riscos de configuração incorreta de VLANs.</p>
+<p>“VLAN não é firewall” é uma síntese editorial dessa distinção, não uma citação literal do fabricante. Confira separação, roteamento e controle como etapas diferentes. Veja o <a href="/artigos/seguranca-de-rede-pequena-empresa/">checklist de segurança de rede</a> para encaixar o planejamento em uma rotina de manutenção.</p></section>
+<section class="passo" id="depois"><h2>Próximos passos</h2>
+<p>Monte o plano do laboratório, confira as faixas na calculadora e explique como cada cliente recebe IP. Depois simule uma porta na VLAN errada e registre o diagnóstico. Use somente um ambiente próprio de estudo; siga o manual para os comandos e não reproduza a falha em uma rede de trabalho.</p></section>
+
+<section class="passo" id="perguntas"><h2>Perguntas frequentes</h2>
+<details><summary>O que é VLAN?</summary><p>VLAN é uma rede local virtual: uma divisão lógica de uma rede física em redes separadas, cada uma com seu próprio domínio de broadcast.</p></details>
+<details><summary>Para que serve uma VLAN?</summary><p>Para separar tráfego por setor, função ou tipo de dispositivo, reduzindo broadcast desnecessário e facilitando organização e controle entre redes.</p></details>
+<details><summary>Qual a diferença entre porta de acesso e porta trunk?</summary><p>No cenário básico, uma porta de acesso atende uma VLAN e uma porta trunk transporta várias VLANs, normalmente com marcação IEEE 802.1Q e possíveis exceções como a VLAN nativa.</p></details>
+<details><summary>Preciso de roteamento para duas VLANs conversarem?</summary><p>Sim: VLANs diferentes são redes diferentes, então a comunicação entre elas passa por um dispositivo de camada 3 (roteador ou switch L3).</p></details>
+<details><summary>Uma VLAN equivale a uma sub-rede?</summary><p>São conceitos diferentes, mas no planejamento comum cada VLAN costuma ser associada a uma sub-rede IP própria.</p></details>
+<details><summary>VLAN e VPN são a mesma coisa?</summary><p>Não: VLAN separa redes dentro da infraestrutura local; VPN cria um túnel entre redes ou dispositivos por outra rede, como a internet.</p></details>
+</section>
+<section class="passo" id="fontes"><h2>Fontes oficiais</h2><ul class="fontes">
+<li><a href="https://www.cisco.com/c/en/us/td/docs/switches/lan/c9000/lyr2-fwd/vlan/vlan-configuration-guide/configure-vlan.html">Cisco — Configure VLAN (guia de fabricante)</a></li>
+<li><a href="https://www.cisco.com/c/pt_br/support/docs/ip/dynamic-address-allocation-resolution/27470-100.html">Cisco — diagnóstico DHCP (documentação de fabricante)</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc1918">RFC Editor — RFC 1918: endereços privados</a></li>
+<li><a href="https://www.cisco.com/c/pt_br/solutions/small-business/resource-center/security/network-security-checklist.html">Cisco — checklist de segurança (apoio de fabricante)</a></li>
+</ul><p class="nota">Links e trechos utilizados conferidos por curl e leitura de texto em 24/10/2026; guias de fabricante não definem menus universais.</p></section>
+<section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/o-que-e-dhcp/">O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo</a></li><li><a href="/artigos/como-configurar-roteador/">Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa</a></li><li><a href="/artigos/seguranca-de-rede-pequena-empresa/">Segurança de rede para pequena empresa: checklist básico de quem cuida da TI</a></li></ul></section>
+    </article>
+    <section class="artigo-cta" id="proximo-passo" aria-labelledby="cta-titulo">
+<h2 id="cta-titulo">Continue estudando redes</h2>
+<p>Para acompanhar a formação de Analista de Infraestrutura e Redes, <a class="placa placa-lima" href="/fundadora/">entre na lista de espera</a>.</p>
+</section>
+  </main>
+  <!-- rodape:inicio -->
+  <footer class="rodape">
+    <div class="rodape-marca">
+      <a class="marca" href="/">
+        <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+        TI Ninja
+      </a>
+      <p>TI Ninja · Campinas/SP</p>
+    </div>
+    <nav aria-label="No rodapé">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+      <a href="/comandos/">Comandos dos vídeos</a>
+    </nav>
+    <nav aria-label="Redes">
+      <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
+      <a href="https://www.instagram.com/consult.tininja/">Instagram</a>
+    </nav>
+    <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+    <p>© 2026 TI Ninja</p>
+  </footer>
+  <!-- rodape:fim -->
+</body>
+</html>
