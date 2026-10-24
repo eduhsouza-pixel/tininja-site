@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo — TI Ninja</title>
-  <meta name="description" content="Entenda DHCP, DORA, concessão, relay, reserva e IP fixo. Veja como investigar endereços 169.254 e falhas de distribuição no suporte de TI.">
+  <title>O que é DHCP e como funciona: IP, máscara, gateway e DNS</title>
+  <meta name="description" content="Como o DHCP entrega IP, máscara, gateway e DNS, o que são DORA e concessão (lease) e o que fazer quando aparece um IP 169.254.">
   <link rel="canonical" href="https://tininja.net/artigos/o-que-e-dhcp/">
   <meta name="author" content="Eduardo Honorato">
   <meta name="theme-color" content="#FFFFFF">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
-  <meta property="og:title" content="O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo — TI Ninja">
-  <meta property="og:description" content="Entenda DHCP, DORA, concessão, relay, reserva e IP fixo. Veja como investigar endereços 169.254 e falhas de distribuição no suporte de TI.">
+  <meta property="og:title" content="O que é DHCP e como funciona: IP, máscara, gateway e DNS">
+  <meta property="og:description" content="Como o DHCP entrega IP, máscara, gateway e DNS, o que são DORA e concessão (lease) e o que fazer quando aparece um IP 169.254.">
   <meta property="og:url" content="https://tininja.net/artigos/o-que-e-dhcp/">
   <meta property="og:image" content="https://tininja.net/assets/favicon-192.png">
   <meta property="og:image:width" content="192">
@@ -21,8 +21,8 @@
   <meta property="article:published_time" content="2026-10-24">
   <meta property="article:modified_time" content="2026-10-24">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo — TI Ninja">
-  <meta name="twitter:description" content="Entenda DHCP, DORA, concessão, relay, reserva e IP fixo. Veja como investigar endereços 169.254 e falhas de distribuição no suporte de TI.">
+  <meta name="twitter:title" content="O que é DHCP e como funciona: IP, máscara, gateway e DNS">
+  <meta name="twitter:description" content="Como o DHCP entrega IP, máscara, gateway e DNS, o que são DORA e concessão (lease) e o que fazer quando aparece um IP 169.254.">
   <meta name="twitter:image" content="https://tininja.net/assets/favicon-192.png">
   <meta name="twitter:image:alt" content="Marca TI Ninja">
   <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
@@ -39,8 +39,8 @@
     {
       "@type": "Article",
       "@id": "https://tininja.net/artigos/o-que-e-dhcp/#artigo",
-      "headline": "O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo",
-      "description": "Entenda DHCP, DORA, concessão, relay, reserva e IP fixo. Veja como investigar endereços 169.254 e falhas de distribuição no suporte de TI.",
+      "headline": "O que é DHCP e como funciona: IP, máscara, gateway e DNS",
+      "description": "Como o DHCP entrega IP, máscara, gateway e DNS, o que são DORA e concessão (lease) e o que fazer quando aparece um IP 169.254.",
       "inLanguage": "pt-BR",
       "mainEntityOfPage": "https://tininja.net/artigos/o-que-e-dhcp/",
       "author": {
@@ -74,7 +74,7 @@
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo",
+          "name": "O que é DHCP e como funciona: IP, máscara, gateway e DNS",
           "item": "https://tininja.net/artigos/o-que-e-dhcp/"
         }
       ]
@@ -96,7 +96,7 @@
           "name": "Qual a diferença entre IP fixo e IP por DHCP?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No DHCP o endereço é concedido por um prazo; no IP fixo manual ele é configurado no dispositivo e precisa ser coordenado com as exclusões da faixa automática para evitar conflitos."
+            "text": "No DHCP, o endereço é concedido por um prazo. No IP fixo manual, ele é configurado no dispositivo e deve ficar fora da faixa de distribuição automática."
           }
         },
         {
@@ -155,17 +155,17 @@
   </header>
   <!-- nav:fim -->
   <main id="conteudo" class="artigos artigo">
-    <nav class="migalhas" aria-label="Migalha de pão"><ol><li><a href="/">Início</a></li><li><a href="/artigos/">Artigos</a></li><li><span aria-current="page">O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo</span></li></ol></nav>
+    <nav class="migalhas" aria-label="Migalha de pão"><ol><li><a href="/">Início</a></li><li><a href="/artigos/">Artigos</a></li><li><span aria-current="page">O que é DHCP e como funciona: IP, máscara, gateway e DNS</span></li></ol></nav>
     <article>
       <header class="artigo-topo">
-        <h1>O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo</h1>
-        <p class="lede">Entenda como o dispositivo recebe IP, máscara, gateway e DNS, e quais pistas observar quando a distribuição automática falha.</p>
+        <h1>O que é DHCP e como funciona: IP, máscara, gateway e DNS</h1>
+        <p class="lede">Notebook novo no cabo, link aceso e nada de internet. Antes de culpar o provedor, veja o que o DHCP deveria ter entregue e como ler o que chegou.</p>
         <p class="nota artigo-meta">Por Eduardo Honorato · Publicado em <time datetime="2026-10-24">24/10/2026</time> · Atualizado em <time datetime="2026-10-24">24/10/2026</time></p>
       </header>
       <nav class="artigo-sumario" aria-labelledby="sumario-titulo"><h2 id="sumario-titulo">Neste artigo</h2><ul><li><a href="#conceito">DHCP em uma frase</a></li><li><a href="#configuracao">O que o DHCP entrega: endereço, máscara, gateway e DNS</a></li><li><a href="#dora">Como funciona passo a passo: DORA</a></li><li><a href="#servidor">Onde mora o servidor DHCP?</a></li><li><a href="#relay">DHCP entre sub-redes e VLANs: quando entra o relay</a></li><li><a href="#concessao">IP fixo, reserva e DHCP: quando usar cada um</a></li><li><a href="#diagnostico">Quando o DHCP falha: sintomas para investigar</a></li><li><a href="#depois">O que estudar depois</a></li><li><a href="#perguntas">Perguntas frequentes</a></li><li><a href="#fontes">Fontes oficiais</a></li><li><a href="#leia-tambem">Leia também</a></li></ul></nav>
 <section class="passo" id="conceito"><h2>DHCP em uma frase</h2>
-<p>DHCP é o protocolo que entrega automaticamente um endereço IP e parâmetros de rede ao dispositivo. Em vez de preencher a configuração em cada computador, você organiza a distribuição no servidor. Este artigo trata de DHCP para IPv4, como apresentado nas <a href="https://learn.microsoft.com/pt-br/windows-server/troubleshoot/dynamic-host-configuration-protocol-basics">noções básicas da Microsoft</a>.</p>
-<p>Pense no notebook que acabou de chegar ao suporte: conectar o cabo é o começo; a interface ainda precisa de uma configuração compatível com a rede. O DHCP automatiza essa etapa quando o cliente está em modo automático e consegue conversar com o serviço. Receber um endereço, porém, não comprova que a internet ou o sistema da empresa esteja funcionando.</p></section>
+<p>Pense no notebook que acabou de chegar ao suporte: conectar o cabo é o começo; a interface ainda precisa de uma configuração compatível com a rede. O DHCP automatiza essa etapa quando o cliente está em modo automático e consegue conversar com o serviço. Receber um endereço, porém, não comprova que a internet ou o sistema da empresa esteja funcionando.</p>
+<p>DHCP é o protocolo que entrega automaticamente um endereço IP e parâmetros de rede ao dispositivo. Em vez de preencher a configuração em cada computador, você organiza a distribuição no servidor. Este artigo trata de DHCP para IPv4, como apresentado nas <a href="https://learn.microsoft.com/pt-br/windows-server/troubleshoot/dynamic-host-configuration-protocol-basics">noções básicas de DHCP</a>.</p></section>
 <section class="passo" id="configuracao"><h2>O que o DHCP entrega: endereço, máscara, gateway e DNS</h2>
 <p>O servidor pode entregar o endereço e opções como máscara, gateway padrão e servidores DNS. Confira os quatro campos antes de dizer que a configuração está correta:</p>
 <ul><li><strong>Endereço IP:</strong> identifica a interface naquela rede.</li><li><strong>Máscara:</strong> delimita qual parte do endereço corresponde à sub-rede.</li><li><strong>Gateway padrão:</strong> indica a saída para destinos sem uma rota mais específica.</li><li><strong>DNS:</strong> informa quais servidores consultar para resolver nomes.</li></ul>
@@ -184,14 +184,14 @@
 <p>O serviço pode estar no roteador, em um servidor Windows ou em um equipamento de firewall que ofereça essa função. Não deduza sua localização pela aparência do aparelho. A <a href="https://learn.microsoft.com/pt-br/windows-server/networking/technologies/dhcp/dhcp-top">documentação do servidor DHCP</a> mostra que a distribuição pode ser centralizada fora do roteador.</p>
 <p>Em um atendimento, registre quem entrega endereços e quem funciona como gateway. Essa distinção ajuda quando a navegação funciona em uma máquina antiga, mas um notebook novo não recebe configuração.</p></section>
 <section class="passo" id="relay"><h2>DHCP entre sub-redes e VLANs: quando entra o relay</h2>
-<p>O broadcast inicial não atravessa roteadores por padrão. Se o servidor estiver em outra sub-rede, pode ser necessário um agente de retransmissão, o DHCP relay, ou um servidor atendendo localmente. A Microsoft documenta o relay como forma de evitar um servidor em cada sub-rede.</p>
-<p>No <a href="https://www.cisco.com/c/pt_br/support/docs/ip/dynamic-address-allocation-resolution/27470-100.html">guia de diagnóstico Cisco</a>, aparece o recurso associado a <code>ip helper-address</code>; essa sintaxe não é universal. Siga o manual do fabricante para configurar a interface e o destino corretos. Veja também <a href="/artigos/o-que-e-vlan/">o que é VLAN</a> para entender a separação dos domínios de broadcast.</p></section>
+<p>O broadcast inicial não atravessa roteadores por padrão. Se o servidor estiver em outra sub-rede, pode ser necessário um agente de retransmissão, o DHCP relay, ou um servidor atendendo localmente. A documentação oficial descreve o relay como forma de evitar um servidor em cada sub-rede.</p>
+<p>No <a href="https://www.cisco.com/c/pt_br/support/docs/ip/dynamic-address-allocation-resolution/27470-100.html">guia de diagnóstico do fabricante</a>, aparece o recurso associado a <code>ip helper-address</code>; essa sintaxe não é universal. Siga o manual do fabricante para configurar a interface e o destino corretos. Veja também <a href="/artigos/o-que-e-vlan/">o que é VLAN</a> para entender a separação dos domínios de broadcast.</p></section>
 <section class="passo" id="concessao"><h2>IP fixo, reserva e DHCP: quando usar cada um</h2>
 <p>DHCP distribui a configuração automaticamente. Uma reserva mantém a entrega por DHCP, mas associa um endereço a determinado cliente. O IP fixo manual é preenchido no dispositivo e precisa ser coordenado com o plano de endereçamento, incluindo exclusões da faixa automática.</p>
 <p>Em um cenário didático com uma impressora, pergunte se o endereço precisa permanecer previsível e quem manterá o registro. Não escolha um IP apenas porque parece estar livre. Anote a decisão para que outro técnico não distribua o mesmo endereço depois.</p>
-<p>O guia Cisco propõe testar com configuração estática para investigar conectividade. Faça isso apenas com valores válidos e autorizados, conforme o planejamento e o manual do ambiente; depois restaure o modo anterior. Se o acesso funcionar, você ganhou uma pista sobre a distribuição automática, não uma prova de que todo o restante está correto.</p></section>
+<p>A documentação do fabricante sugere testar com configuração estática para investigar conectividade. Faça isso apenas com valores válidos e autorizados, conforme o planejamento e o manual do ambiente; depois restaure o modo anterior. Se o acesso funcionar, você ganhou uma pista sobre a distribuição automática, não uma prova de que todo o restante está correto.</p></section>
 <section class="passo" id="diagnostico"><h2>Quando o DHCP falha: sintomas para investigar</h2>
-<p>Um endereço <code>169.254.x.x</code> pode ser autoconfiguração link-local, descrita na <a href="https://www.rfc-editor.org/rfc/rfc3927">RFC 3927</a>, quando não há configuração utilizável por outro mecanismo. É uma pista de falta de resposta DHCP em clientes automáticos, não prova de falha do provedor.</p>
+<p>Um endereço <code>169.254.x.x</code> pode ser autoconfiguração link-local (no Windows, costuma aparecer com o apelido APIPA), descrita na <a href="https://www.rfc-editor.org/rfc/rfc3927">RFC 3927</a>, quando não há configuração utilizável por outro mecanismo. É uma pista de falta de resposta DHCP em clientes automáticos, não prova de falha do provedor.</p>
 <ul><li><strong>Escopo sem endereços disponíveis:</strong> confira concessões, exclusões e capacidade antes de alterar a faixa.</li><li><strong>Dois servidores sem coordenação:</strong> compare as ofertas e parâmetros; receber configurações diferentes pode explicar sintomas diferentes entre computadores.</li><li><strong>Cliente na rede errada:</strong> revise cabo, Wi-Fi, VLAN e caminho até o servidor ou relay.</li></ul>
 <p>Dois servidores não são necessariamente um erro: existem configurações planejadas de redundância. Investigue quem deveria responder antes de desligar qualquer serviço.</p>
 <h3>Comandos para olhar: ipconfig</h3>
@@ -203,7 +203,7 @@
 
 <section class="passo" id="perguntas"><h2>Perguntas frequentes</h2>
 <details><summary>O que é DHCP?</summary><p>DHCP é o protocolo que entrega automaticamente a cada dispositivo da rede um endereço IP e parâmetros como máscara de sub-rede, gateway padrão e servidores DNS.</p></details>
-<details><summary>Qual a diferença entre IP fixo e IP por DHCP?</summary><p>No DHCP o endereço é concedido por um prazo; no IP fixo manual ele é configurado no dispositivo e precisa ser coordenado com as exclusões da faixa automática para evitar conflitos.</p></details>
+<details><summary>Qual a diferença entre IP fixo e IP por DHCP?</summary><p>No DHCP, o endereço é concedido por um prazo. No IP fixo manual, ele é configurado no dispositivo e deve ficar fora da faixa de distribuição automática.</p></details>
 <details><summary>O que são as etapas DORA do DHCP?</summary><p>Discover (o cliente procura servidores), Offer (o servidor oferece), Request (o cliente pede a oferta escolhida) e Acknowledge (o servidor confirma) — nas fontes citadas aparecem como DHCPDISCOVER, DHCPOFFER, DHCPREQUEST e DHCPACK.</p></details>
 <details><summary>O que é a concessão (lease) do DHCP?</summary><p>É o prazo de uso do endereço concedido; o instante de renovação T1 tem como padrão metade desse prazo, mas pode ser configurado pelo servidor.</p></details>
 <details><summary>Por que o DHCP não funciona entre redes ou VLANs diferentes sem configuração extra?</summary><p>Porque o pedido do cliente é um broadcast e roteadores não encaminham broadcast por padrão, então é preciso um agente de retransmissão (relay) ou um servidor em cada sub-rede.</p></details>
@@ -217,11 +217,12 @@
 <li><a href="https://www.cisco.com/c/pt_br/support/docs/ip/dynamic-address-allocation-resolution/27470-100.html">Cisco — diagnóstico DHCP (documentação de fabricante)</a></li>
 <li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">Microsoft Learn — ipconfig</a></li>
 </ul><p class="nota">Links e trechos utilizados conferidos por curl e leitura de texto em 24/10/2026; guias de fabricante não definem menus universais.</p></section>
-<section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/o-que-e-vlan/">O que é VLAN e quando separar uma rede em VLANs</a></li><li><a href="/artigos/192-168-1-1-nao-abre/">192.168.1.1 não abre: como achar o IP certo do roteador e entrar no painel</a></li><li><a href="/artigos/como-configurar-roteador/">Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa</a></li></ul></section>
+<section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/o-que-e-vlan/">O que é VLAN e quando separar uma rede em VLANs</a></li><li><a href="/artigos/192-168-1-1-nao-abre/">192.168.1.1 não abre? Como achar o IP do roteador</a></li><li><a href="/artigos/como-configurar-roteador/">Como configurar um roteador do zero: WAN, LAN e Wi-Fi</a></li></ul></section>
     </article>
     <section class="artigo-cta" id="proximo-passo" aria-labelledby="cta-titulo">
-<h2 id="cta-titulo">Continue estudando redes</h2>
-<p>Para acompanhar a formação de Analista de Infraestrutura e Redes, <a class="placa placa-lima" href="/fundadora/">entre na lista de espera</a>.</p>
+<h2 id="cta-titulo">Quer praticar com método?</h2>
+<p>Conheça o Fundamentos de Rede, o curso de entrada da TI Ninja, na página da Turma Fundadora.</p>
+<a class="placa placa-lima" href="/fundadora/">Conhecer o Fundamentos de Rede</a>
 </section>
   </main>
   <!-- rodape:inicio -->

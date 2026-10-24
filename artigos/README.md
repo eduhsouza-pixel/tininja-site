@@ -8,7 +8,7 @@ Use `assets/css/site.css`, a marca SVG e as fontes Almarai locais. A implementa�
 
 As novas classes têm escopo `.artigos`/`.artigo`; caixas de dica e cuidado reutilizam `.cuidado`, comandos usam `.cmd`, fontes usam `.fontes`, divisões usam `.passo` e botões usam `.placa`. A grade usa os tokens existentes, sem paleta ou biblioteca nova. O guia mantém a referência marrom; a placa do curso usa o laranja existente.
 
-Escreva em português do Brasil, de técnico para técnico. Use sempre **Analista de Infraestrutura e Redes**. Explique conceitos, sem vender um fabricante, sem promessas de renda e sem inventar depoimentos, números comerciais ou preços. Endereços de laboratório devem ser identificados como exemplos didáticos. Não cite OPNsense/pfSense em artigos de conceito. A formação NOC (Ninja Official Curriculum) só entra na ponte final.
+Escreva em português do Brasil, de técnico para técnico. Use sempre **Analista de Infraestrutura e Redes**. Explique conceitos, sem vender um fabricante, sem promessas de renda e sem inventar depoimentos, números comerciais ou preços. Endereços de laboratório devem ser identificados como exemplos didáticos. Não cite OPNsense/pfSense em artigos de conceito. Nesta rodada, não cite NOC como promessa de formação; a ponte final apresenta o Fundamentos de Rede como curso de entrada.
 
 ## Duplicar o modelo
 
@@ -19,7 +19,7 @@ Escreva em português do Brasil, de técnico para técnico. Use sempre **Analist
 5. Mantenha um único H1. Use H2 para seções e H3 para subdivisões. Cada seção recebe um `id` único e um link no sumário. Migalhas e sumário têm seus próprios nomes acessíveis; FAQ usa `details`/`summary` nativos.
 6. Use `.cuidado` com o rótulo textual “Dica” ou “Cuidado”; não dependa só da cor. Tabelas precisam de `caption`, cabeçalhos e `scope`. Imagens adicionais precisam de `alt`, largura e altura. Evite imagem se ela não ajudar a explicar.
 7. Abra e leia as fontes oficiais. Confira também a resposta HTTP com `curl -fL --max-time 30 -o /tmp/fonte.html -w '%{http_code}\n' 'URL'`. HTTP 200 sozinho não basta: confira se o corpo contém a documentação, e não uma página de bloqueio. Ligue cada afirmação técnica à fonte que a sustenta e registre a data de consulta no bloco “Fontes oficiais”.
-8. Atualize “Leia também” e os links contextuais para `/calculadora-sub-rede/` e `/comandos/` quando úteis. Siga o CTA do brief: nesta rodada B01–B07 usam convite neutro à lista de espera em `/fundadora/`; `/quanto-cobrar/` só é secundário opcional em B03/B04/B06. Não acrescente dependências ou rastreadores.
+8. Atualize “Leia também” e os links contextuais para `/calculadora-sub-rede/` e `/comandos/` quando úteis. B01–B07 e o hub usam a opção B da revisão Lightcopy: “Quer praticar com método? Conheça o Fundamentos de Rede, o curso de entrada da TI Ninja, na página da Turma Fundadora.” Mantenha um único botão final para `/fundadora/`, sem CTA secundário, data, urgência, preço ou afirmação de gratuidade da lista/ausência de compromisso de compra. Menu e rodapé globais estão fora desse escopo e devem ser preservados. Não acrescente dependências ou rastreadores.
 
 ## Adicionar ao hub e integrar
 
