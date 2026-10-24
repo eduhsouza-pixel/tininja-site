@@ -4,7 +4,7 @@ Site estático de [tininja.net](https://tininja.net/). HTML, CSS e JavaScript na
 
 ## Como publicar
 
-O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `politica-de-privacidade/`, `fundadora/`, `calculadora-sub-rede/index.html`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/`, `scripts/` e `calculadora-sub-rede/src/` ficam de fora.
+O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica no GitHub Pages a partir da branch `main`. Ele copia só o que o visitante precisa (`index.html`, `404.html`, `minha-hora/`, `quanto-cobrar/`, `comandos/`, `artigos/` (sem o README editorial), `politica-de-privacidade/`, `fundadora/`, `calculadora-sub-rede/index.html`, `lp/` se existir, `assets/`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `CNAME`). `ebook-src/`, `scripts/` e `calculadora-sub-rede/src/` ficam de fora.
 
 No repositório: Settings → Pages → Build and deployment → **GitHub Actions**.
 
@@ -27,6 +27,8 @@ Abra `http://127.0.0.1:4173/`.
 | `/calculadora-sub-rede/` | Calculadora de sub-rede (IPv4, CIDR e VLSM). A página publicada é `calculadora-sub-rede/index.html` |
 | `/quanto-cobrar/` | Captura do guia gratuito “Quanto cobrar em TI em 2026” |
 | `/quanto-cobrar/obrigado/` | Download do PDF, calculadora e canais. `noindex`, fora do sitemap |
+| `/artigos/` | Hub de redes e infraestrutura; [como adicionar artigos](artigos/README.md) |
+| `/artigos/<slug>/` | Artigos com fontes oficiais, FAQ e dados estruturados |
 | `/comandos/` | Índice dos comandos mostrados nos vídeos |
 | `/comandos/<tema>/` | Comandos de um vídeo, com botão de copiar (`assets/js/comandos.js`) e fontes oficiais |
 | `/fundadora/` | Lista de espera da Turma Fundadora. Os textos visíveis estão em `fundadora/copy.js` |

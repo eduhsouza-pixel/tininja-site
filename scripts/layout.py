@@ -21,6 +21,7 @@ RAIZ = pathlib.Path(__file__).resolve().parent.parent
 MENU = [
     ("/", "Início"),
     ("/calculadora-sub-rede/", "Sub-rede"),
+    ("/artigos/", "Artigos"),
     ("/minha-hora/", "Minha hora"),
     ("/quanto-cobrar/", "E-book"),
     ("/fundadora/", "Curso"),
@@ -42,6 +43,12 @@ PAGINAS = {
     "politica-de-privacidade/index.html": None,
     "calculadora-sub-rede/src/template.html": "/calculadora-sub-rede/",
 }
+
+
+# Novos artigos entram automaticamente na sincronização do layout.
+for pagina in sorted((RAIZ / "artigos").rglob("index.html")):
+    rel = pagina.relative_to(RAIZ).as_posix()
+    PAGINAS[rel] = "/artigos/" if rel == "artigos/index.html" else None
 
 
 def link(href, rotulo, atual):
