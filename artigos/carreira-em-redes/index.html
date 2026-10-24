@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carreira em redes: por onde começar até chegar a Analista de Infraestrutura e Redes — TI Ninja</title>
+  <meta name="description" content="Uma proposta prática para começar em redes: endereçamento, DHCP, VLANs e comandos de diagnóstico, com laboratório e documentação do aprendizado.">
+  <link rel="canonical" href="https://tininja.net/artigos/carreira-em-redes/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="Carreira em redes: por onde começar até chegar a Analista de Infraestrutura e Redes — TI Ninja">
+  <meta property="og:description" content="Uma proposta prática para começar em redes: endereçamento, DHCP, VLANs e comandos de diagnóstico, com laboratório e documentação do aprendizado.">
+  <meta property="og:url" content="https://tininja.net/artigos/carreira-em-redes/">
+  <meta property="og:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta property="og:image:width" content="192">
+  <meta property="og:image:height" content="192">
+  <meta property="og:image:alt" content="Marca TI Ninja">
+  <meta property="article:published_time" content="2026-10-24">
+  <meta property="article:modified_time" content="2026-10-24">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Carreira em redes: por onde começar até chegar a Analista de Infraestrutura e Redes — TI Ninja">
+  <meta name="twitter:description" content="Uma proposta prática para começar em redes: endereçamento, DHCP, VLANs e comandos de diagnóstico, com laboratório e documentação do aprendizado.">
+  <meta name="twitter:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta name="twitter:image:alt" content="Marca TI Ninja">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://tininja.net/artigos/carreira-em-redes/#artigo",
+      "headline": "Carreira em redes: por onde começar até chegar a Analista de Infraestrutura e Redes",
+      "description": "Uma proposta prática para começar em redes: endereçamento, DHCP, VLANs e comandos de diagnóstico, com laboratório e documentação do aprendizado.",
+      "inLanguage": "pt-BR",
+      "mainEntityOfPage": "https://tininja.net/artigos/carreira-em-redes/",
+      "author": {
+        "@type": "Person",
+        "name": "Eduardo Honorato"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "TI Ninja",
+        "url": "https://tininja.net/"
+      },
+      "datePublished": "2026-10-24",
+      "dateModified": "2026-10-24",
+      "articleSection": "Carreira em redes"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://tininja.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Artigos",
+          "item": "https://tininja.net/artigos/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Carreira em redes: por onde começar até chegar a Analista de Infraestrutura e Redes",
+          "item": "https://tininja.net/artigos/carreira-em-redes/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tininja.net/artigos/carreira-em-redes/#perguntas",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que faz um Analista de Infraestrutura e Redes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nesta descrição editorial, pode cuidar da rede e dos servidores, incluindo endereçamento, DHCP/DNS, switches, firewall, monitoramento e documentação, conforme as responsabilidades do ambiente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por onde começar a estudar redes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A proposta deste guia é começar por endereço IP, máscara, gateway, DNS e DHCP, praticando a leitura da configuração e os comandos de diagnóstico."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais comandos básicos de rede um iniciante deve conhecer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ipconfig mostra a configuração IP, ping testa respostas ICMP, tracert investiga o caminho até um destino e nslookup consulta informações de DNS."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre suporte técnico e infraestrutura/redes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nesta visão editorial, suporte costuma partir do problema de uma pessoa e infraestrutura e redes amplia o foco para o ambiente compartilhado, com atividades que podem se sobrepor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso praticar ou só estudar teoria?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A proposta é combinar teoria com montagem, alterações controladas e diagnóstico em laboratório próprio ou simulado, registrando o que cada teste demonstra."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <!-- nav:inicio -->
+  <header class="fascia">
+    <a class="marca" href="/">
+      <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+      TI Ninja
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+    </nav>
+  </header>
+  <!-- nav:fim -->
+  <main id="conteudo" class="artigos artigo">
+    <nav class="migalhas" aria-label="Migalha de pão"><ol><li><a href="/">Início</a></li><li><a href="/artigos/">Artigos</a></li><li><span aria-current="page">Carreira em redes: por onde começar até chegar a Analista de Infraestrutura e Redes</span></li></ol></nav>
+    <article>
+      <header class="artigo-topo">
+        <h1>Carreira em redes: por onde começar até chegar a Analista de Infraestrutura e Redes</h1>
+        <p class="lede">Comece pela configuração que você consegue observar e avance com exercícios de laboratório, comandos de diagnóstico e registros claros.</p>
+        <p class="nota artigo-meta">Por Eduardo Honorato · Publicado em <time datetime="2026-10-24">24/10/2026</time> · Atualizado em <time datetime="2026-10-24">24/10/2026</time></p>
+      </header>
+      <nav class="artigo-sumario" aria-labelledby="sumario-titulo"><h2 id="sumario-titulo">Neste artigo</h2><ul><li><a href="#area">O que é infraestrutura e redes?</a></li><li><a href="#dia-a-dia">O dia a dia de um Analista de Infraestrutura e Redes</a></li><li><a href="#trilha">Trilha de estudo: da configuração ao monitoramento</a></li><li><a href="#ferramentas">Comandos para começar: ipconfig, ping, tracert e nslookup</a></li><li><a href="#laboratorio">Como praticar: laboratório simples e mudanças controladas</a></li><li><a href="#documentacao">Documente: diagrama de rede e caderno de comandos</a></li><li><a href="#erros">Erros de iniciante: decorar e pular endereçamento</a></li><li><a href="#depois">Para onde ir depois</a></li><li><a href="#perguntas">Perguntas frequentes</a></li><li><a href="#fontes">Fontes oficiais</a></li><li><a href="#leia-tambem">Leia também</a></li></ul></nav>
+<!-- REVISAR: Eduardo -->
+<section class="passo" id="area"><h2>O que é infraestrutura e redes?</h2>
+<p>Para começar uma carreira em redes de computadores, vale entender o ambiente antes de decorar comandos. Como visão editorial deste guia, infraestrutura e redes reúne o trabalho de manter a base tecnológica que permite aos dispositivos, sistemas e pessoas se comunicarem.</p>
+<p>Suporte técnico costuma começar pela dificuldade apresentada por uma pessoa; infraestrutura amplia o olhar para o ambiente compartilhado. Desenvolvimento trabalha na construção e evolução de software. Essas atividades podem se cruzar, e a divisão depende da equipe: não são fronteiras rígidas nem uma classificação de importância.</p>
+<p>O caminho proposto aqui parte do que você consegue observar em uma conexão. Saber explicar endereço, máscara e gateway ajuda a transformar “a internet não funciona” em perguntas que podem ser testadas.</p></section>
+<!-- REVISAR: Eduardo -->
+<section class="passo" id="dia-a-dia"><h2>O dia a dia de um Analista de Infraestrutura e Redes</h2>
+<p>Em uma descrição editorial e genérica, o trabalho pode envolver endereçamento, DHCP e DNS, switches, VLANs, firewall, monitoramento e documentação. A combinação muda conforme o ambiente e as responsabilidades atribuídas à pessoa; não estamos apresentando uma definição oficial de ocupação.</p>
+<p>Imagine um chamado didático: um computador mudou de mesa e perdeu acesso a um recurso. Em vez de começar reiniciando equipamentos, registre a conexão, leia a configuração recebida e compare com o plano da rede. Depois investigue a porta, a distribuição de endereços e o caminho até o serviço.</p>
+<p>O registro do resultado faz parte do exercício. Uma solução que só fica na memória de quem atendeu dificulta a próxima análise. Explique qual hipótese foi testada, o que mudou e o que continuou igual.</p></section>
+<!-- REVISAR: Eduardo -->
+<section class="passo" id="trilha"><h2>Trilha de estudo: da configuração ao monitoramento</h2>
+<p>Esta sequência é uma proposta editorial para organizar a prática. Não é um currículo oficial nem um prazo para avançar. Repita uma etapa enquanto ainda não conseguir explicar o resultado do exercício com suas próprias palavras.</p>
+<h3>Endereço: identifique a interface</h3>
+<p>Execute <code>ipconfig</code> no computador do laboratório e localize a interface conectada. Anote seu IPv4 sem misturá-lo com outras interfaces. O artigo <a href="/artigos/192-168-1-1-nao-abre/">como localizar o gateway do roteador</a> mostra a leitura dessa saída.</p>
+<h3>Máscara: descubra os limites da sub-rede</h3>
+<p>Use a <a href="/calculadora-sub-rede/">calculadora de sub-rede</a> para observar como a máscara delimita a rede. Compare dois prefixos no mesmo endereço de exemplo e registre o que muda. A <a href="https://learn.microsoft.com/pt-br/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting">explicação TCP/IP da Microsoft</a> sustenta os conceitos de endereço, máscara e sub-rede.</p>
+<h3>Gateway: localize a saída da rede</h3>
+<p>Leia o gateway da conexão e marque esse equipamento no desenho do laboratório. Compare com o endereço de gerenciamento indicado no manual, usando o <a href="/artigos/192-168-1-1-nao-abre/">roteiro de acesso ao painel</a>. Explique por que gateway e painel web não são a mesma função.</p>
+<h3>DNS: faça uma consulta de nome</h3>
+<p>Escolha um nome existente no laboratório e consulte com <code>nslookup</code>. Registre o servidor consultado e a resposta. A <a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/nslookup">referência da Microsoft</a> explica o uso; nos <a href="/comandos/">comandos dos vídeos</a>, mantenha seu roteiro de diagnóstico como apoio.</p>
+<h3>DHCP: acompanhe a configuração automática</h3>
+<p>Leia <a href="/artigos/o-que-e-dhcp/">o que é DHCP</a>, consulte <code>ipconfig /all</code> e identifique os dados de distribuição disponíveis na interface. Desenhe cliente e servidor e explique a concessão. Compare com os campos que você teria de preencher manualmente.</p>
+<h3>Switch e VLAN: desenhe os grupos</h3>
+<p>No laboratório, planeje dois grupos lógicos e indique as portas associadas. Use o exemplo de <a href="/artigos/o-que-e-vlan/">VLAN</a> e descreva por onde cada grupo passaria entre switches. Antes de configurar, confira no manual se o ambiente de estudo oferece os recursos necessários.</p>
+<h3>Roteamento e firewall: registre um acesso necessário</h3>
+<p>Desenhe o caminho entre os grupos e escreva uma necessidade de comunicação: origem, destino e serviço. Consulte <a href="/artigos/como-configurar-roteador/">como configurar um roteador</a> e o <a href="/artigos/seguranca-de-rede-pequena-empresa/">checklist de segurança</a>. Diferencie construir o caminho de decidir qual tráfego será permitido.</p>
+<h3>Monitoramento: compare antes e depois</h3>
+<p>Escolha um teste repetível no laboratório, registre o resultado inicial e repita após uma alteração controlada. Organize os registros com data e contexto. Use o <a href="/artigos/seguranca-de-rede-pequena-empresa/">trecho sobre logs e monitoramento</a> para relacionar observação, responsável e próxima ação.</p></section>
+<section class="passo" id="ferramentas"><h2>Comandos para começar: ipconfig, ping, tracert e nslookup</h2>
+<p>As referências oficiais da Microsoft explicam o papel de cada ferramenta. Aprenda a pergunta que ela responde antes de copiar a linha de comando:</p>
+<ul><li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">ipconfig</a>: mostra a configuração IP; com <code>/all</code>, apresenta os detalhes dos adaptadores.</li><li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ping">ping</a>: envia solicitações de eco ICMP e observa as respostas.</li><li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/tracert">tracert</a>: investiga o caminho até um destino por respostas dos saltos.</li><li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/nslookup">nslookup</a>: consulta informações de DNS.</li></ul>
+<p>Um ping respondido não testa todas as funções de uma aplicação. No tracert, a própria documentação explica que alguns roteadores não respondem e aparecem como asteriscos. Interprete a saída junto com o sintoma, sem transformar uma linha isolada em diagnóstico definitivo.</p></section>
+<!-- REVISAR: Eduardo -->
+<section class="passo" id="laboratorio"><h2>Como praticar: laboratório simples e mudanças controladas</h2>
+<p>Como proposta de estudo, use um ambiente simulado ou equipamentos próprios destinados ao laboratório. Desenhe o estado inicial, escolha uma alteração e escreva o resultado esperado. Mantenha a configuração anterior registrada para poder restaurá-la.</p>
+<p>Você pode começar só lendo a configuração e consultando nomes, antes de alterar qualquer coisa. Depois, em ambiente isolado, simule uma configuração incorreta, observe o sintoma e volte ao estado conhecido. O objetivo é aprender a explicar o efeito, não provocar falhas na rede de trabalho.</p>
+<div class="cuidado"><p><strong>Cuidado:</strong> exercícios que liberam uma concessão ou alteram a interface podem derrubar a conexão; faça-os em laboratório, com acesso local e um caminho de recuperação.</p></div></section>
+<!-- REVISAR: Eduardo -->
+<section class="passo" id="documentacao"><h2>Documente: diagrama de rede e caderno de comandos</h2>
+<p>Monte um desenho com dispositivos, conexões e funções. Ao lado, mantenha um caderno com hipótese, comando usado, saída relevante e conclusão. Identifique valores de exemplo e o que foi observado no seu próprio laboratório.</p>
+<p>Antes de compartilhar uma captura, retire senhas e informações privadas. Uma boa anotação permite repetir o teste e entender por que você escolheu a próxima etapa. Copiar uma saída inteira sem contexto costuma esconder a informação que você queria comparar.</p></section>
+<!-- REVISAR: Eduardo -->
+<section class="passo" id="erros"><h2>Erros de iniciante: decorar e pular endereçamento</h2>
+<p>Como orientação de estudo, evite colecionar comandos sem ler o resultado. Volte à base quando não souber dizer qual interface está conectada, qual é a sub-rede ou de onde veio o endereço. Alterar várias coisas juntas também dificulta descobrir qual hipótese estava correta.</p>
+<p>Use uma pergunta simples para revisar o exercício: outra pessoa conseguiria repetir meu teste com estas anotações? Se a resposta for não, complete o registro antes de avançar para um cenário mais complexo.</p></section>
+<!-- REVISAR: Eduardo -->
+<section class="passo" id="depois"><h2>Para onde ir depois</h2>
+<p>Volte ao laboratório e escolha a parte que ainda não consegue explicar: distribuição de endereços, separação por VLAN ou acesso entre redes. Aprofunde uma delas usando os artigos e os manuais correspondentes. A evolução proposta aqui é ampliar a capacidade de observar, testar e documentar, respeitando o contexto de cada ambiente.</p></section>
+
+<!-- REVISAR: Eduardo -->
+<section class="passo" id="perguntas"><h2>Perguntas frequentes</h2>
+<details><summary>O que faz um Analista de Infraestrutura e Redes?</summary><p>Nesta descrição editorial, pode cuidar da rede e dos servidores, incluindo endereçamento, DHCP/DNS, switches, firewall, monitoramento e documentação, conforme as responsabilidades do ambiente.</p></details>
+<details><summary>Por onde começar a estudar redes?</summary><p>A proposta deste guia é começar por endereço IP, máscara, gateway, DNS e DHCP, praticando a leitura da configuração e os comandos de diagnóstico.</p></details>
+<details><summary>Quais comandos básicos de rede um iniciante deve conhecer?</summary><p>ipconfig mostra a configuração IP, ping testa respostas ICMP, tracert investiga o caminho até um destino e nslookup consulta informações de DNS.</p></details>
+<details><summary>Qual a diferença entre suporte técnico e infraestrutura/redes?</summary><p>Nesta visão editorial, suporte costuma partir do problema de uma pessoa e infraestrutura e redes amplia o foco para o ambiente compartilhado, com atividades que podem se sobrepor.</p></details>
+<details><summary>Preciso praticar ou só estudar teoria?</summary><p>A proposta é combinar teoria com montagem, alterações controladas e diagnóstico em laboratório próprio ou simulado, registrando o que cada teste demonstra.</p></details>
+</section>
+<section class="passo" id="fontes"><h2>Fontes oficiais</h2><ul class="fontes">
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">Microsoft Learn — ipconfig</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ping">Microsoft Learn — ping</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/tracert">Microsoft Learn — tracert</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/nslookup">Microsoft Learn — nslookup</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting">Microsoft Learn — endereçamento TCP/IP e sub-redes</a></li>
+</ul><p class="nota">Links e trechos utilizados conferidos por curl e leitura de texto em 24/10/2026; guias de fabricante não definem menus universais.</p></section>
+<section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/o-que-e-dhcp/">O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo</a></li><li><a href="/artigos/o-que-e-vlan/">O que é VLAN e quando separar uma rede em VLANs</a></li><li><a href="/artigos/192-168-1-1-nao-abre/">192.168.1.1 não abre: como achar o IP certo do roteador e entrar no painel</a></li><li><a href="/artigos/como-configurar-roteador/">Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa</a></li></ul></section>
+    </article>
+    <section class="artigo-cta" id="proximo-passo" aria-labelledby="cta-titulo">
+<h2 id="cta-titulo">Continue estudando redes</h2>
+<p>Para acompanhar a formação de Analista de Infraestrutura e Redes, <a class="placa placa-lima" href="/fundadora/">entre na lista de espera</a>.</p>
+</section>
+  </main>
+  <!-- rodape:inicio -->
+  <footer class="rodape">
+    <div class="rodape-marca">
+      <a class="marca" href="/">
+        <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+        TI Ninja
+      </a>
+      <p>TI Ninja · Campinas/SP</p>
+    </div>
+    <nav aria-label="No rodapé">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+      <a href="/comandos/">Comandos dos vídeos</a>
+    </nav>
+    <nav aria-label="Redes">
+      <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
+      <a href="https://www.instagram.com/consult.tininja/">Instagram</a>
+    </nav>
+    <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+    <p>© 2026 TI Ninja</p>
+  </footer>
+  <!-- rodape:fim -->
+</body>
+</html>
