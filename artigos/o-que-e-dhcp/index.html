@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>O que é DHCP e como funciona (DORA) — TI Ninja</title>
-  <meta name="description" content="Entenda o que é DHCP, as etapas DORA, concessão, escopo e reserva. Veja exemplos e como iniciar o diagnóstico no Windows com ipconfig.">
+  <title>O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo — TI Ninja</title>
+  <meta name="description" content="Entenda DHCP, DORA, concessão, relay, reserva e IP fixo. Veja como investigar endereços 169.254 e falhas de distribuição no suporte de TI.">
   <link rel="canonical" href="https://tininja.net/artigos/o-que-e-dhcp/">
   <meta name="author" content="Eduardo Honorato">
   <meta name="theme-color" content="#FFFFFF">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
-  <meta property="og:title" content="O que é DHCP e como funciona (DORA) — TI Ninja">
-  <meta property="og:description" content="Entenda o que é DHCP, as etapas DORA, concessão, escopo e reserva. Veja exemplos e como iniciar o diagnóstico no Windows com ipconfig.">
+  <meta property="og:title" content="O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo — TI Ninja">
+  <meta property="og:description" content="Entenda DHCP, DORA, concessão, relay, reserva e IP fixo. Veja como investigar endereços 169.254 e falhas de distribuição no suporte de TI.">
   <meta property="og:url" content="https://tininja.net/artigos/o-que-e-dhcp/">
   <meta property="og:image" content="https://tininja.net/assets/favicon-192.png">
   <meta property="og:image:width" content="192">
@@ -21,8 +21,8 @@
   <meta property="article:published_time" content="2026-10-24">
   <meta property="article:modified_time" content="2026-10-24">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="O que é DHCP e como funciona (DORA) — TI Ninja">
-  <meta name="twitter:description" content="Entenda o que é DHCP, as etapas DORA, concessão, escopo e reserva. Veja exemplos e como iniciar o diagnóstico no Windows com ipconfig.">
+  <meta name="twitter:title" content="O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo — TI Ninja">
+  <meta name="twitter:description" content="Entenda DHCP, DORA, concessão, relay, reserva e IP fixo. Veja como investigar endereços 169.254 e falhas de distribuição no suporte de TI.">
   <meta name="twitter:image" content="https://tininja.net/assets/favicon-192.png">
   <meta name="twitter:image:alt" content="Marca TI Ninja">
   <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
@@ -39,8 +39,8 @@
     {
       "@type": "Article",
       "@id": "https://tininja.net/artigos/o-que-e-dhcp/#artigo",
-      "headline": "O que é DHCP e como funciona (DORA)",
-      "description": "Entenda o que é DHCP, as etapas DORA, concessão, escopo e reserva. Veja exemplos e como iniciar o diagnóstico no Windows com ipconfig.",
+      "headline": "O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo",
+      "description": "Entenda DHCP, DORA, concessão, relay, reserva e IP fixo. Veja como investigar endereços 169.254 e falhas de distribuição no suporte de TI.",
       "inLanguage": "pt-BR",
       "mainEntityOfPage": "https://tininja.net/artigos/o-que-e-dhcp/",
       "author": {
@@ -74,7 +74,7 @@
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "O que é DHCP e como funciona (DORA)",
+          "name": "O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo",
           "item": "https://tininja.net/artigos/o-que-e-dhcp/"
         }
       ]
@@ -85,26 +85,50 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "O que significa DORA no DHCP?",
+          "name": "O que é DHCP?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "DORA é a sequência Discover, Offer, Request e ACK da negociação inicial: o cliente procura um servidor, recebe uma oferta, solicita a configuração escolhida e recebe a confirmação."
+            "text": "DHCP é o protocolo que entrega automaticamente a cada dispositivo da rede um endereço IP e parâmetros como máscara de sub-rede, gateway padrão e servidores DNS."
           }
         },
         {
           "@type": "Question",
-          "name": "DHCP e DNS são a mesma coisa?",
+          "name": "Qual a diferença entre IP fixo e IP por DHCP?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Não. DHCP distribui a configuração de rede; DNS resolve nomes. O endereço do servidor DNS pode ser entregue ao cliente como uma opção DHCP."
+            "text": "No DHCP o endereço é concedido por um prazo; no IP fixo manual ele é configurado no dispositivo e precisa ser coordenado com as exclusões da faixa automática para evitar conflitos."
           }
         },
         {
           "@type": "Question",
-          "name": "Um IP 169.254 indica problema no provedor?",
+          "name": "O que são as etapas DORA do DHCP?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Não necessariamente. Um endereço de autoconfiguração 169.254.x.x pode indicar que o Windows não obteve uma concessão DHCP. Investigue a conexão local e o serviço DHCP antes de concluir que a falha é do provedor."
+            "text": "Discover (o cliente procura servidores), Offer (o servidor oferece), Request (o cliente pede a oferta escolhida) e Acknowledge (o servidor confirma) — nas fontes citadas aparecem como DHCPDISCOVER, DHCPOFFER, DHCPREQUEST e DHCPACK."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é a concessão (lease) do DHCP?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "É o prazo de uso do endereço concedido; o instante de renovação T1 tem como padrão metade desse prazo, mas pode ser configurado pelo servidor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por que o DHCP não funciona entre redes ou VLANs diferentes sem configuração extra?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Porque o pedido do cliente é um broadcast e roteadores não encaminham broadcast por padrão, então é preciso um agente de retransmissão (relay) ou um servidor em cada sub-rede."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que significa um IP 169.254.x.x?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Um endereço 169.254.x.x pode ser autoconfiguração IPv4 link-local e indicar falta de resposta DHCP, mas não comprova sozinho falha do provedor."
           }
         }
       ]
@@ -131,67 +155,73 @@
   </header>
   <!-- nav:fim -->
   <main id="conteudo" class="artigos artigo">
-    <nav class="migalhas" aria-label="Migalha de pão"><ol><li><a href="/">Início</a></li><li><a href="/artigos/">Artigos</a></li><li><span aria-current="page">O que é DHCP e como funciona (DORA)</span></li></ol></nav>
+    <nav class="migalhas" aria-label="Migalha de pão"><ol><li><a href="/">Início</a></li><li><a href="/artigos/">Artigos</a></li><li><span aria-current="page">O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo</span></li></ol></nav>
     <article>
       <header class="artigo-topo">
-        <h1>O que é DHCP e como funciona (DORA)</h1>
-        <p class="lede">Conectou o computador e ele recebeu um IP sozinho? Entenda quem entregou essa configuração, o que acontece nas etapas DORA e por onde começar quando a distribuição falha.</p>
+        <h1>O que é DHCP: como a rede entrega IP, máscara, gateway e DNS para cada dispositivo</h1>
+        <p class="lede">Entenda como o dispositivo recebe IP, máscara, gateway e DNS, e quais pistas observar quando a distribuição automática falha.</p>
         <p class="nota artigo-meta">Por Eduardo Honorato · Publicado em <time datetime="2026-10-24">24/10/2026</time> · Atualizado em <time datetime="2026-10-24">24/10/2026</time></p>
       </header>
-      <nav class="artigo-sumario" aria-labelledby="sumario-titulo"><h2 id="sumario-titulo">Neste artigo</h2><ul><li><a href="#conceito">O que é DHCP?</a></li><li><a href="#dora">Como funciona o DORA</a></li><li><a href="#configuracao">IP, máscara, gateway e DNS: cada um tem seu papel</a></li><li><a href="#concessao">Concessão, escopo e reserva</a></li><li><a href="#diagnostico">Como começar o diagnóstico no Windows</a></li><li><a href="#fontes">Fontes oficiais</a></li><li><a href="#leia-tambem">Leia também</a></li><li><a href="#perguntas">Perguntas frequentes</a></li></ul></nav><section class="passo" id="conceito"><h2>O que é DHCP?</h2>
-<p>DHCP é o protocolo que entrega automaticamente a configuração de rede a um dispositivo. Em vez de preencher endereço IP, máscara, gateway e DNS em cada computador, você define a distribuição no servidor. O cliente solicita os dados e recebe uma concessão: a autorização para usar aquele endereço por um período.</p>
-<p>Neste artigo, o foco é DHCP para IPv4. Pense no atendimento de um notebook novo: conectar o cabo não basta para preencher toda a configuração. Com o cliente em modo automático e um serviço DHCP acessível, essa etapa pode acontecer sem digitação. O servidor pode estar no roteador ou em outro equipamento da infraestrutura.</p>
-<p>O protocolo organiza endereços; ele não comprova que a internet ou um sistema esteja funcionando. Receber um IP é uma etapa do diagnóstico, não o encerramento do chamado. A <a href="https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-top">visão geral da Microsoft</a> apresenta essa distribuição centralizada e as informações entregues ao cliente.</p></section>
-<section class="passo" id="dora"><h2>Como funciona o DORA</h2>
-<p>DORA ajuda a memorizar a troca inicial descrita na <a href="https://www.rfc-editor.org/rfc/rfc2131.txt">RFC 2131, seção 3.1</a>. Imagine um computador entrando na rede sem uma concessão anterior:</p>
-<div class="artigo-tabela"><table><caption>Troca inicial de mensagens DHCP</caption><thead><tr><th scope="col">Etapa</th><th scope="col">Mensagem</th><th scope="col">O que acontece</th></tr></thead><tbody>
-<tr><th scope="row">D</th><td>Discover</td><td>O cliente procura servidores usando broadcast na rede local.</td></tr>
-<tr><th scope="row">O</th><td>Offer</td><td>Um servidor oferece um endereço e parâmetros.</td></tr>
-<tr><th scope="row">R</th><td>Request</td><td>O cliente indica a oferta escolhida e solicita a configuração.</td></tr>
-<tr><th scope="row">A</th><td>ACK</td><td>O servidor confirma a concessão e seus parâmetros.</td></tr>
-</tbody></table></div>
-<p>Pode existir mais de uma oferta. No processo inicial, o Request identifica o servidor escolhido, permitindo aos demais perceber que suas ofertas não foram aceitas. O ACK é a confirmação; receber apenas uma oferta não equivale a concluir a negociação.</p>
-<h3>E quando o computador já tinha IP?</h3>
-<p>Nem toda conversa repete as quatro etapas. Um cliente pode tentar reutilizar uma configuração conhecida ou renovar uma concessão. Por isso, ver um Request sem um Discover imediatamente antes não basta para concluir que a captura está errada.</p>
-<div class="cuidado"><p><strong>Dica de bancada:</strong> antes de interpretar uma captura, anote se o computador acabou de entrar na rede ou já estava conectado. Esse contexto muda o que você espera encontrar.</p></div></section>
-<section class="passo" id="configuracao"><h2>IP, máscara, gateway e DNS: cada um tem seu papel</h2>
-<p>Use este exemplo didático, sem copiar os valores para uma rede real: computador <code>192.168.10.50</code>, máscara <code>255.255.255.0</code>, gateway <code>192.168.10.1</code> e DNS <code>192.168.10.2</code>. Os endereços foram escolhidos apenas para explicar a configuração.</p>
-<ul><li><strong>IP:</strong> identifica a interface naquela rede.</li><li><strong>Máscara:</strong> delimita a sub-rede usada pelo computador.</li><li><strong>Gateway padrão:</strong> indica o próximo salto para destinos sem uma rota mais específica.</li><li><strong>DNS:</strong> indica o servidor consultado para resolver nomes.</li></ul>
-<p>Máscara, roteador e servidores DNS aparecem como opções na <a href="https://www.rfc-editor.org/rfc/rfc2132.txt">RFC 2132, seções 3.3, 3.5 e 3.8</a>. Não confunda o servidor DHCP com o gateway: no exemplo, quem distribui a configuração pode ser outro equipamento. Também não trate DNS como sinônimo de acesso à internet.</p>
-<p>Para praticar, coloque <code>192.168.10.50/24</code> na <a href="/calculadora-sub-rede/">calculadora de sub-rede</a>. Compare rede, broadcast e faixa de hosts com os endereços do exemplo. Depois altere o prefixo e observe por que olhar só os primeiros números do IP não é suficiente.</p></section>
-<section class="passo" id="concessao"><h2>Concessão, escopo e reserva</h2>
-<p>A concessão tem prazo. O cliente tenta renová-la antes do vencimento; se ela expirar sem renovação, não pode continuar usando o endereço concedido. Isso permite reutilizar endereços sem tratar cada computador que passou pela rede como um cadastro permanente.</p>
-<p>O escopo reúne a faixa de distribuição e suas configurações. Uma reserva associa um endereço a um cliente específico, mantendo a entrega pelo DHCP. Já a configuração manual é preenchida no próprio dispositivo. A documentação da Microsoft diferencia endereços disponíveis, excluídos e reservados.</p>
-<h3>Um exercício de planejamento</h3>
-<p>No laboratório do exemplo, anote primeiro o endereço do gateway e do DNS. Depois escolha quais endereços ficarão sob distribuição automática e quais precisarão de tratamento separado. Antes de aplicar, confira se algum dispositivo já usa o endereço escolhido. O objetivo é ter um registro que outro técnico consiga entender.</p>
-<div class="cuidado"><p><strong>Cuidado:</strong> não configure um IP manual dentro de uma faixa distribuída automaticamente sem coordenar a exclusão ou o planejamento. Duas configurações independentes podem acabar usando o mesmo endereço.</p></div></section>
-<section class="passo" id="diagnostico"><h2>Como começar o diagnóstico no Windows</h2>
-<p>Abra o Prompt de Comando ou o PowerShell e consulte a configuração completa:</p>
+      <nav class="artigo-sumario" aria-labelledby="sumario-titulo"><h2 id="sumario-titulo">Neste artigo</h2><ul><li><a href="#conceito">DHCP em uma frase</a></li><li><a href="#configuracao">O que o DHCP entrega: endereço, máscara, gateway e DNS</a></li><li><a href="#dora">Como funciona passo a passo: DORA</a></li><li><a href="#servidor">Onde mora o servidor DHCP?</a></li><li><a href="#relay">DHCP entre sub-redes e VLANs: quando entra o relay</a></li><li><a href="#concessao">IP fixo, reserva e DHCP: quando usar cada um</a></li><li><a href="#diagnostico">Quando o DHCP falha: sintomas para investigar</a></li><li><a href="#depois">O que estudar depois</a></li><li><a href="#perguntas">Perguntas frequentes</a></li><li><a href="#fontes">Fontes oficiais</a></li><li><a href="#leia-tambem">Leia também</a></li></ul></nav>
+<section class="passo" id="conceito"><h2>DHCP em uma frase</h2>
+<p>DHCP é o protocolo que entrega automaticamente um endereço IP e parâmetros de rede ao dispositivo. Em vez de preencher a configuração em cada computador, você organiza a distribuição no servidor. Este artigo trata de DHCP para IPv4, como apresentado nas <a href="https://learn.microsoft.com/pt-br/windows-server/troubleshoot/dynamic-host-configuration-protocol-basics">noções básicas da Microsoft</a>.</p>
+<p>Pense no notebook que acabou de chegar ao suporte: conectar o cabo é o começo; a interface ainda precisa de uma configuração compatível com a rede. O DHCP automatiza essa etapa quando o cliente está em modo automático e consegue conversar com o serviço. Receber um endereço, porém, não comprova que a internet ou o sistema da empresa esteja funcionando.</p></section>
+<section class="passo" id="configuracao"><h2>O que o DHCP entrega: endereço, máscara, gateway e DNS</h2>
+<p>O servidor pode entregar o endereço e opções como máscara, gateway padrão e servidores DNS. Confira os quatro campos antes de dizer que a configuração está correta:</p>
+<ul><li><strong>Endereço IP:</strong> identifica a interface naquela rede.</li><li><strong>Máscara:</strong> delimita qual parte do endereço corresponde à sub-rede.</li><li><strong>Gateway padrão:</strong> indica a saída para destinos sem uma rota mais específica.</li><li><strong>DNS:</strong> informa quais servidores consultar para resolver nomes.</li></ul>
+<h3>Por que olhar esses quatro itens juntos?</h3>
+<p>No exemplo didático, o computador usa <code>192.168.10.50</code>, máscara <code>255.255.255.0</code>, gateway <code>192.168.10.1</code> e DNS <code>192.168.10.2</code>. São valores de laboratório, não uma receita para copiar. Quem distribui esses dados pode ser outro equipamento: servidor DHCP, gateway e DNS são funções diferentes.</p>
+<p>Coloque <code>192.168.10.50/24</code> na <a href="/calculadora-sub-rede/">calculadora de sub-rede</a> e compare rede, broadcast e faixa de hosts. Mude o prefixo para observar como a máscara altera a interpretação do endereço.</p></section>
+<section class="passo" id="dora"><h2>Como funciona passo a passo: DORA</h2>
+<p>DORA é um apelido para memorizar a negociação inicial da <a href="https://www.rfc-editor.org/rfc/rfc2131">RFC 2131, seção 3.1</a>; os nomes das mensagens são DHCPDISCOVER, DHCPOFFER, DHCPREQUEST e DHCPACK.</p>
+<div class="artigo-tabela"><table><caption>Negociação inicial entre cliente e servidor</caption><thead><tr><th scope="col">Etapa</th><th scope="col">O que acontece</th></tr></thead><tbody><tr><th scope="row">Discover</th><td>O cliente procura servidores disponíveis.</td></tr><tr><th scope="row">Offer</th><td>O servidor oferece endereço e parâmetros.</td></tr><tr><th scope="row">Request</th><td>O cliente solicita a oferta escolhida.</td></tr><tr><th scope="row">Acknowledge</th><td>O servidor confirma a concessão com DHCPACK.</td></tr></tbody></table></div>
+<h3>Quem fala com quem?</h3>
+<p>Sem endereço configurado, o cliente inicia a descoberta por broadcast no enlace local. Pode receber mais de uma oferta; o Request inicial identifica o servidor escolhido. Os outros servidores percebem que suas ofertas não foram aceitas. Uma oferta isolada ainda não significa negociação concluída.</p>
+<h3>Concessão e renovação</h3>
+<p>A concessão, ou lease, autoriza o uso do endereço por um prazo. Pela RFC 2131, seção 4.4.5, o instante de renovação T1 tem como valor padrão metade da duração da concessão, mas o servidor pode configurá-lo. Não existe um prazo de lease universal para todas as redes.</p>
+<p>Renovar uma concessão não exige repetir sempre o DORA completo. Ao analisar uma captura, anote se a máquina acabou de conectar ou já tinha configuração. Esse contexto evita interpretar um Request sem Discover imediatamente anterior como defeito.</p></section>
+<section class="passo" id="servidor"><h2>Onde mora o servidor DHCP?</h2>
+<p>O serviço pode estar no roteador, em um servidor Windows ou em um equipamento de firewall que ofereça essa função. Não deduza sua localização pela aparência do aparelho. A <a href="https://learn.microsoft.com/pt-br/windows-server/networking/technologies/dhcp/dhcp-top">documentação do servidor DHCP</a> mostra que a distribuição pode ser centralizada fora do roteador.</p>
+<p>Em um atendimento, registre quem entrega endereços e quem funciona como gateway. Essa distinção ajuda quando a navegação funciona em uma máquina antiga, mas um notebook novo não recebe configuração.</p></section>
+<section class="passo" id="relay"><h2>DHCP entre sub-redes e VLANs: quando entra o relay</h2>
+<p>O broadcast inicial não atravessa roteadores por padrão. Se o servidor estiver em outra sub-rede, pode ser necessário um agente de retransmissão, o DHCP relay, ou um servidor atendendo localmente. A Microsoft documenta o relay como forma de evitar um servidor em cada sub-rede.</p>
+<p>No <a href="https://www.cisco.com/c/pt_br/support/docs/ip/dynamic-address-allocation-resolution/27470-100.html">guia de diagnóstico Cisco</a>, aparece o recurso associado a <code>ip helper-address</code>; essa sintaxe não é universal. Siga o manual do fabricante para configurar a interface e o destino corretos. Veja também <a href="/artigos/o-que-e-vlan/">o que é VLAN</a> para entender a separação dos domínios de broadcast.</p></section>
+<section class="passo" id="concessao"><h2>IP fixo, reserva e DHCP: quando usar cada um</h2>
+<p>DHCP distribui a configuração automaticamente. Uma reserva mantém a entrega por DHCP, mas associa um endereço a determinado cliente. O IP fixo manual é preenchido no dispositivo e precisa ser coordenado com o plano de endereçamento, incluindo exclusões da faixa automática.</p>
+<p>Em um cenário didático com uma impressora, pergunte se o endereço precisa permanecer previsível e quem manterá o registro. Não escolha um IP apenas porque parece estar livre. Anote a decisão para que outro técnico não distribua o mesmo endereço depois.</p>
+<p>O guia Cisco propõe testar com configuração estática para investigar conectividade. Faça isso apenas com valores válidos e autorizados, conforme o planejamento e o manual do ambiente; depois restaure o modo anterior. Se o acesso funcionar, você ganhou uma pista sobre a distribuição automática, não uma prova de que todo o restante está correto.</p></section>
+<section class="passo" id="diagnostico"><h2>Quando o DHCP falha: sintomas para investigar</h2>
+<p>Um endereço <code>169.254.x.x</code> pode ser autoconfiguração link-local, descrita na <a href="https://www.rfc-editor.org/rfc/rfc3927">RFC 3927</a>, quando não há configuração utilizável por outro mecanismo. É uma pista de falta de resposta DHCP em clientes automáticos, não prova de falha do provedor.</p>
+<ul><li><strong>Escopo sem endereços disponíveis:</strong> confira concessões, exclusões e capacidade antes de alterar a faixa.</li><li><strong>Dois servidores sem coordenação:</strong> compare as ofertas e parâmetros; receber configurações diferentes pode explicar sintomas diferentes entre computadores.</li><li><strong>Cliente na rede errada:</strong> revise cabo, Wi-Fi, VLAN e caminho até o servidor ou relay.</li></ul>
+<p>Dois servidores não são necessariamente um erro: existem configurações planejadas de redundância. Investigue quem deveria responder antes de desligar qualquer serviço.</p>
+<h3>Comandos para olhar: ipconfig</h3>
 <div class="cmd"><pre><code>ipconfig /all</code></pre></div>
-<p>Localize o adaptador realmente conectado. Registre IP, máscara, gateway, DNS e os dados de DHCP apresentados. Não misture a saída de Wi-Fi, Ethernet e interfaces virtuais. A <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig">documentação de ipconfig</a> explica a consulta e a renovação.</p>
-<ol><li><strong>Confirme a conexão:</strong> confira cabo, Wi-Fi e a rede selecionada.</li><li><strong>Compare a configuração:</strong> o endereço pertence à sub-rede esperada? Existe gateway?</li><li><strong>Investigue a distribuição:</strong> confira se o serviço está disponível e se há endereços livres no escopo.</li><li><strong>Registre o resultado:</strong> salve o que mudou após cada teste, em vez de executar várias alterações juntas.</li></ol>
-<p>Um endereço de autoconfiguração <code>169.254.x.x</code> pode indicar que o Windows não conseguiu obter uma concessão DHCP. A <a href="https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh">explicação da Microsoft sobre APIPA</a> descreve esse comportamento. É uma pista para investigar a comunicação local, não prova de defeito no provedor.</p>
-<p>Se a interface usa DHCP e você precisa tentar renovar, o comando é <code>ipconfig /renew</code>. Evite executar <code>ipconfig /release</code> durante um atendimento remoto: ele descarta a configuração atual e pode interromper a sessão. Primeiro entenda o efeito, depois decida se o teste é necessário.</p>
-<p>Se o endereço está correto, avance para o serviço que falha. A seção de <a href="/comandos/">comandos dos vídeos</a> ajuda a organizar os próximos testes. Não transforme toda falha de acesso em “problema de DHCP”.</p></section>
-<section class="passo" id="fontes"><h2>Fontes oficiais</h2><ul class="fontes">
-<li><a href="https://www.rfc-editor.org/rfc/rfc2131.txt">IETF — RFC 2131: DHCP, negociação e concessão</a></li>
-<li><a href="https://www.rfc-editor.org/rfc/rfc2132.txt">IETF — RFC 2132: opções de configuração</a></li>
-<li><a href="https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-top">Microsoft Learn — visão geral de DHCP</a></li>
-<li><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig">Microsoft Learn — ipconfig</a></li>
-<li><a href="https://learn.microsoft.com/en-us/windows-server/troubleshoot/how-to-use-automatic-tcpip-addressing-without-a-dh">Microsoft Learn — autoconfiguração APIPA</a></li>
-</ul><p class="nota">Links e conteúdo conferidos em 24/10/2026.</p></section>
-<section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/192-168-1-1-nao-abre/">192.168.1.1 não abre: como acessar o roteador e o que fazer</a></li><li><a href="/comandos/firewall-do-windows/">Comandos para diagnosticar o Firewall do Windows</a></li></ul></section>
+<p>Leia o adaptador conectado e registre IP, máscara, gateway, DNS e dados da concessão. Segundo a <a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">referência de ipconfig</a>, <code>ipconfig /renew</code> renova a configuração DHCP; <code>ipconfig /release</code> libera a configuração atual.</p>
+<div class="cuidado"><p><strong>Cuidado:</strong> liberar a configuração pode interromper um atendimento remoto; planeje como recuperar a conexão antes de executar o comando.</p></div></section>
+<section class="passo" id="depois"><h2>O que estudar depois</h2>
+<p>Avance para VLAN, pratique máscara na calculadora e localize o gateway no <a href="/artigos/192-168-1-1-nao-abre/">guia de acesso ao roteador</a>. Use os <a href="/comandos/">comandos dos vídeos</a> para registrar uma hipótese, executar um teste e comparar o resultado. O objetivo é explicar cada campo antes de mudar a rede.</p></section>
 
-      <section class="passo" id="perguntas"><h2>Perguntas frequentes</h2>
-<details><summary>O que significa DORA no DHCP?</summary><p>DORA é a sequência Discover, Offer, Request e ACK da negociação inicial: o cliente procura um servidor, recebe uma oferta, solicita a configuração escolhida e recebe a confirmação.</p></details>
-<details><summary>DHCP e DNS são a mesma coisa?</summary><p>Não. DHCP distribui a configuração de rede; DNS resolve nomes. O endereço do servidor DNS pode ser entregue ao cliente como uma opção DHCP.</p></details>
-<details><summary>Um IP 169.254 indica problema no provedor?</summary><p>Não necessariamente. Um endereço de autoconfiguração 169.254.x.x pode indicar que o Windows não obteve uma concessão DHCP. Investigue a conexão local e o serviço DHCP antes de concluir que a falha é do provedor.</p></details>
+<section class="passo" id="perguntas"><h2>Perguntas frequentes</h2>
+<details><summary>O que é DHCP?</summary><p>DHCP é o protocolo que entrega automaticamente a cada dispositivo da rede um endereço IP e parâmetros como máscara de sub-rede, gateway padrão e servidores DNS.</p></details>
+<details><summary>Qual a diferença entre IP fixo e IP por DHCP?</summary><p>No DHCP o endereço é concedido por um prazo; no IP fixo manual ele é configurado no dispositivo e precisa ser coordenado com as exclusões da faixa automática para evitar conflitos.</p></details>
+<details><summary>O que são as etapas DORA do DHCP?</summary><p>Discover (o cliente procura servidores), Offer (o servidor oferece), Request (o cliente pede a oferta escolhida) e Acknowledge (o servidor confirma) — nas fontes citadas aparecem como DHCPDISCOVER, DHCPOFFER, DHCPREQUEST e DHCPACK.</p></details>
+<details><summary>O que é a concessão (lease) do DHCP?</summary><p>É o prazo de uso do endereço concedido; o instante de renovação T1 tem como padrão metade desse prazo, mas pode ser configurado pelo servidor.</p></details>
+<details><summary>Por que o DHCP não funciona entre redes ou VLANs diferentes sem configuração extra?</summary><p>Porque o pedido do cliente é um broadcast e roteadores não encaminham broadcast por padrão, então é preciso um agente de retransmissão (relay) ou um servidor em cada sub-rede.</p></details>
+<details><summary>O que significa um IP 169.254.x.x?</summary><p>Um endereço 169.254.x.x pode ser autoconfiguração IPv4 link-local e indicar falta de resposta DHCP, mas não comprova sozinho falha do provedor.</p></details>
 </section>
+<section class="passo" id="fontes"><h2>Fontes oficiais</h2><ul class="fontes">
+<li><a href="https://www.rfc-editor.org/rfc/rfc2131">RFC Editor — RFC 2131: DHCP</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc3927">RFC Editor — RFC 3927: IPv4 link-local</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/troubleshoot/dynamic-host-configuration-protocol-basics">Microsoft Learn — noções básicas de DHCP</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/networking/technologies/dhcp/dhcp-top">Microsoft Learn — servidor DHCP</a></li>
+<li><a href="https://www.cisco.com/c/pt_br/support/docs/ip/dynamic-address-allocation-resolution/27470-100.html">Cisco — diagnóstico DHCP (documentação de fabricante)</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">Microsoft Learn — ipconfig</a></li>
+</ul><p class="nota">Links e trechos utilizados conferidos por curl e leitura de texto em 24/10/2026; guias de fabricante não definem menus universais.</p></section>
+<section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/o-que-e-vlan/">O que é VLAN e quando separar uma rede em VLANs</a></li><li><a href="/artigos/192-168-1-1-nao-abre/">192.168.1.1 não abre: como achar o IP certo do roteador e entrar no painel</a></li><li><a href="/artigos/como-configurar-roteador/">Como configurar um roteador do zero: WAN, LAN, DHCP e Wi‑Fi na ordem certa</a></li></ul></section>
     </article>
     <section class="artigo-cta" id="proximo-passo" aria-labelledby="cta-titulo">
-<h2 id="cta-titulo">Seu próximo passo em TI</h2>
-<p>Quer organizar a cobrança dos seus serviços? Pegue o guia gratuito. Para acompanhar a formação de Analista de Infraestrutura e Redes pelo NOC (Ninja Official Curriculum), entre na lista da Turma Fundadora.</p>
-<div class="placas"><a class="placa placa-vidro" href="/quanto-cobrar/">Quero o guia gratuito</a><a class="placa placa-lima" href="/fundadora/">Entrar na lista da Turma Fundadora</a></div>
+<h2 id="cta-titulo">Continue estudando redes</h2>
+<p>Para acompanhar a formação de Analista de Infraestrutura e Redes, <a class="placa placa-lima" href="/fundadora/">entre na lista de espera</a>.</p>
 </section>
   </main>
   <!-- rodape:inicio -->
