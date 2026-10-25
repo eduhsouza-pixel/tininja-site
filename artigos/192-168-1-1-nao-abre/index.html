@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>192.168.1.1 não abre? Como achar o IP do roteador — TI Ninja</title>
+  <meta name="description" content="192.168.1.1 não abre? Descubra o gateway padrão, teste navegador, cabo e VPN e deixe o reset de fábrica por último.">
+  <link rel="canonical" href="https://tininja.net/artigos/192-168-1-1-nao-abre/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="192.168.1.1 não abre? Como achar o IP do roteador — TI Ninja">
+  <meta property="og:description" content="192.168.1.1 não abre? Descubra o gateway padrão, teste navegador, cabo e VPN e deixe o reset de fábrica por último.">
+  <meta property="og:url" content="https://tininja.net/artigos/192-168-1-1-nao-abre/">
+  <meta property="og:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta property="og:image:width" content="192">
+  <meta property="og:image:height" content="192">
+  <meta property="og:image:alt" content="Marca TI Ninja">
+  <meta property="article:published_time" content="2026-10-24">
+  <meta property="article:modified_time" content="2026-10-24">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="192.168.1.1 não abre? Como achar o IP do roteador — TI Ninja">
+  <meta name="twitter:description" content="192.168.1.1 não abre? Descubra o gateway padrão, teste navegador, cabo e VPN e deixe o reset de fábrica por último.">
+  <meta name="twitter:image" content="https://tininja.net/assets/favicon-192.png">
+  <meta name="twitter:image:alt" content="Marca TI Ninja">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://tininja.net/artigos/192-168-1-1-nao-abre/#artigo",
+      "headline": "192.168.1.1 não abre? Como achar o IP do roteador",
+      "description": "192.168.1.1 não abre? Descubra o gateway padrão, teste navegador, cabo e VPN e deixe o reset de fábrica por último.",
+      "inLanguage": "pt-BR",
+      "mainEntityOfPage": "https://tininja.net/artigos/192-168-1-1-nao-abre/",
+      "author": {
+        "@type": "Person",
+        "name": "Eduardo Honorato"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "TI Ninja",
+        "url": "https://tininja.net/"
+      },
+      "datePublished": "2026-10-24",
+      "dateModified": "2026-10-24",
+      "articleSection": "Roteador e acesso"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://tininja.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Artigos",
+          "item": "https://tininja.net/artigos/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "192.168.1.1 não abre? Como achar o IP do roteador",
+          "item": "https://tininja.net/artigos/192-168-1-1-nao-abre/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://tininja.net/artigos/192-168-1-1-nao-abre/#perguntas",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Por que o 192.168.1.1 não abre?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Esse pode não ser o endereço do seu roteador; confira o gateway, o manual e possíveis interferências de VPN, firewall ou conexões simultâneas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como descobrir o IP do meu roteador?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Em redes simples, comece pelo Gateway Padrão mostrado pelo ipconfig no Windows e confirme o endereço de gerenciamento no manual do roteador."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre 192.168.1.1 e 192.168.0.1?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ambos são endereços da faixa privada 192.168.0.0/16; qual o roteador usa depende do fabricante e da configuração da rede."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso acessar 192.168.1.1 fora de casa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não diretamente pela internet pública, pois 192.168.1.1 é um endereço privado e não identifica globalmente o roteador da sua casa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que fazer se esqueci a senha do painel do roteador?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Conferir etiqueta e manual do equipamento; se não houver alternativa, o reset de fábrica restaura o padrão, mas apaga as configurações atuais."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <!-- nav:inicio -->
+  <header class="fascia">
+    <a class="marca" href="/">
+      <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+      TI Ninja
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+    </nav>
+  </header>
+  <!-- nav:fim -->
+  <main id="conteudo" class="artigos artigo">
+    <nav class="migalhas" aria-label="Migalha de pão"><ol><li><a href="/">Início</a></li><li><a href="/artigos/">Artigos</a></li><li><span aria-current="page">192.168.1.1 não abre? Como achar o IP do roteador</span></li></ol></nav>
+    <article>
+      <header class="artigo-topo">
+        <h1>192.168.1.1 não abre? Como achar o IP do roteador</h1>
+        <p class="lede">O tutorial manda abrir 192.168.1.1. A página fica carregando até dar erro. Esse endereço pode simplesmente não ser o do seu roteador.</p>
+        <p class="nota artigo-meta">Por Eduardo Honorato · Publicado em <time datetime="2026-10-24">24/10/2026</time> · Atualizado em <time datetime="2026-10-24">24/10/2026</time></p>
+      </header>
+      <nav class="artigo-sumario" aria-labelledby="sumario-titulo"><h2 id="sumario-titulo">Neste artigo</h2><ul><li><a href="#resposta">192.168.1.1 é comum, mas não é universal</a></li><li><a href="#gateway">Passo 1: descubra o gateway padrão</a></li><li><a href="#privado">Por que tantos roteadores usam 192.168.x.x?</a></li><li><a href="#navegador">Passo 2: teste o acesso pelo navegador e pelo cabo</a></li><li><a href="#bloqueios">Passo 3: confira VPN, firewall e conexões simultâneas</a></li><li><a href="#cenarios">Cenários: roteadores em cascata e endereço 169.254</a></li><li><a href="#reset">Reset de fábrica: último recurso</a></li><li><a href="#seguranca">Entrou no painel: senha de administrador e firmware</a></li><li><a href="#checklist">Checklist de acesso em seis linhas</a></li><li><a href="#perguntas">Perguntas frequentes</a></li><li><a href="#fontes">Fontes oficiais</a></li><li><a href="#leia-tambem">Leia também</a></li></ul></nav>
+<section class="passo" id="resposta"><h2>192.168.1.1 é comum, mas não é universal</h2>
+<p>Quando <code>192.168.1.1</code> não abre, comece pelo gateway padrão da conexão ativa. Em uma rede doméstica simples, ele costuma indicar o roteador que atende seu dispositivo. Confirme o endereço de gerenciamento no manual: gateway é uma pista, não garantia de painel web naquele endereço.</p>
+<p>Antes de testar, conecte o computador ao equipamento que pretende administrar, por cabo ou pelo Wi-Fi correto. Um celular conectado a outra rede não está no mesmo cenário. Use este roteiro em equipamento próprio ou sob sua responsabilidade e anote cada resultado para não repetir testes sem perceber.</p></section>
+<section class="passo" id="gateway"><h2>Passo 1: descubra o gateway padrão</h2>
+<p>No Windows, abra o Prompt de Comando ou o PowerShell:</p>
+<div class="cmd"><pre><code>ipconfig</code></pre></div>
+<p>Procure <strong>Gateway Padrão</strong> no adaptador conectado. A <a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">documentação de ipconfig</a> explica como consultar endereços, máscara e gateway de cada adaptador. Não misture a saída de Ethernet, Wi-Fi e interfaces virtuais.</p>
+<p>Exemplo didático: computador <code>192.168.10.50</code>, máscara <code>255.255.255.0</code> e gateway <code>192.168.10.1</code>. Nesse laboratório, investigar <code>192.168.10.1</code> faz mais sentido que insistir no endereço do título. Não copie esses valores para sua conexão.</p>
+<h3>No celular e no Mac</h3>
+<p>A <a href="https://www.tp-link.com/br/support/faq/2392/">FAQ de localização do IP do fabricante</a> mostra o campo “Roteador” nos detalhes de Wi-Fi do iOS e na seção TCP/IP do Mac; no Android, procure “Gateway” nos detalhes da rede. Caminhos e nomes podem mudar conforme a versão: siga a documentação do sistema e do fabricante.</p>
+<p>Registre também a rede selecionada e qual equipamento você quer configurar. Em um escritório com vários aparelhos, abrir um painel não basta: confira se é o painel esperado antes de informar credenciais ou alterar qualquer opção.</p></section>
+<section class="passo" id="privado"><h2>Por que tantos roteadores usam 192.168.x.x?</h2>
+<p>A <a href="https://www.iana.org/help/private-addresses">IANA</a> e a <a href="https://www.rfc-editor.org/rfc/rfc1918">RFC 1918</a> reservam a faixa <code>192.168.0.0/16</code> para uso privado. Tanto <code>192.168.1.1</code> quanto <code>192.168.0.1</code> pertencem a ela. Isso não determina qual endereço o seu roteador deve usar.</p>
+<p>Esses endereços não são roteados diretamente pela internet pública. Digitar o mesmo IP fora de casa não identifica de forma global o seu equipamento. Para compreender onde termina a sub-rede local, pratique com a <a href="/calculadora-sub-rede/">calculadora de sub-rede</a>, usando o exemplo didático e sua máscara.</p></section>
+<section class="passo" id="navegador"><h2>Passo 2: teste o acesso pelo navegador e pelo cabo</h2>
+<p>Digite o endereço na barra de endereços, em vez de fazer uma busca. Use o protocolo indicado no manual: por exemplo, <code>http://192.168.10.1</code> se o painel do laboratório aceitar HTTP, ou HTTPS quando documentado. Não trate o protocolo ou uma porta específica como padrão de todos os equipamentos.</p>
+<p>Experimente outro navegador; uma aba anônima também pode ajudar a comparar uma sessão sem os dados habituais. Depois, teste uma conexão por cabo, se disponível. As orientações de <a href="https://www.tp-link.com/br/support/faq/2394/">diagnóstico de acesso ao painel</a> e de <a href="https://kb.netgear.com/27199/I-can-t-access-my-router-what-do-I-do">acesso ao roteador</a> sustentam a comparação entre navegadores, conexões e dispositivos, mas são exemplos de fabricantes.</p>
+<div class="cuidado"><p><strong>Cuidado:</strong> se o navegador avisar sobre certificado, confirme que o endereço é o do seu equipamento e consulte o manual antes de seguir. Não ignore esse alerta em outros sites.</p></div>
+<p>Separe os sintomas: página que não carrega, busca aberta por engano e login que rejeita a senha pedem verificações diferentes. Se o formulário de login apareceu, o problema de acesso à página já mudou de natureza.</p></section>
+<section class="passo" id="bloqueios"><h2>Passo 3: confira VPN, firewall e conexões simultâneas</h2>
+<p>A FAQ 2394 cita VPN, firewall, antivírus e múltiplas conexões como possíveis interferências. Confira qual conexão está ativa e se uma VPN altera o acesso local. Quando autorizado, faça uma comparação sem a conexão adicional e restaure o estado anterior depois.</p>
+<p>Em computador corporativo, consulte o responsável antes de alterar controles de segurança. Prefira examinar o bloqueio e comparar com outro dispositivo autorizado. Não deixe firewall ou antivírus desligado para conseguir administrar o roteador: o resultado do teste precisa levar a uma correção específica.</p>
+<p>No registro do chamado, mantenha endereço testado, mensagem exibida e condição da conexão. “Não abriu” diz pouco; “abre no cabo e falha no Wi-Fi” já ajuda a escolher a próxima verificação.</p></section>
+<section class="passo" id="cenarios"><h2>Cenários: roteadores em cascata e endereço 169.254</h2>
+<p>Se há um equipamento do provedor e outro roteador próprio, identifique quem atende o computador. O gateway observado pode ser o roteador mais próximo dele, enquanto o equipamento anterior tem outro endereço de gerenciamento. É um cenário possível, não uma causa automática para qualquer falha.</p>
+<p>O <a href="https://www.cisco.com/c/pt_br/solutions/small-business/resource-center/networking/how-to-set-up-router.html">guia de instalação do fabricante</a> orienta tratar o modo de operação quando o gateway do provedor também roteia. Siga o manual e confirme com a operadora antes de mudar esse modo; não aplique uma alteração às cegas para “resolver cascata”.</p>
+<p>Se o computador mostra <code>169.254.x.x</code>, investigue a configuração automática antes de insistir no painel. A <a href="https://www.rfc-editor.org/rfc/rfc3927">RFC 3927</a> descreve endereços link-local; o artigo <a href="/artigos/o-que-e-dhcp/">o que é DHCP</a> ajuda a conferir a distribuição e o caminho até o servidor.</p></section>
+<section class="passo" id="reset"><h2>Reset de fábrica: último recurso</h2>
+<p>Reiniciar e restaurar padrões de fábrica são ações diferentes. O reset apaga configurações personalizadas, como nome e senha do Wi-Fi, credenciais de administração e ajustes de conexão. Os dados usados para autenticar a conexão da operadora podem precisar ser inseridos novamente.</p>
+<p>Se esqueceu a senha, consulte etiqueta, manual e procedimentos oficiais de recuperação. Antes do reset, confirme que tem autorização, documentação e os dados necessários para refazer a instalação. Siga o procedimento específico do modelo; não há uma duração universal de botão para recomendar aqui.</p></section>
+<section class="passo" id="seguranca"><h2>Entrou no painel: senha de administrador e firmware</h2>
+<p>Troque a senha padrão de administração e confira as atualizações de firmware na documentação oficial. A senha do painel e a senha do Wi-Fi têm funções diferentes. O guia do fabricante recomenda revisar ambas na instalação, respeitando as opções disponíveis no equipamento.</p>
+<p>Continue em <a href="/artigos/como-configurar-roteador/">como configurar um roteador</a> para organizar WAN, LAN e Wi-Fi. Se precisar registrar testes de rede, consulte também os <a href="/comandos/">comandos dos vídeos</a>.</p></section>
+<section class="passo" id="checklist"><h2>Checklist de acesso em seis linhas</h2>
+<ol><li>Conecte-se à rede do equipamento certo.</li><li>Leia o gateway do adaptador ativo.</li><li>Confirme endereço e protocolo no manual.</li><li>Compare navegador, cabo e conexões adicionais.</li><li>Registre o erro e investigue DHCP ou cascata.</li><li>Deixe o reset por último, com os dados de recuperação.</li></ol></section>
+
+<section class="passo" id="perguntas"><h2>Perguntas frequentes</h2>
+<details><summary>Por que o 192.168.1.1 não abre?</summary><p>Esse pode não ser o endereço do seu roteador; confira o gateway, o manual e possíveis interferências de VPN, firewall ou conexões simultâneas.</p></details>
+<details><summary>Como descobrir o IP do meu roteador?</summary><p>Em redes simples, comece pelo Gateway Padrão mostrado pelo ipconfig no Windows e confirme o endereço de gerenciamento no manual do roteador.</p></details>
+<details><summary>Qual a diferença entre 192.168.1.1 e 192.168.0.1?</summary><p>Ambos são endereços da faixa privada 192.168.0.0/16; qual o roteador usa depende do fabricante e da configuração da rede.</p></details>
+<details><summary>Posso acessar 192.168.1.1 fora de casa?</summary><p>Não diretamente pela internet pública, pois 192.168.1.1 é um endereço privado e não identifica globalmente o roteador da sua casa.</p></details>
+<details><summary>O que fazer se esqueci a senha do painel do roteador?</summary><p>Conferir etiqueta e manual do equipamento; se não houver alternativa, o reset de fábrica restaura o padrão, mas apaga as configurações atuais.</p></details>
+</section>
+<section class="passo" id="fontes"><h2>Fontes oficiais</h2><ul class="fontes">
+<li><a href="https://www.iana.org/help/private-addresses">IANA — endereços de uso privado</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc1918">RFC Editor — RFC 1918: endereços privados</a></li>
+<li><a href="https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/ipconfig">Microsoft Learn — ipconfig</a></li>
+<li><a href="https://www.cisco.com/c/pt_br/solutions/small-business/resource-center/networking/how-to-set-up-router.html">Cisco — configuração de roteador (guia de fabricante)</a></li>
+<li><a href="https://www.tp-link.com/br/support/faq/2392/">TP-Link — localizar o IP da LAN (exemplo de fabricante)</a></li>
+<li><a href="https://www.tp-link.com/br/support/faq/2394/">TP-Link — diagnóstico de acesso ao painel (exemplo de fabricante)</a></li>
+<li><a href="https://kb.netgear.com/27199/I-can-t-access-my-router-what-do-I-do">NETGEAR — diagnóstico de acesso ao roteador (exemplo de fabricante)</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc3927">RFC Editor — RFC 3927: IPv4 link-local</a></li>
+</ul><p class="nota">Links conferidos em 24/10/2026. Guias de fabricante não definem menus universais.</p></section>
+<section class="passo" id="leia-tambem"><h2>Leia também</h2><ul><li><a href="/artigos/o-que-e-dhcp/">O que é DHCP e como funciona: IP, máscara, gateway e DNS</a></li><li><a href="/artigos/como-configurar-roteador/">Como configurar um roteador do zero: WAN, LAN e Wi-Fi</a></li><li><a href="/artigos/upnp-e-seguro-desativar/">UPnP é seguro? O que é e como desativar no roteador</a></li></ul></section>
+    </article>
+    <section class="artigo-cta" id="proximo-passo" aria-labelledby="cta-titulo">
+<h2 id="cta-titulo">Quer praticar com método?</h2>
+<p>Conheça o Fundamentos de Rede, o curso de entrada da TI Ninja, na página da Turma Fundadora.</p>
+<a class="placa placa-lima" href="/fundadora/">Conhecer o Fundamentos de Rede</a>
+</section>
+  </main>
+  <!-- rodape:inicio -->
+  <footer class="rodape">
+    <div class="rodape-marca">
+      <a class="marca" href="/">
+        <img src="/assets/img/marca.svg" alt="" width="64" height="64">
+        TI Ninja
+      </a>
+      <p>TI Ninja · Campinas/SP</p>
+    </div>
+    <nav aria-label="No rodapé">
+      <a href="/">Início</a>
+      <a href="/calculadora-sub-rede/">Sub-rede</a>
+      <a href="/artigos/">Artigos</a>
+      <a href="/minha-hora/">Minha hora</a>
+      <a href="/quanto-cobrar/">E-book</a>
+      <a href="/fundadora/">Curso</a>
+      <a href="/comandos/">Comandos dos vídeos</a>
+    </nav>
+    <nav aria-label="Redes">
+      <a href="https://www.youtube.com/@tininjaconsult">YouTube</a>
+      <a href="https://www.instagram.com/consult.tininja/">Instagram</a>
+    </nav>
+    <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+    <p>© 2026 TI Ninja</p>
+  </footer>
+  <!-- rodape:fim -->
+</body>
+</html>
