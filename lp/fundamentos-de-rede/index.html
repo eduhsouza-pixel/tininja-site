@@ -15,6 +15,7 @@
   <meta property="og:description" content="Endereço, máscara, gateway, DNS e DHCP, com método. 24 aulas curtas e laboratório no seu PC.">
   <meta property="og:url" content="https://tininja.net/lp/fundamentos-de-rede/">
   <meta property="og:image" content="https://tininja.net/assets/img/curso-ferramentas-960.webp">
+  <meta property="og:video" content="https://tininja.net/assets/video/criativo-metade-sem-rede.mp4">
   <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -46,6 +47,14 @@
     .lp-video .lp-play::after { content: ""; margin-left: 6px; border-left: 26px solid var(--tinta); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
     .lp-video .lp-legenda { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.8rem 1rem; color: #fff; font-size: 0.98rem; background: linear-gradient(transparent, rgba(0,0,0,.75)); }
     .lp-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .lp-vertical { position: relative; width: min(100%, 380px); aspect-ratio: 9 / 16; justify-self: center; border-radius: calc(var(--raio) * 2); overflow: hidden; background: #0b1411; box-shadow: 0 24px 60px rgba(22,24,29,.28); }
+    .lp-vertical button { all: unset; cursor: pointer; position: absolute; inset: 0; display: grid; place-items: center; }
+    .lp-vertical img, .lp-vertical video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .lp-vertical .lp-play, .lp-vertical .lp-legenda { z-index: 1; }
+    .lp-vertical .lp-play { position: relative; display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--laranja); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .lp-vertical .lp-play::after { content: ""; margin-left: 6px; border-left: 26px solid var(--tinta); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
+    .lp-vertical .lp-legenda { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.9rem 1rem; color: #fff; font-size: 0.98rem; background: linear-gradient(transparent, rgba(0,0,0,.8)); }
+    .lp-demo { margin-top: 2rem; max-width: 820px; }
     .lp-dores { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 1.6rem 0 2rem; padding: 0; list-style: none; }
     .lp-dores li { padding: 1.1rem 1.2rem; border-left: 4px solid var(--falha); background: var(--papel); border-radius: 0 var(--raio) var(--raio) 0; font-weight: 700; }
     .lp-premissa { font-size: clamp(1.35rem, 2.4vw, 1.9rem); font-weight: 800; line-height: 1.25; max-width: 32ch; }
@@ -116,11 +125,10 @@
           <small>R$ 297 ou em até 12x · 7 dias de garantia</small>
         </div>
       </div>
-      <div class="lp-video" data-video="RhcK3UOElqQ">
-        <button type="button" aria-label="Assistir: a impressora que só atende metade do escritório">
-          <img src="/assets/img/curso-ferramentas-960.webp" alt="" width="960" height="540">
+      <div class="lp-vertical">
+        <button type="button" aria-label="Assistir ao vídeo de 48 segundos: metade do escritório sem rede">
+          <img src="/assets/video/criativo-metade-sem-rede-capa.webp" alt="" width="720" height="1280">
           <span class="lp-play" aria-hidden="true"></span>
-          <span class="lp-legenda">Veja o método numa falha real: a impressora que só atende metade do escritório.</span>
         </button>
       </div>
     </section>
@@ -162,6 +170,13 @@
             <li>Conclusão: o que falhou, com a prova, ou "ainda não sei".</li>
           </ol>
         </div>
+      </div>
+      <div class="lp-video lp-demo" data-video="RhcK3UOElqQ">
+        <button type="button" aria-label="Assistir: a impressora que só atende metade do escritório">
+          <img src="/assets/img/curso-ferramentas-960.webp" alt="" width="960" height="540" loading="lazy">
+          <span class="lp-play" aria-hidden="true"></span>
+          <span class="lp-legenda">O método numa falha real: a impressora que só atende metade do escritório.</span>
+        </button>
       </div>
     </section>
 
@@ -313,6 +328,16 @@
     <p>© 2026 TI Ninja · Pagamento processado pela Hotmart</p>
   </footer>
   <script>
+    document.querySelectorAll(".lp-vertical").forEach((box) => {
+      box.querySelector("button").addEventListener("click", () => {
+        const v = document.createElement("video");
+        v.src = "/assets/video/criativo-metade-sem-rede.mp4";
+        v.poster = "/assets/video/criativo-metade-sem-rede-capa.webp";
+        v.controls = true; v.playsInline = true; v.autoplay = true;
+        box.replaceChildren(v);
+        v.play().catch(() => {});
+      });
+    });
     document.querySelectorAll(".lp-video").forEach((box) => {
       box.querySelector("button").addEventListener("click", () => {
         const f = document.createElement("iframe");
