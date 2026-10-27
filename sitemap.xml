@@ -33,6 +33,7 @@
     <lastmod>2026-10-18</lastmod>
   </url>
   <url>
+<<<<<<< Updated upstream
     <loc>https://tininja.net/artigos/</loc>
     <lastmod>2026-10-24</lastmod>
   </url>
@@ -63,5 +64,9 @@
   <url>
     <loc>https://tininja.net/artigos/carreira-em-redes/</loc>
     <lastmod>2026-10-24</lastmod>
+=======
+    <loc>https://tininja.net/lp/fundamentos-de-rede/</loc>
+    <lastmod>2026-10-26</lastmod>
+>>>>>>> Stashed changes
   </url>
 </urlset>

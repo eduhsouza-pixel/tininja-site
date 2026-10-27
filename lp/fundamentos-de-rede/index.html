@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fundamentos de Rede — curso de diagnóstico de rede — TI Ninja</title>
+  <meta name="description" content="Curso online para quem atende suporte: endereço, máscara, gateway, DNS e DHCP, com um método de diagnóstico praticado num laboratório no seu PC. 24 aulas curtas, PDF de prática por aula, 7 dias de garantia.">
+  <link rel="canonical" href="https://tininja.net/lp/fundamentos-de-rede/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="Fundamentos de Rede — pare de trocar peça, ache onde a rede falhou">
+  <meta property="og:description" content="Endereço, máscara, gateway, DNS e DHCP, com método. 24 aulas curtas e laboratório no seu PC.">
+  <meta property="og:url" content="https://tininja.net/lp/fundamentos-de-rede/">
+  <meta property="og:image" content="https://tininja.net/assets/img/curso-ferramentas-960.webp">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    /* Página de vendas do Fundamentos de Rede (VTSD: seções, sem links de saída, preço público R$ 297).
+       O preço da Turma Fundadora é oferta privada 1:1 e NUNCA entra aqui. */
+    .lp { --borda: 3px solid var(--tinta); }
+    .lp .fascia { justify-content: center; }
+    .lp .marca { pointer-events: none; }
+    .lp-sec { padding: clamp(3rem, 8vw, 6rem) var(--margem); }
+    .lp-sec + .lp-sec { border-top: 1px solid var(--linha); }
+    .lp-tag { font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--laranja-escuro); margin-bottom: 1rem; }
+    .lp-hero { display: grid; gap: clamp(2rem, 5vw, 4rem); grid-template-columns: 1fr; align-items: center; padding-top: clamp(2rem, 5vw, 4rem); }
+    @media (min-width: 980px) { .lp-hero { grid-template-columns: 1.05fr 1fr; } }
+    .lp-hero h1 { font-size: clamp(2.5rem, 5.6vw, 4.6rem); margin-bottom: 1.2rem; }
+    .lp-hero h1 em { font-style: normal; color: var(--laranja-faixa); }
+    .lp-lede { font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--tinta-2); }
+    .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem; margin-top: 1.6rem; }
+    .lp-cta .placa { font-size: 1.2rem; min-height: 3.4rem; padding-inline: 1.6rem; }
+    .lp-cta small { color: var(--tinta-3); font-size: 0.98rem; }
+    .lp-video { position: relative; aspect-ratio: 16 / 9; border-radius: var(--raio); overflow: hidden; background: #0b1411; box-shadow: var(--sombra); }
+    .lp-video button { all: unset; cursor: pointer; position: absolute; inset: 0; display: grid; place-items: center; }
+    .lp-video img { width: 100%; height: 100%; object-fit: cover; opacity: 0.78; }
+    .lp-video .lp-play { position: absolute; display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--laranja); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .lp-video .lp-play::after { content: ""; margin-left: 6px; border-left: 26px solid var(--tinta); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
+    .lp-video .lp-legenda { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.8rem 1rem; color: #fff; font-size: 0.98rem; background: linear-gradient(transparent, rgba(0,0,0,.75)); }
+    .lp-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .lp-dores { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 1.6rem 0 2rem; padding: 0; list-style: none; }
+    .lp-dores li { padding: 1.1rem 1.2rem; border-left: 4px solid var(--falha); background: var(--papel); border-radius: 0 var(--raio) var(--raio) 0; font-weight: 700; }
+    .lp-premissa { font-size: clamp(1.35rem, 2.4vw, 1.9rem); font-weight: 800; line-height: 1.25; max-width: 32ch; }
+    .lp-premissa mark { background: none; color: var(--laranja-faixa); }
+    .lp-duas { display: grid; gap: 1.2rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
+    @media (min-width: 860px) { .lp-duas { grid-template-columns: 1fr 1fr; } }
+    .lp-caixa { padding: 1.5rem 1.6rem; border-radius: var(--raio); background: var(--papel); }
+    .lp-caixa h3 { margin-bottom: 0.8rem; }
+    .lp-caixa ol, .lp-caixa ul { margin: 0; padding-left: 1.2rem; }
+    .lp-caixa li { margin-bottom: 0.45rem; }
+    .lp-errado { border-top: 6px solid var(--falha); }
+    .lp-errado li { color: var(--tinta-2); }
+    .lp-certo { border-top: 6px solid var(--verde); }
+    .lp-certo li { font-weight: 700; }
+    .lp-modulos { display: grid; gap: 1.4rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
+    @media (min-width: 980px) { .lp-modulos { grid-template-columns: 1fr 1fr; } }
+    .lp-mod { border: var(--borda); border-radius: var(--raio); overflow: hidden; background: #fff; }
+    .lp-mod img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .lp-mod > div { padding: 1.3rem 1.4rem 1.5rem; }
+    .lp-mod .lp-tag { margin-bottom: 0.4rem; }
+    .lp-mod ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
+    .lp-mod li { margin-bottom: 0.35rem; }
+    .lp-galeria { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 1.4rem; }
+    .lp-galeria figure { margin: 0; }
+    .lp-galeria img { border-radius: var(--raio); aspect-ratio: 16 / 9; object-fit: cover; box-shadow: var(--sombra); }
+    .lp-galeria figcaption { font-size: 0.95rem; color: var(--tinta-3); margin-top: 0.5rem; }
+    .lp-recebe { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 1.6rem 0 0; padding: 0; list-style: none; }
+    .lp-recebe li { padding: 1.2rem 1.3rem; border-radius: var(--raio); background: var(--papel); }
+    .lp-recebe strong { display: block; font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .lp-recebe span { color: var(--tinta-2); font-size: 1rem; }
+    .lp-eduardo { display: grid; gap: 1.6rem; grid-template-columns: 1fr; align-items: center; }
+    @media (min-width: 860px) { .lp-eduardo { grid-template-columns: 280px 1fr; } }
+    .lp-eduardo img { width: 100%; max-width: 280px; border-radius: 50%; aspect-ratio: 1; object-fit: cover; box-shadow: var(--sombra); }
+    .lp-oferta { display: grid; place-items: center; background: var(--tinta); color: #fff; }
+    .lp-oferta .lp-tag { color: var(--laranja); }
+    .lp-cartao { width: 100%; max-width: 640px; padding: clamp(1.6rem, 4vw, 2.6rem); border-radius: calc(var(--raio) * 2); background: #fff; color: var(--tinta); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+    .lp-cartao ul { margin: 1.2rem 0 1.6rem; padding: 0; list-style: none; }
+    .lp-cartao li { padding: 0.55rem 0 0.55rem 1.8rem; border-bottom: 1px solid var(--linha); position: relative; }
+    .lp-cartao li::before { content: "✓"; position: absolute; left: 0; color: var(--verde); font-weight: 800; }
+    .lp-preco { font-size: clamp(3rem, 8vw, 4.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .lp-preco small { font-size: 1.1rem; font-weight: 700; letter-spacing: 0; color: var(--tinta-2); }
+    .lp-cartao .placa { width: 100%; font-size: 1.25rem; min-height: 3.6rem; margin-top: 1.2rem; }
+    .lp-garantia { margin-top: 1rem; font-size: 0.98rem; color: var(--tinta-2); }
+    .lp-faq details { border-bottom: 1px solid var(--linha); padding: 1rem 0; max-width: 820px; }
+    .lp-faq summary { cursor: pointer; font-weight: 800; font-size: 1.15rem; }
+    .lp-faq details p { margin: 0.7rem 0 0; color: var(--tinta-2); }
+    .lp-fim { text-align: center; }
+    .lp-fim h2 { max-width: 22ch; margin-inline: auto; }
+    .lp-fim .lp-cta { justify-content: center; }
+    .lp .rodape p { font-size: 0.92rem; }
+  </style>
+</head>
+<body class="lp">
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <header class="fascia">
+    <span class="marca"><img src="/assets/img/marca.svg" alt="" width="64" height="64"> TI Ninja</span>
+  </header>
+
+  <main id="conteudo">
+    <!-- 1. Promessa + público + vídeo na primeira dobra -->
+    <section class="lp-sec lp-hero" aria-labelledby="titulo">
+      <div>
+        <p class="lp-tag">Fundamentos de Rede · curso online</p>
+        <h1 id="titulo">Pare de trocar peça. <em>Aprenda a achar onde a rede falhou.</em></h1>
+        <p class="lp-lede">Para quem atende suporte e trava quando o chamado diz "metade do escritório está sem rede". Endereço, máscara, gateway, DNS e DHCP, com um método de diagnóstico que você pratica num laboratório montado no seu próprio PC.</p>
+        <div class="lp-cta">
+          <a class="placa placa-lima" href="#oferta">Quero entrar no Fundamentos de Rede</a>
+          <small>R$ 297 ou em até 12x · 7 dias de garantia</small>
+        </div>
+      </div>
+      <div class="lp-video" data-video="RhcK3UOElqQ">
+        <button type="button" aria-label="Assistir: a impressora que só atende metade do escritório">
+          <img src="/assets/img/curso-ferramentas-960.webp" alt="" width="960" height="540">
+          <span class="lp-play" aria-hidden="true"></span>
+          <span class="lp-legenda">Veja o método numa falha real: a impressora que só atende metade do escritório.</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. A situação (dor do QFD) -->
+    <section class="lp-sec" aria-labelledby="situacao">
+      <p class="lp-tag">Se você atende suporte, já viveu isso</p>
+      <h2 id="situacao">O chamado diz "tá sem rede". E agora?</h2>
+      <ul class="lp-dores">
+        <li>Metade das estações sem rede, a outra metade normal.</li>
+        <li>O ping responde, mas o sistema não abre.</li>
+        <li>Trocou o DNS pelo do Google, a internet voltou e o domínio quebrou.</li>
+        <li>A impressora some só para uma parte do escritório.</li>
+      </ul>
+      <p class="lp-premissa">Rede que funciona pela metade quase nunca é cabo ruim. É <mark>endereço, máscara, gateway, DNS ou DHCP</mark> errado. Quem aprende a ler isso acha a falha antes de trocar peça.</p>
+    </section>
+
+    <!-- 3. Jeito errado × jeito certo (a furadeira) -->
+    <section class="lp-sec" aria-labelledby="metodo">
+      <p class="lp-tag">O método</p>
+      <h2 id="metodo">A diferença não é decorar comando. É saber o que cada teste prova.</h2>
+      <div class="lp-duas">
+        <div class="lp-caixa lp-errado">
+          <h3>Como costuma ser</h3>
+          <ul>
+            <li>Reinicia a máquina e torce.</li>
+            <li>Troca o cabo, troca o DNS, desativa o firewall.</li>
+            <li>Segue o tutorial até a tela ficar diferente da do vídeo.</li>
+            <li>Fecha o chamado sem saber o que era.</li>
+          </ul>
+        </div>
+        <div class="lp-caixa lp-certo">
+          <h3>Como você vai trabalhar</h3>
+          <ol>
+            <li>Pergunta: o que exatamente parou, para quem?</li>
+            <li>Evidência: a mensagem, a configuração, o resultado do teste.</li>
+            <li>Hipótese: nome, endereço, caminho ou serviço?</li>
+            <li>Teste: o menor teste que separa uma hipótese da outra.</li>
+            <li>Conclusão: o que falhou, com a prova, ou "ainda não sei".</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. O caminho: o que o aluno faz em cada módulo -->
+    <section class="lp-sec" aria-labelledby="caminho">
+      <p class="lp-tag">O caminho</p>
+      <h2 id="caminho">Dois módulos. Primeiro o método, depois a rede.</h2>
+      <div class="lp-modulos">
+        <article class="lp-mod">
+          <img src="/assets/img/curso-mapa-960.webp" alt="Mapa do curso com os dois módulos e as aulas numeradas" width="960" height="540" loading="lazy">
+          <div>
+            <p class="lp-tag">Módulo 0 · 10 aulas</p>
+            <h3>O método do resolvedor</h3>
+            <p>Como encarar um problema que você nunca viu, sem servidor e sem laboratório: só um editor de texto.</p>
+            <ul>
+              <li>Transformar a mensagem de erro numa ficha com hipóteses.</li>
+              <li>Usar a documentação oficial (e o inglês) a seu favor.</li>
+              <li>Usar a IA como material, não como diagnóstico.</li>
+              <li>Mexer numa ferramenta desconhecida com caminho de volta.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="lp-mod">
+          <img src="/assets/img/curso-nslookup-960.webp" alt="nslookup rodando na estação R-CL01 do laboratório do curso" width="960" height="540" loading="lazy">
+          <div>
+            <p class="lp-tag">Módulo 1 · 14 aulas</p>
+            <h3>Redes e TCP/IP, no laboratório</h3>
+            <p>Duas máquinas virtuais no VirtualBox, um servidor e uma estação, montadas passo a passo na primeira aula do módulo.</p>
+            <ul>
+              <li>Endereço IP, máscara (/24, /25, /26) e gateway.</li>
+              <li>DNS, nslookup e os registros que importam.</li>
+              <li>DHCP: quando um servidor "normal" quebra todas as estações.</li>
+              <li>Ferramentas de diagnóstico e um caso resolvido de ponta a ponta.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <div class="lp-galeria">
+        <figure><img src="/assets/img/curso-mascara-960.webp" alt="Cena da aula de máscara: prefixo /25" width="960" height="540" loading="lazy"><figcaption>Máscara: o prefixo e os limites, bit a bit.</figcaption></figure>
+        <figure><img src="/assets/img/curso-ferramentas-960.webp" alt="Cena da aula de ferramentas de diagnóstico" width="960" height="540" loading="lazy"><figcaption>O ping falha, mas a aplicação abre: qual teste usar.</figcaption></figure>
+        <figure><img src="/assets/img/curso-caso-960.webp" alt="Cena da aula final: várias estações em falha" width="960" height="540" loading="lazy"><figcaption>O caso final: corrigir máquina por máquina encerra a causa?</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- 5. O que vem no curso -->
+    <section class="lp-sec" aria-labelledby="recebe">
+      <p class="lp-tag">O que você recebe</p>
+      <h2 id="recebe">Aula curta, prática no PDF, dúvida respondida.</h2>
+      <ul class="lp-recebe">
+        <li><strong>24 aulas curtas</strong><span>Cada uma responde uma pergunta só. Dá para assistir no intervalo do trabalho.</span></li>
+        <li><strong>Material de prática por aula</strong><span>Um PDF logo abaixo de cada vídeo. O vídeo mostra o raciocínio; a prática é onde você aprende.</span></li>
+        <li><strong>Laboratório no seu PC</strong><span>Servidor e estação no VirtualBox, para testar sem medo de quebrar nada.</span></li>
+        <li><strong>Diário e fichas de diagnóstico</strong><span>Pergunta, evidência, hipótese, teste e conclusão, para usar no próximo chamado.</span></li>
+        <li><strong>Avaliação com gabarito</strong><span>No fim de cada módulo, laboratórios para conferir se você executa, não só se assistiu.</span></li>
+        <li><strong>Dúvidas nos comentários</strong><span>O Eduardo responde às quartas e aos sábados.</span></li>
+      </ul>
+    </section>
+
+    <!-- 6. Aplicação profissional, sem promessa de renda -->
+    <section class="lp-sec" aria-labelledby="aplicacao">
+      <p class="lp-tag">Na hora do chamado</p>
+      <h2 id="aplicacao">Em vez de "tá sem rede", você diz o que falhou.</h2>
+      <p class="lp-lede">O nome, o endereço, o caminho ou o serviço, com a evidência e o teste que provam. É uma entrega que o seu chefe, o cliente ou outro técnico consegue conferir, antes mesmo de o problema estar resolvido.</p>
+      <p>Serve para as duas saídas da TI: crescer como administrador de infraestrutura dentro de uma empresa, ou atender empresas por conta própria. O curso ensina o diagnóstico; não promete salário nem cliente.</p>
+    </section>
+
+    <!-- 7. Quem ensina -->
+    <section class="lp-sec" aria-labelledby="quem">
+      <div class="lp-eduardo">
+        <img src="/assets/img/curso-eduardo-560.webp" alt="Eduardo Honorato" width="560" height="560" loading="lazy">
+        <div>
+          <p class="lp-tag">Quem ensina</p>
+          <h2 id="quem">Eduardo Honorato</h2>
+          <p class="lp-lede">Técnico de suporte que hoje toca o próprio MSP, uma empresa que cuida da TI de vários clientes.</p>
+          <p>No canal TI Ninja, no YouTube e no Instagram, ele mostra falhas reais de rede e o raciocínio para achar a causa. O Fundamentos de Rede junta esse método num caminho só, com prática.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Para quem é, para quem não é, pré-requisitos -->
+    <section class="lp-sec" aria-labelledby="paraquem">
+      <p class="lp-tag">Para quem é</p>
+      <h2 id="paraquem">Feito para quem está no suporte ou chegando nele.</h2>
+      <div class="lp-duas">
+        <div class="lp-caixa lp-certo">
+          <h3>É para você se</h3>
+          <ul>
+            <li>Você atende suporte, balcão ou help desk e quer parar de chutar.</li>
+            <li>Você está começando em TI e quer a base de rede com método.</li>
+            <li>Você já resolve o que conhece e trava no que nunca viu.</li>
+          </ul>
+        </div>
+        <div class="lp-caixa lp-errado">
+          <h3>Não é para você se</h3>
+          <ul>
+            <li>Você já administra redes corporativas e busca nível avançado.</li>
+            <li>Você procura preparação para certificação Cisco/CCNA.</li>
+            <li>Você só quer uma lista de comandos para decorar.</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:1.4rem"><strong>Pré-requisitos:</strong> saber navegar e editar um arquivo de texto. Para o Módulo 1, um PC com Windows 64 bits e virtualização: com 16 GB de memória as duas máquinas rodam juntas; com 8 GB, uma de cada vez.</p>
+    </section>
+
+    <!-- 9. Oferta -->
+    <section class="lp-sec lp-oferta" id="oferta" aria-labelledby="oferta-titulo">
+      <div class="lp-cartao">
+        <p class="lp-tag">Inscrição aberta</p>
+        <h2 id="oferta-titulo">Fundamentos de Rede</h2>
+        <ul>
+          <li>24 aulas curtas em 2 módulos (Método e Redes e TCP/IP)</li>
+          <li>Material de prática em PDF em todas as aulas</li>
+          <li>Laboratório no VirtualBox, montado passo a passo</li>
+          <li>Diário, fichas de diagnóstico e avaliação com gabarito</li>
+          <li>Dúvidas respondidas pelo Eduardo nos comentários</li>
+        </ul>
+        <p class="lp-preco">R$ 297 <small>à vista</small></p>
+        <p style="margin:0.4rem 0 0">ou em até 12x no cartão. Pix, boleto e PayPal. De Portugal, você paga em euro.</p>
+        <a class="placa placa-lima" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Quero entrar agora</a>
+        <p class="lp-garantia"><strong>Garantia de 7 dias:</strong> se não for para você, peça o reembolso pela Hotmart dentro de 7 dias e recebe tudo de volta.</p>
+      </div>
+    </section>
+
+    <!-- 10. Perguntas frequentes (quebra de objeção) -->
+    <section class="lp-sec lp-faq" aria-labelledby="faq">
+      <p class="lp-tag">Perguntas frequentes</p>
+      <h2 id="faq">Antes de entrar</h2>
+      <details><summary>Preciso ter servidor ou laboratório em casa?</summary><p>Não. O Módulo 0 só pede um editor de texto. No Módulo 1 você monta o laboratório no VirtualBox, no seu próprio PC, com a aula passo a passo.</p></details>
+      <details><summary>Nunca mexi com rede. Vou acompanhar?</summary><p>Sim. O curso começa pelo método e explica cada conceito (endereço, máscara, gateway, DNS, DHCP) a partir de um sintoma de chamado, sem pressupor experiência.</p></details>
+      <details><summary>Quanto tempo leva cada aula?</summary><p>As aulas são curtas e resolvem uma pergunta cada. O tempo maior é o da prática, que você faz com o vídeo pausado, no seu ritmo.</p></details>
+      <details><summary>E se eu travar numa prática?</summary><p>Assista de novo quantas vezes precisar e deixe a dúvida nos comentários da aula. O Eduardo responde às quartas e aos sábados.</p></details>
+      <details><summary>Todas as aulas já estão disponíveis?</summary><p>As 20 aulas já gravadas estão liberadas. As quatro que faltam do Módulo 0 (02, 03A, 03B e 07) saem uma por dia, de 27 a 30 de outubro, e já trazem o PDF de prática.</p></details>
+      <details><summary>Posso assistir no celular?</summary><p>Pode, pela área de membros da Hotmart. A prática do Módulo 1 precisa de um PC com Windows.</p></details>
+      <details><summary>Moro em Portugal. Consigo comprar?</summary><p>Sim. Ao escolher Portugal no pagamento, o valor aparece e é cobrado em euro, com Multibanco e cartão.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Peça o reembolso pela Hotmart nesse prazo e recebe o valor integral.</p></details>
+    </section>
+
+    <!-- CTA final emocional -->
+    <section class="lp-sec lp-fim" aria-labelledby="fim">
+      <h2 id="fim">O próximo "tá sem rede" vai chegar. Você vai trocar peça ou dizer o que falhou?</h2>
+      <div class="lp-cta">
+        <a class="placa placa-lima" href="#oferta">Quero entrar no Fundamentos de Rede</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+    <p>© 2026 TI Ninja · Pagamento processado pela Hotmart</p>
+  </footer>
+  <script>
+    document.querySelectorAll(".lp-video").forEach((box) => {
+      box.querySelector("button").addEventListener("click", () => {
+        const f = document.createElement("iframe");
+        f.src = `https://www.youtube-nocookie.com/embed/${box.dataset.video}?autoplay=1&rel=0`;
+        f.title = "Vídeo do método TI Ninja";
+        f.allow = "autoplay; encrypted-media; picture-in-picture";
+        f.allowFullscreen = true;
+        box.replaceChildren(f);
+      });
+    });
+  </script>
+</body>
+</html>
