@@ -335,6 +335,21 @@
     <p>© 2026 TI Ninja · Pagamento processado pela Hotmart</p>
   </footer>
   <script>
+    // Origem da venda: as utm_* da página seguem para o checkout; src leva a fonte e sck (que a Hotmart mostra em
+    // cada venda) leva o criativo (utm_content) ou, sem ele, a fonte.
+    (() => {
+      const q = new URLSearchParams(location.search);
+      const v = (k) => (q.get(k) || "").trim().slice(0, 200);
+      const utm = ["utm_source", "utm_medium", "utm_campaign", "utm_content"].filter(v);
+      if (!utm.length) return;
+      document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach((a) => {
+        const u = new URL(a.href);
+        utm.forEach((k) => u.searchParams.set(k, v(k)));
+        if (v("utm_source")) u.searchParams.set("src", v("utm_source"));
+        u.searchParams.set("sck", v("utm_content") || v("utm_source") || v("utm_campaign") || v("utm_medium"));
+        a.href = u.toString();
+      });
+    })();
     document.querySelectorAll(".lp-vertical").forEach((box) => {
       box.querySelector("button").addEventListener("click", () => {
         const v = document.createElement("video");
