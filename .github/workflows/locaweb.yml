@@ -1,0 +1,76 @@
+name: Locaweb
+
+# Publica o site na hospedagem da Locaweb por FTP. Substitui o pages.yml.
+#
+# Enquanto a troca de hospedagem não for feita, roda só à mão
+# (Actions → Locaweb → Run workflow). No dia da virada: trocar o `on:` por
+# `push: branches: [main]` e apagar o pages.yml, no mesmo commit.
+#
+# Segredos do environment "locaweb" (Settings → Environments → locaweb):
+#   FTP_SERVER    host FTP da hospedagem. Use o endereço .hospedagemdesites.ws,
+#                 não o ftp.<domínio>: ele continua valendo se o domínio
+#                 principal do plano mudar ou expirar.
+#   FTP_USERNAME  usuário FTP
+#   FTP_PASSWORD  senha FTP
+# O repositório é público: nunca escreva esses valores aqui.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Dois envios por FTP ao mesmo tempo deixam o site misturado: o mais novo espera.
+  group: locaweb
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: locaweb
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Conferir menu e rodapé únicos
+        run: python3 scripts/layout.py --check
+
+      - name: Montar o site público
+        run: |
+          mkdir -p _site
+          cp -a index.html 404.html robots.txt sitemap.xml site.webmanifest .htaccess assets minha-hora quanto-cobrar comandos artigos politica-de-privacidade fundadora _site/
+          rm _site/artigos/*.md
+          mkdir -p _site/calculadora-sub-rede
+          cp calculadora-sub-rede/index.html _site/calculadora-sub-rede/index.html
+          if [ -d lp ]; then cp -a lp _site/; fi
+
+      - name: Versionar CSS e JS
+        # O nginx da Locaweb força cache de um ano em .css/.js. Com ?v=<commit>
+        # cada publicação vira um endereço novo e o visitante baixa a versão atual.
+        run: |
+          v=$(git rev-parse --short HEAD)
+          find _site -name '*.html' -exec sed -i -E "s#(/assets/(css|js)/[A-Za-z0-9._-]+\.(css|js))\"#\1?v=$v\"#g" {} +
+
+      - name: Conferir o que vai subir
+        # Sem o preview do GitHub Pages, um build quebrado iria direto para produção.
+        run: |
+          for f in index.html 404.html .htaccess sitemap.xml lp/fundamentos-de-rede/index.html; do
+            test -f "_site/$f" || { echo "::error::falta _site/$f"; exit 1; }
+          done
+          grep -q 'https://tininja.net/' _site/sitemap.xml || { echo "::error::sitemap não aponta para tininja.net"; exit 1; }
+
+      - name: Enviar para a Locaweb
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # FTP puro: a porta 21 da Locaweb não oferece AUTH TLS, e o SSH dela
+          # liga só por 3 horas, com renovação manual.
+          protocol: ftp
+          port: 21
+          local-dir: ./_site/
+          server-dir: /public_html/
+          # A action guarda .ftp-deploy-sync-state.json no servidor e envia só
+          # o que mudou; arquivo que sai do _site/ é apagado lá também.
