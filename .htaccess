@@ -48,6 +48,11 @@
   AddOutputFilterByType DEFLATE image/svg+xml application/manifest+json
 </IfModule>
 
+# Controle do FTP-Deploy-Action: fica no servidor, mas não é para o visitante.
+<Files ".ftp-deploy-sync-state.json">
+  Require all denied
+</Files>
+
 DirectoryIndex index.html
 Options -Indexes
 AddDefaultCharset UTF-8

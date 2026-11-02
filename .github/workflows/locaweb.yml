@@ -1,10 +1,9 @@
 name: Locaweb
 
-# Publica o site na hospedagem da Locaweb por FTP. Substitui o pages.yml.
-#
-# Enquanto a troca de hospedagem não for feita, roda só à mão
-# (Actions → Locaweb → Run workflow). No dia da virada: trocar o `on:` por
-# `push: branches: [main]` e apagar o pages.yml, no mesmo commit.
+# Publica o site na hospedagem da Locaweb por FTP a cada push na main.
+# Também dá para rodar à mão: Actions → Locaweb → Run workflow.
+# O tininja.net chega à Locaweb pelo proxy do Cloudflare (SSL "Full"). O
+# pages.yml segue no ar alguns dias, para quem ainda tem o DNS antigo em cache.
 #
 # Segredos do environment "locaweb" (Settings → Environments → locaweb):
 #   FTP_SERVER    host FTP da hospedagem. Use o endereço .hospedagemdesites.ws,
@@ -15,6 +14,8 @@ name: Locaweb
 # O repositório é público: nunca escreva esses valores aqui.
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
