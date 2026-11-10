@@ -36,8 +36,6 @@ PAGINAS = {
     "minha-hora/index.html": "/minha-hora/",
     "quanto-cobrar/index.html": "/quanto-cobrar/",
     "quanto-cobrar/obrigado/index.html": None,
-    "fundadora/index.html": None,
-    "fundadora/obrigado/index.html": None,
     "comandos/index.html": "/comandos/",
     "comandos/firewall-do-windows/index.html": None,
     "politica-de-privacidade/index.html": None,

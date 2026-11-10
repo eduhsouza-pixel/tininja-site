@@ -240,16 +240,16 @@ function mountCalc(form) {
 // simples, sem header customizado), mode cors, credentials omit. O script
 // responde HTTP 200 com {ok:true} ou {ok:false,error}. Só redireciona se
 // response.ok e o JSON tem ok === true. O guia vai para
-// /quanto-cobrar/obrigado/; a lista de espera, para /fundadora/obrigado/.
+// /quanto-cobrar/obrigado/.
 // Se esta string ficar vazia, o formulário não envia e não redireciona.
 export const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbwOkdrVslLmQnNrqWqHSnyYxSZsDGhCeW2IMaAEdvDmyCx8_2nDo9YHRCIztUZUyRM/exec";
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
 
-export function buildLeadParams(entries, { optin, optinWhatsapp, whatsappNeedsOptin = true, variante = "" }) {
+export function buildLeadParams(entries, { optin, optinWhatsapp, variante = "" }) {
   const params = new URLSearchParams(entries);
   if (variante === "A" || variante === "B") params.set("variante", variante);
-  const allowWhatsapp = whatsappNeedsOptin ? Boolean(optin && optinWhatsapp) : Boolean(optinWhatsapp);
+  const allowWhatsapp = Boolean(optin && optinWhatsapp);
   if (!allowWhatsapp) params.delete("whatsapp");
   if (!(params.get("whatsapp") || "").trim()) params.delete("whatsapp");
   return params;
@@ -376,34 +376,9 @@ async function postLead(form, status, params, thanksPath) {
   }
 }
 
-function mountWaitlist(form) {
-  const status = form.querySelector("[data-lead-status]");
-  if (LEAD_ENDPOINT) form.action = LEAD_ENDPOINT;
-  fillUtms(form);
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    clearInvalid(form);
-    const whatsapp = form.whatsapp.value.trim();
-    const optin = Boolean(form.optin && form.optin.checked);
-    const optinWhatsapp = Boolean(form.optin_whatsapp && form.optin_whatsapp.checked);
-    if (!validateLeadFields(form, status, { optinWhatsapp, whatsapp })) return;
-    await postLead(
-      form,
-      status,
-      buildLeadParams(new FormData(form), { optin, optinWhatsapp, whatsappNeedsOptin: false }),
-      "/fundadora/obrigado/",
-    );
-  });
-}
-
 function mountLead(doc) {
   const form = doc.querySelector("[data-lead]");
   if (!form) return;
-  if (form.getAttribute("data-lead") === "fundadora") {
-    mountWaitlist(form);
-    return;
-  }
   const status = form.querySelector("[data-lead-status]");
   if (LEAD_ENDPOINT) form.action = LEAD_ENDPOINT;
 

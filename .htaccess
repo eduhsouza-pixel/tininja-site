@@ -27,6 +27,10 @@
   RewriteCond %{HTTP:X-Forwarded-Proto} !=https [NC]
   RewriteCond %{HTTP:X-Forwarded-SSL} !=on [NC]
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Turma Fundadora encerrada em 10/11/2026: links antigos vão para a página de
+  # vendas, com a query (UTMs) preservada. 302 até conferir em produção.
+  RewriteRule ^fundadora(/.*)?$ https://tininja.net/lp/fundamentos-de-rede/ [R=302,L]
 </IfModule>
 
 <IfModule mod_headers.c>

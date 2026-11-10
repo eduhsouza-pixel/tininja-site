@@ -31,8 +31,7 @@ Abra `http://127.0.0.1:4173/`.
 | `/artigos/<slug>/` | Artigos com fontes oficiais, FAQ e dados estruturados |
 | `/comandos/` | Índice dos comandos mostrados nos vídeos |
 | `/comandos/<tema>/` | Comandos de um vídeo, com botão de copiar (`assets/js/comandos.js`) e fontes oficiais |
-| `/fundadora/` | Lista de espera da Turma Fundadora. Os textos visíveis estão em `fundadora/copy.js` |
-| `/fundadora/obrigado/` | Confirmação da lista. `noindex`, fora do sitemap |
+| `/fundadora/` | Removida em 10/11/2026: redireciona para a página de vendas (`.htaccess`), mantendo as UTMs |
 | `/politica-de-privacidade/` | Política de privacidade. O controlador é a DIGITAL RAPIDO COMERCIO E SERVICOS LTDA; o contato é contato@tininja.net |
 | `/404.html` | Página não encontrada |
 | `/lp/<nome>/` | Landing pages novas |
@@ -57,7 +56,6 @@ O formulário de `/quanto-cobrar/` posta na URL de `LEAD_ENDPOINT` em `assets/js
 
 Campos: `nome`, `email`, `whatsapp` (opcional), `optin` (opcional, não é condição para o guia), `optin_whatsapp` (opcional) e os ocultos `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, lidos da URL, além do honeypot `website` (fora da tela). Sem `optin`, a página abre o obrigado e não envia nada. O número de WhatsApp só entra no POST se `optin` e `optin_whatsapp` estiverem marcados. O teste em `tests/hora.test.mjs` confere a URL `/exec` e essa regra.
 
-`/fundadora/` usa o mesmo POST. O envio em si é o pedido da lista: nome e e-mail saem mesmo sem a caixa de conteúdos. O campo oculto `fundadora_espera=sim` é separado de `optin` e de `optin_whatsapp`. O número de WhatsApp só entra se `optin_whatsapp` estiver marcado. A ponte já grava esses três campos em separado, então a lista confirma o envio mesmo sem a caixa de conteúdos.
 
 Abaixo do formulário, a aula “Quanto cobrar em TI: a conta que ninguém te ensinou” fica numa capa clicável. O iframe do `youtube-nocookie` só entra depois do clique. A mesma aula está em `/quanto-cobrar/obrigado/`, abaixo do download.
 
