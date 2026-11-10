@@ -335,7 +335,7 @@
     <p>© 2026 TI Ninja · Pagamento processado pela Hotmart</p>
   </footer>
   <script>
-    // Origem da venda: as utm_* da página seguem para o checkout; src leva a fonte e sck (que a Hotmart mostra em
+    // Origem da venda: as utm_* da página seguem para o checkout; src leva fonte_meio (instagram_anuncio, instagram_bio) e sck (que a Hotmart mostra em
     // cada venda) leva o criativo (utm_content) ou, sem ele, a fonte. O fbclid (da URL ou do cookie _fbc do pixel)
     // também segue: sem ele o pixel no checkout da Hotmart registra a Compra sem saber de qual anúncio veio.
     (() => {
@@ -344,12 +344,14 @@
       const utm = ["utm_source", "utm_medium", "utm_campaign", "utm_content"].filter(v);
       const fbc = (document.cookie.match(/(?:^|;\s*)_fbc=fb\.\d+\.\d+\.([^;]+)/) || [])[1];
       const fbclid = (q.get("fbclid") || (fbc ? decodeURIComponent(fbc) : "")).trim().slice(0, 500);
-      if (!utm.length && !fbclid) return;
+      let ref = "";
+      try { ref = new URL(document.referrer).hostname.replace(/^www\./, ""); } catch {}
+      if (ref === location.hostname) ref = "";
       document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach((a) => {
         const u = new URL(a.href);
         utm.forEach((k) => u.searchParams.set(k, v(k)));
-        if (v("utm_source")) u.searchParams.set("src", v("utm_source"));
-        if (utm.length) u.searchParams.set("sck", v("utm_content") || v("utm_source") || v("utm_campaign") || v("utm_medium"));
+        u.searchParams.set("src", [v("utm_source"), v("utm_medium")].filter(Boolean).join("_") || ref || "direto");
+        u.searchParams.set("sck", v("utm_content") || v("utm_source") || v("utm_campaign") || v("utm_medium") || ref || "direto");
         if (fbclid) u.searchParams.set("fbclid", fbclid);
         a.href = u.toString();
       });
