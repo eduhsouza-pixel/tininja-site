@@ -340,13 +340,27 @@
     // também segue: sem ele o pixel no checkout da Hotmart registra a Compra sem saber de qual anúncio veio.
     (() => {
       const q = new URLSearchParams(location.search);
-      const v = (k) => (q.get(k) || "").trim().slice(0, 200);
-      const utm = ["utm_source", "utm_medium", "utm_campaign", "utm_content"].filter(v);
+      const campos = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
+      const daUrl = (k) => (q.get(k) || "").trim().slice(0, 200);
+      // Quem clica num link com UTM e volta depois sem ele mantém a origem por 30 dias.
+      let salvo = {};
+      try {
+        salvo = JSON.parse(localStorage.getItem("tn_origem")) || {};
+        if (Date.now() - (salvo.t || 0) > 30 * 864e5) salvo = {};
+      } catch {}
+      const veioComUtm = campos.some(daUrl);
+      const v = (k) => (veioComUtm ? daUrl(k) : salvo[k] || "");
+      if (veioComUtm) {
+        try {
+          localStorage.setItem("tn_origem", JSON.stringify(Object.fromEntries([["t", Date.now()], ...campos.map((k) => [k, daUrl(k)])])));
+        } catch {}
+      }
+      const utm = campos.filter(v);
       const fbc = (document.cookie.match(/(?:^|;\s*)_fbc=fb\.\d+\.\d+\.([^;]+)/) || [])[1];
       const fbclid = (q.get("fbclid") || (fbc ? decodeURIComponent(fbc) : "")).trim().slice(0, 500);
       let ref = "";
       try { ref = new URL(document.referrer).hostname.replace(/^www\./, ""); } catch {}
-      if (ref === location.hostname) ref = "";
+      if (ref === location.hostname) ref = "site";
       document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach((a) => {
         const u = new URL(a.href);
         utm.forEach((k) => u.searchParams.set(k, v(k)));
