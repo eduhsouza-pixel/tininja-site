@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fundamentos de Rede — curso de diagnóstico de rede — TI Ninja</title>
-  <meta name="description" content="Curso online para quem atende suporte: endereço, máscara, gateway, DNS e DHCP, com um método de diagnóstico praticado num laboratório no seu PC. 24 aulas direto ao ponto, PDF de prática por aula, 7 dias de garantia.">
+  <meta name="description" content="Curso online para quem atende suporte: endereço, máscara, gateway, DNS e DHCP, com um método de diagnóstico praticado num laboratório no seu PC. 24 aulas direto ao ponto, PDF de prática por aula, agente de IA na área de membros e 7 dias de garantia.">
   <link rel="canonical" href="https://tininja.net/lp/fundamentos-de-rede/">
   <meta name="author" content="Eduardo Honorato">
   <meta name="theme-color" content="#FFFFFF">
@@ -12,7 +12,7 @@
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
   <meta property="og:title" content="Fundamentos de Rede — pare de trocar peça, ache onde a rede falhou">
-  <meta property="og:description" content="Endereço, máscara, gateway, DNS e DHCP, com método. 24 aulas direto ao ponto e laboratório no seu PC.">
+  <meta property="og:description" content="Endereço, máscara, gateway, DNS e DHCP, com método. 24 aulas direto ao ponto, laboratório no seu PC e agente de IA na área de membros.">
   <meta property="og:url" content="https://tininja.net/lp/fundamentos-de-rede/">
   <meta property="og:image" content="https://tininja.net/assets/img/curso-ferramentas-960.webp">
   <meta property="og:video" content="https://tininja.net/assets/video/criativo-ping-falhou.mp4">
@@ -28,17 +28,34 @@
     .lp { --borda: 3px solid var(--tinta); }
     .lp .fascia { justify-content: center; }
     .lp .marca { pointer-events: none; }
-    .lp-sec { padding: clamp(3rem, 8vw, 6rem) var(--margem); }
+    .lp-sec { padding: clamp(1.75rem, 4.5vw, 3.5rem) var(--margem); }
     .lp-sec + .lp-sec { border-top: 1px solid var(--linha); }
     .lp-tag { font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--laranja-escuro); margin-bottom: 1rem; }
-    .lp-hero { display: grid; gap: clamp(2rem, 5vw, 4rem); grid-template-columns: 1fr; align-items: center; padding-top: clamp(2rem, 5vw, 4rem); }
-    @media (min-width: 980px) { .lp-hero { grid-template-columns: 1.05fr 1fr; } }
-    .lp-hero h1 { font-size: clamp(2.5rem, 5.6vw, 4.6rem); margin-bottom: 1.2rem; }
-    .lp-hero h1 em { font-style: normal; color: var(--laranja-faixa); }
-    .lp-lede { font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--tinta-2); }
-    .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem; margin-top: 1.6rem; }
+    .lp-topo { display: flex; flex-direction: column; padding: 0.25rem var(--margem) clamp(1.5rem, 4vw, 2.5rem); }
+    .lp-hero-copy h1 { font-size: clamp(2.35rem, 8vw, 4.2rem); margin-bottom: 0.9rem; }
+    .lp-hero-copy h1 em { font-style: normal; color: var(--laranja-faixa); }
+    .lp-lede { font-size: clamp(1.12rem, 1.5vw, 1.3rem); color: var(--tinta-2); margin-bottom: 0; }
+    .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.2rem; margin-top: 1.25rem; }
     .lp-cta .placa { font-size: 1.2rem; min-height: 3.4rem; padding-inline: 1.6rem; }
-    .lp-cta small { color: var(--tinta-3); font-size: 0.98rem; }
+    .lp-cta small { color: var(--tinta-3); font-size: 0.98rem; line-height: 1.35; }
+    .lp-hero-preco { margin: 0; font-weight: 800; color: var(--tinta); font-size: 1.08rem; }
+    .lp-pain { padding-top: 1.35rem; }
+    .lp-pain .lp-dores { margin-top: 0; }
+    @media (max-width: 979px) {
+      .lp-kicker-hero { display: none; }
+      .lp-hero-copy { min-height: calc(100svh - var(--fascia)); display: flex; flex-direction: column; justify-content: center; }
+      .lp-cta { flex-direction: column; align-items: stretch; }
+      .lp-cta .placa { width: 100%; font-size: 1.08rem; padding-inline: 0.7rem; }
+      .lp-cta small, .lp-hero-preco { text-align: center; }
+      .lp-vertical { margin-top: 1.5rem; }
+      .lp-eduardo img { max-width: 160px; margin-inline: auto; }
+    }
+    @media (min-width: 980px) {
+      .lp-topo { display: grid; grid-template-columns: 1.05fr 0.95fr; column-gap: clamp(2rem, 4vw, 4rem); row-gap: 1.6rem; align-items: center; padding-top: clamp(1.5rem, 4vw, 3rem); }
+      .lp-hero-copy { grid-column: 1; grid-row: 1; }
+      .lp-vertical { grid-column: 2; grid-row: 1; justify-self: end; }
+      .lp-pain { grid-column: 1 / -1; grid-row: 2; padding-top: 0; }
+    }
     .lp-video { position: relative; aspect-ratio: 16 / 9; border-radius: var(--raio); overflow: hidden; background: #0b1411; box-shadow: var(--sombra); }
     .lp-video button { all: unset; cursor: pointer; position: absolute; inset: 0; display: grid; place-items: center; }
     .lp-video img { width: 100%; height: 100%; object-fit: cover; opacity: 0.78; }
@@ -54,13 +71,14 @@
     .lp-vertical .lp-play::after { content: ""; margin-left: 6px; border-left: 26px solid var(--tinta); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
     .lp-vertical .lp-legenda { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.9rem 1rem; color: #fff; font-size: 0.98rem; background: linear-gradient(transparent, rgba(0,0,0,.8)); }
     .lp-demo { margin-top: 2rem; max-width: 820px; }
-    .lp-dores { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 1.6rem 0 2rem; padding: 0; list-style: none; }
+    .lp-dores { display: grid; gap: 0.7rem; grid-template-columns: 1fr; margin: 0 0 1rem; padding: 0; list-style: none; }
+    @media (min-width: 860px) { .lp-dores { grid-template-columns: repeat(3, 1fr); } }
     .lp-dores li { padding: 1.1rem 1.2rem; border-left: 4px solid var(--falha); background: var(--papel); border-radius: 0 var(--raio) var(--raio) 0; font-weight: 700; }
     .lp-premissa { font-size: clamp(1.35rem, 2.4vw, 1.9rem); font-weight: 800; line-height: 1.25; max-width: 32ch; }
     .lp-premissa mark { background: none; color: var(--laranja-faixa); }
     .lp-duas { display: grid; gap: 1.2rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
     @media (min-width: 860px) { .lp-duas { grid-template-columns: 1fr 1fr; } }
-    .lp-caixa { padding: 1.5rem 1.6rem; border-radius: var(--raio); background: var(--papel); }
+    .lp-caixa { padding: 1.05rem 1.1rem; border-radius: var(--raio); background: var(--papel); }
     .lp-caixa h3 { margin-bottom: 0.8rem; }
     .lp-caixa ol, .lp-caixa ul { margin: 0; padding-left: 1.2rem; }
     .lp-caixa li { margin-bottom: 0.45rem; }
@@ -72,7 +90,7 @@
     @media (min-width: 980px) { .lp-modulos { grid-template-columns: 1fr 1fr; } }
     .lp-mod { border: var(--borda); border-radius: var(--raio); overflow: hidden; background: #fff; }
     .lp-mod img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-    .lp-mod > div { padding: 1.3rem 1.4rem 1.5rem; }
+    .lp-mod > div { padding: 1rem 1.1rem 1.15rem; }
     .lp-mod .lp-tag { margin-bottom: 0.4rem; }
     .lp-mod ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
     .lp-mod li { margin-bottom: 0.35rem; }
@@ -80,9 +98,9 @@
     .lp-galeria figure { margin: 0; }
     .lp-galeria img { border-radius: var(--raio); aspect-ratio: 16 / 9; object-fit: cover; box-shadow: var(--sombra); }
     .lp-galeria figcaption { font-size: 0.95rem; color: var(--tinta-3); margin-top: 0.5rem; }
-    .lp-recebe { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 1.6rem 0 0; padding: 0; list-style: none; }
-    .lp-recebe li { padding: 1.2rem 1.3rem; border-radius: var(--raio); background: var(--papel); }
-    .lp-recebe strong { display: block; font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .lp-recebe { display: grid; gap: 0; grid-template-columns: 1fr; margin: 0.4rem 0 0; padding: 0; list-style: none; }
+    .lp-recebe li { padding: 0.7rem 0; border-bottom: 1px solid var(--linha); }
+    .lp-recebe strong { display: block; font-size: 1.08rem; margin-bottom: 0.1rem; }
     .lp-recebe span { color: var(--tinta-2); font-size: 1rem; }
     .lp-eduardo { display: grid; gap: 1.6rem; grid-template-columns: 1fr; align-items: center; }
     @media (min-width: 860px) { .lp-eduardo { grid-template-columns: 280px 1fr; } }
@@ -96,10 +114,14 @@
     .lp-preco { font-size: clamp(3rem, 8vw, 4.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
     .lp-preco small { font-size: 1.1rem; font-weight: 700; letter-spacing: 0; color: var(--tinta-2); }
     .lp-cartao .placa { width: 100%; font-size: 1.25rem; min-height: 3.6rem; margin-top: 1.2rem; }
+    .lp-preco-nota { margin: 0.45rem 0 0; }
+    .lp-acesso { margin: 0.85rem 0 0; font-weight: 800; }
+    .lp-agente { margin: 0.7rem 0 0; color: var(--tinta-2); }
     .lp-garantia { margin-top: 1rem; font-size: 0.98rem; color: var(--tinta-2); }
     .lp-faq details { border-bottom: 1px solid var(--linha); padding: 1rem 0; max-width: 820px; }
     .lp-faq summary { cursor: pointer; font-weight: 800; font-size: 1.15rem; }
     .lp-faq details p { margin: 0.7rem 0 0; color: var(--tinta-2); }
+    .lp-base p + p { margin-top: -0.25rem; }
     .lp-fim { text-align: center; }
     .lp-fim h2 { max-width: 22ch; margin-inline: auto; }
     .lp-fim .lp-cta { justify-content: center; }
@@ -120,17 +142,40 @@
   </header>
 
   <main id="conteudo">
-    <!-- 1. Promessa + público + vídeo na primeira dobra -->
-    <section class="lp-sec lp-hero" aria-labelledby="titulo">
-      <div>
-        <p class="lp-tag">Fundamentos de Rede · curso online</p>
-        <h1 id="titulo">Pare de trocar peça. <em>Aprenda a achar onde a rede falhou.</em></h1>
-        <p class="lp-lede">Para quem atende suporte e trava quando o chamado diz "metade do escritório está sem rede". Endereço, máscara, gateway, DNS e DHCP, com um método de diagnóstico que você pratica num laboratório montado no seu próprio PC.</p>
+    <!-- Contagem: mapa do curso (curso-mapa-960.webp) tem Módulo 0 com 10 aulas e Módulo 1 com 14. Total 24. -->
+    <!-- 1. Primeira tela no celular: título, subtítulo e botão. A dor vem logo abaixo. O vídeo desce. -->
+    <div class="lp-topo">
+      <div class="lp-hero-copy">
+        <p class="lp-tag lp-kicker-hero">Fundamentos de Rede · curso online</p>
+        <!-- COPY: headline -->
+        <h1 id="titulo">Aprenda a achar <em>onde a rede falhou.</em></h1>
+        <!-- COPY: subheadline -->
+        <p class="lp-lede">Do sintoma à causa: IP, máscara, gateway, DNS e DHCP, com laboratório no seu PC. 24 aulas direto ao ponto.</p>
         <div class="lp-cta">
-          <a class="placa placa-lima" href="#caminho">Ver o que vem no curso</a>
-          <small>24 aulas em 2 módulos · laboratório no seu PC · 7 dias de garantia</small>
+          <!-- COPY: cta-hero -->
+          <a class="placa placa-lima" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Quero aprender a achar a falha</a>
+          <!-- COPY: linha-hero -->
+          <small>24 aulas em 2 módulos · laboratório no seu PC · agente de IA na área de membros · 7 dias de garantia</small>
+          <!-- COPY: preco-hero -->
+          <p class="lp-hero-preco">R$ 197 ou até 12x</p>
         </div>
       </div>
+
+      <!-- COPY: dores -->
+      <section class="lp-pain" aria-labelledby="situacao">
+        <h2 id="situacao" class="sr">O sintoma</h2>
+        <ul class="lp-dores">
+          <li>O site não abre, mas o WhatsApp funciona.</li>
+          <li>A máquina nova pegou 169.254 e o resto da rede está normal.</li>
+          <li>O ping responde pelo IP, mas não pelo nome.</li>
+        </ul>
+        <p>No Fundamentos de Rede, você aprende a seguir o sintoma até a causa, em vez de reiniciar e torcer.</p>
+        <div class="lp-cta">
+          <!-- COPY: cta-dores -->
+          <a class="placa placa-lima" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Quero começar agora</a>
+        </div>
+      </section>
+
       <div class="lp-vertical">
         <button type="button" aria-label="Assistir ao vídeo de 57 segundos: o ping falhou e o sistema abriu">
           <img src="/assets/video/criativo-ping-falhou-capa.webp" alt="" width="720" height="1280">
@@ -138,20 +183,7 @@
           <span class="lp-legenda">57 segundos: o ping falhou e o sistema abriu. Por quê?</span>
         </button>
       </div>
-    </section>
-
-    <!-- 2. A situação (dor do QFD) -->
-    <section class="lp-sec" aria-labelledby="situacao">
-      <p class="lp-tag">Se você atende suporte, já viveu isso</p>
-      <h2 id="situacao">O chamado diz "tá sem rede". E agora?</h2>
-      <ul class="lp-dores">
-        <li>Metade das estações sem rede, a outra metade normal.</li>
-        <li>O ping responde, mas o sistema não abre.</li>
-        <li>Trocou o DNS pelo do Google, a internet voltou e o domínio quebrou.</li>
-        <li>A impressora some só para uma parte do escritório.</li>
-      </ul>
-      <p class="lp-premissa">Rede que funciona pela metade quase nunca é cabo ruim. É <mark>endereço, máscara, gateway, DNS ou DHCP</mark> errado. Quem aprende a ler isso acha a falha antes de trocar peça.</p>
-    </section>
+    </div>
 
     <!-- 2b. Quem ensina: procedência antes do conteúdo -->
     <section class="lp-sec" aria-labelledby="quem">
@@ -160,8 +192,9 @@
         <div>
           <p class="lp-tag">Quem ensina</p>
           <h2 id="quem">Eduardo Honorato</h2>
-          <p class="lp-lede">Técnico de suporte que hoje toca o próprio MSP, uma empresa que cuida da TI de vários clientes.</p>
-          <p>No canal TI Ninja, no YouTube e no Instagram, ele mostra falhas reais de rede e o raciocínio para achar a causa. O Fundamentos de Rede junta esse método num caminho só, com prática.</p>
+          <p>Técnico de suporte que hoje toca o próprio MSP.</p>
+          <p>No YouTube e no Instagram, falhas reais de rede e o raciocínio para achar a causa.</p>
+          <p>O curso junta esse método num caminho só, com prática.</p>
         </div>
       </div>
     </section>
@@ -191,13 +224,6 @@
           </ol>
         </div>
       </div>
-      <div class="lp-video lp-demo" data-video="RhcK3UOElqQ">
-        <button type="button" aria-label="Assistir: a impressora que só atende metade do escritório">
-          <img src="/assets/img/curso-ferramentas-960.webp" alt="" width="960" height="540" loading="lazy">
-          <span class="lp-play" aria-hidden="true"></span>
-          <span class="lp-legenda">O método numa falha real: a impressora que só atende metade do escritório.</span>
-        </button>
-      </div>
     </section>
 
     <!-- 4. O caminho: o que o aluno faz em cada módulo -->
@@ -206,11 +232,10 @@
       <h2 id="caminho">Dois módulos. Primeiro o método, depois a rede.</h2>
       <div class="lp-modulos">
         <article class="lp-mod">
-          <img src="/assets/img/curso-mapa-960.webp" alt="Mapa do curso com os dois módulos e as aulas numeradas" width="960" height="540" loading="lazy">
           <div>
             <p class="lp-tag">Módulo 0 · 10 aulas</p>
             <h3>O método do resolvedor</h3>
-            <p>Como encarar um problema que você nunca viu, sem servidor e sem laboratório: só um editor de texto.</p>
+            <p>Um problema que você nunca viu, sem servidor: só um editor de texto.</p>
             <ul>
               <li>Transformar a mensagem de erro numa ficha com hipóteses.</li>
               <li>Usar a documentação oficial (e o inglês) a seu favor.</li>
@@ -220,11 +245,10 @@
           </div>
         </article>
         <article class="lp-mod">
-          <img src="/assets/img/curso-nslookup-960.webp" alt="nslookup rodando na estação R-CL01 do laboratório do curso" width="960" height="540" loading="lazy">
           <div>
             <p class="lp-tag">Módulo 1 · 14 aulas</p>
             <h3>Redes e TCP/IP, no laboratório</h3>
-            <p>Duas máquinas virtuais no VirtualBox, um servidor e uma estação, montadas passo a passo na primeira aula do módulo.</p>
+            <p>Servidor e estação no VirtualBox, montados na primeira aula do módulo.</p>
             <ul>
               <li>Endereço IP, máscara (/24, /25, /26) e gateway.</li>
               <li>DNS, nslookup e os registros que importam.</li>
@@ -233,11 +257,6 @@
             </ul>
           </div>
         </article>
-      </div>
-      <div class="lp-galeria">
-        <figure><img src="/assets/img/curso-mascara-960.webp" alt="Cena da aula de máscara: prefixo /25" width="960" height="540" loading="lazy"><figcaption>Máscara: o prefixo e os limites, bit a bit.</figcaption></figure>
-        <figure><img src="/assets/img/curso-ferramentas-960.webp" alt="Cena da aula de ferramentas de diagnóstico" width="960" height="540" loading="lazy"><figcaption>O ping falha, mas a aplicação abre: qual teste usar.</figcaption></figure>
-        <figure><img src="/assets/img/curso-caso-960.webp" alt="Cena da aula final: várias estações em falha" width="960" height="540" loading="lazy"><figcaption>O caso final: corrigir máquina por máquina encerra a causa?</figcaption></figure>
       </div>
     </section>
 
@@ -252,19 +271,16 @@
         <li><strong>Diário e fichas de diagnóstico</strong><span>Pergunta, evidência, hipótese, teste e conclusão, para usar no próximo chamado.</span></li>
         <li><strong>Avaliação com gabarito</strong><span>No fim de cada módulo, laboratórios para conferir se você executa, não só se assistiu.</span></li>
         <li><strong>Dúvidas nos comentários</strong><span>O Eduardo responde às quartas e aos sábados.</span></li>
+        <li><strong>Agente de IA na área de membros, treinado com o conteúdo do curso, para te ajudar no dia a dia.</strong></li>
       </ul>
-      <div class="lp-cta">
-        <a class="placa placa-lima" href="#oferta">Ver preço e garantia</a>
-        <small>7 dias de garantia pela Hotmart</small>
-      </div>
     </section>
 
     <!-- 6. Aplicação profissional, sem promessa de renda -->
-    <section class="lp-sec" aria-labelledby="aplicacao">
+    <section class="lp-sec lp-base" aria-labelledby="aplicacao">
       <p class="lp-tag">Na hora do chamado</p>
       <h2 id="aplicacao">Em vez de "tá sem rede", você diz o que falhou.</h2>
-      <p class="lp-lede">O nome, o endereço, o caminho ou o serviço, com a evidência e o teste que provam. É uma entrega que o seu chefe, o cliente ou outro técnico consegue conferir, antes mesmo de o problema estar resolvido.</p>
-      <p>Serve para as duas saídas da TI: crescer como administrador de infraestrutura dentro de uma empresa, ou atender empresas por conta própria. O curso ensina o diagnóstico; não promete salário nem cliente.</p>
+      <p>É a base que um Analista de Infraestrutura e Redes usa todo dia:</p>
+      <p>entender a rede até achar onde ela falhou.</p>
     </section>
 
     <!-- 8. Para quem é, para quem não é, pré-requisitos -->
@@ -289,8 +305,18 @@
           </ul>
         </div>
       </div>
-      <p style="margin-top:1.4rem"><strong>Pré-requisitos:</strong> saber navegar e editar um arquivo de texto. Para o Módulo 1, um PC com Windows 64 bits e virtualização: com 16 GB de memória as duas máquinas rodam juntas; com 8 GB, uma de cada vez.</p>
+      <p style="margin-top:1.4rem"><strong>Pré-requisitos:</strong> saber navegar e editar um arquivo de texto.</p>
+      <p>No Módulo 1, um PC com Windows 64 bits e virtualização.</p>
+      <p>Com 16 GB as duas máquinas rodam juntas; com 8 GB, uma de cada vez.</p>
     </section>
+
+    <!--
+      PROVA SOCIAL (desligada).
+      Não publicar os comentários de PESQUISA/2026-11-10-prova-lp/PROVA.md
+      enquanto os autores não autorizarem.
+      Para ligar depois: trocar este comentário por uma section.lp-sec
+      imediatamente antes de #oferta.
+    -->
 
     <!-- 9. Oferta -->
     <section class="lp-sec lp-oferta" id="oferta" aria-labelledby="oferta-titulo">
@@ -298,16 +324,22 @@
         <p class="lp-tag">Inscrição aberta</p>
         <h2 id="oferta-titulo">Fundamentos de Rede</h2>
         <ul>
-          <li><strong>24 aulas em 2 módulos</strong> (Método e Redes e TCP/IP). Cada aula responde uma pergunta só, para você não perder tempo.</li>
-          <li><strong>PDF de prática em todas as aulas.</strong> O vídeo mostra o raciocínio; é na prática que você aprende.</li>
-          <li><strong>Laboratório no VirtualBox, montado passo a passo,</strong> para testar sem medo de quebrar nada.</li>
-          <li><strong>Diário, fichas de diagnóstico e avaliação com gabarito,</strong> para usar no próximo chamado e conferir se você executa.</li>
-          <li><strong>Dúvidas respondidas pelo Eduardo</strong> nos comentários de cada aula, às quartas e aos sábados.</li>
+          <li><strong>24 aulas em 2 módulos</strong> (Método e Redes e TCP/IP).</li>
+          <li><strong>PDF de prática em todas as aulas.</strong></li>
+          <li><strong>Laboratório no VirtualBox,</strong> montado passo a passo.</li>
+          <li><strong>Diário, fichas e avaliação com gabarito.</strong></li>
+          <li><strong>Dúvidas respondidas pelo Eduardo</strong> às quartas e aos sábados.</li>
+          <li><strong>Agente de IA na área de membros,</strong> treinado com o conteúdo do curso.</li>
         </ul>
+        <!-- COPY: preco-oferta -->
         <p class="lp-preco">R$ 197 <small>à vista</small></p>
-        <p style="margin:0.4rem 0 0">ou em até 12x no cartão. Pix, boleto e PayPal. De Portugal, você paga em euro.</p>
-        <a class="placa placa-lima" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Quero achar onde a rede falhou</a>
-        <p class="lp-garantia"><strong>Você tem 7 dias para conferir por dentro.</strong> Entre, assista às primeiras aulas e faça as práticas. Se não for para você, peça o reembolso pela Hotmart dentro de 7 dias e recebe tudo de volta.</p>
+        <p class="lp-preco-nota">ou em até 12x no cartão. Pix, boleto e PayPal. De Portugal, você paga em euro.</p>
+        <!-- COPY: acesso -->
+        <p class="lp-acesso">Acesso vitalício para os 100 primeiros alunos, contando quem já comprou. Depois disso, o acesso é de 1 ano.</p>
+        <p class="lp-agente">Agora com um agente de IA na área de membros, treinado com o conteúdo do curso, para te ajudar no dia a dia. Ele não substitui as aulas nem as respostas do Eduardo.</p>
+        <!-- COPY: cta-oferta -->
+        <a class="placa placa-lima" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Entrar no Fundamentos de Rede</a>
+        <p class="lp-garantia">Garantia de 7 dias pela Hotmart: se não for pra você, pede o reembolso dentro do prazo.</p>
       </div>
     </section>
 
@@ -318,6 +350,14 @@
       <details><summary>Preciso ter servidor ou laboratório em casa?</summary><p>Não. O Módulo 0 só pede um editor de texto. No Módulo 1 você monta o laboratório no VirtualBox, no seu próprio PC, com a aula passo a passo.</p></details>
       <details><summary>Nunca mexi com rede. Vou acompanhar?</summary><p>Sim. O curso começa pelo método e explica cada conceito (endereço, máscara, gateway, DNS, DHCP) a partir de um sintoma de chamado, sem pressupor experiência.</p></details>
       <details><summary>Quanto tempo leva cada aula?</summary><p>As aulas vão direto ao ponto e resolvem uma pergunta cada. O tempo maior é o da prática, que você faz com o vídeo pausado, no seu ritmo.</p></details>
+      <!-- COPY: faq-carga -->
+      <details><summary>Qual é a carga horária?</summary><p>São 24 aulas em 2 módulos, mais as práticas no laboratório.</p><!-- TODO confirmar carga horária --></details>
+      <!-- COPY: faq-certificado -->
+      <details><summary>O curso tem certificado?</summary><p>O curso não tem certificado. O foco é você saber achar a falha na prática.</p></details>
+      <!-- COPY: faq-acesso -->
+      <details><summary>Por quanto tempo eu tenho acesso?</summary><p>Os 100 primeiros alunos, contando quem já comprou, têm acesso vitalício. Depois disso, o acesso é de 1 ano pela Hotmart.</p></details>
+      <!-- COPY: faq-agente -->
+      <details><summary>O curso tem um agente de IA?</summary><p>Tem. Ele já está ativo na área de membros da Hotmart e foi treinado com o conteúdo das aulas. Ajuda a revisar um conceito ou a se orientar numa prática. Não substitui as aulas, o laboratório nem o Eduardo.</p></details>
       <details><summary>E se eu travar numa prática?</summary><p>Assista de novo quantas vezes precisar e deixe a dúvida nos comentários da aula. O Eduardo responde às quartas e aos sábados.</p></details>
       <details><summary>Posso assistir no celular?</summary><p>Pode, pela área de membros da Hotmart. A prática do Módulo 1 precisa de um PC com Windows.</p></details>
       <details><summary>Moro em Portugal. Consigo comprar?</summary><p>Sim. Ao escolher Portugal no pagamento, o valor aparece e é cobrado em euro, com Multibanco e cartão.</p></details>
@@ -328,7 +368,8 @@
     <section class="lp-sec lp-fim" aria-labelledby="fim">
       <h2 id="fim">O próximo "tá sem rede" vai chegar. Você vai trocar peça ou dizer o que falhou?</h2>
       <div class="lp-cta">
-        <a class="placa placa-lima" href="#oferta">Quero entrar no Fundamentos de Rede</a>
+        <!-- COPY: cta-final -->
+        <a class="placa placa-lima" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Quero começar agora</a>
       </div>
     </section>
   </main>
