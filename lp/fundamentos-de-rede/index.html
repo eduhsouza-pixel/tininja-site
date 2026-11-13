@@ -22,6 +22,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <style>
     /* Página de vendas do Fundamentos de Rede (VTSD: seções, sem links de saída, preço público R$ 197). */
@@ -40,13 +41,15 @@
     .lp-cta small { color: var(--tinta-3); font-size: 0.98rem; line-height: 1.35; }
     .lp-hero-preco { margin: 0; font-weight: 800; color: var(--tinta); font-size: 1.08rem; }
     .lp-pain { padding-top: 1.35rem; }
+    .lp-ver { font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; color: var(--tinta); }
     .lp-pain .lp-dores { margin-top: 0; }
     @media (max-width: 979px) {
-      .lp-kicker-hero { display: none; }
-      .lp-hero-copy { min-height: calc(100svh - var(--fascia)); display: flex; flex-direction: column; justify-content: center; }
+      /* 13/11: sem o vão de 100svh; o nome do curso volta e a dor sobe para a primeira tela */
+      .lp-hero-copy { padding-top: 0.75rem; }
+      .lp-hero-copy .lp-cta small { display: none; }
       .lp-cta { flex-direction: column; align-items: stretch; }
       .lp-cta .placa { width: 100%; font-size: 1.08rem; padding-inline: 0.7rem; }
-      .lp-cta small, .lp-hero-preco { text-align: center; }
+      .lp-cta small, .lp-hero-preco, .lp-ver { text-align: center; }
       .lp-vertical { margin-top: 1.5rem; }
       .lp-eduardo img { max-width: 160px; margin-inline: auto; }
     }
@@ -97,6 +100,7 @@
     .lp-galeria { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 1.4rem; }
     .lp-galeria figure { margin: 0; }
     .lp-galeria img { border-radius: var(--raio); aspect-ratio: 16 / 9; object-fit: cover; box-shadow: var(--sombra); }
+    .lp-galeria.lp-dentro img { aspect-ratio: auto; object-fit: contain; background: #16181d; }
     .lp-galeria figcaption { font-size: 0.95rem; color: var(--tinta-3); margin-top: 0.5rem; }
     .lp-recebe { display: grid; gap: 0; grid-template-columns: 1fr; margin: 0.4rem 0 0; padding: 0; list-style: none; }
     .lp-recebe li { padding: 0.7rem 0; border-bottom: 1px solid var(--linha); }
@@ -127,12 +131,32 @@
     .lp-fim .lp-cta { justify-content: center; }
     .lp .rodape p { font-size: 0.92rem; }
   </style>
-  <!-- Meta Pixel: PageView na página e InitiateCheckout no clique para o checkout da Hotmart -->
+  <!-- Meta Pixel: PageView na página; InitiateCheckout em todo clique para o checkout da Hotmart (igual a antes, agora com o parâmetro cta);
+       CheckoutOferta = clique no botão do cartão de oferta ou do fim (a definição de checkout que valia até 12/11 08h44);
+       ViewContent = o preço do cartão de oferta apareceu inteiro na tela; VerCurso = clique em "Ver antes o que vem no curso".
+       A Compra NÃO sai do navegador: chega só pela API de Conversões da Hotmart.
+       Teste sem sujar o pixel: abrir com ?tn_teste=1 (liga neste navegador) e ?tn_teste=0 (desliga). -->
   <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','839957353977860');
-  fbq('track','PageView');
-  document.addEventListener('click',function(e){var a=e.target.closest('a[href*="pay.hotmart.com"]');if(a){fbq('track','InitiateCheckout');}});
+  (function(){var m=location.search.match(/[?&]tn_teste=([01])/);try{if(m)localStorage.setItem('tn_teste',m[1]);window.tnTeste=localStorage.getItem('tn_teste')==='1';}catch(e){window.tnTeste=false;}})();
+  window.tnEv=function(tipo,nome,dados){if(!window.tnTeste)fbq(tipo,nome,dados||{});};
+  if(!window.tnTeste){fbq('init','839957353977860');fbq('track','PageView');}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href*="pay.hotmart.com"]');
+    if(a){
+      var onde=a.closest('#oferta')?'oferta':a.closest('.lp-fim')?'fim':(a.getAttribute('data-cta')||'outro');
+      tnEv('track','InitiateCheckout',{content_name:'fundamentos-de-rede',cta:onde});
+      if(onde==='oferta'||onde==='fim')tnEv('trackCustom','CheckoutOferta');
+      return;
+    }
+    if(e.target.closest('a[data-cta="ver-curso"],a[data-cta="ver-preco"]'))tnEv('trackCustom','VerCurso');
+  });
+  document.addEventListener('DOMContentLoaded',function(){
+    var p=document.querySelector('#oferta .lp-preco');
+    if(!p||!('IntersectionObserver' in window))return;
+    var o=new IntersectionObserver(function(es){if(es[0].isIntersecting){tnEv('track','ViewContent',{content_name:'oferta-fundamentos'});o.disconnect();}},{threshold:1});
+    o.observe(p);
+  });
   </script>
 </head>
 <body class="lp">
@@ -153,27 +177,26 @@
         <p class="lp-lede">Do sintoma à causa: IP, máscara, gateway, DNS e DHCP, com laboratório no seu PC. Cada aula responde uma pergunta.</p>
         <div class="lp-cta">
           <!-- COPY: cta-hero -->
-          <a class="placa placa-lima" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Quero aprender a achar a falha</a>
+          <a class="placa placa-lima" data-cta="hero" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Quero entrar no Fundamentos de Rede</a>
           <!-- COPY: linha-hero -->
           <small>Método e rede, em 2 módulos · laboratório no seu PC · agente de IA na área de membros · 7 dias de garantia</small>
           <!-- COPY: preco-hero -->
-          <p class="lp-hero-preco">R$ 197 ou até 12x</p>
+          <p class="lp-hero-preco">R$ 197 ou até 12x · 7 dias de garantia</p>
+          <!-- COPY: ver-curso (cumpre o "veja o que vem no curso" do anúncio frio) -->
+          <a class="lp-ver" data-cta="ver-curso" href="#caminho">Ver antes o que vem no curso</a>
         </div>
       </div>
 
       <!-- COPY: dores -->
       <section class="lp-pain" aria-labelledby="situacao">
         <h2 id="situacao" class="sr">O sintoma</h2>
+        <p class="lp-tag">Chamados que você já atendeu, ou ainda vai atender</p>
         <ul class="lp-dores">
           <li>O site não abre, mas o WhatsApp funciona.</li>
           <li>A máquina nova pegou 169.254 e o resto da rede está normal.</li>
           <li>O ping responde pelo IP, mas não pelo nome.</li>
         </ul>
         <p>No Fundamentos de Rede, você aprende a seguir o sintoma até a causa, em vez de reiniciar e torcer.</p>
-        <div class="lp-cta">
-          <!-- COPY: cta-dores -->
-          <a class="placa placa-lima" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Quero começar agora</a>
-        </div>
       </section>
 
       <div class="lp-vertical">
@@ -192,7 +215,7 @@
         <div>
           <p class="lp-tag">Quem ensina</p>
           <h2 id="quem">Eduardo Honorato</h2>
-          <p>Técnico de suporte que hoje toca o próprio MSP.</p>
+          <p>Técnico de suporte que hoje toca o próprio MSP, uma empresa que cuida da TI de vários clientes.</p>
           <p>No YouTube e no Instagram, falhas reais de rede e o raciocínio para achar a causa.</p>
           <p>O curso junta esse método num caminho só, com prática.</p>
         </div>
@@ -271,8 +294,16 @@
         <li><strong>Diário e fichas de diagnóstico</strong><span>Pergunta, evidência, hipótese, teste e conclusão, para usar no próximo chamado.</span></li>
         <li><strong>Avaliação com gabarito</strong><span>No fim de cada módulo, laboratórios para conferir se você executa, não só se assistiu.</span></li>
         <li><strong>Dúvidas nos comentários</strong><span>O Eduardo responde às quartas e aos sábados.</span></li>
-        <li><strong>Agente de IA na área de membros, treinado com o conteúdo do curso, para te ajudar no dia a dia.</strong></li>
+        <li><strong>Agente de IA na área de membros</strong><span>Treinado com o conteúdo do curso, para revisar um conceito ou se orientar numa prática. Não substitui as aulas nem as respostas do Eduardo.</span></li>
       </ul>
+      <!-- COPY: por-dentro (prova por demonstração, sem depoimento; recortes já revisados do c2-por-dentro) -->
+      <h3 style="margin-top:2rem">Por dentro do curso</h3>
+      <div class="lp-galeria lp-dentro">
+        <figure><img src="/assets/img/curso-dentro-pdf-960.webp" alt="PDF de prática da aula de DHCP, na aba Materiais" width="960" height="842" loading="lazy"><figcaption>O PDF de prática que fica embaixo de cada vídeo.</figcaption></figure>
+        <figure><img src="/assets/img/curso-dentro-lab-960.webp" alt="Estação e servidor do laboratório no VirtualBox" width="960" height="788" loading="lazy"><figcaption>O laboratório no seu PC: estação e servidor.</figcaption></figure>
+        <figure><img src="/assets/img/curso-dentro-agente-960.webp" alt="Agente de IA respondendo uma dúvida de prática" width="960" height="635" loading="lazy"><figcaption>O agente de IA respondendo uma dúvida de prática.</figcaption></figure>
+      </div>
+      <div class="lp-cta"><a class="placa placa-vidro" data-cta="ver-preco" href="#oferta">Ver preço e garantia</a></div>
     </section>
 
     <!-- 6. Aplicação profissional, sem promessa de renda -->
@@ -329,17 +360,17 @@
           <li><strong>Laboratório no VirtualBox,</strong> montado passo a passo.</li>
           <li><strong>Diário, fichas e avaliação com gabarito.</strong></li>
           <li><strong>Dúvidas respondidas pelo Eduardo</strong> às quartas e aos sábados.</li>
-          <li><strong>Agente de IA na área de membros,</strong> treinado com o conteúdo do curso.</li>
+          <li><strong>Agora com agente de IA na área de membros,</strong> treinado com o conteúdo do curso.</li>
         </ul>
         <!-- COPY: preco-oferta -->
         <p class="lp-preco">R$ 197 <small>à vista</small></p>
-        <p class="lp-preco-nota">ou em até 12x no cartão. Pix, boleto e PayPal. De Portugal, você paga em euro.</p>
+        <p class="lp-preco-nota">ou 12x de R$ 20,37 no cartão. Pix, boleto e PayPal. De Portugal, você paga em euro.</p>
         <!-- COPY: acesso -->
         <p class="lp-acesso">Acesso vitalício para os 100 primeiros alunos, contando quem já comprou. Depois disso, o acesso é de 1 ano.</p>
-        <p class="lp-agente">Agora com um agente de IA na área de membros, treinado com o conteúdo do curso, para te ajudar no dia a dia. Ele não substitui as aulas nem as respostas do Eduardo.</p>
+        <!-- COPY: garantia (sobe para antes do botão) -->
+        <p class="lp-garantia"><strong>Você tem 7 dias para conferir por dentro.</strong> Entre, assista às primeiras aulas e faça a primeira prática. Se não for pra você, peça o reembolso pela Hotmart nesse prazo e recebe o valor integral.</p>
         <!-- COPY: cta-oferta -->
         <a class="placa placa-lima" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Entrar no Fundamentos de Rede</a>
-        <p class="lp-garantia">Garantia de 7 dias pela Hotmart: se não for pra você, pede o reembolso dentro do prazo.</p>
       </div>
     </section>
 
@@ -348,7 +379,13 @@
       <p class="lp-tag">Perguntas frequentes</p>
       <h2 id="faq">Antes de entrar</h2>
       <details><summary>Preciso ter servidor ou laboratório em casa?</summary><p>Não. O Módulo 0 só pede um editor de texto. No Módulo 1 você monta o laboratório no VirtualBox, no seu próprio PC, com a aula passo a passo.</p></details>
-      <details><summary>Nunca mexi com rede. Vou acompanhar?</summary><p>Sim. O curso começa pelo método e explica cada conceito (endereço, máscara, gateway, DNS, DHCP) a partir de um sintoma de chamado, sem pressupor experiência.</p></details>
+      <details><summary>Nunca mexi com rede. Vou acompanhar?</summary><p>Sim. O curso começa pelo método e explica cada conceito (endereço, máscara, gateway, DNS, DHCP) a partir de um sintoma de chamado, sem pressupor experiência. O que ele pressupõe é que você já use o Windows no dia a dia: o curso não ensina sistema operacional do zero.</p></details>
+      <!-- COPY: faq-escopo -->
+      <details><summary>Serve para quem estuda para o CCNA ou quer uma formação completa?</summary><p>O Fundamentos de Rede não segue o roteiro da prova da Cisco nem usa equipamento Cisco. Ele ensina a base que toda rede usa (endereço, máscara, gateway, DNS e DHCP) no Windows, em laboratório, a partir de sintomas de chamado. Quem estuda para o CCNA aproveita essa base, mas precisa de material próprio para a prova. Também não é uma formação completa de infraestrutura: é a base de rede que os assuntos mais avançados, como o Active Directory, pressupõem.</p></details>
+      <!-- COPY: faq-youtube -->
+      <details><summary>Isso não tem de graça no YouTube?</summary><p>Os vídeos do canal explicam um assunto por vez. O curso põe tudo em ordem, do método ao caso resolvido, e em cada aula você pratica no laboratório, com o PDF e a avaliação com gabarito. As dúvidas, o Eduardo responde nos comentários às quartas e aos sábados.</p></details>
+      <!-- COPY: faq-8gb -->
+      <details><summary>Meu PC tem 8 GB de memória. Dá para fazer o laboratório?</summary><p>Dá. Com 8 GB você liga uma máquina virtual de cada vez; com 16 GB, as duas juntas. O PC precisa ter Windows 64 bits com virtualização.</p></details>
       <details><summary>Quanto tempo leva cada aula?</summary><p>As aulas vão direto ao ponto e resolvem uma pergunta cada. O tempo maior é o da prática, que você faz com o vídeo pausado, no seu ritmo.</p></details>
       <!-- COPY: faq-carga -->
       <!-- Desligada em 12/11/2026: o Eduardo não quer carga horária nem número de aulas na página.
@@ -358,8 +395,12 @@
       <!-- TODO confirmar certificado
       <details><summary>O curso tem certificado?</summary><p>O curso não tem certificado. O foco é você saber achar a falha na prática.</p></details>
       -->
+      <!-- COPY: faq-pagamento (a parte de Black Friday só entra com OK do Eduardo) -->
+      <details><summary>É pagamento único?</summary><p>É. R$ 197 à vista ou em até 12x no cartão. Não é assinatura e não tem mensalidade.</p></details>
       <!-- COPY: faq-acesso -->
       <details><summary>Por quanto tempo eu tenho acesso?</summary><p>Os 100 primeiros alunos, contando quem já comprou, têm acesso vitalício. Depois disso, o acesso é de 1 ano pela Hotmart.</p></details>
+      <!-- COPY: faq-recebe -->
+      <details><summary>Como eu recebo o acesso?</summary><p>A Hotmart manda o acesso por e-mail em poucos minutos, para o endereço usado na compra. No Pix e no boleto, ele libera quando o pagamento compensar.</p></details>
       <!-- COPY: faq-agente -->
       <details><summary>O curso tem um agente de IA?</summary><p>Tem. Ele já está ativo na área de membros da Hotmart e foi treinado com o conteúdo das aulas. Ajuda a revisar um conceito ou a se orientar numa prática. Não substitui as aulas, o laboratório nem o Eduardo.</p></details>
       <details><summary>E se eu travar numa prática?</summary><p>Assista de novo quantas vezes precisar e deixe a dúvida nos comentários da aula. O Eduardo responde às quartas e aos sábados.</p></details>
@@ -388,7 +429,7 @@
     // também segue: sem ele o pixel no checkout da Hotmart registra a Compra sem saber de qual anúncio veio.
     (() => {
       const q = new URLSearchParams(location.search);
-      const campos = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
+      const campos = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id"];
       const daUrl = (k) => (q.get(k) || "").trim().slice(0, 200);
       // Quem clica num link com UTM e volta depois sem ele mantém a origem por 30 dias.
       let salvo = {};
@@ -412,7 +453,8 @@
       document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach((a) => {
         const u = new URL(a.href);
         utm.forEach((k) => u.searchParams.set(k, v(k)));
-        u.searchParams.set("src", [v("utm_source"), v("utm_medium")].filter(Boolean).join("_") || ref || "direto");
+        // 13/11: o posicionamento (utm_term) vira o 3º pedaço do src (ex.: ig_anuncio_Instagram_Reels); os 2 primeiros não mudam.
+        u.searchParams.set("src", [v("utm_source"), v("utm_medium"), v("utm_term")].filter(Boolean).join("_").slice(0, 80) || ref || "direto");
         u.searchParams.set("sck", v("utm_content") || v("utm_source") || v("utm_campaign") || v("utm_medium") || ref || "direto");
         if (fbclid) u.searchParams.set("fbclid", fbclid);
         a.href = u.toString();
