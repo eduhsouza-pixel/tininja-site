@@ -14,7 +14,12 @@
   <meta property="og:title" content="Fundamentos de Rede — pare de trocar peça, ache onde a rede falhou">
   <meta property="og:description" content="Endereço, máscara, gateway, DNS e DHCP, com método. Aulas direto ao ponto, laboratório no seu PC e agente de IA na área de membros.">
   <meta property="og:url" content="https://tininja.net/lp/fundamentos-de-rede/">
-  <meta property="og:image" content="https://tininja.net/assets/img/curso-ferramentas-960.webp">
+  <meta property="og:image" content="https://tininja.net/assets/img/og-fundamentos.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Título “Aprenda a achar onde a rede falhou.” e o nome Fundamentos de Rede, da TI Ninja, ao lado de uma cena com um computador, um switch e um servidor ligados em rede.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://tininja.net/assets/img/og-fundamentos.jpg">
   <meta property="og:video" content="https://tininja.net/assets/video/criativo-ping-falhou.mp4">
   <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
@@ -68,6 +73,8 @@
     .lp-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .lp-vertical { position: relative; width: min(100%, 380px); aspect-ratio: 9 / 16; justify-self: center; border-radius: calc(var(--raio) * 2); overflow: hidden; background: #0b1411; box-shadow: 0 24px 60px rgba(22,24,29,.28); }
     .lp-vertical button { all: unset; cursor: pointer; position: absolute; inset: 0; display: grid; place-items: center; }
+    /* O all: unset tira o anel de foco global e o overflow: hidden cortaria um anel por fora: ele vai para dentro. */
+    .lp-vertical button:focus-visible { outline: 3px solid var(--laranja); outline-offset: -6px; border-radius: inherit; }
     .lp-vertical img, .lp-vertical video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .lp-vertical .lp-play, .lp-vertical .lp-legenda { z-index: 1; }
     .lp-vertical .lp-play { position: relative; display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--laranja); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
@@ -110,7 +117,7 @@
     @media (min-width: 860px) { .lp-eduardo { grid-template-columns: 280px 1fr; } }
     .lp-eduardo img { width: 100%; max-width: 280px; border-radius: 50%; aspect-ratio: 1; object-fit: cover; box-shadow: var(--sombra); }
     .lp-oferta { display: grid; place-items: center; background: var(--tinta); color: #fff; }
-    .lp-oferta .lp-tag { color: var(--laranja); }
+    .lp-oferta .lp-tag { color: var(--laranja-escuro); }
     .lp-cartao { width: 100%; max-width: 640px; padding: clamp(1.6rem, 4vw, 2.6rem); border-radius: calc(var(--raio) * 2); background: #fff; color: var(--tinta); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
     .lp-cartao ul { margin: 1.2rem 0 1.6rem; padding: 0; list-style: none; }
     .lp-cartao li { padding: 0.55rem 0 0.55rem 1.8rem; border-bottom: 1px solid var(--linha); position: relative; }
