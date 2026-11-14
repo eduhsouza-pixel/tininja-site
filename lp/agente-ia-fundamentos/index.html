@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assistente TI Ninja — consultor em chat do Fundamentos de Rede — TI Ninja</title>
+  <meta name="description" content="O Tutor tira a dúvida da aula. O Assistente TI Ninja recebe o print. Consultor em chat, treinado no Fundamentos de Rede, por R$ 3,90.">
+  <link rel="canonical" href="https://tininja.net/lp/agente-ia-fundamentos/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="Assistente TI Ninja — a dúvida da aula o Tutor responde. A do laboratório chega com um print.">
+  <meta property="og:description" content="Consultor em chat, treinado no Fundamentos de Rede e no bônus de Virtualização. R$ 3,90, pagamento único.">
+  <meta property="og:url" content="https://tininja.net/lp/agente-ia-fundamentos/">
+  <meta property="og:image" content="https://tininja.net/assets/img/curso-dentro-agente-960.webp">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    /* Página curta do upsell Assistente TI Ninja (produto Hotmart 8946697, R$ 3,90). Visual alinhado à LP de Fundamentos. */
+    .lp { --borda: 3px solid var(--tinta); }
+    .lp .fascia { justify-content: center; }
+    .lp .marca { pointer-events: none; }
+    .lp-sec { padding: clamp(1.75rem, 4.5vw, 3.5rem) var(--margem); }
+    .lp-sec + .lp-sec { border-top: 1px solid var(--linha); }
+    .lp-tag { font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--laranja-escuro); margin-bottom: 1rem; }
+    .lp-topo { display: flex; flex-direction: column; padding: 0.25rem var(--margem) clamp(1.5rem, 4vw, 2.5rem); }
+    .lp-hero-copy h1 { font-size: clamp(2.05rem, 6.4vw, 3.6rem); margin-bottom: 0.9rem; }
+    .lp-hero-copy h1 em { font-style: normal; color: var(--laranja-faixa); }
+    .lp-lede { font-size: clamp(1.12rem, 1.5vw, 1.3rem); color: var(--tinta-2); margin-bottom: 0; }
+    .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.2rem; margin-top: 1.25rem; }
+    .lp-cta .placa { font-size: 1.2rem; min-height: 3.4rem; padding-inline: 1.6rem; }
+    .lp-cta small { color: var(--tinta-3); font-size: 0.98rem; line-height: 1.35; }
+    .lp-hero-preco { margin: 0; font-weight: 800; color: var(--tinta); font-size: 1.08rem; }
+    .lp-punch { font-size: clamp(1.25rem, 2.2vw, 1.7rem); font-weight: 800; line-height: 1.3; max-width: 28ch; margin: 1.4rem 0 0; }
+    .lp-duas { display: grid; gap: 1.2rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
+    @media (min-width: 860px) { .lp-duas { grid-template-columns: 1fr 1fr; } }
+    .lp-caixa { padding: 1.05rem 1.1rem; border-radius: var(--raio); background: var(--papel); }
+    .lp-caixa h3 { margin-bottom: 0.8rem; }
+    .lp-caixa ul { margin: 0; padding-left: 1.2rem; }
+    .lp-caixa li { margin-bottom: 0.45rem; }
+    .lp-tutor { border-top: 6px solid var(--tinta-3, #8a8578); }
+    .lp-assistente { border-top: 6px solid var(--verde); }
+    .lp-assistente li { font-weight: 700; }
+    .lp-demo { margin: 2rem 0 0; max-width: 820px; }
+    .lp-demo img { width: 100%; border-radius: var(--raio); box-shadow: var(--sombra); background: #16181d; }
+    .lp-demo figcaption { font-size: 0.95rem; color: var(--tinta-3); margin-top: 0.5rem; }
+    .lp-recebe { display: grid; gap: 0; grid-template-columns: 1fr; margin: 0.4rem 0 0; padding: 0; list-style: none; }
+    .lp-recebe li { padding: 0.7rem 0; border-bottom: 1px solid var(--linha); }
+    .lp-recebe strong { display: block; font-size: 1.08rem; margin-bottom: 0.1rem; }
+    .lp-recebe span { color: var(--tinta-2); font-size: 1rem; }
+    .lp-limites { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+    .lp-limites li { margin-bottom: 0.45rem; color: var(--tinta-2); }
+    .lp-oferta { display: grid; place-items: center; background: var(--tinta); color: #fff; }
+    .lp-oferta .lp-tag { color: var(--laranja); }
+    .lp-cartao { width: 100%; max-width: 640px; padding: clamp(1.6rem, 4vw, 2.6rem); border-radius: calc(var(--raio) * 2); background: #fff; color: var(--tinta); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+    .lp-cartao ul { margin: 1.2rem 0 1.6rem; padding: 0; list-style: none; }
+    .lp-cartao li { padding: 0.55rem 0 0.55rem 1.8rem; border-bottom: 1px solid var(--linha); position: relative; }
+    .lp-cartao li::before { content: "✓"; position: absolute; left: 0; color: var(--verde); font-weight: 800; }
+    .lp-preco { font-size: clamp(3rem, 8vw, 4.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .lp-preco small { font-size: 1.1rem; font-weight: 700; letter-spacing: 0; color: var(--tinta-2); }
+    .lp-cartao .placa { width: 100%; font-size: 1.25rem; min-height: 3.6rem; margin-top: 1.2rem; }
+    .lp-preco-nota { margin: 0.45rem 0 0; }
+    .lp-acesso { margin: 0.85rem 0 0; font-weight: 800; }
+    .lp-checkout-nota { margin: 0.7rem 0 0; font-size: 0.95rem; color: var(--tinta-2); }
+    .lp-faq details { border-bottom: 1px solid var(--linha); padding: 1rem 0; max-width: 820px; }
+    .lp-faq summary { cursor: pointer; font-weight: 800; font-size: 1.15rem; }
+    .lp-faq details p { margin: 0.7rem 0 0; color: var(--tinta-2); }
+    .lp-fim { text-align: center; }
+    .lp-fim h2 { max-width: 24ch; margin-inline: auto; }
+    .lp-fim .lp-cta { justify-content: center; }
+    .lp-fim .lp-lede { max-width: 46ch; margin-inline: auto; }
+    .lp .rodape p { font-size: 0.92rem; }
+    @media (max-width: 979px) {
+      .lp-hero-copy { padding-top: 0.75rem; }
+      .lp-cta { flex-direction: column; align-items: stretch; }
+      .lp-cta .placa { width: 100%; font-size: 1.08rem; padding-inline: 0.7rem; }
+      .lp-cta small, .lp-hero-preco { text-align: center; }
+      .lp-preco small { display: block; margin-top: 0.3rem; }
+    }
+    @media (min-width: 980px) {
+      .lp-topo { max-width: 820px; padding-top: clamp(1.5rem, 4vw, 3rem); }
+    }
+  </style>
+  <!-- Meta Pixel: PageView na página; InitiateCheckout em clique para o checkout da Hotmart, quando o link real existir.
+       A Compra NÃO sai do navegador: chega só pela API de Conversões da Hotmart.
+       Teste sem sujar o pixel: ?tn_teste=1 (liga neste navegador) e ?tn_teste=0 (desliga). -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  (function(){var m=location.search.match(/[?&]tn_teste=([01])/);try{if(m)localStorage.setItem('tn_teste',m[1]);window.tnTeste=localStorage.getItem('tn_teste')==='1';}catch(e){window.tnTeste=false;}})();
+  window.tnEv=function(tipo,nome,dados){if(!window.tnTeste)fbq(tipo,nome,dados||{});};
+  if(!window.tnTeste){fbq('init','839957353977860');fbq('track','PageView');}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href*="pay.hotmart.com"]');
+    if(a){
+      var onde=a.closest('#oferta')?'oferta':a.closest('.lp-fim')?'fim':(a.getAttribute('data-cta')||'outro');
+      tnEv('track','InitiateCheckout',{content_name:'agente-ia-fundamentos',cta:onde});
+    }
+  });
+  </script>
+</head>
+<body class="lp">
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <header class="fascia">
+    <span class="marca"><img src="/assets/img/marca.svg" alt="" width="64" height="64"> TI Ninja</span>
+  </header>
+
+  <main id="conteudo">
+    <div class="lp-topo">
+      <div class="lp-hero-copy">
+        <p class="lp-tag">Assistente TI Ninja · Fundamentos de Rede</p>
+        <h1 id="titulo">A dúvida da aula o Tutor responde. <em>A do laboratório chega com um print.</em></h1>
+        <p class="lp-lede">A prática está aberta e o resultado na tela não bate com o da aula. Não é uma pergunta sobre o vídeo. É um arquivo, uma config, um laboratório no meio do caminho.</p>
+        <div class="lp-cta">
+          <!-- PLACEHOLDER_CHECKOUT_AGENTE_8946697
+               Trocar o href abaixo pelo checkout da Hotmart do produto 8946697
+               quando o cadastro for finalizado (hoje o produto está em rascunho
+               e ainda não há link de pagamento).
+               Se esta página for a etapa de Upsell do Funil de Vendas, inserir
+               também o código HTML do Widget do Funil (botões de aceite e recusa
+               em 1 clique). O widget só aparece depois da compra do produto
+               setup 8805958, oferta zfw2ue6n. -->
+          <a class="placa placa-lima" data-cta="hero" href="#PLACEHOLDER-CHECKOUT-HOTMART-8946697">Quero o Assistente TI Ninja por R$ 3,90</a>
+          <p class="lp-hero-preco">R$ 3,90, pagamento único.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="lp-sec" aria-labelledby="diferenca">
+      <p class="lp-tag">O Tutor e o Assistente</p>
+      <h2 id="diferenca">Um já vem no curso. O outro é um consultor à parte.</h2>
+      <p>No Fundamentos de Rede, o Tutor já vem junto, de graça. Ele fica dentro da aula, no botão "Tirar dúvidas", e responde perguntas sobre o que o vídeo ensinou.</p>
+      <p>O Assistente TI Ninja é outra coisa. É um consultor em chat, vendido à parte, treinado no curso inteiro, nos materiais de prática, nos gabaritos, nos laboratórios e no bônus de Virtualização. Você abre tópicos, conversa a qualquer hora, na área de membros ou no aplicativo da Hotmart. Pelo navegador, envia arquivos de até 15 MB: prints, configs, planilhas.</p>
+      <p class="lp-punch">Um tira a dúvida da aula. O outro recebe o que está na sua tela.</p>
+      <div class="lp-duas">
+        <div class="lp-caixa lp-tutor">
+          <h3>Tutor (já incluído no curso)</h3>
+          <ul>
+            <li>Gratuito, dentro da sala de aula</li>
+            <li>Botão "Tirar dúvidas"</li>
+            <li>Perguntas sobre o que o vídeo ensinou</li>
+          </ul>
+        </div>
+        <div class="lp-caixa lp-assistente">
+          <h3>Assistente TI Ninja (R$ 3,90)</h3>
+          <ul>
+            <li>Consultor em chat, na área de membros e no aplicativo</li>
+            <li>Disponível a qualquer hora</li>
+            <li>Tópicos separados para cada assunto</li>
+            <li>Envio de arquivos de até 15 MB pelo navegador</li>
+            <li>Treinado no curso, nos materiais e no bônus de Virtualização</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="lp-demo">
+        <img src="/assets/img/curso-dentro-agente-960.webp" alt="Assistente de IA na área de membros, respondendo uma dúvida de prática" width="960" height="635" loading="lazy">
+        <figcaption>O Assistente na área de membros, numa dúvida de prática.</figcaption>
+      </figure>
+    </section>
+
+    <section class="lp-sec" aria-labelledby="recebe">
+      <p class="lp-tag">O que você passa a ter</p>
+      <h2 id="recebe">O chat, o arquivo e a base do curso.</h2>
+      <ul class="lp-recebe">
+        <li><strong>Chat com tópicos</strong><span>Um laboratório não se mistura com o outro.</span></li>
+        <li><strong>Análise de print, config ou planilha</strong><span>No navegador, arquivo de até 15 MB.</span></li>
+        <li><strong>Consulta na área de membros e no aplicativo</strong><span>A qualquer hora.</span></li>
+        <li><strong>Base no curso inteiro</strong><span>Os 29 PDFs de material, os gabaritos, os laboratórios e o bônus de Virtualização.</span></li>
+        <li><strong>Feito para o suporte</strong><span>Para quem quer cuidar da TI de empresas, no caminho de Analista de Infraestrutura e Redes.</span></li>
+      </ul>
+    </section>
+
+    <section class="lp-sec" aria-labelledby="limites">
+      <p class="lp-tag">O que ele não faz</p>
+      <h2 id="limites">Não substitui a aula, o laboratório nem o Eduardo.</h2>
+      <ul class="lp-limites">
+        <li>Não substitui as aulas, o laboratório nem as respostas do Eduardo nos comentários.</li>
+        <li>Não faz a prática no seu lugar.</li>
+        <li>Não é o Tutor: o Tutor continua no curso, de graça, para a dúvida da aula.</li>
+        <li>No aplicativo, a conversa é por texto. O envio de arquivo é no navegador.</li>
+      </ul>
+    </section>
+
+    <section class="lp-sec lp-oferta" id="oferta" aria-labelledby="oferta-titulo">
+      <div class="lp-cartao">
+        <p class="lp-tag">Pagamento único</p>
+        <h2 id="oferta-titulo">Assistente TI Ninja</h2>
+        <ul>
+          <li>Consultor em chat, treinado no curso e no bônus de Virtualização</li>
+          <li>Tópicos, área de membros e aplicativo da Hotmart</li>
+          <li>Arquivos de até 15 MB no navegador</li>
+        </ul>
+        <p class="lp-preco">R$ 3,90 <small>pagamento único</small></p>
+        <p class="lp-preco-nota">Não é assinatura.</p>
+        <p class="lp-acesso">Depois que o pagamento confirma, o Assistente libera na área de membros da Hotmart, na vitrine ou na aba de produtos. Em ofertas de pagamento único, o acesso não expira.</p>
+        <p class="lp-checkout-nota">O link do checkout entra quando o cadastro do produto 8946697 for finalizado na Hotmart.</p>
+        <a class="placa placa-lima" data-cta="oferta" href="#PLACEHOLDER-CHECKOUT-HOTMART-8946697">Quero o Assistente TI Ninja por R$ 3,90</a>
+      </div>
+    </section>
+
+    <section class="lp-sec lp-faq" aria-labelledby="faq">
+      <p class="lp-tag">Perguntas frequentes</p>
+      <h2 id="faq">Antes de levar o Assistente</h2>
+      <details><summary>O Assistente substitui o Tutor?</summary><p>Não. O Tutor continua incluído no curso, de graça, dentro da aula. O Assistente é um produto à parte, para quando a dúvida chega com um print, uma config ou um laboratório aberto.</p></details>
+      <details><summary>Eu preciso ter o Fundamentos de Rede?</summary><p>Este Assistente foi treinado no Fundamentos de Rede e no bônus de Virtualização. Ele faz sentido para quem já tem, ou está levando, o curso.</p></details>
+      <details><summary>Por quanto tempo eu tenho acesso?</summary><p>Em ofertas com pagamento único, a ajuda oficial da Hotmart diz que o acesso do comprador não expira. Não é possível configurar um prazo de validade neste tipo de produto: essa função existe só para curso online.</p></details>
+      <details><summary>Como eu acesso?</summary><p>Depois que o pagamento confirma, o Assistente aparece na área de membros da Hotmart vinculada à compra, na vitrine ou na aba de produtos. Dá para usar no navegador e no aplicativo.</p></details>
+      <details><summary>Posso mandar um print ou um arquivo?</summary><p>Sim, pelo navegador, no computador ou no celular, com arquivo de até 15 MB. No aplicativo da Hotmart, a conversa é por texto.</p></details>
+      <details><summary>Ele responde qualquer coisa?</summary><p>Ele foi treinado no conteúdo do curso, nos materiais, nos gabaritos, nos laboratórios e no bônus de Virtualização. Ajuda a revisar um conceito ou a se orientar numa prática. Não substitui a aula, o laboratório nem o Eduardo.</p></details>
+      <details><summary>É pagamento único?</summary><p>É. R$ 3,90, um pagamento só. Não é assinatura.</p></details>
+      <details><summary>Qual é a garantia?</summary><p>A garantia da compra é a que aparecer no checkout da Hotmart, quando o cadastro do produto estiver finalizado. Esta página não afirma um prazo enquanto essa oferta não estiver publicada.</p></details>
+    </section>
+
+    <section class="lp-sec lp-fim" aria-labelledby="fim">
+      <h2 id="fim">A dúvida da prática não precisa esperar a quarta ou o sábado.</h2>
+      <p class="lp-lede">O Eduardo continua respondendo nos comentários nesses dias. O Assistente fica no chat, para quando a pergunta já chega com o print.</p>
+      <div class="lp-cta">
+        <a class="placa placa-lima" data-cta="fim" href="#PLACEHOLDER-CHECKOUT-HOTMART-8946697">Quero o Assistente TI Ninja por R$ 3,90</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+    <p>© 2026 TI Ninja · Pagamento processado pela Hotmart</p>
+  </footer>
+  <script>
+    // Origem da venda: as utm_* da página seguem para o checkout; src leva fonte_meio e sck (que a Hotmart mostra em
+    // cada venda) leva o criativo (utm_content) ou, sem ele, a fonte. O fbclid também segue.
+    // Enquanto o href for o placeholder, este bloco não altera nada. Quando o checkout real entrar, o mesmo padrão da LP de Fundamentos passa a valer.
+    (() => {
+      const q = new URLSearchParams(location.search);
+      const campos = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id"];
+      const daUrl = (k) => (q.get(k) || "").trim().slice(0, 200);
+      let salvo = {};
+      try {
+        salvo = JSON.parse(localStorage.getItem("tn_origem")) || {};
+        if (Date.now() - (salvo.t || 0) > 30 * 864e5) salvo = {};
+      } catch {}
+      const veioComUtm = campos.some(daUrl);
+      const v = (k) => (veioComUtm ? daUrl(k) : salvo[k] || "");
+      if (veioComUtm) {
+        try {
+          localStorage.setItem("tn_origem", JSON.stringify(Object.fromEntries([["t", Date.now()], ...campos.map((k) => [k, daUrl(k)])])));
+        } catch {}
+      }
+      const utm = campos.filter(v);
+      const fbc = (document.cookie.match(/(?:^|;\s*)_fbc=fb\.\d+\.\d+\.([^;]+)/) || [])[1];
+      const fbclid = (q.get("fbclid") || (fbc ? decodeURIComponent(fbc) : "")).trim().slice(0, 500);
+      let ref = "";
+      try { ref = new URL(document.referrer).hostname.replace(/^www\./, ""); } catch {}
+      if (ref === location.hostname) ref = "site";
+      document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach((a) => {
+        const u = new URL(a.href);
+        utm.forEach((k) => u.searchParams.set(k, v(k)));
+        u.searchParams.set("src", [v("utm_source"), v("utm_medium"), v("utm_term")].filter(Boolean).join("_").slice(0, 80) || ref || "direto");
+        u.searchParams.set("sck", v("utm_content") || v("utm_source") || v("utm_campaign") || v("utm_medium") || ref || "direto");
+        if (fbclid) u.searchParams.set("fbclid", fbclid);
+        a.href = u.toString();
+      });
+    })();
+  </script>
+</body>
+</html>
