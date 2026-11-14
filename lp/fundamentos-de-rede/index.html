@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fundamentos de Rede — curso de diagnóstico de rede — TI Ninja</title>
-  <meta name="description" content="Curso online para quem atende suporte: endereço, máscara, gateway, DNS e DHCP, com um método de diagnóstico praticado num laboratório no seu PC. Aulas direto ao ponto, PDF de prática por aula, agente de IA na área de membros e 7 dias de garantia.">
+  <meta name="description" content="Curso online para quem atende suporte: endereço, máscara, gateway, DNS e DHCP, com um método de diagnóstico praticado num laboratório no seu PC. Aulas direto ao ponto, PDF de prática nos 2 módulos, bônus de Virtualização, agente de IA na área de membros e 7 dias de garantia.">
   <link rel="canonical" href="https://tininja.net/lp/fundamentos-de-rede/">
   <meta name="author" content="Eduardo Honorato">
   <meta name="theme-color" content="#FFFFFF">
@@ -12,7 +12,7 @@
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
   <meta property="og:title" content="Fundamentos de Rede — pare de trocar peça, ache onde a rede falhou">
-  <meta property="og:description" content="Endereço, máscara, gateway, DNS e DHCP, com método. Aulas direto ao ponto, laboratório no seu PC e agente de IA na área de membros.">
+  <meta property="og:description" content="Endereço, máscara, gateway, DNS e DHCP, com método. Aulas direto ao ponto, laboratório no seu PC, bônus de Virtualização e agente de IA na área de membros.">
   <meta property="og:url" content="https://tininja.net/lp/fundamentos-de-rede/">
   <meta property="og:image" content="https://tininja.net/assets/img/curso-ferramentas-960.webp">
   <meta property="og:video" content="https://tininja.net/assets/video/criativo-ping-falhou.mp4">
@@ -97,6 +97,14 @@
     .lp-mod .lp-tag { margin-bottom: 0.4rem; }
     .lp-mod ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
     .lp-mod li { margin-bottom: 0.35rem; }
+    /* 14/11: módulo bônus. Mesmo cartão dos módulos, com a listra branco-laranja do T568B (o fio listrado = o que vem a mais). */
+    .lp-mod.lp-bonus { grid-column: 1 / -1; background: var(--papel); }
+    .lp-bonus::before { content: ""; display: block; height: 10px; background: repeating-linear-gradient(90deg, var(--laranja) 0 18px, color-mix(in srgb, var(--laranja) 35%, #fff) 18px 30px); border-bottom: var(--borda); }
+    .lp-bonus-nota { margin: 0.9rem 0 0; font-weight: 700; color: var(--tinta-2); }
+    @media (min-width: 980px) {
+      .lp-bonus > div { display: grid; grid-template-columns: 0.9fr 1.1fr; column-gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start; }
+      .lp-bonus ul { margin-top: 0; }
+    }
     .lp-galeria { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 1.4rem; }
     .lp-galeria figure { margin: 0; }
     .lp-galeria img { border-radius: var(--raio); aspect-ratio: 16 / 9; object-fit: cover; box-shadow: var(--sombra); }
@@ -179,7 +187,7 @@
           <!-- COPY: cta-hero -->
           <a class="placa placa-lima" data-cta="hero" href="https://pay.hotmart.com/C108187267L?off=zfw2ue6n" rel="noopener">Quero entrar no Fundamentos de Rede</a>
           <!-- COPY: linha-hero -->
-          <small>Método e rede, em 2 módulos · laboratório no seu PC · agente de IA na área de membros · 7 dias de garantia</small>
+          <small>Método e rede, em 2 módulos, mais o bônus de Virtualização · laboratório no seu PC · agente de IA na área de membros · 7 dias de garantia</small>
           <!-- COPY: preco-hero -->
           <p class="lp-hero-preco">R$ 197 ou até 12x · 7 dias de garantia</p>
           <!-- COPY: ver-curso (cumpre o "veja o que vem no curso" do anúncio frio) -->
@@ -252,7 +260,7 @@
     <!-- 4. O caminho: o que o aluno faz em cada módulo -->
     <section class="lp-sec" aria-labelledby="caminho">
       <p class="lp-tag">O caminho</p>
-      <h2 id="caminho">Dois módulos. Primeiro o método, depois a rede.</h2>
+      <h2 id="caminho">Dois módulos e um bônus. Primeiro o método, depois a rede.</h2>
       <div class="lp-modulos">
         <article class="lp-mod">
           <div>
@@ -280,6 +288,27 @@
             </ul>
           </div>
         </article>
+        <!-- COPY: bonus-virtualizacao (14/11; temas = ROTEIROS/curso-m02-*; sem PDF, não prometer apostila) -->
+        <article class="lp-mod lp-bonus" aria-labelledby="bonus-titulo">
+          <div>
+            <div>
+              <p class="lp-tag">Módulo bônus · virtualização</p>
+              <h3 id="bonus-titulo">O servidor que parece desperdiçar dinheiro</h3>
+              <p>Um escritório de engenharia com um servidor que parece vazio (15% de CPU em média) e o cliente pedindo mais três coisas: controlador de domínio, firewall e ERP. A primeira ideia é comprar mais servidores. Precisa mesmo?</p>
+              <p>O bônus segue esse caso até uma proposta que outro técnico consiga ler, questionar e revisar.</p>
+              <p class="lp-bonus-nota">Já está liberado na área de membros, logo depois do Módulo 1, para quem já comprou e para quem entrar agora.</p>
+            </div>
+            <ul>
+              <li>O que é virtualização e por que ela muda a conta do servidor.</li>
+              <li>Hipervisor Tipo 1 e Tipo 2, e se o Hyper-V vira Tipo 2 por ser habilitado dentro do Windows.</li>
+              <li>Como escolher a plataforma olhando gestão, suporte e licença, além da categoria.</li>
+              <li>Quanta CPU, memória e disco entregar a cada máquina virtual.</li>
+              <li>Checkpoint ou cópia independente: o que de fato protege a VM.</li>
+              <li>Containers e VMs, sem se perder.</li>
+              <li>O caso resolvido: o servidor que virou três.</li>
+            </ul>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -289,12 +318,13 @@
       <h2 id="recebe">Aula direto ao ponto, prática no PDF, dúvida respondida.</h2>
       <ul class="lp-recebe">
         <li><strong>Aulas direto ao ponto</strong><span>Pra você não perder tempo com o que não precisa. Cada uma responde uma pergunta só.</span></li>
-        <li><strong>Material de prática por aula</strong><span>Um PDF logo abaixo de cada vídeo. O vídeo mostra o raciocínio; a prática é onde você aprende.</span></li>
+        <li><strong>Material de prática por aula</strong><span>Um PDF logo abaixo de cada vídeo dos dois módulos. O vídeo mostra o raciocínio; a prática é onde você aprende.</span></li>
         <li><strong>Laboratório no seu PC</strong><span>Servidor e estação no VirtualBox, para testar sem medo de quebrar nada.</span></li>
         <li><strong>Diário e fichas de diagnóstico</strong><span>Pergunta, evidência, hipótese, teste e conclusão, para usar no próximo chamado.</span></li>
-        <li><strong>Avaliação com gabarito</strong><span>No fim de cada módulo, laboratórios para conferir se você executa, não só se assistiu.</span></li>
+        <li><strong>Avaliação com gabarito</strong><span>No fim de cada um dos dois módulos, laboratórios para conferir se você executa, não só se assistiu.</span></li>
         <li><strong>Dúvidas nos comentários</strong><span>O Eduardo responde às quartas e aos sábados.</span></li>
         <li><strong>Agente de IA na área de membros</strong><span>Treinado com o conteúdo do curso, para revisar um conceito ou se orientar numa prática. Não substitui as aulas nem as respostas do Eduardo.</span></li>
+        <li><strong>Bônus: Virtualização</strong><span>O caso do servidor que parece desperdiçar dinheiro, do hipervisor à proposta final.</span></li>
       </ul>
       <!-- COPY: por-dentro (prova por demonstração, sem depoimento; recortes já revisados do c2-por-dentro) -->
       <h3 style="margin-top:2rem">Por dentro do curso</h3>
@@ -356,7 +386,8 @@
         <h2 id="oferta-titulo">Fundamentos de Rede</h2>
         <ul>
           <li><strong>2 módulos:</strong> Método e Redes e TCP/IP.</li>
-          <li><strong>PDF de prática em todas as aulas.</strong></li>
+          <li><strong>Bônus: Virtualização,</strong> já liberado para quem compra e para quem já comprou.</li>
+          <li><strong>PDF de prática em todas as aulas</strong> dos 2 módulos.</li>
           <li><strong>Laboratório no VirtualBox,</strong> montado passo a passo.</li>
           <li><strong>Diário, fichas e avaliação com gabarito.</strong></li>
           <li><strong>Dúvidas respondidas pelo Eduardo</strong> às quartas e aos sábados.</li>
@@ -381,7 +412,9 @@
       <details><summary>Preciso ter servidor ou laboratório em casa?</summary><p>Não. O Módulo 0 só pede um editor de texto. No Módulo 1 você monta o laboratório no VirtualBox, no seu próprio PC, com a aula passo a passo.</p></details>
       <details><summary>Nunca mexi com rede. Vou acompanhar?</summary><p>Sim. O curso começa pelo método e explica cada conceito (endereço, máscara, gateway, DNS, DHCP) a partir de um sintoma de chamado, sem pressupor experiência. O que ele pressupõe é que você já use o Windows no dia a dia: o curso não ensina sistema operacional do zero.</p></details>
       <!-- COPY: faq-escopo -->
-      <details><summary>Serve para quem estuda para o CCNA ou quer uma formação completa?</summary><p>O Fundamentos de Rede não segue o roteiro da prova da Cisco nem usa equipamento Cisco. Ele ensina a base que toda rede usa (endereço, máscara, gateway, DNS e DHCP) no Windows, em laboratório, a partir de sintomas de chamado. Quem estuda para o CCNA aproveita essa base, mas precisa de material próprio para a prova. Também não é uma formação completa de infraestrutura: é a base de rede que os assuntos mais avançados, como o Active Directory, pressupõem.</p></details>
+      <details><summary>Serve para quem estuda para o CCNA ou quer uma formação completa?</summary><p>O Fundamentos de Rede não segue o roteiro da prova da Cisco nem usa equipamento Cisco. Ele ensina a base que toda rede usa (endereço, máscara, gateway, DNS e DHCP) no Windows, em laboratório, a partir de sintomas de chamado. Quem estuda para o CCNA aproveita essa base, mas precisa de material próprio para a prova. Também não é uma formação completa de infraestrutura: é a base de rede que os assuntos mais avançados, como o Active Directory, pressupõem. O bônus de Virtualização acrescenta um caso de servidor e máquinas virtuais, mas não transforma o curso numa formação completa.</p></details>
+      <!-- COPY: faq-bonus (14/11) -->
+      <details><summary>O que é o bônus de Virtualização? Quem já comprou recebe?</summary><p>É um módulo a mais, que aparece logo depois do Módulo 1. Ele parte de um caso, o servidor do cliente que parece desperdiçar dinheiro, e passa por hipervisor Tipo 1 e Tipo 2, escolha da plataforma, CPU, memória e disco de cada máquina virtual, checkpoint ou cópia independente e containers, até fechar o caso. Já está liberado na área de membros para quem comprou antes e para quem entrar agora, sem pagar nada a mais. Esse bônus não tem PDF de prática.</p></details>
       <!-- COPY: faq-youtube -->
       <details><summary>Isso não tem de graça no YouTube?</summary><p>Os vídeos do canal explicam um assunto por vez. O curso põe tudo em ordem, do método ao caso resolvido, e em cada aula você pratica no laboratório, com o PDF e a avaliação com gabarito. As dúvidas, o Eduardo responde nos comentários às quartas e aos sábados.</p></details>
       <!-- COPY: faq-8gb -->
