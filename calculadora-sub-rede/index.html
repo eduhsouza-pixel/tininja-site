@@ -137,7 +137,7 @@ code{font-family:var(--mono);background:var(--papel);border-radius:3px;padding:0
 <div id="p4" role="tabpanel" aria-labelledby="tab4">
 <div class="grid form">
 <div><label for="ip">Endereço IP (pode incluir /prefixo ou máscara)</label>
-<input type="text" id="ip" inputmode="decimal" autocomplete="off" spellcheck="false" value="192.168.1.10/24" aria-describedby="ip-h err4">
+<input type="text" id="ip" inputmode="url" autocomplete="off" spellcheck="false" value="192.168.1.10/24" aria-describedby="ip-h err4">
 <p class="hint" id="ip-h">Ex.: 10.0.0.1/8, 172.16.5.4 255.255.240.0</p></div>
 <div><label for="mk">Prefixo / máscara</label><select id="mk" aria-describedby="mk-h"></select>
 <p class="hint" id="mk-h">Usado quando o IP não traz /prefixo.</p></div>
@@ -168,7 +168,7 @@ code{font-family:var(--mono);background:var(--papel);border-radius:3px;padding:0
 <button type="button" role="tab" id="tabe" aria-selected="false" aria-controls="pe" tabindex="-1">N sub-redes iguais</button>
 </div>
 <div class="grid g2">
-<div><label for="vnet">Rede de origem</label><input type="text" id="vnet" inputmode="decimal" autocomplete="off" spellcheck="false" value="192.168.10.0/24"></div>
+<div><label for="vnet">Rede de origem</label><input type="text" id="vnet" inputmode="url" autocomplete="off" spellcheck="false" value="192.168.10.0/24"></div>
 <div id="pe" role="tabpanel" aria-labelledby="tabe" hidden><label for="vn">Quantidade de sub-redes</label><input id="vn" type="number" min="1" max="4096" value="4"><p class="hint">Arredonda para a próxima potência de 2.</p></div>
 </div>
 <div id="pv" role="tabpanel" aria-labelledby="tabv"><label for="vlist" class="mt">Sub-redes (uma por linha: nome e nº de hosts)</label>

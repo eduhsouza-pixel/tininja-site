@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TI Ninja — de técnico de suporte a quem cuida da rede da empresa</title>
-  <meta name="description" content="Para técnico de TI que quer sair do balcão e cuidar da rede de empresas, como CLT ou com contrato próprio. Calcule o preço mínimo da sua hora e veja a conta que quase ninguém ensina.">
+  <meta name="description" content="Para técnico de TI que quer sair do suporte e cuidar da rede de empresas, como CLT ou com contrato próprio. Calcule o preço mínimo da sua hora e veja a conta que quase ninguém ensina.">
   <link rel="canonical" href="https://tininja.net/">
   <meta name="author" content="Eduardo Honorato">
   <meta name="theme-color" content="#FFFFFF">
@@ -12,7 +12,7 @@
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
   <meta property="og:title" content="TI Ninja — de técnico de suporte a quem cuida da rede da empresa">
-  <meta property="og:description" content="Para técnico de TI que quer sair do balcão e cuidar da rede de empresas, como CLT ou com contrato próprio. Calcule o preço mínimo da sua hora e veja a conta que quase ninguém ensina.">
+  <meta property="og:description" content="Para técnico de TI que quer sair do suporte e cuidar da rede de empresas, como CLT ou com contrato próprio. Calcule o preço mínimo da sua hora e veja a conta que quase ninguém ensina.">
   <meta property="og:url" content="https://tininja.net/">
   <meta property="og:image" content="https://tininja.net/assets/img/og-tininja.jpg">
   <meta property="og:image:width" content="1200">
@@ -20,14 +20,14 @@
   <meta property="og:image:alt" content="Página do TI Ninja: um cabo de rede preto com os fios laranja, verde, azul e marrom saindo para o curso, a calculadora de sub-rede, a calculadora da hora e o e-book.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TI Ninja — de técnico de suporte a quem cuida da rede da empresa">
-  <meta name="twitter:description" content="Para técnico de TI que quer sair do balcão e cuidar da rede de empresas. Calcule o preço mínimo da sua hora e veja a conta que quase ninguém ensina.">
+  <meta name="twitter:description" content="Para técnico de TI que quer sair do suporte e cuidar da rede de empresas. Calcule o preço mínimo da sua hora e veja a conta que quase ninguém ensina.">
   <meta name="twitter:image" content="https://tininja.net/assets/img/og-tininja.jpg">
   <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" href="/assets/plates/cabo.png" as="image">
+  <link rel="preload" href="/assets/plates/cabo.webp" as="image" type="image/webp" media="(min-width: 900px)" fetchpriority="high">
   <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
@@ -77,7 +77,14 @@
   <main id="conteudo">
     <section class="espinha" aria-labelledby="hero-titulo">
       <figure class="cabo">
-        <img src="/assets/plates/cabo.png" alt="" width="822" height="1376" fetchpriority="high" decoding="async">
+        <!-- O cabo só aparece a partir de 900px (site.css: .cabo some no celular).
+             Abaixo disso nenhuma <source> casa e o img fica no GIF vazio embutido:
+             o celular não baixa a imagem. -->
+        <picture>
+          <source media="(min-width: 900px)" srcset="/assets/plates/cabo.webp" type="image/webp">
+          <source media="(min-width: 900px)" srcset="/assets/plates/cabo.png">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" width="822" height="1376" fetchpriority="high">
+        </picture>
       </figure>
       <div class="espinha-copy">
         <h1 id="hero-titulo">Pare de apagar incêndio.<br> Administre a rede.</h1>
@@ -208,7 +215,7 @@
       <p>Se o dia é senha, impressora e o Wi-Fi que caiu, e você quer ser a pessoa que desenha a rede e segura um contrato, a casa é esta. Não é atalho. É o ofício, na ordem em que ele se aprende.</p>
       <ol class="caminho">
         <li>Técnico que apaga incêndio</li>
-        <li>Analista de infraestrutura</li>
+        <li>Analista de Infraestrutura e Redes</li>
         <li>Dono do próprio MSP</li>
       </ol>
     </section>

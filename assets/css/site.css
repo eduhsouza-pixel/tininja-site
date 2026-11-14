@@ -68,6 +68,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Âncora (#caminho, #oferta…) para abaixo do cabeçalho fixo, não atrás dele. */
+  scroll-padding-top: calc(var(--fascia) + 1rem);
   scrollbar-color: var(--tinta) var(--papel);
   -webkit-text-size-adjust: 100%;
 }
@@ -1984,7 +1986,8 @@ a.fio:hover .fio-titulo {
 }
 
 .artigos :is(section[id], h2[id]) {
-  scroll-margin-top: 8rem;
+  /* Soma com o scroll-padding-top do html: o título continua parando a 8rem do topo. */
+  scroll-margin-top: calc(7rem - var(--fascia));
 }
 
 .artigos :is(ul, ol) {

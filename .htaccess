@@ -44,6 +44,26 @@
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
+
+  # HSTS curto de propósito: se algo der errado no HTTPS, o navegador esquece
+  # em 5 minutos. Depois de uns dias sem problema, subir para 31536000 (1 ano).
+  # includeSubDomains só depois de conferir que todo subdomínio (alunos.tininja.net
+  # inclusive) responde em HTTPS; preload por último.
+  Header always set Strict-Transport-Security "max-age=300"
+  # clipboard-write fica liberado: os botões "Copiar" dependem dele.
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  # Mesmo efeito do X-Frame-Options, no formato atual.
+  Header always set Content-Security-Policy "frame-ancestors 'self'"
+  # CSP só em observação (Report-Only): não bloqueia nada, só avisa no console do
+  # navegador. Lista o que o site carrega hoje: Meta Pixel nas LPs (script em
+  # connect.facebook.net, envio para www.facebook.com), vídeo do YouTube em modo
+  # nocookie e capas em i.ytimg.com, formulário do e-book no Apps Script (que
+  # redireciona para script.googleusercontent.com), checkout da Hotmart, scripts e
+  # estilos inline e os onerror das capas ('unsafe-inline'), e o email-decode do
+  # Cloudflare em /cdn-cgi/ ('self'). Sem report-uri: não há endpoint para receber.
+  # Antes de virar Content-Security-Policy de verdade, conferir dias de console
+  # limpo nas LPs com o Pixel ligado: uma origem esquecida derruba o Pixel.
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com; font-src 'self'; media-src 'self'; connect-src 'self' https://www.facebook.com https://connect.facebook.net https://script.google.com https://script.googleusercontent.com; frame-src https://www.youtube-nocookie.com; form-action 'self' https://pay.hotmart.com https://script.google.com https://script.googleusercontent.com; base-uri 'self'; object-src 'none'"
 </IfModule>
 
 <IfModule mod_deflate.c>
