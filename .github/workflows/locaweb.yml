@@ -45,6 +45,7 @@ jobs:
           mkdir -p _site/calculadora-sub-rede
           cp calculadora-sub-rede/index.html _site/calculadora-sub-rede/index.html
           if [ -d lp ]; then cp -a lp _site/; fi
+          if [ -d aula ]; then cp -a aula _site/; fi
 
       - name: Versionar CSS e JS
         # O nginx da Locaweb força cache de um ano em .css/.js. Com ?v=<commit>
