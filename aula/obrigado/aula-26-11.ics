@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TI Ninja//Aula ao vivo 2026-11-26//PT-BR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:aula-2026-11-26-2000@tininja.net
+DTSTAMP:20261112T214500Z
+DTSTART:20261126T230000Z
+DTEND:20261127T003000Z
+SUMMARY:Se 2027 Apertar\, Quem a Empresa Chama?
+DESCRIPTION:Aula ao vivo e gratuita com Eduardo Honorato\, do TI Ninja.\nO 
+ link chega por e-mail no dia da aula\, de manhã\, e também no grupo do W
+ hatsApp da aula.
+LOCATION:Online (o link chega por e-mail)
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:A aula começa em 30 minutos
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
