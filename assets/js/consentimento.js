@@ -50,7 +50,7 @@
     aviso.setAttribute('aria-label', 'Aviso de cookies');
     aviso.innerHTML =
       '<div class="tn-cookies-in">' +
-      '<p>Este site usa o pixel da Meta (Facebook e Instagram) para medir os anúncios. Ele só liga se você aceitar. ' +
+      '<p>Uso o pixel da Meta (Facebook e Instagram) para saber quais anúncios trazem gente para cá. Ele só liga se você aceitar, e dá para mudar a escolha quando quiser. ' +
       '<a href="/politica-de-privacidade/#cookies">Saiba mais</a></p>' +
       '<div class="tn-cookies-bt">' +
       '<button type="button" class="tn-nao">Recusar</button>' +
