@@ -313,7 +313,7 @@
   window.tnPixelLigar=function(){if(window.tnTeste||window.fbq)return;
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init','839957353977860');fbq('track','PageView');};
-  window.tnEv=function(tipo,nome,dados){if(!window.tnTeste&&window.fbq)fbq(tipo,nome,dados||{});};
+  window.tnEv=function(tipo,nome,dados,opcoes){if(!window.tnTeste&&window.fbq)fbq(tipo,nome,dados||{},opcoes||{});};
   </script>
   <script src="/assets/js/consentimento.js" defer></script>
 </head>
@@ -385,7 +385,7 @@
           <div class="hp" aria-hidden="true"><label>Site <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           <button class="placa" type="submit">Quero o link da aula</button>
           <p class="erro" data-envio-status role="status" aria-live="polite"></p>
-          <p class="nota">Com a inscrição, você recebe por e-mail o link e os lembretes desta aula. <a href="/politica-de-privacidade/">Política de Privacidade</a>.</p>
+          <p class="nota">Com a inscrição, você recebe por e-mail o link e os lembretes desta aula. Para eu saber quais anúncios trazem inscrições, aviso a Meta de cada inscrição, com nome, e-mail e WhatsApp embaralhados por criptografia. Se você recusou os cookies, esse aviso não sai. <a href="/politica-de-privacidade/#aula">Política de Privacidade</a>.</p>
         </form>
 
         <p class="mais">Ao vivo, eu monto a rede de um escritório, do firewall ao domínio, e mostro o caminho de um para o outro.</p>
@@ -529,7 +529,7 @@
           <div class="hp" aria-hidden="true"><label>Site <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           <button class="placa" type="submit">Quero o link da aula</button>
           <p class="erro" data-envio-status role="status" aria-live="polite"></p>
-          <p class="nota">Com a inscrição, você recebe por e-mail o link e os lembretes desta aula. <a href="/politica-de-privacidade/">Política de Privacidade</a>.</p>
+          <p class="nota">Com a inscrição, você recebe por e-mail o link e os lembretes desta aula. Para eu saber quais anúncios trazem inscrições, aviso a Meta de cada inscrição, com nome, e-mail e WhatsApp embaralhados por criptografia. Se você recusou os cookies, esse aviso não sai. <a href="/politica-de-privacidade/#aula">Política de Privacidade</a>.</p>
         </form>
       </div>
     </section>
@@ -616,10 +616,26 @@
           const button = form.querySelector("[type=submit]");
           button.disabled = true;
           avisar("Enviando…");
+          // API de Conversões (ponte v3): o mesmo event_id vai para a ponte e para o fbq,
+          // e a Meta descarta o duplicado. fbc sai do cookie _fbc (com aceite) ou do fbclid da URL.
+          // Quem clicou em "Recusar" manda consentimento=nao e a ponte não envia nada à Meta.
+          const eventId = "lead-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
+          const cookie = (n) => (document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)")) || [])[1] || "";
+          const fbclid = (q.get("fbclid") || "").trim();
+          const corpo = new URLSearchParams(new FormData(form));
+          let consentimento = "";
+          try { consentimento = (window.tnConsentimento && window.tnConsentimento()) || ""; } catch (ignore) {}
+          corpo.set("event_id", eventId);
+          corpo.set("fbc", cookie("_fbc") || (fbclid ? "fb.1." + Date.now() + "." + fbclid : ""));
+          corpo.set("fbp", cookie("_fbp"));
+          corpo.set("client_ua", navigator.userAgent || "");
+          corpo.set("page_url", location.origin + location.pathname);
+          corpo.set("consentimento", consentimento);
+          corpo.set("tn_teste", window.tnTeste ? "1" : "0");
           try {
             const response = await fetch(endpoint, {
               method: "POST",
-              body: new URLSearchParams(new FormData(form)),
+              body: corpo,
               mode: "cors",
               credentials: "omit",
             });
@@ -627,7 +643,7 @@
             try { data = await response.json(); } catch (ignore) {}
             if (response.ok && data && data.ok === true) {
               try { sessionStorage.setItem("tn_aula_email", String(new FormData(form).get("email") || "").trim().toLowerCase()); } catch (ignore) {}
-              try { if (window.tnEv) tnEv("track", "Lead", { content_name: "aula-26-11" }); } catch (ignore) {}
+              try { if (window.tnEv) tnEv("track", "Lead", { content_name: "aula-26-11" }, { eventID: eventId }); } catch (ignore) {}
               await new Promise((r) => setTimeout(r, 400));
               location.href = OBRIGADO;
               return;
