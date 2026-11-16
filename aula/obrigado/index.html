@@ -163,6 +163,7 @@
     .recebido { padding: 1.2rem 1.25rem; border-radius: var(--raio); background: var(--papel); border-left: 6px solid var(--verde-faixa); }
     .recebido h3 { margin: 0 0 0.3rem; font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; }
     .recebido p { margin: 0; }
+    .recebido .placa { margin-top: 1rem; }
     .hp { position: absolute; left: -10000px; top: 0; width: 1px; height: 1px; overflow: hidden; }
 
     .rodape { position: relative; padding: 2.2rem 0 2.4rem; background: var(--papel); color: var(--tinta-2); font-size: 0.95rem; }
@@ -232,11 +233,12 @@
         <h2 id="pesquisa-titulo">Me ajuda a montar a aula</h2>
         <p>Quero saber onde você está e onde trava. São três perguntas, mais uma opcional.</p>
 
-        <!-- TODO pesquisa: o action fica no placeholder até existir o destino.
-             Caminho mais simples: Apps Script que grava numa planilha do Google (respostas anônimas).
-             O E-goi não serve bem aqui, porque a pesquisa não pede e-mail. Ver PUBLICAR_AULA.md.
+        <!-- Pesquisa: vai para a mesma ponte da inscrição (Apps Script → E-goi), com acao=pesquisa.
+             As respostas ficam em campos extras do contato que acabou de se inscrever (e-mail guardado
+             na sessionStorage pela página /aula/). O e-mail vai como "pesquisa_email", nunca como "email":
+             assim a ponte antiga (sem acao=pesquisa) recusa o envio sem mexer no cadastro.
              Campo origem="obrigado-aula-2026-11-26" separa estas respostas das do tiro de alerta. -->
-        <form id="pesquisa" action="#EGOI_PESQUISA_ACTION_PLACEHOLDER" method="post" novalidate>
+        <form id="pesquisa" action="https://script.google.com/macros/s/AKfycbzerTSb0sx5cdmH8X_1nYcnKDoOOtW2LSHf98TtreqTEX7XY58ThSB7tz3VHL4LaGWf/exec" method="post" novalidate>
           <fieldset id="p1" aria-describedby="p1-erro">
             <legend>1. Hoje, o que você faz em TI?</legend>
             <div class="opcoes">
@@ -290,8 +292,12 @@
           </div>
 
           <input type="hidden" name="origem" value="obrigado-aula-2026-11-26">
+          <input type="hidden" name="acao" value="pesquisa">
+          <input type="hidden" name="pesquisa_email" value="">
           <div class="hp" aria-hidden="true"><label>Site <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-          <p class="nota">A pesquisa não pede seu nome nem seu e-mail. Posso citar um trecho de uma resposta na aula ou nos Stories, sempre sem nome.</p>
+          <!-- COPY PENDENTE (Lightcopy + ok do Eduardo): a nota antiga dizia que a pesquisa não pedia nome nem e-mail.
+               Agora as respostas ficam junto da inscrição, então a nota mudou para não prometer anonimato. -->
+          <p class="nota">As respostas ficam junto da sua inscrição. Posso citar um trecho de uma resposta na aula ou nos Stories, sempre sem nome.</p>
           <button class="placa placa-laranja" type="submit">Enviar respostas</button>
           <p class="erro" data-envio-status role="status" aria-live="polite"></p>
         </form>
@@ -299,6 +305,7 @@
         <div class="recebido" id="recebido" hidden tabindex="-1">
           <h3>Respostas enviadas. Obrigado.</h3>
           <p>Até quinta, às 20h.</p>
+          <a class="placa placa-laranja" href="https://chat.whatsapp.com/G5PKxOwbtc83VNJUoxzjrr" target="_blank" rel="noopener">Entrar no grupo da aula<span class="sr"> (abre o WhatsApp)</span></a>
         </div>
       </div>
     </section>
@@ -323,11 +330,18 @@
 
   <script>
     // Pesquisa: "Outro" abre o campo de texto; a pergunta 2 aceita até duas; valida antes de enviar.
-    // Enquanto PESQUISA_ENDPOINT estiver vazio (ou o action começar com "#"), o envio só troca o formulário pela confirmação: nada sai do navegador.
+    // Envia para a ponte da aula com acao=pesquisa e o e-mail da inscrição (sessionStorage) em pesquisa_email.
+    // Qualquer resposta HTTP da ponte troca o formulário pela confirmação: se a ponte ainda não souber
+    // gravar a pesquisa (versão antiga), ela recusa sem mexer no cadastro e a pessoa segue para o grupo.
+    // Só erro de rede mantém o formulário, para tentar de novo.
     (() => {
-      const PESQUISA_ENDPOINT = "";
+      const PESQUISA_ENDPOINT = "https://script.google.com/macros/s/AKfycbzerTSb0sx5cdmH8X_1nYcnKDoOOtW2LSHf98TtreqTEX7XY58ThSB7tz3VHL4LaGWf/exec";
       const form = document.getElementById("pesquisa");
       const recebido = document.getElementById("recebido");
+      try {
+        const em = sessionStorage.getItem("tn_aula_email") || "";
+        if (em) form.querySelector('input[name="pesquisa_email"]').value = em;
+      } catch (ignore) {}
 
       const ligarOutro = (nome, campoId) => {
         const campo = document.getElementById(campoId);
@@ -398,15 +412,19 @@
         avisar("Enviando…");
         (async () => {
           try {
+            // A pergunta 2 aceita até duas: vão juntas num campo só ("a|b"), que a ponte lê com e.parameter.
+            const corpo = new URLSearchParams(new FormData(form));
+            const travas = corpo.getAll("trava");
+            corpo.delete("trava");
+            corpo.append("trava", travas.join("|"));
             const response = await fetch(endpoint, {
               method: "POST",
-              body: new URLSearchParams(new FormData(form)),
+              body: corpo,
               mode: "cors",
               credentials: "omit",
             });
-            let data = null;
-            try { data = await response.json(); } catch (ignore) {}
-            if (response.ok && data && data.ok === true) {
+            if (response.ok) {
+              avisar("");
               mostrarOk();
               return;
             }

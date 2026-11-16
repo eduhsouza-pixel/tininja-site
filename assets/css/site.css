@@ -1757,6 +1757,19 @@ a.fio:hover .fio-titulo {
   font-weight: 700;
 }
 
+.politica .politica-botao {
+  font: inherit;
+  font-weight: 700;
+  color: var(--azul-escuro);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
 .politica ul {
   max-width: var(--measure);
   padding-left: 1.2rem;
