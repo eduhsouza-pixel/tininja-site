@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Cópia de 15/11/2026, pronta para https://tininja.net/aula/. Ainda não publicada. -->
+  <!-- Página de inscrição da aula de 26/11/2026 (no ar desde 15/11/2026). -->
   <title>Se 2027 Apertar, Quem a Empresa Chama? — aula ao vivo e gratuita, 26/11 — TI Ninja</title>
   <meta name="description" content="Quinta, 26/11, às 20h, ao vivo e gratuita. Eu monto a rede de um escritório, do firewall ao domínio, e mostro o caminho do suporte ao Analista de Infraestrutura e Redes.">
   <meta name="author" content="Eduardo Honorato">
@@ -27,7 +27,6 @@
   <!-- Fontes do próprio site (sem CDN). Fora do tininja.net, cai no fallback de sistema. -->
   <link rel="preload" href="/assets/fonts/almarai-latin-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <!-- Sem pixel e sem tracker. Só entra com ok do Eduardo. -->
   <style>
     /* Sistema T568B do tininja.net (assets/css/site.css): chão branco, tinta preta,
        cores do cabo de rede. Página isolada: só o que ela usa, inline. */
@@ -309,11 +308,14 @@
   <!-- Meta Pixel: PageView na página; Lead quando a ponte do E-goi confirma a inscrição (ok: true).
        Teste sem sujar o pixel: abrir com ?tn_teste=1 (liga neste navegador) e ?tn_teste=0 (desliga). -->
   <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  // Consentimento: o pixel só é baixado depois do "Aceitar" do aviso de cookies (assets/js/consentimento.js).
   (function(){var m=location.search.match(/[?&]tn_teste=([01])/);try{if(m)localStorage.setItem('tn_teste',m[1]);window.tnTeste=localStorage.getItem('tn_teste')==='1';}catch(e){window.tnTeste=false;}})();
-  window.tnEv=function(tipo,nome,dados){if(!window.tnTeste)fbq(tipo,nome,dados||{});};
-  if(!window.tnTeste){fbq('init','839957353977860');fbq('track','PageView');}
+  window.tnPixelLigar=function(){if(window.tnTeste||window.fbq)return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','839957353977860');fbq('track','PageView');};
+  window.tnEv=function(tipo,nome,dados){if(!window.tnTeste&&window.fbq)fbq(tipo,nome,dados||{});};
   </script>
+  <script src="/assets/js/consentimento.js" defer></script>
 </head>
 <body>
   <a class="pular" href="#inscricao">Ir para a inscrição</a>
@@ -351,10 +353,7 @@
           <span>Horário de Brasília. Aula ao vivo e gratuita, com Eduardo Honorato.</span>
         </p>
 
-        <!-- TODO E-goi: o action fica no placeholder até a ponte da aula estar no ar (tag aula-26-11,
-             gravação sem opt-in de marketing e trava na automação Boas-vindas). Ver PUBLICAR_AULA.md.
-             Depois: colar a URL /exec da ponte em LEAD_ENDPOINT, no script do fim da página.
-             Não usar ainda a ponte do Quanto cobrar: ela recusa quem não marca o opt-in e não aplica a tag da aula. -->
+        <!-- Envia para a ponte da aula no Apps Script (E-goi, Lista 1, tag aula-26-11). Não é a ponte do Quanto cobrar. -->
         <form class="inscricao" id="inscricao" action="https://script.google.com/macros/s/AKfycbzerTSb0sx5cdmH8X_1nYcnKDoOOtW2LSHf98TtreqTEX7XY58ThSB7tz3VHL4LaGWf/exec" method="post" data-inscricao>
           <div class="campo">
             <label for="nome-1">Nome</label>
@@ -369,7 +368,7 @@
           </div>
           <div class="campo">
             <label for="whatsapp-1">WhatsApp <span class="opcional">(opcional)</span></label>
-            <input id="whatsapp-1" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" pattern="[0-9()+\s.\-]{10,20}" placeholder="DDD e número" aria-describedby="whatsapp-1-ajuda whatsapp-1-erro">
+            <input id="whatsapp-1" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" pattern="[0-9\(\)+\s.\-]{10,20}" placeholder="DDD e número" aria-describedby="whatsapp-1-ajuda whatsapp-1-erro">
             <p class="ajuda" id="whatsapp-1-ajuda">Só para o lembrete desta aula.</p>
             <p class="erro" id="whatsapp-1-erro" aria-live="polite"></p>
           </div>
@@ -382,6 +381,7 @@
           <input type="hidden" name="utm_medium" value="">
           <input type="hidden" name="utm_campaign" value="">
           <input type="hidden" name="utm_content" value="">
+          <input type="hidden" name="utm_term" value="">
           <div class="hp" aria-hidden="true"><label>Site <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           <button class="placa" type="submit">Quero o link da aula</button>
           <p class="erro" data-envio-status role="status" aria-live="polite"></p>
@@ -497,7 +497,7 @@
           <p class="abre">Do firewall ao domínio, com o defeito e a correção na tela. A aula é gratuita e o link chega no seu e-mail no dia, de manhã.</p>
         </div>
 
-        <!-- TODO E-goi: mesmo action/placeholder do formulário de cima. -->
+        <!-- Mesmo destino do formulário de cima. -->
         <form class="inscricao" action="https://script.google.com/macros/s/AKfycbzerTSb0sx5cdmH8X_1nYcnKDoOOtW2LSHf98TtreqTEX7XY58ThSB7tz3VHL4LaGWf/exec" method="post" data-inscricao aria-label="Inscrição na aula">
           <div class="campo">
             <label for="nome-2">Nome</label>
@@ -512,7 +512,7 @@
           </div>
           <div class="campo">
             <label for="whatsapp-2">WhatsApp <span class="opcional">(opcional)</span></label>
-            <input id="whatsapp-2" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" pattern="[0-9()+\s.\-]{10,20}" placeholder="DDD e número" aria-describedby="whatsapp-2-ajuda whatsapp-2-erro">
+            <input id="whatsapp-2" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" pattern="[0-9\(\)+\s.\-]{10,20}" placeholder="DDD e número" aria-describedby="whatsapp-2-ajuda whatsapp-2-erro">
             <p class="ajuda" id="whatsapp-2-ajuda">Só para o lembrete desta aula.</p>
             <p class="erro" id="whatsapp-2-erro" aria-live="polite"></p>
           </div>
@@ -525,6 +525,7 @@
           <input type="hidden" name="utm_medium" value="">
           <input type="hidden" name="utm_campaign" value="">
           <input type="hidden" name="utm_content" value="">
+          <input type="hidden" name="utm_term" value="">
           <div class="hp" aria-hidden="true"><label>Site <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           <button class="placa" type="submit">Quero o link da aula</button>
           <p class="erro" data-envio-status role="status" aria-live="polite"></p>
@@ -543,11 +544,12 @@
   </footer>
 
   <script>
-    // Sem dependência e sem rastreamento. Faz três coisas:
+    // Sem dependência. Faz quatro coisas:
     // 1) copia as utm_* da URL para os campos ocultos (origem da inscrição);
     // 2) troca as mensagens de erro do navegador pelas da página, embaixo de cada campo;
-    // 3) enquanto LEAD_ENDPOINT estiver vazio (ou o action começar com "#"), valida e abre /aula/obrigado/ sem enviar nada.
-    //    Quando a ponte da aula estiver no ar, cole a URL /exec em LEAD_ENDPOINT. Não cole a ponte do Quanto cobrar sem as mudanças de PUBLICAR_AULA.md.
+    // 3) envia para a ponte da aula (LEAD_ENDPOINT) e só avança para /aula/obrigado/ com { ok: true };
+    // 4) guarda o e-mail na sessionStorage desta aba, para a pesquisa do obrigado ficar junto da inscrição.
+    //    O Lead do pixel só sai se a pessoa aceitou os cookies e não está em modo de teste (?tn_teste=1).
     (() => {
       const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbzerTSb0sx5cdmH8X_1nYcnKDoOOtW2LSHf98TtreqTEX7XY58ThSB7tz3VHL4LaGWf/exec";
       const OBRIGADO = "/aula/obrigado/";
@@ -555,7 +557,7 @@
       const forms = document.querySelectorAll("form[data-inscricao]");
 
       forms.forEach((form) => {
-        ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach((k) => {
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach((k) => {
           const v = (q.get(k) || "").trim().slice(0, 200);
           const campo = form.querySelector(`input[name="${k}"]`);
           if (campo && v) campo.value = v;
@@ -624,6 +626,7 @@
             let data = null;
             try { data = await response.json(); } catch (ignore) {}
             if (response.ok && data && data.ok === true) {
+              try { sessionStorage.setItem("tn_aula_email", String(new FormData(form).get("email") || "").trim().toLowerCase()); } catch (ignore) {}
               try { if (window.tnEv) tnEv("track", "Lead", { content_name: "aula-26-11" }); } catch (ignore) {}
               await new Promise((r) => setTimeout(r, 400));
               location.href = OBRIGADO;

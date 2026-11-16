@@ -93,10 +93,12 @@
        A Compra NÃO sai do navegador: chega só pela API de Conversões da Hotmart.
        Teste sem sujar o pixel: ?tn_teste=1 (liga neste navegador) e ?tn_teste=0 (desliga). -->
   <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  // Consentimento: o pixel só é baixado depois do "Aceitar" do aviso de cookies (assets/js/consentimento.js).
   (function(){var m=location.search.match(/[?&]tn_teste=([01])/);try{if(m)localStorage.setItem('tn_teste',m[1]);window.tnTeste=localStorage.getItem('tn_teste')==='1';}catch(e){window.tnTeste=false;}})();
-  window.tnEv=function(tipo,nome,dados){if(!window.tnTeste)fbq(tipo,nome,dados||{});};
-  if(!window.tnTeste){fbq('init','839957353977860');fbq('track','PageView');}
+  window.tnPixelLigar=function(){if(window.tnTeste||window.fbq)return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','839957353977860');fbq('track','PageView');};
+  window.tnEv=function(tipo,nome,dados){if(!window.tnTeste&&window.fbq)fbq(tipo,nome,dados||{});};
   document.addEventListener('click',function(e){
     var a=e.target.closest('a[href*="pay.hotmart.com"]');
     if(a){
@@ -105,6 +107,7 @@
     }
   });
   </script>
+  <script src="/assets/js/consentimento.js" defer></script>
 </head>
 <body class="lp">
   <a class="skip" href="#conteudo">Ir para o conteúdo</a>
