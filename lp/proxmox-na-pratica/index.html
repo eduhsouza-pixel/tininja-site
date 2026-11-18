@@ -108,6 +108,14 @@
     .lp-eduardo { display: grid; gap: 1.6rem; grid-template-columns: 1fr; align-items: center; }
     @media (min-width: 860px) { .lp-eduardo { grid-template-columns: 280px 1fr; } }
     .lp-eduardo img { width: 100%; max-width: 280px; border-radius: 50%; aspect-ratio: 1; object-fit: cover; box-shadow: var(--sombra); }
+    .lp-provas { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
+    @media (min-width: 860px) { .lp-provas { grid-template-columns: repeat(3, 1fr); } }
+    .lp-prova { margin: 0; padding: 1.3rem 1.4rem; border-radius: var(--raio); background: var(--papel); display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; }
+    .lp-prova blockquote { margin: 0; font-size: 1.1rem; font-weight: 700; line-height: 1.4; }
+    .lp-prova figcaption { font-size: 0.95rem; color: var(--tinta-3); }
+    .lp-prova figcaption strong { display: block; color: var(--tinta-2); }
+    .lp-provas-nota { margin-top: 1.2rem; font-size: 0.98rem; color: var(--tinta-3); max-width: 70ch; }
+    .lp-video-autoav { margin-top: 1.2rem; max-width: 820px; }
     .lp-oferta { display: grid; place-items: center; background: var(--tinta); color: #fff; }
     .lp-oferta .lp-tag { color: var(--laranja); }
     .lp-cartao { width: 100%; max-width: 640px; padding: clamp(1.6rem, 4vw, 2.6rem); border-radius: calc(var(--raio) * 2); background: #fff; color: var(--tinta); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
@@ -217,6 +225,28 @@
       </div>
     </section>
 
+    <!-- Prova: comentários públicos e literais do canal; os 3 autores autorizaram no YouTube em 10/11/2026
+         (PESQUISA/2026-11-10-prova-lp/PROVA.md). Não acrescentar ninguém sem permissão. -->
+    <section class="lp-sec" aria-labelledby="prova">
+      <p class="lp-tag">Quem já assiste</p>
+      <h2 id="prova">O que escrevem sobre a explicação, nos vídeos do canal.</h2>
+      <div class="lp-provas">
+        <figure class="lp-prova">
+          <blockquote>"Conteúdo fantástico, muito didático e até eu que sou leigo entendi e consegui executar."</blockquote>
+          <figcaption><strong>@FernandoFelipetto</strong> no vídeo "A melhor forma de configurar um Windows no Proxmox"</figcaption>
+        </figure>
+        <figure class="lp-prova">
+          <blockquote>"não sou de comentar em vídeo nenhum, normalmente assisto e saio fora. [...] Vou enviar esse vídeo para meus estagiarios aqui da empresa."</blockquote>
+          <figcaption><strong>@rafaellfariass</strong> no vídeo "Todos os conceitos de rede explicados"</figcaption>
+        </figure>
+        <figure class="lp-prova">
+          <blockquote>"Sou ANALISTA, e o conteúdo e a didática estão excelentes!"</blockquote>
+          <figcaption><strong>@silvioluizsilva</strong> no vídeo "Todos os conceitos de rede explicados"</figcaption>
+        </figure>
+      </div>
+      <p class="lp-provas-nota">Comentários públicos em vídeos gratuitos do canal TI Ninja no YouTube, mostrados com a autorização de cada autor. Falam do jeito de ensinar, não do curso.</p>
+    </section>
+
     <!-- 3. Jeito errado × jeito certo -->
     <section class="lp-sec" aria-labelledby="metodo">
       <p class="lp-tag">O método</p>
@@ -301,9 +331,18 @@
         <li><strong>Documentação oficial em cada decisão</strong><span>Você aprende onde conferir, para quando a versão mudar.</span></li>
         <li><strong>Autoavaliação por módulo</strong><span>Uma prova com 1 questão sorteada por aula. Errou? Ela mostra o que observar e abre a aula daquele assunto. Com 70%, libera o gabarito comentado.</span></li>
         <li><strong>Certificado em PDF</strong><span>Fechou os cinco módulos com 70% ou mais, você emite na hora, com QR Code para qualquer pessoa conferir e atalho para o LinkedIn.</span></li>
+        <li><strong>Dúvidas nos comentários</strong><span>O Eduardo responde às quartas e aos sábados.</span></li>
         <li><strong>Fórum dos alunos</strong><span>A Bancada técnica, pra caso real de rede, AD, Hyper-V/Proxmox e OPNsense. Discussão boa fica guardada por assunto.</span></li>
         <li><strong>Grupo exclusivo de alunos no WhatsApp</strong><span>Fechado para quem comprou. Os avisos para a turma saem por lá.</span></li>
       </ul>
+      <h3 style="margin-top:2rem">A autoavaliação, em menos de 2 minutos</h3>
+      <div class="lp-video lp-video-autoav" data-video="YcpvYTVEgHw">
+        <button type="button" aria-label="Assistir ao vídeo: como funciona a autoavaliação">
+          <img src="/assets/img/autoavaliacao-video-960.webp" alt="" width="960" height="540" loading="lazy">
+          <span class="lp-play" aria-hidden="true"></span>
+          <span class="lp-legenda">Como funciona a autoavaliação: da entrada sem senha ao certificado.</span>
+        </button>
+      </div>
       <h3 style="margin-top:2rem">Por dentro do curso</h3>
       <div class="lp-galeria lp-dentro">
         <figure><img src="/assets/img/px-painel-960.webp" alt="Painel do Proxmox com um container e três VMs no nó pve01" width="960" height="540" loading="lazy"><figcaption>O laboratório: um container e três VMs dentro do Proxmox, no seu PC.</figcaption></figure>
@@ -351,6 +390,7 @@
           <li><strong>Apostila em PDF em todas as aulas.</strong></li>
           <li><strong>Laboratório no seu PC,</strong> montado passo a passo.</li>
           <li><strong>Autoavaliação por módulo e certificado em PDF</strong> com QR Code de verificação.</li>
+          <li><strong>Dúvidas respondidas pelo Eduardo</strong> às quartas e aos sábados.</li>
           <li><strong>Fórum e grupo exclusivo de alunos no WhatsApp.</strong></li>
         </ul>
         <p class="lp-preco">R$ 97 <small>à vista</small></p>
@@ -368,6 +408,7 @@
       <details><summary>Preciso ter um servidor?</summary><p>Não. O Proxmox roda numa máquina virtual do VirtualBox, no seu próprio PC. A aula 2 monta essa VM passo a passo.</p></details>
       <details><summary>Preciso ter feito o Fundamentos de Rede?</summary><p>Não é obrigatório. O curso pressupõe que você já entende endereço IP, máscara e gateway. A parte de rede da VM (bridge e VLAN) fica bem mais fácil com essa base, que é a do Fundamentos.</p></details>
       <details><summary>Meu Windows usa Hyper-V. Vai funcionar?</summary><p>Para o Proxmox rodar VMs dentro do VirtualBox, o hipervisor do Windows precisa estar desligado. Com ele ligado, o VirtualBox não oferece a virtualização aninhada. A aula 2 mostra o que conferir.</p></details>
+      <details><summary>E se eu travar numa prática?</summary><p>Assista de novo quantas vezes precisar, confira a apostila e deixe a dúvida nos comentários da aula. O Eduardo responde às quartas e aos sábados.</p></details>
       <details><summary>Preciso de licença do Windows Server?</summary><p>Não. O curso usa a ISO de avaliação que a Microsoft disponibiliza.</p></details>
       <details><summary>O ProxMenux é oficial do Proxmox?</summary><p>Não. É uma ferramenta da comunidade, sem vínculo com a Proxmox Server Solutions. O módulo mostra como ler o script antes de instalar.</p></details>
       <details><summary>O curso tem certificado?</summary><p>Tem, e ele depende de você passar numa prova. Ao terminar cada módulo, você faz a autoavaliação em avaliacao.tininja.net. Fechando os cinco com 70% ou mais, você emite na hora o certificado em PDF, com um código e um QR Code para qualquer pessoa conferir. Pode refazer a prova quantas vezes precisar.</p></details>
@@ -428,6 +469,16 @@
         a.href = u.toString();
       });
     })();
+    document.querySelectorAll(".lp-video").forEach((box) => {
+      box.querySelector("button").addEventListener("click", () => {
+        const f = document.createElement("iframe");
+        f.src = `https://www.youtube-nocookie.com/embed/${box.dataset.video}?autoplay=1&rel=0`;
+        f.title = "Vídeo: como funciona a autoavaliação";
+        f.allow = "autoplay; encrypted-media; picture-in-picture";
+        f.allowFullscreen = true;
+        box.replaceChildren(f);
+      });
+    });
   </script>
 </body>
 </html>
