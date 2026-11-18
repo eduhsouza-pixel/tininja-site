@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proxmox na Prática — monte a VM certa, campo por campo — TI Ninja</title>
+  <meta name="description" content="Curso online de Proxmox VE 9 no seu PC: a VM certa campo por campo, com a documentação oficial, Windows Server 2025 com 4 GB, snapshot, backup e ProxMenux. Apostila em PDF por aula, autoavaliação, certificado e 7 dias de garantia.">
+  <link rel="canonical" href="https://tininja.net/lp/proxmox-na-pratica/">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="Proxmox na Prática — monte a VM certa, campo por campo">
+  <meta property="og:description" content="Proxmox VE 9 no seu PC, cada campo da VM com a documentação oficial, até um Windows Server 2025 com 4 GB.">
+  <meta property="og:url" content="https://tininja.net/lp/proxmox-na-pratica/">
+  <meta property="og:image" content="https://tininja.net/assets/img/px-oferta-960.webp">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    /* Página de vendas do Proxmox na Prática (VTSD low ticket: mesmas seções da LP do Fundamentos, sem links de saída, preço público R$ 97). */
+    .lp { --borda: 3px solid var(--tinta); }
+    .lp .fascia { justify-content: center; }
+    .lp .marca { pointer-events: none; }
+    .lp-sec { padding: clamp(1.75rem, 4.5vw, 3.5rem) var(--margem); }
+    .lp-sec + .lp-sec { border-top: 1px solid var(--linha); }
+    .lp-tag { font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--laranja-escuro); margin-bottom: 1rem; }
+    .lp-topo { display: flex; flex-direction: column; padding: 0.25rem var(--margem) clamp(1.5rem, 4vw, 2.5rem); }
+    .lp-hero-copy h1 { font-size: clamp(2.35rem, 8vw, 4.2rem); margin-bottom: 0.9rem; }
+    .lp-hero-copy h1 em { font-style: normal; color: var(--laranja-faixa); }
+    .lp-lede { font-size: clamp(1.12rem, 1.5vw, 1.3rem); color: var(--tinta-2); margin-bottom: 0; }
+    .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.2rem; margin-top: 1.25rem; }
+    .lp-cta .placa { font-size: 1.2rem; min-height: 3.4rem; padding-inline: 1.6rem; }
+    .lp-cta small { color: var(--tinta-3); font-size: 0.98rem; line-height: 1.35; }
+    .lp-hero-preco { margin: 0; font-weight: 800; color: var(--tinta); font-size: 1.08rem; }
+    .lp-pain { padding-top: 1.35rem; }
+    .lp-ver { font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; color: var(--tinta); }
+    .lp-pain .lp-dores { margin-top: 0; }
+    @media (max-width: 979px) {
+      /* 13/11: sem o vão de 100svh; o nome do curso volta e a dor sobe para a primeira tela */
+      .lp-hero-copy { padding-top: 0.75rem; }
+      .lp-hero-copy .lp-cta small { display: none; }
+      .lp-cta { flex-direction: column; align-items: stretch; }
+      .lp-cta .placa { width: 100%; font-size: 1.08rem; padding-inline: 0.7rem; }
+      .lp-cta small, .lp-hero-preco, .lp-ver { text-align: center; }
+      .lp-vertical { margin-top: 1.5rem; }
+      .lp-eduardo img { max-width: 160px; margin-inline: auto; }
+    }
+    @media (min-width: 980px) {
+      .lp-topo { display: grid; grid-template-columns: 1.05fr 0.95fr; column-gap: clamp(2rem, 4vw, 4rem); row-gap: 1.6rem; align-items: center; padding-top: clamp(1.5rem, 4vw, 3rem); }
+      .lp-hero-copy { grid-column: 1; grid-row: 1; }
+      .lp-vertical { grid-column: 2; grid-row: 1; justify-self: end; }
+      .lp-pain { grid-column: 1 / -1; grid-row: 2; padding-top: 0; }
+    }
+    .lp-video { position: relative; aspect-ratio: 16 / 9; border-radius: var(--raio); overflow: hidden; background: #0b1411; box-shadow: var(--sombra); }
+    .lp-video button { all: unset; cursor: pointer; position: absolute; inset: 0; display: grid; place-items: center; }
+    .lp-video img { width: 100%; height: 100%; object-fit: cover; opacity: 0.78; }
+    .lp-video .lp-play { position: absolute; display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--laranja); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .lp-video .lp-play::after { content: ""; margin-left: 6px; border-left: 26px solid var(--tinta); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
+    .lp-video .lp-legenda { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.8rem 1rem; color: #fff; font-size: 0.98rem; background: linear-gradient(transparent, rgba(0,0,0,.75)); }
+    .lp-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .lp-vertical { position: relative; width: min(100%, 380px); aspect-ratio: 9 / 16; justify-self: center; border-radius: calc(var(--raio) * 2); overflow: hidden; background: #0b1411; box-shadow: 0 24px 60px rgba(22,24,29,.28); }
+    .lp-vertical button { all: unset; cursor: pointer; position: absolute; inset: 0; display: grid; place-items: center; }
+    .lp-vertical img, .lp-vertical video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .lp-vertical .lp-play, .lp-vertical .lp-legenda { z-index: 1; }
+    .lp-vertical .lp-play { position: relative; display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--laranja); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .lp-vertical .lp-play::after { content: ""; margin-left: 6px; border-left: 26px solid var(--tinta); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
+    .lp-vertical .lp-legenda { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.9rem 1rem; color: #fff; font-size: 0.98rem; background: linear-gradient(transparent, rgba(0,0,0,.8)); }
+    .lp-demo { margin-top: 2rem; max-width: 820px; }
+    .lp-dores { display: grid; gap: 0.7rem; grid-template-columns: 1fr; margin: 0 0 1rem; padding: 0; list-style: none; }
+    @media (min-width: 860px) { .lp-dores { grid-template-columns: repeat(3, 1fr); } }
+    .lp-dores li { padding: 1.1rem 1.2rem; border-left: 4px solid var(--falha); background: var(--papel); border-radius: 0 var(--raio) var(--raio) 0; font-weight: 700; }
+    .lp-premissa { font-size: clamp(1.35rem, 2.4vw, 1.9rem); font-weight: 800; line-height: 1.25; max-width: 32ch; }
+    .lp-premissa mark { background: none; color: var(--laranja-faixa); }
+    .lp-duas { display: grid; gap: 1.2rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
+    @media (min-width: 860px) { .lp-duas { grid-template-columns: 1fr 1fr; } }
+    .lp-caixa { padding: 1.05rem 1.1rem; border-radius: var(--raio); background: var(--papel); }
+    .lp-caixa h3 { margin-bottom: 0.8rem; }
+    .lp-caixa ol, .lp-caixa ul { margin: 0; padding-left: 1.2rem; }
+    .lp-caixa li { margin-bottom: 0.45rem; }
+    .lp-errado { border-top: 6px solid var(--falha); }
+    .lp-errado li { color: var(--tinta-2); }
+    .lp-certo { border-top: 6px solid var(--verde); }
+    .lp-certo li { font-weight: 700; }
+    .lp-modulos { display: grid; gap: 1.4rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
+    @media (min-width: 980px) { .lp-modulos { grid-template-columns: 1fr 1fr; } }
+    .lp-mod { border: var(--borda); border-radius: var(--raio); overflow: hidden; background: #fff; }
+    .lp-mod img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .lp-mod > div { padding: 1rem 1.1rem 1.15rem; }
+    .lp-mod .lp-tag { margin-bottom: 0.4rem; }
+    .lp-mod ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
+    .lp-mod li { margin-bottom: 0.35rem; }
+    .lp-galeria { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 1.4rem; }
+    .lp-galeria figure { margin: 0; }
+    .lp-galeria img { border-radius: var(--raio); aspect-ratio: 16 / 9; object-fit: cover; box-shadow: var(--sombra); }
+    .lp-galeria.lp-dentro img { aspect-ratio: auto; object-fit: contain; background: #16181d; }
+    .lp-galeria figcaption { font-size: 0.95rem; color: var(--tinta-3); margin-top: 0.5rem; }
+    .lp-recebe { display: grid; gap: 0; grid-template-columns: 1fr; margin: 0.4rem 0 0; padding: 0; list-style: none; }
+    .lp-recebe li { padding: 0.7rem 0; border-bottom: 1px solid var(--linha); }
+    .lp-recebe strong { display: block; font-size: 1.08rem; margin-bottom: 0.1rem; }
+    .lp-recebe span { color: var(--tinta-2); font-size: 1rem; }
+    .lp-eduardo { display: grid; gap: 1.6rem; grid-template-columns: 1fr; align-items: center; }
+    @media (min-width: 860px) { .lp-eduardo { grid-template-columns: 280px 1fr; } }
+    .lp-eduardo img { width: 100%; max-width: 280px; border-radius: 50%; aspect-ratio: 1; object-fit: cover; box-shadow: var(--sombra); }
+    .lp-oferta { display: grid; place-items: center; background: var(--tinta); color: #fff; }
+    .lp-oferta .lp-tag { color: var(--laranja); }
+    .lp-cartao { width: 100%; max-width: 640px; padding: clamp(1.6rem, 4vw, 2.6rem); border-radius: calc(var(--raio) * 2); background: #fff; color: var(--tinta); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+    .lp-cartao ul { margin: 1.2rem 0 1.6rem; padding: 0; list-style: none; }
+    .lp-cartao li { padding: 0.55rem 0 0.55rem 1.8rem; border-bottom: 1px solid var(--linha); position: relative; }
+    .lp-cartao li::before { content: "✓"; position: absolute; left: 0; color: var(--verde); font-weight: 800; }
+    .lp-preco { font-size: clamp(3rem, 8vw, 4.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .lp-preco small { font-size: 1.1rem; font-weight: 700; letter-spacing: 0; color: var(--tinta-2); }
+    .lp-cartao .placa { width: 100%; font-size: 1.25rem; min-height: 3.6rem; margin-top: 1.2rem; }
+    .lp-preco-nota { margin: 0.45rem 0 0; }
+    .lp-acesso { margin: 0.85rem 0 0; font-weight: 800; }
+    .lp-agente { margin: 0.7rem 0 0; color: var(--tinta-2); }
+    .lp-garantia { margin-top: 1rem; font-size: 0.98rem; color: var(--tinta-2); }
+    .lp-faq details { border-bottom: 1px solid var(--linha); padding: 1rem 0; max-width: 820px; }
+    .lp-faq summary { cursor: pointer; font-weight: 800; font-size: 1.15rem; }
+    .lp-faq details p { margin: 0.7rem 0 0; color: var(--tinta-2); }
+    .lp-base p + p { margin-top: -0.25rem; }
+    .lp-fim { text-align: center; }
+    .lp-fim h2 { max-width: 22ch; margin-inline: auto; }
+    .lp-fim .lp-cta { justify-content: center; }
+    .lp .rodape p { font-size: 0.92rem; }
+    .lp-hero-img { margin: 1.5rem 0 0; }
+    .lp-hero-img img { border-radius: var(--raio); box-shadow: var(--sombra); }
+    .lp-hero-img figcaption { font-size: 0.95rem; color: var(--tinta-3); margin-top: 0.5rem; }
+    @media (min-width: 980px) { .lp-hero-img { grid-column: 2; grid-row: 1; margin: 0; } }
+  </style>
+  <!-- Meta Pixel: PageView na página; InitiateCheckout em todo clique para o checkout da Hotmart (igual a antes, agora com o parâmetro cta);
+       CheckoutOferta = clique no botão do cartão de oferta ou do fim (a definição de checkout que valia até 12/11 08h44);
+       ViewContent = o preço do cartão de oferta apareceu inteiro na tela; VerCurso = clique em "Ver antes o que vem no curso".
+       A Compra NÃO sai do navegador: chega só pela API de Conversões da Hotmart.
+       Teste sem sujar o pixel: abrir com ?tn_teste=1 (liga neste navegador) e ?tn_teste=0 (desliga). -->
+  <script>
+  // Consentimento: o pixel só é baixado depois do "Aceitar" do aviso de cookies (assets/js/consentimento.js).
+  (function(){var m=location.search.match(/[?&]tn_teste=([01])/);try{if(m)localStorage.setItem('tn_teste',m[1]);window.tnTeste=localStorage.getItem('tn_teste')==='1';}catch(e){window.tnTeste=false;}})();
+  window.tnPixelLigar=function(){if(window.tnTeste||window.fbq)return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','839957353977860');fbq('track','PageView');};
+  window.tnEv=function(tipo,nome,dados){if(!window.tnTeste&&window.fbq)fbq(tipo,nome,dados||{});};
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href*="pay.hotmart.com"]');
+    if(a){
+      var onde=a.closest('#oferta')?'oferta':a.closest('.lp-fim')?'fim':(a.getAttribute('data-cta')||'outro');
+      tnEv('track','InitiateCheckout',{content_name:'proxmox-na-pratica',cta:onde});
+      if(onde==='oferta'||onde==='fim')tnEv('trackCustom','CheckoutOferta');
+      return;
+    }
+    if(e.target.closest('a[data-cta="ver-curso"],a[data-cta="ver-preco"]'))tnEv('trackCustom','VerCurso');
+  });
+  document.addEventListener('DOMContentLoaded',function(){
+    var p=document.querySelector('#oferta .lp-preco');
+    if(!p||!('IntersectionObserver' in window))return;
+    var o=new IntersectionObserver(function(es){if(es[0].isIntersecting){tnEv('track','ViewContent',{content_name:'oferta-proxmox'});o.disconnect();}},{threshold:1});
+    o.observe(p);
+  });
+  </script>
+  <script src="/assets/js/consentimento.js" defer></script>
+</head>
+<body class="lp">
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <header class="fascia">
+    <span class="marca"><img src="/assets/img/marca.svg" alt="" width="64" height="64"> TI Ninja</span>
+  </header>
+
+  <main id="conteudo">
+    <!-- 1. Primeira tela: título, subtítulo, botão e preço. A dor vem logo abaixo. -->
+    <div class="lp-topo">
+      <div class="lp-hero-copy">
+        <p class="lp-tag lp-kicker-hero">Proxmox na Prática · curso online</p>
+        <h1 id="titulo">Monte a VM certa no Proxmox, <em>campo por campo.</em></h1>
+        <p class="lp-lede">Proxmox VE 9 no seu próprio PC, dentro do VirtualBox. Cada opção da VM explicada com a documentação oficial, até um Windows Server 2025 rodando com 4 GB.</p>
+        <div class="lp-cta">
+          <a class="placa placa-lima" data-cta="hero" href="https://pay.hotmart.com/U108503490J?off=reszhoqv&amp;checkoutMode=10" rel="noopener">Quero entrar no Proxmox na Prática</a>
+          <small>5 módulos · apostila em PDF por aula · laboratório no seu PC · 7 dias de garantia</small>
+          <p class="lp-hero-preco">R$ 97 ou até 12x · 7 dias de garantia</p>
+          <a class="lp-ver" data-cta="ver-curso" href="#caminho">Ver antes o que vem no curso</a>
+        </div>
+      </div>
+
+      <section class="lp-pain" aria-labelledby="situacao">
+        <h2 id="situacao" class="sr">O sintoma</h2>
+        <p class="lp-tag">Situações de quem está começando no Proxmox</p>
+        <ul class="lp-dores">
+          <li>Você aceita os padrões do assistente "Criar VM" sem saber o que cada um faz.</li>
+          <li>A instalação do Windows não encontra o disco da VM.</li>
+          <li>Snapshot e backup parecem a mesma coisa, até o dia em que você precisa de um deles.</li>
+        </ul>
+        <p>No Proxmox na Prática, cada campo da VM tem um porquê, tirado da documentação oficial e testado na bancada.</p>
+      </section>
+
+      <figure class="lp-hero-img">
+        <img src="/assets/img/px-ws2025-4gb-960.webp" alt="Resumo da VM no Proxmox: Windows Server 2025 rodando com 4 GiB de memória" width="960" height="540">
+        <figcaption>Do curso: Windows Server 2025 rodando com 4 GB, medido no Resumo da VM.</figcaption>
+      </figure>
+    </div>
+
+    <!-- 2. Quem ensina -->
+    <section class="lp-sec" aria-labelledby="quem">
+      <div class="lp-eduardo">
+        <img src="/assets/img/curso-eduardo-560.webp" alt="Eduardo Honorato" width="560" height="560" loading="lazy">
+        <div>
+          <p class="lp-tag">Quem ensina</p>
+          <h2 id="quem">Eduardo Honorato</h2>
+          <p>Técnico de suporte que hoje toca o próprio MSP, uma empresa que cuida da TI de vários clientes.</p>
+          <p>No YouTube e no Instagram, falhas reais de rede e infraestrutura e o raciocínio para achar a causa.</p>
+          <p>O curso foi gravado numa bancada Proxmox de verdade, com cada decisão conferida na documentação oficial.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Jeito errado × jeito certo -->
+    <section class="lp-sec" aria-labelledby="metodo">
+      <p class="lp-tag">O método</p>
+      <h2 id="metodo">A diferença não é decorar o assistente. É saber o que cada campo muda.</h2>
+      <div class="lp-duas">
+        <div class="lp-caixa lp-errado">
+          <h3>Como costuma ser</h3>
+          <ul>
+            <li>Segue um tutorial antigo e a tela não bate com a sua.</li>
+            <li>Dá à VM toda a memória que sobrou, "para garantir".</li>
+            <li>Deixa o disco e a placa de rede no padrão porque "funciona".</li>
+            <li>Confia num snapshot como se fosse backup.</li>
+          </ul>
+        </div>
+        <div class="lp-caixa lp-certo">
+          <h3>Como você vai trabalhar</h3>
+          <ol>
+            <li>Lê o que a documentação oficial diz de cada campo.</li>
+            <li>Começa a VM pequena, mede no Resumo e ajusta.</li>
+            <li>Usa VirtIO e carrega os drivers na instalação do Windows.</li>
+            <li>Sabe quando usar snapshot e quando usar backup.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. O caminho -->
+    <section class="lp-sec" aria-labelledby="caminho">
+      <p class="lp-tag">O caminho</p>
+      <h2 id="caminho">Cinco módulos. Da bancada no seu PC ao checklist da VM ideal.</h2>
+      <div class="lp-modulos">
+        <article class="lp-mod"><div>
+          <p class="lp-tag">Módulo 1 · a bancada</p>
+          <h3>Sua bancada Proxmox</h3>
+          <ul>
+            <li>Preparar o PC e a VM do Proxmox no VirtualBox.</li>
+            <li>Instalar o Proxmox VE 9 passo a passo.</li>
+            <li>Primeiro acesso: certificado, aviso de assinatura, repositório e atualização.</li>
+          </ul>
+        </div></article>
+        <article class="lp-mod"><div>
+          <p class="lp-tag">Módulo 2 · a VM ideal</p>
+          <h3>A VM ideal, peça por peça</h3>
+          <ul>
+            <li>Geral, SO e Sistema: máquina, BIOS, EFI, TPM e agente.</li>
+            <li>Disco: barramento, cache, discard e IO thread.</li>
+            <li>CPU e memória: tipo de CPU, limite, balão e a memória do host.</li>
+            <li>Rede: VirtIO, bridge, VLAN e firewall.</li>
+            <li>Dimensionar: começar pequeno, medir e ajustar.</li>
+          </ul>
+        </div></article>
+        <article class="lp-mod"><div>
+          <p class="lp-tag">Módulo 3 · Windows Server</p>
+          <h3>Windows Server 2025 com 4 GB</h3>
+          <ul>
+            <li>ISO de avaliação, ISO dos drivers VirtIO e a VM nas boas práticas.</li>
+            <li>Instalar carregando os drivers VirtIO.</li>
+            <li>Depois da instalação: drivers, agente e os 4 GB medidos.</li>
+          </ul>
+        </div></article>
+        <article class="lp-mod"><div>
+          <p class="lp-tag">Módulos 4 e 5 · operação</p>
+          <h3>Dia a dia e ProxMenux</h3>
+          <ul>
+            <li>Container LXC: quando usar no lugar de uma VM.</li>
+            <li>Snapshot e backup: duas coisas diferentes, com restauração.</li>
+            <li>ProxMenux: o que é, como ler o script e instalar com segurança.</li>
+            <li>Tour do ProxMenux e o checklist da VM ideal.</li>
+          </ul>
+        </div></article>
+      </div>
+    </section>
+
+    <!-- 5. O que vem no curso -->
+    <section class="lp-sec" aria-labelledby="recebe">
+      <p class="lp-tag">O que você recebe</p>
+      <h2 id="recebe">Tela real, apostila por aula e uma prova no fim de cada módulo.</h2>
+      <ul class="lp-recebe">
+        <li><strong>Aulas com a tela real do Proxmox</strong><span>Gravadas na bancada, campo por campo, sem slide genérico.</span></li>
+        <li><strong>Apostila em PDF por aula</strong><span>O que a aula mostrou, mais os detalhes que não cabem no vídeo.</span></li>
+        <li><strong>Laboratório no seu PC</strong><span>O Proxmox dentro do VirtualBox, para criar, quebrar e voltar sem medo.</span></li>
+        <li><strong>Documentação oficial em cada decisão</strong><span>Você aprende onde conferir, para quando a versão mudar.</span></li>
+        <li><strong>Autoavaliação por módulo</strong><span>Uma prova com 1 questão sorteada por aula. Errou? Ela mostra o que observar e abre a aula daquele assunto. Com 70%, libera o gabarito comentado.</span></li>
+        <li><strong>Certificado em PDF</strong><span>Fechou os cinco módulos com 70% ou mais, você emite na hora, com QR Code para qualquer pessoa conferir e atalho para o LinkedIn.</span></li>
+        <li><strong>Fórum dos alunos</strong><span>A Bancada técnica, pra caso real de rede, AD, Hyper-V/Proxmox e OPNsense. Discussão boa fica guardada por assunto.</span></li>
+        <li><strong>Grupo exclusivo de alunos no WhatsApp</strong><span>Fechado para quem comprou. Os avisos para a turma saem por lá.</span></li>
+      </ul>
+      <h3 style="margin-top:2rem">Por dentro do curso</h3>
+      <div class="lp-galeria lp-dentro">
+        <figure><img src="/assets/img/px-painel-960.webp" alt="Painel do Proxmox com um container e três VMs no nó pve01" width="960" height="540" loading="lazy"><figcaption>O laboratório: um container e três VMs dentro do Proxmox, no seu PC.</figcaption></figure>
+        <figure><img src="/assets/img/px-ws2025-4gb-960.webp" alt="Resumo da VM do Windows Server 2025 com 4 GiB" width="960" height="540" loading="lazy"><figcaption>O Windows Server 2025 com 4 GB, medido no Resumo da VM.</figcaption></figure>
+        <figure><img src="/assets/img/px-snapshot-960.webp" alt="Aba Snapshots com o snapshot antes-da-mudanca" width="960" height="540" loading="lazy"><figcaption>Snapshot antes de mexer: o estado limpo para voltar.</figcaption></figure>
+      </div>
+      <div class="lp-cta"><a class="placa placa-vidro" data-cta="ver-preco" href="#oferta">Ver preço e garantia</a></div>
+    </section>
+
+    <!-- 6. Para quem é -->
+    <section class="lp-sec" aria-labelledby="paraquem">
+      <p class="lp-tag">Para quem é</p>
+      <h2 id="paraquem">Feito para quem vai montar, herdar ou cuidar de um Proxmox.</h2>
+      <div class="lp-duas">
+        <div class="lp-caixa lp-certo">
+          <h3>É para você se</h3>
+          <ul>
+            <li>Você já tem a base de rede e quer virtualizar com Proxmox.</li>
+            <li>Você vai montar ou herdar um Proxmox num cliente pequeno.</li>
+            <li>Você usa Hyper-V ou VirtualBox e quer aprender Proxmox com método.</li>
+          </ul>
+        </div>
+        <div class="lp-caixa lp-errado">
+          <h3>Não é para você se</h3>
+          <ul>
+            <li>Você já administra cluster Proxmox em produção e busca alta disponibilidade ou Ceph.</li>
+            <li>Você procura preparação para certificação.</li>
+            <li>Você só quer comandos para copiar e colar.</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:1.4rem"><strong>Pré-requisitos:</strong> a base de rede (endereço IP, máscara e gateway). É o que o Fundamentos de Rede ensina.</p>
+      <p>Um PC com Windows 64 bits, processador com virtualização (Intel VT-x ou AMD-V) e o hipervisor do Windows desligado, porque o Proxmox roda dentro do VirtualBox.</p>
+      <!-- PENDENTE (Eduardo): requisito mínimo de memória não foi testado; VIABILIDADE.md pede teste antes de prometer. -->
+      <p>Na gravação, a VM do Proxmox tinha 16 GB de memória e 4 processadores.</p>
+    </section>
+
+    <!-- 7. Oferta -->
+    <section class="lp-sec lp-oferta" id="oferta" aria-labelledby="oferta-titulo">
+      <div class="lp-cartao">
+        <p class="lp-tag">Inscrição aberta</p>
+        <h2 id="oferta-titulo">Proxmox na Prática</h2>
+        <ul>
+          <li><strong>5 módulos:</strong> bancada, VM ideal, Windows Server com 4 GB, operação e ProxMenux.</li>
+          <li><strong>Apostila em PDF em todas as aulas.</strong></li>
+          <li><strong>Laboratório no seu PC,</strong> montado passo a passo.</li>
+          <li><strong>Autoavaliação por módulo e certificado em PDF</strong> com QR Code de verificação.</li>
+          <li><strong>Fórum e grupo exclusivo de alunos no WhatsApp.</strong></li>
+        </ul>
+        <p class="lp-preco">R$ 97 <small>à vista</small></p>
+        <p class="lp-preco-nota">ou em até 12x no cartão.</p>
+        <p class="lp-garantia"><strong>Você tem 7 dias para conferir por dentro.</strong> Entre, monte a bancada e assista às primeiras aulas. Se não for pra você, peça o reembolso pela Hotmart nesse prazo e recebe o valor integral.</p>
+        <a class="placa placa-lima" href="https://pay.hotmart.com/U108503490J?off=reszhoqv&amp;checkoutMode=10" rel="noopener">Entrar no Proxmox na Prática</a>
+      </div>
+    </section>
+
+    <!-- 8. Perguntas frequentes -->
+    <section class="lp-sec lp-faq" aria-labelledby="faq">
+      <p class="lp-tag">Perguntas frequentes</p>
+      <h2 id="faq">Antes de entrar</h2>
+      <details><summary>Preciso ter um servidor?</summary><p>Não. O Proxmox roda numa máquina virtual do VirtualBox, no seu próprio PC. A aula 2 monta essa VM passo a passo.</p></details>
+      <details><summary>Preciso ter feito o Fundamentos de Rede?</summary><p>Não é obrigatório. O curso pressupõe que você já entende endereço IP, máscara e gateway. A parte de rede da VM (bridge e VLAN) fica bem mais fácil com essa base, que é a do Fundamentos.</p></details>
+      <details><summary>Meu Windows usa Hyper-V. Vai funcionar?</summary><p>Para o Proxmox rodar VMs dentro do VirtualBox, o hipervisor do Windows precisa estar desligado. Com ele ligado, o VirtualBox não oferece a virtualização aninhada. A aula 2 mostra o que conferir.</p></details>
+      <details><summary>Preciso de licença do Windows Server?</summary><p>Não. O curso usa a ISO de avaliação que a Microsoft disponibiliza.</p></details>
+      <details><summary>O ProxMenux é oficial do Proxmox?</summary><p>Não. É uma ferramenta da comunidade, sem vínculo com a Proxmox Server Solutions. O módulo mostra como ler o script antes de instalar.</p></details>
+      <details><summary>O curso tem certificado?</summary><p>Tem, e ele depende de você passar numa prova. Ao terminar cada módulo, você faz a autoavaliação em avaliacao.tininja.net. Fechando os cinco com 70% ou mais, você emite na hora o certificado em PDF, com um código e um QR Code para qualquer pessoa conferir. Pode refazer a prova quantas vezes precisar.</p></details>
+      <details><summary>Tem grupo ou comunidade de alunos?</summary><p>Tem os dois: o grupo exclusivo de alunos no WhatsApp, fechado para quem comprou, e o fórum dos alunos, com a Bancada técnica. Os links chegam depois da compra.</p></details>
+      <details><summary>Já sou aluno do Fundamentos. É a mesma área de membros?</summary><p>É. O Proxmox na Prática aparece na mesma área de membros, em alunos.tininja.net, com o mesmo e-mail.</p></details>
+      <details><summary>Como eu recebo o acesso?</summary><p>A Hotmart manda o acesso por e-mail em poucos minutos, para o endereço usado na compra. No Pix e no boleto, ele libera quando o pagamento compensar.</p></details>
+      <details><summary>É pagamento único?</summary><p>É. R$ 97 à vista ou em até 12x no cartão. Não é assinatura.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Peça o reembolso pela Hotmart nesse prazo e recebe o valor integral.</p></details>
+    </section>
+
+    <section class="lp-sec lp-fim" aria-labelledby="fim">
+      <h2 id="fim">A próxima VM que você criar vai ter um porquê em cada campo.</h2>
+      <div class="lp-cta">
+        <a class="placa placa-lima" href="https://pay.hotmart.com/U108503490J?off=reszhoqv&amp;checkoutMode=10" rel="noopener">Quero começar agora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p><a href="/politica-de-privacidade/">Política de Privacidade</a> · DIGITAL RAPIDO COMERCIO E SERVICOS LTDA · CNPJ 10.491.185/0001-38 · <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+    <p>© 2026 TI Ninja · Pagamento processado pela Hotmart</p>
+  </footer>
+  <script>
+    // Origem da venda: as utm_* da página seguem para o checkout; src leva fonte_meio (instagram_anuncio, instagram_bio) e sck (que a Hotmart mostra em
+    // cada venda) leva o criativo (utm_content) ou, sem ele, a fonte. O fbclid (da URL ou do cookie _fbc do pixel)
+    // também segue: sem ele o pixel no checkout da Hotmart registra a Compra sem saber de qual anúncio veio.
+    (() => {
+      const q = new URLSearchParams(location.search);
+      const campos = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id"];
+      const daUrl = (k) => (q.get(k) || "").trim().slice(0, 200);
+      // Quem clica num link com UTM e volta depois sem ele mantém a origem por 30 dias.
+      let salvo = {};
+      try {
+        salvo = JSON.parse(localStorage.getItem("tn_origem")) || {};
+        if (Date.now() - (salvo.t || 0) > 30 * 864e5) salvo = {};
+      } catch {}
+      const veioComUtm = campos.some(daUrl);
+      const v = (k) => (veioComUtm ? daUrl(k) : salvo[k] || "");
+      if (veioComUtm) {
+        try {
+          localStorage.setItem("tn_origem", JSON.stringify(Object.fromEntries([["t", Date.now()], ...campos.map((k) => [k, daUrl(k)])])));
+        } catch {}
+      }
+      const utm = campos.filter(v);
+      const fbc = (document.cookie.match(/(?:^|;\s*)_fbc=fb\.\d+\.\d+\.([^;]+)/) || [])[1];
+      const fbclid = (q.get("fbclid") || (fbc ? decodeURIComponent(fbc) : "")).trim().slice(0, 500);
+      let ref = "";
+      try { ref = new URL(document.referrer).hostname.replace(/^www\./, ""); } catch {}
+      if (ref === location.hostname) ref = "site";
+      document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach((a) => {
+        const u = new URL(a.href);
+        utm.forEach((k) => u.searchParams.set(k, v(k)));
+        // 13/11: o posicionamento (utm_term) vira o 3º pedaço do src (ex.: ig_anuncio_Instagram_Reels); os 2 primeiros não mudam.
+        u.searchParams.set("src", [v("utm_source"), v("utm_medium"), v("utm_term")].filter(Boolean).join("_").slice(0, 80) || ref || "direto");
+        u.searchParams.set("sck", v("utm_content") || v("utm_source") || v("utm_campaign") || v("utm_medium") || ref || "direto");
+        if (fbclid) u.searchParams.set("fbclid", fbclid);
+        a.href = u.toString();
+      });
+    })();
+  </script>
+</body>
+</html>
