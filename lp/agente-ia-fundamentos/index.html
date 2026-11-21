@@ -7,7 +7,7 @@
   <meta name="description" content="O Tutor tira a dúvida da aula. O Assistente TI Ninja recebe o print. Consultor em chat, treinado no Fundamentos de Rede, por R$ 9,90.">
   <link rel="canonical" href="https://tininja.net/lp/agente-ia-fundamentos/">
   <meta name="author" content="Eduardo Honorato">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#0E223D">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
@@ -19,74 +19,69 @@
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/almarai-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/chakra-petch-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-700-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <style>
-    /* Página curta do upsell Assistente TI Ninja (produto Hotmart 8946697, R$ 9,90). Visual alinhado à LP de Fundamentos. */
-    .lp { --borda: 3px solid var(--tinta); }
+    /* Página curta do upsell Assistente TI Ninja (Direção D: Planta de Rede; produto Hotmart 8946697, R$ 9,90). */
     .lp .fascia { justify-content: center; }
     .lp .marca { pointer-events: none; }
-    .lp-sec { padding: clamp(1.75rem, 4.5vw, 3.5rem) var(--margem); }
-    .lp-sec + .lp-sec { border-top: 1px solid var(--linha); }
-    .lp-tag { font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--laranja-escuro); margin-bottom: 1rem; }
-    .lp-topo { display: flex; flex-direction: column; padding: 0.25rem var(--margem) clamp(1.5rem, 4vw, 2.5rem); }
-    .lp-hero-copy h1 { font-size: clamp(2.05rem, 6.4vw, 3.6rem); margin-bottom: 0.9rem; }
-    .lp-hero-copy h1 em { font-style: normal; color: var(--laranja-faixa); }
-    .lp-lede { font-size: clamp(1.12rem, 1.5vw, 1.3rem); color: var(--tinta-2); margin-bottom: 0; }
-    .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.2rem; margin-top: 1.25rem; }
-    .lp-cta .placa { font-size: 1.2rem; min-height: 3.4rem; padding-inline: 1.6rem; }
-    .lp-cta small { color: var(--tinta-3); font-size: 0.98rem; line-height: 1.35; }
-    .lp-hero-preco { margin: 0; font-weight: 800; color: var(--tinta); font-size: 1.08rem; }
-    .lp-punch { font-size: clamp(1.25rem, 2.2vw, 1.7rem); font-weight: 800; line-height: 1.3; max-width: 28ch; margin: 1.4rem 0 0; }
-    .lp-duas { display: grid; gap: 1.2rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
+    .lp-topo { width: min(var(--max-largura), calc(100% - var(--margem) * 2)); margin: 0 auto; display: flex; flex-direction: column; padding: 32px 0 28px; }
+    .lp-hero-copy { max-width: 820px; }
+    .lp-hero-copy h1 { font-size: clamp(1.95rem, 3.8vw, 3rem); line-height: 1.15; margin-bottom: 14px; }
+    .lp-hero-copy h1 em { font-style: normal; color: var(--cobalto); }
+    .lp-lede { font-size: clamp(1.0625rem, 1.4vw, 1.2rem); color: var(--cota); line-height: 1.5; margin-bottom: 0; }
+    .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 22px; }
+    .lp-cta .placa { min-height: 48px; font-size: 1.0625rem; padding: 12px 24px; }
+    .lp-hero-preco { margin: 0; font-family: var(--mono); font-weight: 700; color: var(--nanquim); font-size: 0.9375rem; }
+    .lp-sec { width: min(var(--max-largura), calc(100% - var(--margem) * 2)); margin: 20px auto; padding: 28px 24px; background: var(--prancha); border: 1px solid var(--linha-forte); }
+    @media (min-width: 720px) { .lp-sec { padding: 34px 40px; } }
+    .lp-punch { font-family: var(--display); font-size: clamp(1.2rem, 2vw, 1.55rem); font-weight: 700; line-height: 1.3; max-width: 32ch; margin: 20px 0 0; color: var(--nanquim); }
+    .lp-duas { display: grid; gap: 16px; grid-template-columns: 1fr; margin-top: 20px; }
     @media (min-width: 860px) { .lp-duas { grid-template-columns: 1fr 1fr; } }
-    .lp-caixa { padding: 1.05rem 1.1rem; border-radius: var(--raio); background: var(--papel); }
-    .lp-caixa h3 { margin-bottom: 0.8rem; }
-    .lp-caixa ul { margin: 0; padding-left: 1.2rem; }
-    .lp-caixa li { margin-bottom: 0.45rem; }
-    .lp-tutor { border-top: 6px solid var(--tinta-3, #8a8578); }
-    .lp-assistente { border-top: 6px solid var(--verde); }
-    .lp-assistente li { font-weight: 700; }
-    .lp-demo { margin: 2rem 0 0; max-width: 820px; }
-    .lp-demo img { width: 100%; border-radius: var(--raio); box-shadow: var(--sombra); background: #16181d; }
-    .lp-demo figcaption { font-size: 0.95rem; color: var(--tinta-3); margin-top: 0.5rem; }
-    .lp-recebe { display: grid; gap: 0; grid-template-columns: 1fr; margin: 0.4rem 0 0; padding: 0; list-style: none; }
-    .lp-recebe li { padding: 0.7rem 0; border-bottom: 1px solid var(--linha); }
-    .lp-recebe strong { display: block; font-size: 1.08rem; margin-bottom: 0.1rem; }
-    .lp-recebe span { color: var(--tinta-2); font-size: 1rem; }
-    .lp-limites { margin: 0.4rem 0 0; padding-left: 1.2rem; }
-    .lp-limites li { margin-bottom: 0.45rem; color: var(--tinta-2); }
-    .lp-oferta { display: grid; place-items: center; background: var(--tinta); color: #fff; }
-    .lp-oferta .lp-tag { color: var(--laranja); }
-    .lp-cartao { width: 100%; max-width: 640px; padding: clamp(1.6rem, 4vw, 2.6rem); border-radius: calc(var(--raio) * 2); background: #fff; color: var(--tinta); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
-    .lp-cartao ul { margin: 1.2rem 0 1.6rem; padding: 0; list-style: none; }
-    .lp-cartao li { padding: 0.55rem 0 0.55rem 1.8rem; border-bottom: 1px solid var(--linha); position: relative; }
-    .lp-cartao li::before { content: "✓"; position: absolute; left: 0; color: var(--verde); font-weight: 800; }
-    .lp-preco { font-size: clamp(3rem, 8vw, 4.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
-    .lp-preco small { font-size: 1.1rem; font-weight: 700; letter-spacing: 0; color: var(--tinta-2); }
-    .lp-cartao .placa { width: 100%; font-size: 1.25rem; min-height: 3.6rem; margin-top: 1.2rem; }
-    .lp-preco-nota { margin: 0.45rem 0 0; }
-    .lp-acesso { margin: 0.85rem 0 0; font-weight: 800; }
-    .lp-checkout-nota { margin: 0.7rem 0 0; font-size: 0.95rem; color: var(--tinta-2); }
-    .lp-faq details { border-bottom: 1px solid var(--linha); padding: 1rem 0; max-width: 820px; }
-    .lp-faq summary { cursor: pointer; font-weight: 800; font-size: 1.15rem; }
-    .lp-faq details p { margin: 0.7rem 0 0; color: var(--tinta-2); }
+    .lp-caixa { padding: 22px; border-radius: var(--raio); border: 1px solid var(--linha-forte); background: var(--prancha-sutil); }
+    .lp-caixa h3 { margin-bottom: 12px; }
+    .lp-caixa ul { margin: 0; padding-left: 20px; }
+    .lp-caixa li { margin-bottom: 8px; }
+    .lp-tutor { background: var(--prancha-sutil); border-color: var(--linha-forte); }
+    .lp-assistente { background: var(--enlace-ok-suave); border-color: var(--enlace-ok); }
+    .lp-assistente li { font-weight: 700; color: var(--nanquim); }
+    .lp-demo { margin: 24px 0 0; max-width: 820px; }
+    .lp-demo img { width: 100%; border: 1px solid var(--linha-forte); border-radius: var(--raio); background: var(--nanquim); }
+    .lp-demo figcaption { font-size: 0.9rem; color: var(--cota); margin-top: 8px; }
+    .lp-recebe { display: grid; gap: 0; grid-template-columns: 1fr; margin: 8px 0 0; padding: 0; list-style: none; }
+    .lp-recebe li { padding: 12px 0; border-bottom: 1px solid var(--linha); }
+    .lp-recebe strong { display: block; font-family: var(--display); font-size: 1.0625rem; color: var(--nanquim); margin-bottom: 2px; }
+    .lp-recebe span { color: var(--cota); font-size: 1rem; }
+    .lp-limites { margin: 8px 0 0; padding-left: 20px; }
+    .lp-limites li { margin-bottom: 8px; color: var(--cota); }
+    .lp-oferta { width: 100%; max-width: none; margin: 28px 0; padding: 48px 16px; display: grid; place-items: center; background: var(--cobalto-escuro); border: 0; border-top: 1px solid var(--nanquim); border-bottom: 1px solid var(--nanquim); }
+    .lp-cartao { width: 100%; max-width: 680px; padding: 32px 24px; border: 2px solid var(--nanquim); border-radius: var(--raio); background: var(--prancha); color: var(--nanquim); }
+    @media (min-width: 720px) { .lp-cartao { padding: 36px 40px; } }
+    .lp-cartao ul { margin: 18px 0 22px; padding: 0; list-style: none; border-top: 1px solid var(--linha); }
+    .lp-cartao li { padding: 10px 0 10px 26px; border-bottom: 1px solid var(--linha); position: relative; }
+    .lp-cartao li::before { content: "✓"; position: absolute; left: 0; color: var(--enlace-ok); font-weight: 700; }
+    .lp-preco { font-family: var(--display); font-size: clamp(2.25rem, 5vw, 3.1rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--nanquim); margin-bottom: 6px; }
+    .lp-preco small { font-size: 1.0625rem; font-weight: 700; letter-spacing: 0; color: var(--cota); }
+    .lp-cartao .placa { width: 100%; font-size: 1.125rem; min-height: 52px; margin-top: 18px; }
+    .lp-preco-nota { margin: 8px 0 0; }
+    .lp-acesso { margin: 12px 0 0; font-weight: 700; color: var(--nanquim); }
+    .lp-checkout-nota { margin: 12px 0 0; font-size: 0.9375rem; color: var(--cota); }
+    .lp-faq details { background: var(--prancha-sutil); border: 1px solid var(--linha-forte); margin-bottom: 10px; padding: 14px 18px; max-width: 820px; }
+    .lp-faq summary { cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 1.0625rem; min-height: 44px; display: flex; align-items: center; color: var(--nanquim); }
+    .lp-faq details p { margin: 10px 0 0; color: var(--cota); }
     .lp-fim { text-align: center; }
     .lp-fim h2 { max-width: 24ch; margin-inline: auto; }
     .lp-fim .lp-cta { justify-content: center; }
     .lp-fim .lp-lede { max-width: 46ch; margin-inline: auto; }
-    .lp .rodape p { font-size: 0.92rem; }
+    .lp .rodape { grid-template-columns: 1fr; }
+    .lp .rodape p { font-size: 0.875rem; }
     @media (max-width: 979px) {
-      .lp-hero-copy { padding-top: 0.75rem; }
       .lp-cta { flex-direction: column; align-items: stretch; }
-      .lp-cta .placa { width: 100%; font-size: 1.08rem; padding-inline: 0.7rem; }
-      .lp-cta small, .lp-hero-preco { text-align: center; }
-      .lp-preco small { display: block; margin-top: 0.3rem; }
-    }
-    @media (min-width: 980px) {
-      .lp-topo { max-width: 820px; padding-top: clamp(1.5rem, 4vw, 3rem); }
+      .lp-cta .placa { width: 100%; }
+      .lp-hero-preco { text-align: center; }
+      .lp-preco small { display: block; margin-top: 4px; }
     }
   </style>
   <!-- Meta Pixel: PageView na página; InitiateCheckout em clique para o checkout da Hotmart, quando o link real existir.
@@ -118,7 +113,6 @@
   <main id="conteudo">
     <div class="lp-topo">
       <div class="lp-hero-copy">
-        <p class="lp-tag">Assistente TI Ninja · Fundamentos de Rede</p>
         <h1 id="titulo">A dúvida da aula o Tutor responde. <em>A do laboratório chega com um print.</em></h1>
         <p class="lp-lede">A prática está aberta e o resultado na tela não bate com o da aula. Não é uma pergunta sobre o vídeo. É um arquivo, uma config, um laboratório no meio do caminho.</p>
         <div class="lp-cta">
@@ -129,7 +123,6 @@
     </div>
 
     <section class="lp-sec" aria-labelledby="diferenca">
-      <p class="lp-tag">O Tutor e o Assistente</p>
       <h2 id="diferenca">Um já vem no curso. O outro é um consultor à parte.</h2>
       <p>No Fundamentos de Rede, o Tutor já vem junto, de graça. Ele fica dentro da aula, no botão "Tirar dúvidas", e responde perguntas sobre o que o vídeo ensinou.</p>
       <p>O Assistente TI Ninja é outra coisa. É um consultor em chat, vendido à parte, treinado no curso inteiro, nos materiais de prática, nos gabaritos, nos laboratórios e no bônus de Virtualização. Você abre tópicos, conversa a qualquer hora, na área de membros ou no aplicativo da Hotmart. Pelo navegador, envia arquivos de até 15 MB: prints, configs, planilhas.</p>
@@ -161,7 +154,6 @@
     </section>
 
     <section class="lp-sec" aria-labelledby="recebe">
-      <p class="lp-tag">O que você passa a ter</p>
       <h2 id="recebe">O chat, o arquivo e a base do curso.</h2>
       <ul class="lp-recebe">
         <li><strong>Chat com tópicos</strong><span>Um laboratório não se mistura com o outro.</span></li>
@@ -173,7 +165,6 @@
     </section>
 
     <section class="lp-sec" aria-labelledby="limites">
-      <p class="lp-tag">O que ele não faz</p>
       <h2 id="limites">Não substitui a aula, o laboratório nem o Eduardo.</h2>
       <ul class="lp-limites">
         <li>Não substitui as aulas, o laboratório nem as respostas do Eduardo nos comentários.</li>
@@ -185,7 +176,6 @@
 
     <section class="lp-sec lp-oferta" id="oferta" aria-labelledby="oferta-titulo">
       <div class="lp-cartao">
-        <p class="lp-tag">Pagamento único</p>
         <h2 id="oferta-titulo">Assistente TI Ninja</h2>
         <ul>
           <li>Consultor em chat, treinado no curso e no bônus de Virtualização</li>
@@ -201,7 +191,6 @@
     </section>
 
     <section class="lp-sec lp-faq" aria-labelledby="faq">
-      <p class="lp-tag">Perguntas frequentes</p>
       <h2 id="faq">Antes de levar o Assistente</h2>
       <details><summary>O Assistente substitui o Tutor?</summary><p>Não. O Tutor continua incluído no curso, de graça, dentro da aula. O Assistente é um produto à parte, para quando a dúvida chega com um print, uma config ou um laboratório aberto.</p></details>
       <details><summary>Eu preciso ter o Fundamentos de Rede?</summary><p>Este Assistente foi treinado no Fundamentos de Rede e no bônus de Virtualização. Ele faz sentido para quem já tem, ou está levando, o curso.</p></details>

@@ -7,7 +7,7 @@
   <meta name="description" content="Para técnico de TI que quer sair do balcão e cuidar da rede de empresas, como CLT ou com contrato próprio. Calcule o preço mínimo da sua hora e veja a conta que quase ninguém ensina.">
   <link rel="canonical" href="https://tininja.net/">
   <meta name="author" content="Eduardo Honorato">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#0E223D">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
@@ -27,9 +27,9 @@
   <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" href="/assets/plates/cabo.png" as="image">
-  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/media/hero/hero-final.jpg" as="image">
+  <link rel="preload" href="/assets/fonts/chakra-petch-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <script type="application/ld+json">
   {
@@ -69,46 +69,167 @@
       <a href="/artigos/">Artigos</a>
       <a href="/minha-hora/">Minha hora</a>
       <a href="/quanto-cobrar/">E-book</a>
+      <a href="https://comunidade.tininja.net/">Comunidade</a>
+      <a href="https://avaliacao.tininja.net/">Autoavaliação</a>
       <a href="/lp/fundamentos-de-rede/">Curso</a>
     </nav>
   </header>
   <!-- nav:fim -->
 
   <main id="conteudo">
-    <section class="espinha" aria-labelledby="hero-titulo">
-      <figure class="cabo">
-        <img src="/assets/plates/cabo.png" alt="" width="822" height="1376" fetchpriority="high" decoding="async">
-      </figure>
-      <div class="espinha-copy">
-        <h1 id="hero-titulo">Pare de apagar incêndio.<br> Administre a rede.</h1>
-        <p class="lede">Para o técnico de suporte que quer entender a rede de verdade e cobrar um serviço todo mês.</p>
+    <section class="hero-planta" id="hero-intro" aria-labelledby="hero-titulo">
+      <div class="hero-midia" aria-hidden="true">
+        <img class="hero-final-img" src="/assets/media/hero/hero-final.jpg" alt="" width="1920" height="1080">
+        <video class="hero-video" id="hero-video" muted playsinline preload="metadata" poster="/assets/media/hero/hero-poster.jpg">
+          <source media="(max-width: 899px)" src="/assets/media/hero/hero-720.mp4" type="video/mp4">
+          <source src="/assets/media/hero/hero-1080.mp4" type="video/mp4">
+        </video>
       </div>
-      <ul class="fios">
-        <li>
-          <div class="fio fio-laranja">
-            <span class="fio-titulo">Fundamentos de Rede</span>
-            <a class="placa placa-branca" href="/lp/fundamentos-de-rede/?utm_source=site&amp;utm_medium=home&amp;utm_content=topo">Conhecer o Fundamentos de Rede</a>
+
+      <div class="hero-planta-camada" aria-hidden="true"></div>
+
+      <svg class="hero-rack-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect class="rack-traco" x="688" y="96" width="544" height="904"/>
+        <rect class="rack-traco-fino" x="720" y="158" width="480" height="72"/>
+        <rect class="rack-traco-fino" x="720" y="256" width="480" height="76"/>
+        <rect class="rack-traco-fino" x="720" y="358" width="480" height="76"/>
+        <rect class="rack-marca-ambar" x="708" y="492" width="504" height="62"/>
+        <rect class="rack-traco" x="708" y="676" width="504" height="196"/>
+        <line class="rack-traco-fino" x1="708" y1="744" x2="1212" y2="744"/>
+        <line class="rack-traco-fino" x1="708" y1="808" x2="1212" y2="808"/>
+        <line class="rack-traco-fino" x1="590" y1="96" x2="590" y2="1000"/>
+        <line class="rack-traco-fino" x1="1330" y1="96" x2="1330" y2="1000"/>
+        <path class="rack-marca-ambar" d="M768 194 L768 390 M836 194 L836 390 M1030 194 L1030 390 M1136 194 L1136 390"/>
+        <path class="rack-traco-fino" d="M668 96 L646 96 M668 1000 L646 1000 M1252 96 L1274 96 M1252 1000 L1274 1000"/>
+      </svg>
+
+      <div class="conteiner hero-grade">
+        <div class="hero-copy">
+          <h1 id="hero-titulo">Pare de apagar incêndio.<br> Administre a rede.</h1>
+          <p class="hero-lede">Para o técnico de suporte que quer entender a rede de verdade e cobrar um serviço todo mês.</p>
+          <div class="hero-acoes">
+            <a class="btn btn-marcador" href="/lp/fundamentos-de-rede/?utm_source=site&amp;utm_medium=home&amp;utm_content=topo">Conhecer o Fundamentos de Rede</a>
+            <a class="btn btn-contorno" href="#conta">Calcular minha hora</a>
           </div>
-        </li>
-        <li>
-          <a class="fio fio-verde" href="/calculadora-sub-rede/">
-            <span class="fio-titulo">Calculadora de sub-rede</span>
-            <span class="fio-valor">192.168.1.0/24 · 254 hosts</span>
-          </a>
-        </li>
-        <li>
-          <a class="fio fio-azul" href="#conta">
-            <span class="fio-titulo">Quanto vale a sua hora</span>
-            <span class="fio-valor">R$&nbsp;93,75</span>
-          </a>
-        </li>
-        <li>
-          <a class="fio fio-marrom" href="/quanto-cobrar/">
-            <span class="fio-titulo">E-book</span>
-            <span class="fio-valor">Quanto cobrar em TI</span>
-          </a>
-        </li>
-      </ul>
+          <div class="hero-legenda-escala">
+            <span><i class="dot-solido" style="background: var(--cobalto);" aria-hidden="true"></i> Enlace principal</span>
+            <span><i class="dot-solido" style="background: var(--enlace-ok);" aria-hidden="true"></i> Rede validada</span>
+            <span><i class="dot-solido" style="background: var(--marcador);" aria-hidden="true"></i> Trilha recomendada</span>
+          </div>
+        </div>
+
+        <div class="prancha prancha-forte prancha-topologia" aria-labelledby="topo-titulo">
+          <svg class="cruz-canto tl" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.2"/></svg>
+          <svg class="cruz-canto tr" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.2"/></svg>
+          <svg class="cruz-canto bl" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.2"/></svg>
+          <svg class="cruz-canto br" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="1.2"/></svg>
+
+          <div class="topo-cabeca">
+            <h2 id="topo-titulo">Topologia do Ecossistema TI Ninja</h2>
+            <span class="mono">GW 192.168.1.1/24 · VLAN 10-40</span>
+          </div>
+
+          <div class="svg-backbone-wrap">
+            <svg class="svg-backbone" viewBox="0 0 640 164" role="img" aria-label="Esquema de topologia: OPNsense como firewall e gateway 192.168.1.1 conectado ao Switch L2 e distribuído em quatro ramais para os quatro nós do ecossistema TI Ninja.">
+              <rect x="8" y="8" width="624" height="148" fill="#F8FBFF" stroke="#C2D4E6" stroke-width="1"/>
+              <rect x="28" y="26" width="176" height="58" fill="#0E223D" stroke="#0E223D" stroke-width="1.5"/>
+              <text x="42" y="48" fill="#FFFFFF" font-family="Chakra Petch, sans-serif" font-size="14" font-weight="700">OPNsense GW</text>
+              <text x="42" y="68" fill="#BFD8F2" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">WAN -&gt; LAN 192.168.1.1</text>
+
+              <line x1="204" y1="55" x2="292" y2="55" stroke="#0F4C81" stroke-width="2.5"/>
+              <line class="pacote-fluxo" x1="204" y1="55" x2="292" y2="55" stroke="#E88B00" stroke-width="2.5"/>
+              <text x="248" y="45" text-anchor="middle" fill="#334E73" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">TRUNK</text>
+
+              <rect x="292" y="26" width="188" height="58" fill="#0F4C81" stroke="#0E223D" stroke-width="1.5"/>
+              <text x="306" y="48" fill="#FFFFFF" font-family="Chakra Petch, sans-serif" font-size="14" font-weight="700">Switch Core L2</text>
+              <text x="306" y="68" fill="#DCEBFA" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">802.1Q · Portas 01-04</text>
+
+              <rect x="508" y="26" width="108" height="58" fill="#FFFFFF" stroke="#7D9AB7" stroke-width="1.2"/>
+              <text x="520" y="48" fill="#0E223D" font-family="Chakra Petch, sans-serif" font-size="13" font-weight="700">AD + DNS</text>
+              <text x="520" y="68" fill="#156E46" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">SRV 10.0.0.10</text>
+              <line x1="480" y1="55" x2="508" y2="55" stroke="#156E46" stroke-width="2"/>
+
+              <line x1="386" y1="84" x2="386" y2="114" stroke="#0F4C81" stroke-width="2"/>
+              <line x1="88" y1="114" x2="560" y2="114" stroke="#0F4C81" stroke-width="2"/>
+
+              <line x1="88" y1="114" x2="88" y2="164" stroke="#E88B00" stroke-width="2.5"/>
+              <circle cx="88" cy="114" r="4" fill="#E88B00" stroke="#0E223D" stroke-width="1.2"/>
+              <text x="88" y="106" text-anchor="middle" fill="#0E223D" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">P01</text>
+
+              <line x1="245" y1="114" x2="245" y2="164" stroke="#156E46" stroke-width="2.5"/>
+              <circle cx="245" cy="114" r="4" fill="#156E46" stroke="#0E223D" stroke-width="1.2"/>
+              <text x="245" y="106" text-anchor="middle" fill="#0E223D" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">P02</text>
+
+              <line x1="402" y1="114" x2="402" y2="164" stroke="#0F4C81" stroke-width="2.5"/>
+              <circle cx="402" cy="114" r="4" fill="#0F4C81" stroke="#0E223D" stroke-width="1.2"/>
+              <text x="402" y="106" text-anchor="middle" fill="#0E223D" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">P03</text>
+
+              <line x1="560" y1="114" x2="560" y2="164" stroke="#0E223D" stroke-width="2.5"/>
+              <circle cx="560" cy="114" r="4" fill="#0E223D"/>
+              <text x="560" y="106" text-anchor="middle" fill="#0E223D" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">P04</text>
+            </svg>
+          </div>
+
+          <div class="nos-grid">
+            <a class="no-item no-destaque" href="/lp/fundamentos-de-rede/?utm_source=site&amp;utm_medium=home&amp;utm_content=topo">
+              <div class="no-topo">
+                <span class="no-vlan vlan-ambar">VLAN 10 · CURSO</span>
+                <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+              </div>
+              <span class="no-titulo">Fundamentos de Rede</span>
+              <span class="no-valor">Diagnóstico de rede · R$ 197</span>
+            </a>
+
+            <a class="no-item" href="/calculadora-sub-rede/">
+              <div class="no-topo">
+                <span class="no-vlan vlan-verde">VLAN 20 · FERRAMENTA</span>
+                <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+              </div>
+              <span class="no-titulo">Calculadora de sub-rede</span>
+              <span class="no-valor">192.168.1.0/24 · 254 hosts</span>
+            </a>
+
+            <a class="no-item" href="#conta">
+              <div class="no-topo">
+                <span class="no-vlan vlan-cobalto">VLAN 30 · PRECIFICAÇÃO</span>
+                <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+              </div>
+              <span class="no-titulo">Quanto vale a sua hora</span>
+              <span class="no-valor">R$&nbsp;93,75</span>
+            </a>
+
+            <a class="no-item" href="/quanto-cobrar/">
+              <div class="no-topo">
+                <span class="no-vlan vlan-nanquim">VLAN 40 · GUIA MSP</span>
+                <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+              </div>
+              <span class="no-titulo">E-book</span>
+              <span class="no-valor">Quanto cobrar em TI</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-entrar-wrap" id="hero-entrar-wrap" hidden>
+        <button class="btn-intro-entrar" type="button" id="btn-intro-entrar">
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7V5z" fill="currentColor"/></svg>
+          <span>Entrar no datacenter</span>
+        </button>
+      </div>
+      <div class="hero-controles" aria-label="Controles da entrada em vídeo">
+        <button class="btn-intro-ctrl" type="button" id="btn-intro-pausar" hidden>
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" fill="currentColor"/><rect x="14" y="5" width="4" height="14" fill="currentColor"/></svg>
+          <span>Pausar</span>
+        </button>
+        <button class="btn-intro-ctrl btn-intro-ctrl--primario" type="button" id="btn-intro-pular" hidden>
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l10 7-10 7V5zm12 0h2v14h-2V5z" fill="currentColor"/></svg>
+          <span>Pular intro</span>
+        </button>
+        <button class="btn-intro-ctrl" type="button" id="btn-intro-rever">
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7V5z" fill="currentColor"/></svg>
+          <span>Ver a entrada no datacenter</span>
+        </button>
+      </div>
     </section>
 
     <div class="segue-cabo">
@@ -329,6 +450,8 @@
       <a href="/artigos/">Artigos</a>
       <a href="/minha-hora/">Minha hora</a>
       <a href="/quanto-cobrar/">E-book</a>
+      <a href="https://comunidade.tininja.net/">Comunidade</a>
+      <a href="https://avaliacao.tininja.net/">Autoavaliação</a>
       <a href="/lp/fundamentos-de-rede/">Curso</a>
       <a href="/comandos/">Comandos dos vídeos</a>
     </nav>
@@ -341,5 +464,6 @@
   </footer>
   <!-- rodape:fim -->
   <script type="module" src="/assets/js/site.js"></script>
+  <script src="/assets/js/hero-intro.js" defer></script>
 </body>
 </html>

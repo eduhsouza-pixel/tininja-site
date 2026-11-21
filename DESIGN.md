@@ -1,297 +1,158 @@
 ---
 name: TI Ninja
-description: Night shopfront for a Campinas IT practice — painted fascia, lime tube, price on dark glass.
+description: Direção D (Planta de Rede) — papel vegetal quadriculado azul-claro, pranchas brancas nítidas, tinta nanquim, cobalto de engenharia, marcador âmbar e hero com entrada em vídeo do datacenter.
 colors:
-  lime: "#92c417"
-  lime-deep: "#7ead12"
-  purple: "#44335c"
-  purple-deep: "#2a1e3c"
-  jamb: "#5c4a78"
-  custo: "#6d5a8c"
-  imposto: "#d5de78"
-  fault: "#ffb1a3"
-  night: "#100e12"
-  night-2: "#1a1520"
-  ink: "#f3f0e8"
-  ink-dim: "#d5cce2"
+  papel: "#F4F8FC"
+  grade: "#DCE7F3"
+  prancha: "#FFFFFF"
+  prancha-sutil: "#EEF4FA"
+  nanquim: "#0E223D"
+  cota: "#334E73"
+  cobalto: "#0F4C81"
+  cobalto-escuro: "#0A3760"
+  cobalto-suave: "#E7F0FA"
+  marcador: "#E88B00"
+  marcador-hover: "#D27D00"
+  marcador-tinta: "#101722"
+  marcador-suave: "#FFF4E0"
+  enlace-ok: "#156E46"
+  enlace-ok-suave: "#EAF6EF"
+  enlace-erro: "#B22B27"
+  enlace-erro-suave: "#FCECEC"
+  linha: "#C2D4E6"
+  linha-forte: "#7D9AB7"
+  borda-forte: "#0E223D"
 typography:
   display:
-    fontFamily: '"Darker Grotesque", "Arial Narrow", "Arial", sans-serif'
-    fontSize: "clamp(2.7rem, 8vw, 6rem)"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "-0.035em"
-  headline:
-    fontFamily: '"Darker Grotesque", "Arial Narrow", "Arial", sans-serif'
-    fontSize: "clamp(2.2rem, 5vw, 3.6rem)"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "-0.035em"
-  title:
-    fontFamily: '"Darker Grotesque", "Arial Narrow", "Arial", sans-serif'
-    fontSize: "clamp(1.6rem, 3vw, 2.2rem)"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "-0.035em"
-  price:
-    fontFamily: '"Darker Grotesque", "Arial Narrow", "Arial", sans-serif'
-    fontSize: "clamp(3.4rem, 8vw, 5.6rem)"
-    fontWeight: 800
-    lineHeight: 0.86
-    letterSpacing: "-0.045em"
+    fontFamily: '"Chakra Petch", sans-serif'
+    fontWeight: "600 / 700"
+    h1Size: "clamp(1.95rem, 3.6vw, 3rem)"
+    heroH1Size: "clamp(1.95rem, 3.5vw, 3rem)"
+    h2Size: "clamp(1.5rem, 2.6vw, 2.15rem)"
+    h3Size: "clamp(1.2rem, 2vw, 1.5rem)"
+    lineHeight: 1.32
+    letterSpacing: "-0.02em"
   body:
-    fontFamily: '"Atkinson Hyperlegible", "Segoe UI", sans-serif'
-    fontSize: "1.0625rem"
-    fontWeight: 400
-    lineHeight: 1.5
-  label:
-    fontFamily: '"Darker Grotesque", "Arial Narrow", "Arial", sans-serif'
-    fontSize: "1.4rem"
-    fontWeight: 700
-    lineHeight: 1
-    letterSpacing: "-0.03em"
+    fontFamily: '"Atkinson Hyperlegible", sans-serif'
+    fontSize: "16px"
+    fontWeight: "400 / 700"
+    lineHeight: 1.55
+  mono:
+    fontFamily: '"JetBrains Mono", monospace'
+    fontWeight: "500 / 700"
 rounded:
-  plate: "2px"
+  raio: "2px"
 spacing:
-  gutter: "clamp(1.1rem, 4vw, 2.5rem)"
+  maxLargura: "1220px"
+  margem: "clamp(16px, 3.5vw, 36px)"
+  measure: "68ch"
+  gradeMalha: "24px 24px"
 components:
-  button-primary:
-    backgroundColor: "{colors.lime}"
-    textColor: "{colors.night}"
-    typography: "{typography.label}"
-    rounded: "{rounded.plate}"
-    padding: "0.55rem 1.15rem 0.45rem"
-    height: "3.1rem"
-  button-primary-hover:
-    backgroundColor: "{colors.lime-deep}"
-    textColor: "{colors.night}"
-    typography: "{typography.label}"
-    rounded: "{rounded.plate}"
-    padding: "0.55rem 1.15rem 0.45rem"
-    height: "3.1rem"
-  button-glass:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    typography: "{typography.label}"
-    rounded: "{rounded.plate}"
-    padding: "0.55rem 1.15rem 0.45rem"
-    height: "3.1rem"
-  button-glass-hover:
-    backgroundColor: "{colors.purple-deep}"
-    textColor: "{colors.ink}"
-    typography: "{typography.label}"
-    rounded: "{rounded.plate}"
-    padding: "0.55rem 1.15rem 0.45rem"
-    height: "3.1rem"
-  button-disabled:
-    backgroundColor: "{colors.purple-deep}"
-    textColor: "{colors.ink-dim}"
-    typography: "{typography.label}"
-    rounded: "{rounded.plate}"
-    padding: "0.55rem 1.15rem 0.45rem"
-    height: "3.1rem"
-  input:
-    backgroundColor: "{colors.night-2}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.plate}"
-    padding: "0.65rem 0.9rem 0.55rem 3.1rem"
-    height: "3.25rem"
   fascia:
-    backgroundColor: "{colors.purple}"
-    textColor: "{colors.ink}"
-    padding: "0.95rem clamp(1.1rem, 4vw, 2.5rem) 0.8rem"
+    backgroundColor: "{colors.prancha}"
+    borderBottom: "1px solid {colors.linha-forte}"
+    padding: "12px max(var(--margem), calc((100% - var(--max-largura)) / 2 + var(--margem)))"
   nav-link:
-    textColor: "{colors.ink}"
-    height: "2.75rem"
-  nav-link-current:
-    textColor: "{colors.lime}"
-    height: "2.75rem"
-  result-panel:
-    backgroundColor: "{colors.purple-deep}"
-    textColor: "{colors.ink}"
-    padding: "1.25rem 1.25rem 1.4rem"
-  price-figure:
-    textColor: "{colors.lime}"
-    typography: "{typography.price}"
-  phone-rail:
-    backgroundColor: "{colors.purple-deep}"
-    textColor: "{colors.lime}"
-    padding: "0.75rem clamp(1.1rem, 4vw, 2.5rem) calc(0.75rem + env(safe-area-inset-bottom))"
-  photo-window:
-    backgroundColor: "{colors.purple-deep}"
-  channel-row:
-    textColor: "{colors.ink}"
-    padding: "1rem 0 0.8rem"
+    textColor: "{colors.nanquim}"
+    minHeight: "44px"
+    padding: "6px 10px"
+  nav-curso:
+    backgroundColor: "{colors.marcador}"
+    textColor: "{colors.marcador-tinta}"
+    border: "1px solid #B86E00"
+  button-marcador:
+    backgroundColor: "{colors.marcador}"
+    hoverBackgroundColor: "{colors.marcador-hover}"
+    textColor: "{colors.marcador-tinta}"
+    border: "1px solid #B86E00"
+    minHeight: "44px"
+    rounded: "{rounded.raio}"
+  button-cobalto:
+    backgroundColor: "{colors.cobalto}"
+    hoverBackgroundColor: "{colors.cobalto-escuro}"
+    textColor: "#FFFFFF"
+    border: "1px solid {colors.cobalto-escuro}"
+    minHeight: "44px"
+    rounded: "{rounded.raio}"
+  button-contorno:
+    backgroundColor: "{colors.prancha}"
+    hoverBackgroundColor: "{colors.cobalto-suave}"
+    textColor: "{colors.nanquim}"
+    border: "1px solid {colors.linha-forte}"
+    minHeight: "44px"
+    rounded: "{rounded.raio}"
+  prancha:
+    backgroundColor: "{colors.prancha}"
+    border: "1px solid {colors.linha-forte}"
+    padding: "24px (32px em >= 720px)"
 ---
 
-# Design System: TI Ninja
+# Design System: TI Ninja (Direção D — Planta de Rede)
 
-## Overview
+## Visão geral
 
-**Creative North Star: "The Night Shopfront"**
+**Conceito: "Planta de Rede (Esquema de Topologia & Papel Técnico)"**
 
-TI Ninja is a painted fascia and a sheet of glass after dark. The floor is near-black, the board is purple, and a flat lime tube is the only light that draws itself. Type does the work of a shop sign: large, tight, and mostly the paper color, with lime reserved for whatever is switched on — the price, the primary plate, the active word.
+O site e as landing pages do TI Ninja são estruturados como uma planta técnica de infraestrutura: fundo externo em papel vegetal azul-claro com malha discreta de `24px`, pranchas brancas sólidas (`#FFFFFF`) para toda área de leitura e cálculo, tinta nanquim azul-marinho (`#0E223D`), azul cobalto de engenharia (`#0F4C81`) e marcador âmbar de revisão (`#E88B00`) sempre com tinta escura (`#101722`) para manter contraste WCAG AA.
 
-The sign stays open: a title in a dark bay, one sentence, two plates. The account is tighter: a readable form, one deep-purple result panel, a split bar, a ledger. Photographs sit in square windows under the same tube. Layers are opaque. The system refuses an eyebrow over the sign, a hero full of badges, a floating pill for navigation, and a row of equal cards.
+Na página inicial, o hero (`section.hero-planta#hero-intro`) abre com vídeo do corredor de datacenter sobreposto por uma camada de planta com recorte animado (`clip-path`) e traçado SVG de rack/topologia que revela a composição final com a cópia principal à esquerda e o cartão interativo da topologia do ecossistema à direita.
 
-Motion is two beats, then quiet. The fascia tube draws once from the left. The price figure settles when its text changes. On a phone, a rail repeats that same price only after the big figure has left upward.
+## Paleta e tokens canônicos
 
-**Key Characteristics:**
+Todos os tokens oficiais vivem em `:root` de `assets/css/site.css` (`color-scheme: light`):
 
-- Night floor, painted purple board, flat lime tube
-- Sign face for the letreiro, readable face for the form
-- Opaque layers and a 2px plate radius
-- Lime price on deep-purple glass; the phone rail waits until that figure has left
-- One tube draw, one price settle; everything else stays still
+### Superfícies
+- **Papel de planta (`--papel`):** `#F4F8FC` com malha ortogonal de 1px em **Grade (`--grade`):** `#DCE7F3` (`background-size: 24px 24px`) — usado apenas no fundo externo do `body` e na camada do hero (`.hero-planta-camada`).
+- **Prancha branca (`--prancha`):** `#FFFFFF` — toda área de leitura, cabeçalho, painéis de formulário/resultado, artigos, tabelas e cartões de topologia têm fundo sólido branco.
+- **Prancha sutil (`--prancha-sutil`):** `#EEF4FA` — superfícies secundárias discretas dentro de pranchas (sumários, campos em foco/leitura, tags de revisão).
 
-## Colors
+### Tintas e destaques
+- **Nanquim (`--nanquim`):** `#0E223D` — cor principal de títulos, texto corrido e bordas fortes (`--borda-forte`). Contraste medido: 14,97:1 sobre `#F4F8FC` e 15,97:1 sobre `#FFFFFF`.
+- **Cota (`--cota`):** `#334E73` — texto secundário, rótulos de apoio, fórmulas e metadados. Contraste medido: 7,94:1 sobre `#F4F8FC`.
+- **Cobalto (`--cobalto`):** `#0F4C81` (hover/escuro `--cobalto-escuro`: `#0A3760`, fundo suave `--cobalto-suave`: `#E7F0FA`) — links, conectores, foco de teclado (`outline: 2px solid var(--cobalto)`), seleção de texto (`::selection`) e botão secundário sólido com texto `#FFFFFF` (contraste 8,86:1).
+- **Marcador âmbar (`--marcador`):** `#E88B00` (hover `--marcador-hover`: `#D27D00`, suave `--marcador-suave`: `#FFF4E0`) — CTA principal, destaque do link "Curso" no menu e marcadores ativos. **Regra obrigatória de contraste:** fundo âmbar sempre usa texto escuro `--marcador-tinta: #101722` (contraste 6,96:1), nunca texto branco.
 
-The palette is the logo pair — tube lime and painted purple — on a purple-black floor with warm paper ink.
+### Estados e linhas técnicas
+- **Enlace validado (`--enlace-ok`):** `#156E46` (fundo suave `--enlace-ok-suave`: `#EAF6EF`, contraste 6,27:1 com branco).
+- **Falha de rota (`--enlace-erro`):** `#B22B27` (fundo suave `--enlace-erro-suave`: `#FCECEC`, contraste 6,43:1 com branco).
+- **Linhas (`--linha` / `--linha-forte`):** `#C2D4E6` e `#7D9AB7` — bordas secas de 1px sem sombras borradas.
 
-### Primary
+## Tipografia (OFL local em `/assets/fonts/`)
 
-- **Tube Lime** (#92c417): the lit mark. The 4px tube, the price, the primary plate, hovered and current links, form prefixes, the caret, text selection, the scrollbar thumb, and the margin slice of the split bar. A single clause inside a sign may switch to this color. Selection pairs it with the night floor.
-- **Pressed Lime** (#7ead12): the primary plate while hovered. Nowhere else.
+Todas as fontes são servidas localmente via `@font-face` (`font-display: swap`, subconjuntos `latin` e `latin-ext`), com preloads no `<head>` das páginas HTML:
 
-The shopfront brief named lime for the tube and the price. Shipped pages also use it on plates, links, prefixes, the caret, selection, and the margin slice. Those uses are the mark.
+- **Display (`--display`):** `"Chakra Petch", sans-serif` — pesos `600` e `700`. Usado em títulos (`h1`–`h4`), botões (`.btn`, `.placa`), marca no cabeçalho e controles do hero.
+- **Corpo e UI (`--texto`):** `"Atkinson Hyperlegible", sans-serif` — pesos `400` e `700`. Base `16px`, `line-height: 1.55`, medida máxima `--measure: 68ch` e `font-variant-numeric: tabular-nums`.
+- **Dados técnicos (`--mono`):** `"JetBrains Mono", monospace` — pesos `500` e `700`. Reservado para valores de rede (`IP`, máscara, `/24`, `VLAN`), comandos, fórmulas, breadcrumbs técnicos e metadados tabulares.
 
-**The Lit Mark Rule.** Lime is a flat fill, with no gradient and no glow. It marks the tube, the price, the primary plate, hovered and current links, form prefixes, the caret, text selection, the scrollbar thumb, and the margin slice of the split bar. One clause inside a sign may switch to lime. It does not fill a section.
+## Cabeçalho, navegação e rodapé
 
-### Secondary
+- **Cabeçalho institucional (`.fascia` / `.topo-site`):** barra branca (`#FFFFFF`) com borda inferior `1px solid var(--linha-forte)` (`--linha-forte: #7D9AB7`), não flutuante e sem `backdrop-filter`.
+- **Menu gerenciado por `scripts/layout.py`:** `Início`, `Calculadora de hora`, `Quanto cobrar`, `Calculadora de sub-rede`, `Artigos`, `Comunidade` (`https://comunidade.tininja.net/`), `Autoavaliação` (`https://avaliacao.tininja.net/`), `Curso` (`/lp/fundamentos-de-rede/`, destaque âmbar) e `E-book`. Links externos nunca recebem `aria-current="page"`.
+- **Responsividade em 390px:** abaixo de `720px`, a navegação ocupa `100%` da largura abaixo da marca separada por `border-top: 1px solid var(--grade)`, quebrando em duas linhas limpas sem scroll horizontal e mantendo alvos de toque com `min-height: 44px`.
 
-- **Painted Purple** (#44335c): the fascia board and the closing e-book band. Also the 7rem wash at 35% opacity that opens the calculator section, and the footer hairline at 90% opacity.
-- **Glass Purple** (#2a1e3c): the deep pane. Result panel, photo window, phone rail, glass-plate hover, and disabled plates. Scrollbar track.
-- **Jamb** (#5c4a78): the 1px stroke on fields, and the inset line on a disabled plate. Not a fill.
+## Hero em vídeo do datacenter (`index.html` + `assets/js/hero-intro.js`)
 
-**The Two Purples Rule.** Painted purple is the fascia and the closing band. Deep purple is the glass: the result panel, the photo window, the phone rail, and the pressed glass plate. They do not trade places.
+- **Camadas visuais de `section.hero-planta#hero-intro`:**
+  1. `.hero-midia`: imagem estática de fallback/quadro final (`/assets/media/hero/hero-final.jpg`) e `<video id="hero-video" muted playsinline preload="metadata" poster="/assets/media/hero/hero-poster.jpg">` com fontes `/assets/media/hero/hero-720.mp4` e `/assets/media/hero/hero-1080.mp4`.
+  2. `.hero-planta-camada`: camada de papel vegetal translúcido quadriculado (`rgba(244, 248, 252, 0.93)`) com transição horizontal em `clip-path` (`1100ms var(--sai)`).
+  3. `.hero-rack-svg`: desenho vetorial ortogonal de rack e conexões em `--cobalto`, `--cota` e `--marcador` animado via `stroke-dashoffset`.
+  4. `.hero-grade`: coluna de cópia real do produto à esquerda e prancha de topologia clicável do ecossistema à direita (Fundamentos de Rede, Sub-rede, Minha hora, E-book).
+  5. `#hero-entrar-wrap` / `#btn-intro-entrar` e `.hero-controles`: controles fixos/posicionados com `min-height: 44px` (`Pausar` / `Continuar`, `Pular intro`, `Ver a entrada no datacenter`).
+- **Regras de reprodução (`assets/js/hero-intro.js`):**
+  - `?intro=1` força a reprodução desde o início; `?intro=0` pula imediatamente para o estado final; `?t=<segundos>` posiciona pausado para inspeção.
+  - Em visitas seguintes na mesma sessão (`sessionStorage.tn_intro_vista === "1"`) ou quando `(prefers-reduced-motion: reduce)` está ativo, a intro pula direto para `.intro-concluida`.
+  - Se `video.play()` for rejeitado pelo navegador, entra no estado `.intro-aguardando` exibindo `#btn-intro-entrar`.
+  - Erros de mídia (`error` no `<video>` ou no último `<source>`) recuam imediatamente para o estado final estático sem bloquear o conteúdo.
 
-### Tertiary
+## Regras obrigatórias e proibições
 
-- **Cost Violet** (#6d5a8c): the cost slice of the price bar and its 0.75rem legend swatch. Nowhere else.
-- **Tax Straw** (#d5de78): the tax slice of the price bar and its legend swatch. Nowhere else.
-- **Fault Clay** (#ffb1a3): the invalid field border and the error line. Status lines stay paper.
-
-### Neutral
-
-- **Night Floor** (#100e12): the page background, the hero shade's solid end, the price-bar track, and the text on a lime plate. `color-scheme` is dark.
-- **Counter Night** (#1a1520): the well inside a field. Not a section background.
-- **Sign Paper** (#f3f0e8): text on night and on purple, the glass-plate label, and the 3px focus ring.
-- **Dim Lavender** (#d5cce2): notes, help, formulas, the glass-plate inset line, and secondary lines in the result panel.
-
-## Typography
-
-**Display Font:** Darker Grotesque (with Arial Narrow, then Arial)
-**Body Font:** Atkinson Hyperlegible (with Segoe UI)
-
-**Character:** The sign face is heavy, tight, and set with a line-height under 1, like a painted letreiro. The form face is wider and calmer, and figures are tabular on the page, on plates, and in fields so the account does not jump.
-
-### Hierarchy
-
-- **Display** (800, clamp(2.7rem, 8vw, 6rem), line-height 0.92, tracking −0.035em): the hero sign and the missing-page sign.
-- **Headline** (800, clamp(2.2rem, 5vw, 3.6rem), line-height 0.92, tracking −0.035em): section signs. Headlines keep 0.7rem under them.
-- **Title** (800, clamp(1.6rem, 3vw, 2.2rem), line-height 0.92, tracking −0.035em): the monthly ledger heading inside the result panel.
-- **Price** (800, clamp(3.4rem, 8vw, 5.6rem), line-height 0.86, tracking −0.045em): the minimum hour price, in tube lime. On the phone rail the same figure is 2.1rem.
-- **Body** (400, 1.0625rem, line-height 1.5): paragraphs, stopped at 68ch. Ledes are 1.15–1.2rem. Notes and help are 0.95–0.98rem in dim lavender.
-- **Label** (700, 1.4rem, line-height 1, tracking −0.03em): plates. Nav links are 1.35rem and field names are 1.45rem, same face, weight, and tracking. The small unit beside a field name drops to the body face at 0.95rem, regular, dim lavender.
-
-**The Sign and the Form Rule.** Darker Grotesque carries the sign: headings, the price, nav, plates, and field names. Atkinson Hyperlegible carries paragraphs, help, and input values. The two do not swap.
-
-**The Empty Bay Rule.** The title sits in the dark bay. Nothing is labeled above it.
-
-## Layout
-
-The floor is full-bleed night. A sticky fascia (block size 4.6rem) carries the gutter, clamp(1.1rem, 4vw, 2.5rem). Content columns stop at min(1120px, 100% minus two gutters). Section bands pad clamp(3.5rem, 8vw, 5.5rem) on top and clamp(2.5rem, 6vw, 3.5rem) below. The closing band is full-bleed painted purple with clamp(3rem, 8vw, 5rem) of padding.
-
-From 900px up, the account becomes two columns, about 1.15fr and 0.85fr, and the result panel sticks 1rem under the fascia. Photo-and-text pairs split near half and alternate which side holds the window. The footer becomes three columns. Below 900px, those regions stack. The hero, from 900px up, is at least the viewport minus the fascia and 11rem.
-
-A bleed photograph is covered by opaque night gradients so type sits on the floor: on wide screens a left bay, on narrow screens a bottom-weighted shade. The calculator section opens with a 7rem wash of painted purple at 35% over the floor. The missing page centers its sign in the space under the fascia.
-
-**The Column Rule.** Body copy stops at 68ch. The hero lede stops at 36ch. The content column stops at 1120px inside the gutters.
-
-**The Rail After the Figure Rule.** Below 900px, the fixed rail repeats the price only once that figure's bottom edge has crossed the top of the viewport. Until then the rail stays hidden.
-
-## Elevation & Depth
-
-Depth is tonal and opaque: night floor, painted board, deep-purple glass, photograph. There is no backdrop blur. Three soft shadows exist, all ambient, none a hard offset. Glass plates and disabled plates use a 1px inset line instead of a shadow.
-
-The shopfront brief refused blur as a way to make depth, and the build keeps that. When the price text changes, the figure alone moves up from 0.4rem and a 5px blur to rest. That blur is the settle, not a material.
-
-### Shadow Vocabulary
-
-- **Fascia** (`box-shadow: 0 12px 28px rgba(6, 4, 8, 0.35)`): the sticky board, at rest.
-- **Result** (`box-shadow: 0 18px 36px rgba(6, 4, 8, 0.38)`): the price panel, at rest.
-- **Rail** (`box-shadow: 0 -14px 30px rgba(6, 4, 8, 0.45)`): the phone rail, only while it is on screen.
-
-**The Flat Layer Rule.** Depth is opaque stacks — floor, painted board, deep glass, photograph — not blur. Soft shadows sit only under the fascia, the result panel, and the phone rail.
-
-**The Tube Once Rule.** The fascia tube scales from the left once, over 900ms. The tube on a result panel or photo window is already lit. Reduced motion shows every tube at full length and does not settle the price.
-
-## Shapes
-
-Corners are cut almost square. Plates and fields share a 2px radius. The result panel, photo windows, the price rail, the split bar, and nav links are square. The tube is a 4px band along the top edge of the fascia, the result panel, each photo window, and the phone rail.
-
-Hairlines are 1px, not cards. Ledger rows use dim lavender at 25% opacity. Channel rows use it at 35%. The craft list uses lime at 45%. The footer uses painted purple at 90%. The split bar is 0.85rem tall on a night track, three flat slices, no gaps.
-
-**The Near-Square Rule.** Plates, fields, and the notice field use a 2px radius. The nav, the result panel, photo windows, and the price rail are square. Nothing is a pill.
-
-## Components
-
-### Plates
-
-Shop signs you can press. The fill swaps immediately on hover; the plate does not lift.
-
-- **Shape:** 2px radius, minimum height 3.1rem, padding 0.55rem 1.15rem 0.45rem, sign face at 700 / 1.4rem, tracking −0.03em.
-- **Primary:** tube lime fill, night text. Hover fills with pressed lime.
-- **Glass:** transparent, paper text, a 1px inset line of dim lavender. Hover fills with glass purple and keeps the line.
-- **Focus:** the page ring, 3px sign paper, offset 3px.
-- **Disabled:** glass-purple fill, dim-lavender text, a 1px inset jamb, `not-allowed` cursor. Copy and share start here until the account is valid.
-
-### Fields
-
-The account field is the counter.
-
-- **Style:** counter-night well, 1px jamb border, 2px radius, minimum height 3.25rem, padding 0.65rem 0.9rem 0.55rem 3.1rem. Value type is the body face at 1.2rem, with a lime caret. The prefix (R$, h, %) is the sign face, 700, 1.25rem, tube lime, and it does not take clicks.
-- **Plain field:** the notice form uses the same well, border, and radius, with padding 0.6rem 0.9rem, no prefix, and a 1.125rem value.
-- **Labels:** sign face, 700, 1.45rem on the account (1.4rem on the notice). Help sits under the field in dim lavender.
-- **Focus:** the same 3px paper ring.
-- **Error:** an invalid field switches its border to fault clay. The error line is fault clay. A status line is sign paper.
-
-### Navigation
-
-The fascia is a sticky painted-purple board, not a floating pill. The color logo sits at 2.4rem tall. Links are the sign face at 700 / 1.35rem, paper, no underline at rest, minimum height 2.75rem, and they wrap. Hover and the current page turn the word lime and add a 2px underline offset 0.28em. The footer repeats paper links at body weight 700; hover turns them lime. The footer logo is 2rem tall.
-
-### Result panel
-
-One deep-purple glass pane, square, padded 1.25rem 1.25rem 1.4rem, with the result shadow and a static 4px lime tube pulled out to the pane's edges. The label is the sign face at 700 / 1.35rem. The price uses the price role in tube lime. From 900px up the pane sticks 1rem under the fascia. The split bar and the monthly ledger live inside this pane, not in separate cards.
-
-The price settles only when the formatted figure changes, not on the first paint: 420ms, cubic-bezier(0.16, 1, 0.3, 1), from 0.4rem below and a 5px blur. Reduced motion skips it.
-
-### Phone rail
-
-Hidden at rest. Below 900px, after the big price's bottom edge has crossed the top of the viewport, a fixed glass-purple bar docks to the bottom with a 4px lime tube on its top edge, the rail shadow, and padding that clears the safe area. It shows the words "Preço mínimo" in the sign face at 700 / 1.25rem and the same price at 800 / 2.1rem in tube lime. While it is up, the page gains 4.75rem of bottom padding. The rail is hidden from assistive tech; it repeats the figure and does not calculate a second one.
-
-### Photo window
-
-A square deep-purple frame with a static 4px lime tube on the top edge. The photograph covers the frame and is centered. It caps at 28rem tall below 900px; from 900px up it fills the column and stays at least 18rem tall.
-
-### Channel rows
-
-Large sign links, clamp(2rem, 5vw, 3.2rem), weight 800, tracking −0.04em, stacked with 0.8rem between them. Each row has a 1px dim-lavender hairline at 35% opacity and a body-size dim handle on the right. Hover turns the row lime.
-
-## Do's and Don'ts
-
-### Do:
-
-- **Do** paint the floor night (#100e12) and the fascia painted purple (#44335c), with a 4px tube of lime (#92c417) on the fascia, the result panel, each photo window, and the phone rail.
-- **Do** set signs, plates, nav, and field names in Darker Grotesque, and set paragraphs, help, and input values in Atkinson Hyperlegible.
-- **Do** keep plates and fields at a 2px radius and a minimum height of 3.1–3.25rem, with the 3px sign-paper focus ring offset by 3px.
-- **Do** keep the phone rail off until the big price's bottom edge has left the viewport upward, and only below 900px.
-- **Do** draw the fascia tube once over 900ms with cubic-bezier(0.16, 1, 0.3, 1), and settle the price over 420ms on the same curve only when its text changes. Skip both when reduced motion is requested.
-
-### Don't:
-
-- **Don't** place an eyebrow, kicker, or row of badges above a sign.
-- **Don't** build a section as a row of equal cards. Use one glass panel, a photo window beside text, or a list.
-- **Don't** frost a surface with backdrop blur, and don't use a hard offset shadow. The only blur is the price figure's settle.
-- **Don't** wash a region in lime, and don't set the price in any color but lime.
-- **Don't** use pill shapes for the nav, plates, fields, or the rail.
+- **Pranchas sólidas:** blocos de leitura, artigos, formulários e calculadoras ficam sempre em `#FFFFFF` sólido; a malha quadriculada não pode invadir fundos de texto longo.
+- **Geometria e elevação:** cantos quase retos (`--raio: 2px`), bordas secas de `1px` (`--linha`, `--linha-forte`, `--nanquim`) e cruzes de registro (`.cruz-canto`).
+- **Proibido:**
+  - `kicker-above-heading` (rótulos pequenos em caixa alta acima de títulos/headings — em títulos de LPs ou artigos usar subtítulo natural ou cabeçalho semântico direto).
+  - Roxo em qualquer superfície, borda ou texto.
+  - Glassmorphism / `backdrop-filter`.
+  - Texto em gradiente, glow neon ou sombras borradas decorativas.
+  - Botão laranja (`#E88B00`) com texto branco.
+  - Alvos clicáveis com altura menor que `44px`.

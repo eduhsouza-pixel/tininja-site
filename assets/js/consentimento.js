@@ -21,17 +21,16 @@
   window.tnConsentimento = function () { return lido(); };
 
   var css = '' +
-    '.tn-cookies{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#16181d;color:#fff;' +
-    'border-top:4px solid #f07f1a;padding:0.9rem clamp(1rem,4vw,2.5rem);font:inherit;font-size:0.95rem;line-height:1.45;' +
-    'box-shadow:0 -6px 20px rgba(0,0,0,.18)}' +
-    '.tn-cookies-in{max-width:72rem;margin:0 auto;display:flex;flex-wrap:wrap;gap:0.7rem 1.2rem;align-items:center}' +
-    '.tn-cookies p{margin:0;flex:1 1 22rem;max-width:none;color:#fff}' +
-    '.tn-cookies a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:.2em}' +
-    '.tn-cookies-bt{display:flex;gap:0.6rem;flex:0 0 auto}' +
-    '.tn-cookies button{font:inherit;font-weight:700;font-size:0.95rem;min-height:2.75rem;padding:0.5rem 1.1rem;border-radius:6px;cursor:pointer;border:2px solid #fff}' +
-    '.tn-cookies .tn-sim{background:#f07f1a;border-color:#f07f1a;color:#16181d}' +
-    '.tn-cookies .tn-nao{background:transparent;color:#fff}' +
-    '.tn-cookies button:focus-visible{outline:3px solid #2b6cd9;outline-offset:3px}';
+    '.tn-cookies{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0E223D;color:#FFFFFF;' +
+    'border-top:2px solid #E88B00;padding:14px clamp(16px,3.5vw,36px);font:inherit;font-size:0.9375rem;line-height:1.45}' +
+    '.tn-cookies-in{max-width:1220px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}' +
+    '.tn-cookies p{margin:0;flex:1 1 22rem;max-width:none;color:#FFFFFF}' +
+    '.tn-cookies a{color:#DCEBFA;font-weight:700;text-decoration:underline;text-underline-offset:.2em}' +
+    '.tn-cookies-bt{display:flex;gap:10px;flex:0 0 auto}' +
+    '.tn-cookies button{font-family:var(--display,"Chakra Petch",sans-serif);font-weight:700;font-size:0.9375rem;min-height:44px;padding:8px 18px;border-radius:2px;cursor:pointer;border:1px solid #C2D4E6}' +
+    '.tn-cookies .tn-sim{background:#E88B00;border-color:#B86E00;color:#101722}' +
+    '.tn-cookies .tn-nao{background:transparent;color:#FFFFFF}' +
+    '.tn-cookies button:focus-visible{outline:2px solid #FFFFFF;outline-offset:2px}';
 
   var aviso = null;
   var fechar = function () { if (aviso) { aviso.remove(); aviso = null; } };
