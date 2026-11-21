@@ -1368,6 +1368,301 @@ button.placa:disabled {
   }
 }
 
+/* ---------- Console de diagnóstico interativo na Home (#diagnostico) ---------- */
+
+.console-diag {
+  margin-top: 20px;
+  background: var(--nanquim);
+  color: #EAF1F8;
+  border: 1px solid var(--cobalto);
+  border-radius: var(--raio);
+  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.console-diag-topo {
+  background: #09182D;
+  border-bottom: 1px solid var(--cobalto);
+  padding: 12px;
+}
+
+.console-tabs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+@media (min-width: 720px) {
+  .console-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.console-tab {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  background: #132C4E;
+  color: #EAF1F8;
+  border: 1px solid #2A4C78;
+  border-radius: var(--raio);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.console-tab:hover {
+  background: #1B3B66;
+  border-color: #4D80B8;
+}
+
+.console-tab[aria-selected="true"] {
+  background: var(--marcador);
+  color: var(--marcador-tinta);
+  border-color: #B86E00;
+}
+
+.console-tab-cmd {
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.console-tab-etapa {
+  font-family: var(--texto);
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: #BFD8F2;
+}
+
+.console-tab[aria-selected="true"] .console-tab-etapa {
+  color: var(--marcador-tinta);
+}
+
+.console-painel {
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+@media (min-width: 720px) {
+  .console-painel {
+    padding: 20px;
+  }
+}
+
+.console-cmd-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  padding: 10px 14px;
+  background: #132C4E;
+  border: 1px solid #2A4C78;
+  border-radius: var(--raio);
+  min-width: 0;
+}
+
+.console-cmd-linha {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.console-prompt {
+  color: #FFB84D;
+  flex-shrink: 0;
+}
+
+.console-cmd-texto {
+  font-family: var(--mono);
+  color: #FFFFFF;
+}
+
+.console-cmd-ctrl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.console-btn-copiar {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  background: var(--cobalto);
+  color: #FFFFFF;
+  border: 1px solid #4D80B8;
+  border-radius: var(--raio);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease;
+}
+
+.console-btn-copiar:hover {
+  background: #1660A0;
+  border-color: #7DB3E6;
+}
+
+.console-btn-copiar.copiado {
+  background: var(--enlace-ok);
+  border-color: #6EE7B7;
+  color: #FFFFFF;
+}
+
+.console-copy-status {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #6EE7B7;
+}
+
+.console-copy-status:empty {
+  display: none;
+}
+
+.console-saida {
+  margin: 0;
+  padding: 12px;
+  background: #09182D;
+  color: #EAF1F8;
+  border: 1px solid #1E3D66;
+  border-radius: var(--raio);
+  font-family: var(--mono);
+  font-size: 0.78125rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow-x: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+
+@media (min-width: 720px) {
+  .console-saida {
+    padding: 16px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    white-space: pre;
+    overflow-wrap: normal;
+  }
+}
+
+.console-saida code {
+  font-family: inherit;
+  color: inherit;
+}
+
+.diag-ok {
+  color: #6EE7B7;
+  font-weight: 700;
+}
+
+.diag-alerta {
+  color: #FFB84D;
+  font-weight: 700;
+}
+
+.diag-erro {
+  color: #FCA5A5;
+  font-weight: 700;
+}
+
+.console-conclusao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 20px;
+  padding: 14px 16px;
+  background: #132C4E;
+  border: 1px solid #2A4C78;
+  border-radius: var(--raio);
+}
+
+.console-conclusao-texto {
+  margin: 0;
+  color: #EAF1F8;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  flex: 1 1 28ch;
+}
+
+.console-conclusao-texto code {
+  font-family: var(--mono);
+  font-size: 0.875em;
+  background: #09182D;
+  color: #FFB84D;
+  border: 1px solid #2A4C78;
+  padding: 1px 6px;
+  border-radius: var(--raio);
+}
+
+.console-painel-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.console-link-curso {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 4px;
+  background: transparent;
+  color: #FFB84D;
+  border: 0;
+  border-radius: var(--raio);
+  font-family: var(--texto);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  transition: color 0.16s ease;
+}
+
+.console-link-curso:hover {
+  color: #FFFFFF;
+}
+
+.console-diag :focus-visible {
+  outline: 2px solid #FFB84D;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .console-tab,
+  .console-btn-copiar,
+  .console-link-curso {
+    transition: none !important;
+  }
+}
+
 /* ---------- Caminho, ofício, canais ---------- */
 
 .caminho {
