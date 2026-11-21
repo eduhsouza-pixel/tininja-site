@@ -7,7 +7,7 @@
   <meta name="description" content="Curso online para quem atende suporte: endereço, máscara, gateway, DNS e DHCP, com um método de diagnóstico praticado num laboratório no seu PC. Aulas direto ao ponto, PDF de prática nos 2 módulos, bônus de Virtualização, agente de IA na área de membros e 7 dias de garantia.">
   <link rel="canonical" href="https://tininja.net/lp/fundamentos-de-rede/">
   <meta name="author" content="Eduardo Honorato">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#0E223D">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="TI Ninja">
@@ -20,132 +20,122 @@
   <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" href="/assets/fonts/almarai-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/almarai-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/chakra-petch-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-700-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <style>
-    /* Página de vendas do Fundamentos de Rede (VTSD: seções, sem links de saída, preço público R$ 197). */
-    .lp { --borda: 3px solid var(--tinta); }
+    /* Página de vendas do Fundamentos de Rede (Direção D: Planta de Rede; VTSD sem links de saída, preço público R$ 197). */
     .lp .fascia { justify-content: center; }
     .lp .marca { pointer-events: none; }
-    .lp-sec { padding: clamp(1.75rem, 4.5vw, 3.5rem) var(--margem); }
-    .lp-sec + .lp-sec { border-top: 1px solid var(--linha); }
-    .lp-tag { font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--laranja-escuro); margin-bottom: 1rem; }
-    .lp-topo { display: flex; flex-direction: column; padding: 0.25rem var(--margem) clamp(1.5rem, 4vw, 2.5rem); }
-    .lp-hero-copy h1 { font-size: clamp(2.35rem, 8vw, 4.2rem); margin-bottom: 0.9rem; }
-    .lp-hero-copy h1 em { font-style: normal; color: var(--laranja-faixa); }
-    .lp-lede { font-size: clamp(1.12rem, 1.5vw, 1.3rem); color: var(--tinta-2); margin-bottom: 0; }
-    .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.2rem; margin-top: 1.25rem; }
-    .lp-cta .placa { font-size: 1.2rem; min-height: 3.4rem; padding-inline: 1.6rem; }
-    .lp-cta small { color: var(--tinta-3); font-size: 0.98rem; line-height: 1.35; }
-    .lp-hero-preco { margin: 0; font-weight: 800; color: var(--tinta); font-size: 1.08rem; }
-    .lp-pain { padding-top: 1.35rem; }
-    .lp-ver { font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; color: var(--tinta); }
-    .lp-pain .lp-dores { margin-top: 0; }
+    .lp-topo { width: min(var(--max-largura), calc(100% - var(--margem) * 2)); margin: 0 auto; display: flex; flex-direction: column; padding: 28px 0 32px; gap: 24px; }
+    .lp-hero-copy h1 { font-size: clamp(2rem, 3.8vw, 3.1rem); line-height: 1.15; margin-bottom: 14px; }
+    .lp-hero-copy h1 em { font-style: normal; color: var(--cobalto); }
+    .lp-lede { font-size: clamp(1.0625rem, 1.4vw, 1.2rem); color: var(--cota); line-height: 1.5; margin-bottom: 0; }
+    .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 22px; }
+    .lp-cta .placa { min-height: 48px; font-size: 1.0625rem; padding: 12px 24px; }
+    .lp-cta small { color: var(--cota); font-size: 0.9375rem; line-height: 1.45; }
+    .lp-hero-preco { margin: 0; font-family: var(--mono); font-weight: 700; color: var(--nanquim); font-size: 0.9375rem; }
+    .lp-ver { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; color: var(--cobalto-escuro); }
+    .lp-pain { background: var(--prancha); border: 1px solid var(--linha-forte); padding: 24px; }
+    .lp-pain h2 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); margin-bottom: 14px; }
+    .lp-dores { display: grid; gap: 12px; grid-template-columns: 1fr; margin: 0 0 14px; padding: 0; list-style: none; }
+    @media (min-width: 860px) { .lp-dores { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .lp-dores li { padding: 16px 18px; border: 1px solid #DFABA9; background: var(--enlace-erro-suave); border-radius: var(--raio); font-weight: 700; color: var(--nanquim); line-height: 1.45; }
+    .lp-vertical { position: relative; display: grid; width: min(100%, 360px); aspect-ratio: 9 / 16; justify-self: center; padding: 8px; border: 1px solid var(--nanquim); border-radius: var(--raio); overflow: hidden; background: var(--prancha); }
+    .lp-vertical button { all: unset; cursor: pointer; position: relative; width: 100%; height: 100%; display: grid; place-items: center; background: var(--nanquim); overflow: hidden; }
+    .lp-vertical img, .lp-vertical video { position: relative; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lp-vertical button img { position: absolute; inset: 0; }
+    .lp-vertical .lp-play, .lp-vertical .lp-legenda { z-index: 1; }
+    .lp-vertical .lp-play { position: relative; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; background: var(--marcador); border: 2px solid var(--nanquim); }
+    .lp-vertical .lp-play::after { content: ""; margin-left: 5px; border-left: 22px solid var(--marcador-tinta); border-top: 13px solid transparent; border-bottom: 13px solid transparent; }
+    .lp-vertical .lp-legenda { position: absolute; left: 10px; right: 10px; bottom: 10px; padding: 10px 14px; color: #FFFFFF; font-size: 0.9375rem; line-height: 1.4; background: rgba(14, 34, 61, 0.94); border: 1px solid var(--linha-forte); }
     @media (max-width: 979px) {
-      /* 13/11: sem o vão de 100svh; o nome do curso volta e a dor sobe para a primeira tela */
-      .lp-hero-copy { padding-top: 0.75rem; }
       .lp-hero-copy .lp-cta small { display: none; }
       .lp-cta { flex-direction: column; align-items: stretch; }
-      .lp-cta .placa { width: 100%; font-size: 1.08rem; padding-inline: 0.7rem; }
-      .lp-cta small, .lp-hero-preco, .lp-ver { text-align: center; }
-      .lp-vertical { margin-top: 1.5rem; }
+      .lp-cta .placa { width: 100%; }
+      .lp-cta small, .lp-hero-preco, .lp-ver { text-align: center; justify-content: center; }
       .lp-eduardo img { max-width: 160px; margin-inline: auto; }
     }
     @media (min-width: 980px) {
-      .lp-topo { display: grid; grid-template-columns: 1.05fr 0.95fr; column-gap: clamp(2rem, 4vw, 4rem); row-gap: 1.6rem; align-items: center; padding-top: clamp(1.5rem, 4vw, 3rem); }
+      .lp-topo { display: grid; grid-template-columns: 1.05fr 0.95fr; column-gap: clamp(28px, 4vw, 56px); row-gap: 24px; align-items: center; padding-top: 36px; }
       .lp-hero-copy { grid-column: 1; grid-row: 1; }
       .lp-vertical { grid-column: 2; grid-row: 1; justify-self: end; }
-      .lp-pain { grid-column: 1 / -1; grid-row: 2; padding-top: 0; }
+      .lp-pain { grid-column: 1 / -1; grid-row: 2; }
     }
-    .lp-video { position: relative; aspect-ratio: 16 / 9; border-radius: var(--raio); overflow: hidden; background: #0b1411; box-shadow: var(--sombra); }
-    .lp-video button { all: unset; cursor: pointer; position: absolute; inset: 0; display: grid; place-items: center; }
-    .lp-video img { width: 100%; height: 100%; object-fit: cover; opacity: 0.78; }
-    .lp-video .lp-play { position: absolute; display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--laranja); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
-    .lp-video .lp-play::after { content: ""; margin-left: 6px; border-left: 26px solid var(--tinta); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
-    .lp-video .lp-legenda { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.8rem 1rem; color: #fff; font-size: 0.98rem; background: linear-gradient(transparent, rgba(0,0,0,.75)); }
-    .lp-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .lp-vertical { position: relative; width: min(100%, 380px); aspect-ratio: 9 / 16; justify-self: center; border-radius: calc(var(--raio) * 2); overflow: hidden; background: #0b1411; box-shadow: 0 24px 60px rgba(22,24,29,.28); }
-    .lp-vertical button { all: unset; cursor: pointer; position: absolute; inset: 0; display: grid; place-items: center; }
-    .lp-vertical img, .lp-vertical video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .lp-vertical .lp-play, .lp-vertical .lp-legenda { z-index: 1; }
-    .lp-vertical .lp-play { position: relative; display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: var(--laranja); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
-    .lp-vertical .lp-play::after { content: ""; margin-left: 6px; border-left: 26px solid var(--tinta); border-top: 16px solid transparent; border-bottom: 16px solid transparent; }
-    .lp-vertical .lp-legenda { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.9rem 1rem; color: #fff; font-size: 0.98rem; background: linear-gradient(transparent, rgba(0,0,0,.8)); }
-    .lp-demo { margin-top: 2rem; max-width: 820px; }
-    .lp-dores { display: grid; gap: 0.7rem; grid-template-columns: 1fr; margin: 0 0 1rem; padding: 0; list-style: none; }
-    @media (min-width: 860px) { .lp-dores { grid-template-columns: repeat(3, 1fr); } }
-    .lp-dores li { padding: 1.1rem 1.2rem; border-left: 4px solid var(--falha); background: var(--papel); border-radius: 0 var(--raio) var(--raio) 0; font-weight: 700; }
-    .lp-premissa { font-size: clamp(1.35rem, 2.4vw, 1.9rem); font-weight: 800; line-height: 1.25; max-width: 32ch; }
-    .lp-premissa mark { background: none; color: var(--laranja-faixa); }
-    .lp-duas { display: grid; gap: 1.2rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
+    .lp-sec { width: min(var(--max-largura), calc(100% - var(--margem) * 2)); margin: 20px auto; padding: 28px 24px; background: var(--prancha); border: 1px solid var(--linha-forte); }
+    @media (min-width: 720px) { .lp-sec { padding: 34px 40px; } }
+    .lp-video { position: relative; display: grid; aspect-ratio: 16 / 9; padding: 8px; border: 1px solid var(--nanquim); border-radius: var(--raio); overflow: hidden; background: var(--prancha); }
+    .lp-video button { all: unset; cursor: pointer; position: relative; width: 100%; height: 100%; display: grid; place-items: center; background: var(--nanquim); overflow: hidden; }
+    .lp-video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+    .lp-video .lp-play { position: relative; z-index: 1; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; background: var(--marcador); border: 2px solid var(--nanquim); }
+    .lp-video .lp-play::after { content: ""; margin-left: 5px; border-left: 22px solid var(--marcador-tinta); border-top: 13px solid transparent; border-bottom: 13px solid transparent; }
+    .lp-video .lp-legenda { position: absolute; z-index: 1; left: 12px; right: 12px; bottom: 12px; padding: 10px 14px; color: #FFFFFF; font-size: 0.9375rem; line-height: 1.4; background: rgba(14, 34, 61, 0.94); border: 1px solid var(--linha-forte); }
+    .lp-video iframe { width: 100%; height: 100%; border: 0; }
+    .lp-eduardo { display: grid; gap: 24px; grid-template-columns: 1fr; align-items: center; }
+    @media (min-width: 860px) { .lp-eduardo { grid-template-columns: 240px 1fr; } }
+    .lp-eduardo img { width: 100%; max-width: 240px; border-radius: 50%; aspect-ratio: 1; object-fit: cover; border: 2px solid var(--nanquim); }
+    .lp-provas { display: grid; gap: 16px; grid-template-columns: 1fr; margin-top: 20px; }
+    @media (min-width: 860px) { .lp-provas { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .lp-prova { margin: 0; padding: 20px; border: 1px solid var(--linha-forte); border-radius: var(--raio); background: var(--prancha-sutil); display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
+    .lp-prova blockquote { margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.45; color: var(--nanquim); }
+    .lp-prova figcaption { font-size: 0.875rem; color: var(--cota); }
+    .lp-prova figcaption strong { display: block; color: var(--nanquim); }
+    .lp-provas-nota { margin-top: 16px; font-size: 0.9375rem; color: var(--cota); max-width: 70ch; }
+    .lp-duas { display: grid; gap: 16px; grid-template-columns: 1fr; margin-top: 20px; }
     @media (min-width: 860px) { .lp-duas { grid-template-columns: 1fr 1fr; } }
-    .lp-caixa { padding: 1.05rem 1.1rem; border-radius: var(--raio); background: var(--papel); }
-    .lp-caixa h3 { margin-bottom: 0.8rem; }
-    .lp-caixa ol, .lp-caixa ul { margin: 0; padding-left: 1.2rem; }
-    .lp-caixa li { margin-bottom: 0.45rem; }
-    .lp-errado { border-top: 6px solid var(--falha); }
-    .lp-errado li { color: var(--tinta-2); }
-    .lp-certo { border-top: 6px solid var(--verde); }
-    .lp-certo li { font-weight: 700; }
-    .lp-modulos { display: grid; gap: 1.4rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
+    .lp-caixa { padding: 22px; border-radius: var(--raio); border: 1px solid var(--linha-forte); background: var(--prancha-sutil); }
+    .lp-caixa h3 { margin-bottom: 12px; }
+    .lp-caixa ol, .lp-caixa ul { margin: 0; padding-left: 20px; }
+    .lp-caixa li { margin-bottom: 8px; }
+    .lp-errado { background: var(--enlace-erro-suave); border-color: #DFABA9; }
+    .lp-errado li { color: var(--nanquim); }
+    .lp-certo { background: var(--enlace-ok-suave); border-color: var(--enlace-ok); }
+    .lp-certo li { font-weight: 700; color: var(--nanquim); }
+    .lp-modulos { display: grid; gap: 16px; grid-template-columns: 1fr; margin-top: 20px; }
     @media (min-width: 980px) { .lp-modulos { grid-template-columns: 1fr 1fr; } }
-    .lp-mod { border: var(--borda); border-radius: var(--raio); overflow: hidden; background: #fff; }
-    .lp-mod img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-    .lp-mod > div { padding: 1rem 1.1rem 1.15rem; }
-    .lp-mod .lp-tag { margin-bottom: 0.4rem; }
-    .lp-mod ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
-    .lp-mod li { margin-bottom: 0.35rem; }
-    /* 14/11: módulo bônus. Mesmo cartão dos módulos, com a listra branco-laranja do T568B (o fio listrado = o que vem a mais). */
-    .lp-mod.lp-bonus { grid-column: 1 / -1; background: var(--papel); }
-    .lp-bonus::before { content: ""; display: block; height: 10px; background: repeating-linear-gradient(90deg, var(--laranja) 0 18px, color-mix(in srgb, var(--laranja) 35%, #fff) 18px 30px); border-bottom: var(--borda); }
-    .lp-bonus-nota { margin: 0.9rem 0 0; font-weight: 700; color: var(--tinta-2); }
+    .lp-mod { border: 1px solid var(--linha-forte); border-radius: var(--raio); background: var(--prancha-sutil); padding: 22px; }
+    .lp-mod-cod { display: inline-block; font-family: var(--mono); font-size: 0.8125rem; font-weight: 700; color: var(--cobalto); margin-bottom: 6px; }
+    .lp-mod ul { margin: 10px 0 0; padding-left: 20px; }
+    .lp-mod li { margin-bottom: 6px; }
+    .lp-mod.lp-bonus { grid-column: 1 / -1; background: var(--marcador-suave); border-color: #B86E00; }
+    .lp-mod.lp-bonus .lp-mod-cod { color: #7C4800; }
+    .lp-bonus-nota { margin: 12px 0 0; font-weight: 700; color: var(--nanquim); }
     @media (min-width: 980px) {
-      .lp-bonus > div { display: grid; grid-template-columns: 0.9fr 1.1fr; column-gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start; }
+      .lp-bonus > div { display: grid; grid-template-columns: 0.9fr 1.1fr; column-gap: clamp(24px, 3vw, 40px); align-items: start; }
       .lp-bonus ul { margin-top: 0; }
     }
-    .lp-galeria { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 1.4rem; }
+    .lp-galeria { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 16px; }
     .lp-galeria figure { margin: 0; }
-    .lp-galeria img { border-radius: var(--raio); aspect-ratio: 16 / 9; object-fit: cover; box-shadow: var(--sombra); }
-    .lp-galeria.lp-dentro img { aspect-ratio: auto; object-fit: contain; background: #16181d; }
-    .lp-galeria figcaption { font-size: 0.95rem; color: var(--tinta-3); margin-top: 0.5rem; }
-    .lp-recebe { display: grid; gap: 0; grid-template-columns: 1fr; margin: 0.4rem 0 0; padding: 0; list-style: none; }
-    .lp-recebe li { padding: 0.7rem 0; border-bottom: 1px solid var(--linha); }
-    .lp-recebe strong { display: block; font-size: 1.08rem; margin-bottom: 0.1rem; }
-    .lp-recebe span { color: var(--tinta-2); font-size: 1rem; }
-    .lp-eduardo { display: grid; gap: 1.6rem; grid-template-columns: 1fr; align-items: center; }
-    @media (min-width: 860px) { .lp-eduardo { grid-template-columns: 280px 1fr; } }
-    .lp-eduardo img { width: 100%; max-width: 280px; border-radius: 50%; aspect-ratio: 1; object-fit: cover; box-shadow: var(--sombra); }
-    .lp-provas { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 1.6rem; }
-    @media (min-width: 860px) { .lp-provas { grid-template-columns: repeat(3, 1fr); } }
-    .lp-prova { margin: 0; padding: 1.3rem 1.4rem; border-radius: var(--raio); background: var(--papel); display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; }
-    .lp-prova blockquote { margin: 0; font-size: 1.1rem; font-weight: 700; line-height: 1.4; }
-    .lp-prova figcaption { font-size: 0.95rem; color: var(--tinta-3); }
-    .lp-prova figcaption strong { display: block; color: var(--tinta-2); }
-    .lp-provas-nota { margin-top: 1.2rem; font-size: 0.98rem; color: var(--tinta-3); max-width: 70ch; }
-    .lp-video-autoav { margin-top: 1.2rem; max-width: 820px; }
-    .lp-oferta { display: grid; place-items: center; background: var(--tinta); color: #fff; }
-    .lp-oferta .lp-tag { color: var(--laranja); }
-    .lp-cartao { width: 100%; max-width: 640px; padding: clamp(1.6rem, 4vw, 2.6rem); border-radius: calc(var(--raio) * 2); background: #fff; color: var(--tinta); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
-    .lp-cartao ul { margin: 1.2rem 0 1.6rem; padding: 0; list-style: none; }
-    .lp-cartao li { padding: 0.55rem 0 0.55rem 1.8rem; border-bottom: 1px solid var(--linha); position: relative; }
-    .lp-cartao li::before { content: "✓"; position: absolute; left: 0; color: var(--verde); font-weight: 800; }
-    .lp-preco { font-size: clamp(3rem, 8vw, 4.4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
-    .lp-preco small { font-size: 1.1rem; font-weight: 700; letter-spacing: 0; color: var(--tinta-2); }
-    .lp-cartao .placa { width: 100%; font-size: 1.25rem; min-height: 3.6rem; margin-top: 1.2rem; }
-    .lp-preco-nota { margin: 0.45rem 0 0; }
-    .lp-acesso { margin: 0.85rem 0 0; font-weight: 800; }
-    .lp-agente { margin: 0.7rem 0 0; color: var(--tinta-2); }
-    .lp-garantia { margin-top: 1rem; font-size: 0.98rem; color: var(--tinta-2); }
-    .lp-faq details { border-bottom: 1px solid var(--linha); padding: 1rem 0; max-width: 820px; }
-    .lp-faq summary { cursor: pointer; font-weight: 800; font-size: 1.15rem; }
-    .lp-faq details p { margin: 0.7rem 0 0; color: var(--tinta-2); }
-    .lp-base p + p { margin-top: -0.25rem; }
+    .lp-galeria img { border: 1px solid var(--linha-forte); border-radius: var(--raio); aspect-ratio: 16 / 9; object-fit: cover; }
+    .lp-galeria.lp-dentro img { aspect-ratio: auto; object-fit: contain; background: var(--nanquim); }
+    .lp-galeria figcaption { font-size: 0.9rem; color: var(--cota); margin-top: 8px; }
+    .lp-recebe { display: grid; gap: 0; grid-template-columns: 1fr; margin: 8px 0 0; padding: 0; list-style: none; }
+    .lp-recebe li { padding: 12px 0; border-bottom: 1px solid var(--linha); }
+    .lp-recebe strong { display: block; font-family: var(--display); font-size: 1.0625rem; color: var(--nanquim); margin-bottom: 2px; }
+    .lp-recebe span { color: var(--cota); font-size: 1rem; }
+    .lp-video-autoav { margin-top: 16px; max-width: 820px; }
+    .lp-oferta { width: 100%; max-width: none; margin: 28px 0; padding: 48px 16px; display: grid; place-items: center; background: var(--cobalto-escuro); border: 0; border-top: 1px solid var(--nanquim); border-bottom: 1px solid var(--nanquim); }
+    .lp-cartao { width: 100%; max-width: 680px; padding: 32px 24px; border: 2px solid var(--nanquim); border-radius: var(--raio); background: var(--prancha); color: var(--nanquim); }
+    @media (min-width: 720px) { .lp-cartao { padding: 36px 40px; } }
+    .lp-cartao ul { margin: 18px 0 22px; padding: 0; list-style: none; border-top: 1px solid var(--linha); }
+    .lp-cartao li { padding: 10px 0 10px 26px; border-bottom: 1px solid var(--linha); position: relative; }
+    .lp-cartao li::before { content: "✓"; position: absolute; left: 0; color: var(--enlace-ok); font-weight: 700; }
+    .lp-preco { font-family: var(--display); font-size: clamp(2.25rem, 5vw, 3.1rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--nanquim); margin-bottom: 6px; }
+    .lp-preco small { font-size: 1.0625rem; font-weight: 700; letter-spacing: 0; color: var(--cota); }
+    .lp-cartao .placa { width: 100%; font-size: 1.125rem; min-height: 52px; margin-top: 18px; }
+    .lp-preco-nota { margin: 8px 0 0; }
+    .lp-acesso { margin: 12px 0 0; font-weight: 700; color: var(--nanquim); }
+    .lp-garantia { margin-top: 14px; font-size: 0.9375rem; color: var(--cota); }
+    .lp-faq details { background: var(--prancha-sutil); border: 1px solid var(--linha-forte); margin-bottom: 10px; padding: 14px 18px; max-width: 820px; }
+    .lp-faq summary { cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 1.0625rem; min-height: 44px; display: flex; align-items: center; color: var(--nanquim); }
+    .lp-faq details p { margin: 10px 0 0; color: var(--cota); }
+    .lp-base p + p { margin-top: 0; }
     .lp-fim { text-align: center; }
-    .lp-fim h2 { max-width: 22ch; margin-inline: auto; }
+    .lp-fim h2 { max-width: 24ch; margin-inline: auto; }
     .lp-fim .lp-cta { justify-content: center; }
-    .lp .rodape p { font-size: 0.92rem; }
+    .lp .rodape { grid-template-columns: 1fr; }
+    .lp .rodape p { font-size: 0.875rem; }
   </style>
   <!-- Meta Pixel: PageView na página; InitiateCheckout em todo clique para o checkout da Hotmart (igual a antes, agora com o parâmetro cta);
        CheckoutOferta = clique no botão do cartão de oferta ou do fim (a definição de checkout que valia até 12/11 08h44);
@@ -189,7 +179,6 @@
     <!-- 1. Primeira tela no celular: título, subtítulo e botão. A dor vem logo abaixo. O vídeo desce. -->
     <div class="lp-topo">
       <div class="lp-hero-copy">
-        <p class="lp-tag lp-kicker-hero">Fundamentos de Rede · curso online</p>
         <!-- COPY: headline -->
         <h1 id="titulo">Aprenda a achar <em>onde a rede falhou.</em></h1>
         <!-- COPY: subheadline -->
@@ -208,8 +197,7 @@
 
       <!-- COPY: dores -->
       <section class="lp-pain" aria-labelledby="situacao">
-        <h2 id="situacao" class="sr">O sintoma</h2>
-        <p class="lp-tag">Chamados que você já atendeu, ou ainda vai atender</p>
+        <h2 id="situacao">Chamados que você já atendeu, ou ainda vai atender</h2>
         <ul class="lp-dores">
           <li>O site não abre, mas o WhatsApp funciona.</li>
           <li>A máquina nova pegou 169.254 e o resto da rede está normal.</li>
@@ -232,7 +220,6 @@
       <div class="lp-eduardo">
         <img src="/assets/img/curso-eduardo-560.webp" alt="Eduardo Honorato" width="560" height="560" loading="lazy">
         <div>
-          <p class="lp-tag">Quem ensina</p>
           <h2 id="quem">Eduardo Honorato</h2>
           <p>Técnico de suporte que hoje toca o próprio MSP, uma empresa que cuida da TI de vários clientes.</p>
           <p>No YouTube e no Instagram, falhas reais de rede e o raciocínio para achar a causa.</p>
@@ -245,7 +232,6 @@
          Decisão do Eduardo em 18/11/2026: comentário público entra sem pedir autorização; quem pedir para sair, sai.
          Fonte: ti-ninja/PESQUISA/2026-11-18-prova-social/CANDIDATOS.md. Nenhum fala do curso pago. -->
     <section class="lp-sec" aria-labelledby="prova">
-      <p class="lp-tag">Quem já assiste</p>
       <h2 id="prova">O que escrevem sobre a explicação, nos vídeos do TI Ninja.</h2>
       <div class="lp-provas">
         <figure class="lp-prova">
@@ -278,7 +264,6 @@
 
     <!-- 3. Jeito errado × jeito certo (a furadeira) -->
     <section class="lp-sec" aria-labelledby="metodo">
-      <p class="lp-tag">O método</p>
       <h2 id="metodo">A diferença não é decorar comando. É saber o que cada teste prova.</h2>
       <div class="lp-duas">
         <div class="lp-caixa lp-errado">
@@ -305,12 +290,11 @@
 
     <!-- 4. O caminho: o que o aluno faz em cada módulo -->
     <section class="lp-sec" aria-labelledby="caminho">
-      <p class="lp-tag">O caminho</p>
       <h2 id="caminho">Dois módulos e um bônus. Primeiro o método, depois a rede.</h2>
       <div class="lp-modulos">
         <article class="lp-mod">
           <div>
-            <p class="lp-tag">Módulo 0 · o método</p>
+            <span class="lp-mod-cod">Módulo 0 · o método</span>
             <h3>O método do resolvedor</h3>
             <p>Um problema que você nunca viu, sem servidor: só um editor de texto.</p>
             <ul>
@@ -323,7 +307,7 @@
         </article>
         <article class="lp-mod">
           <div>
-            <p class="lp-tag">Módulo 1 · a rede</p>
+            <span class="lp-mod-cod">Módulo 1 · a rede</span>
             <h3>Redes e TCP/IP, no laboratório</h3>
             <p>Servidor e estação no VirtualBox, montados na primeira aula do módulo.</p>
             <ul>
@@ -338,7 +322,7 @@
         <article class="lp-mod lp-bonus" aria-labelledby="bonus-titulo">
           <div>
             <div>
-              <p class="lp-tag">Módulo bônus · virtualização</p>
+              <span class="lp-mod-cod">Módulo bônus · virtualização</span>
               <h3 id="bonus-titulo">O servidor que parece desperdiçar dinheiro</h3>
               <p>Um escritório de engenharia com um servidor que parece vazio (15% de CPU em média) e o cliente pedindo mais três coisas: controlador de domínio, firewall e ERP. A primeira ideia é comprar mais servidores. Precisa mesmo?</p>
               <p>O bônus segue esse caso até uma proposta que outro técnico consiga ler, questionar e revisar.</p>
@@ -360,7 +344,6 @@
 
     <!-- 5. O que vem no curso -->
     <section class="lp-sec" aria-labelledby="recebe">
-      <p class="lp-tag">O que você recebe</p>
       <h2 id="recebe">Aula direto ao ponto, prática no PDF, dúvida respondida.</h2>
       <ul class="lp-recebe">
         <li><strong>Aulas direto ao ponto</strong><span>Pra você não perder tempo com o que não precisa. Cada uma responde uma pergunta só.</span></li>
@@ -396,7 +379,6 @@
 
     <!-- 6. Aplicação profissional, sem promessa de renda -->
     <section class="lp-sec lp-base" aria-labelledby="aplicacao">
-      <p class="lp-tag">Na hora do chamado</p>
       <h2 id="aplicacao">Em vez de "tá sem rede", você diz o que falhou.</h2>
       <p>O suporte atende o chamado e mantém a pessoa trabalhando. O Analista de Infraestrutura e Redes acha por que a rede parou.</p>
       <p>O caminho de um para o outro passa por essa base. O Fundamentos de Rede é o primeiro passo.</p>
@@ -404,7 +386,6 @@
 
     <!-- 8. Para quem é, para quem não é, pré-requisitos -->
     <section class="lp-sec" aria-labelledby="paraquem">
-      <p class="lp-tag">Para quem é</p>
       <h2 id="paraquem">Feito para quem está no suporte ou chegando nele.</h2>
       <div class="lp-duas">
         <div class="lp-caixa lp-certo">
@@ -440,7 +421,6 @@
     <!-- 9. Oferta -->
     <section class="lp-sec lp-oferta" id="oferta" aria-labelledby="oferta-titulo">
       <div class="lp-cartao">
-        <p class="lp-tag">Inscrição aberta</p>
         <h2 id="oferta-titulo">Fundamentos de Rede</h2>
         <ul>
           <li><strong>2 módulos:</strong> Método e Redes e TCP/IP.</li>
@@ -467,7 +447,6 @@
 
     <!-- 10. Perguntas frequentes (quebra de objeção) -->
     <section class="lp-sec lp-faq" aria-labelledby="faq">
-      <p class="lp-tag">Perguntas frequentes</p>
       <h2 id="faq">Antes de entrar</h2>
       <details><summary>Preciso ter servidor ou laboratório em casa?</summary><p>Não. O Módulo 0 só pede um editor de texto. No Módulo 1 você monta o laboratório no VirtualBox, no seu próprio PC, com a aula passo a passo.</p></details>
       <details><summary>Nunca mexi com rede. Vou acompanhar?</summary><p>Sim. O curso começa pelo método e explica cada conceito (endereço, máscara, gateway, DNS, DHCP) a partir de um sintoma de chamado, sem pressupor experiência. O que ele pressupõe é que você já use o Windows no dia a dia: o curso não ensina sistema operacional do zero.</p></details>

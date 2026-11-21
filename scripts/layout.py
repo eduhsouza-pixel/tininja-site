@@ -24,6 +24,8 @@ MENU = [
     ("/artigos/", "Artigos"),
     ("/minha-hora/", "Minha hora"),
     ("/quanto-cobrar/", "E-book"),
+    ("https://comunidade.tininja.net/", "Comunidade"),
+    ("https://avaliacao.tininja.net/", "Autoavaliação"),
     ("/lp/fundamentos-de-rede/", "Curso"),
 ]
 
@@ -50,7 +52,7 @@ for pagina in sorted((RAIZ / "artigos").rglob("index.html")):
 
 
 def link(href, rotulo, atual):
-    cur = ' aria-current="page"' if href == atual else ""
+    cur = ' aria-current="page"' if atual and not href.startswith("http") and href == atual else ""
     return f'<a href="{href}"{cur}>{rotulo}</a>'
 
 
