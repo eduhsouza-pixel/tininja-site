@@ -334,6 +334,117 @@
       </ol>
     </section>
 
+    <section class="faixa" id="diagnostico" aria-labelledby="diagnostico-titulo">
+      <h2 id="diagnostico-titulo" class="sai-do-cabo sai-azul">Sintoma não é causa: veja o diagnóstico em 3 comandos</h2>
+      <p>Caso típico de balcão: <em>“O site não abre, mas o WhatsApp funciona”</em>. Em vez de reiniciar máquina ou trocar cabo no escuro, o método separa <strong>Nome → Endereço → Caminho → Serviço</strong> em três testes rápidos.</p>
+
+      <div class="console-diag" data-diag-console>
+        <div class="console-diag-topo">
+          <div class="console-tabs" role="tablist" aria-label="Etapas do diagnóstico em três comandos">
+            <button class="console-tab" type="button" role="tab" id="diag-tab-1" aria-controls="diag-painel-1" aria-selected="true" tabindex="0">
+              <span class="console-tab-cmd">1 · ipconfig /all</span>
+              <span class="console-tab-etapa">Etapa: <strong>Endereço</strong></span>
+            </button>
+            <button class="console-tab" type="button" role="tab" id="diag-tab-2" aria-controls="diag-painel-2" aria-selected="false" tabindex="-1">
+              <span class="console-tab-cmd">2 · ping 1.1.1.1</span>
+              <span class="console-tab-etapa">Etapa: <strong>Caminho</strong></span>
+            </button>
+            <button class="console-tab" type="button" role="tab" id="diag-tab-3" aria-controls="diag-painel-3" aria-selected="false" tabindex="-1">
+              <span class="console-tab-cmd">3 · nslookup tininja.net</span>
+              <span class="console-tab-etapa">Etapa: <strong>Nome</strong></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="console-painel" role="tabpanel" id="diag-painel-1" aria-labelledby="diag-tab-1" tabindex="0">
+          <div class="console-cmd-bar">
+            <div class="console-cmd-linha">
+              <span class="console-prompt" aria-hidden="true">C:\&gt;</span>
+              <code class="console-cmd-texto">ipconfig /all</code>
+            </div>
+            <div class="console-cmd-ctrl">
+              <button class="console-btn-copiar" type="button" data-copy-cmd="ipconfig /all">Copiar comando</button>
+              <span class="console-copy-status" data-copy-status role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <pre class="console-saida" tabindex="0"><code>Configuração de IP do Windows
+
+Adaptador Ethernet Ethernet0:
+
+   Sufixo DNS específico de conexão. . . . . . : corp.local
+   Descrição . . . . . . . . . . . . . . . . . : Intel(R) Ethernet Connection
+   DHCP Habilitado . . . . . . . . . . . . . . : Sim
+   Endereço IPv4. . . . . . . . . . . . . . . : <span class="diag-ok">192.168.1.42</span>(Preferencial)
+   Máscara de Sub-rede . . . . . . . . . . . . : 255.255.255.0
+   Gateway Padrão. . . . . . . . . . . . . . . : 192.168.1.1
+   Servidor DHCP . . . . . . . . . . . . . . . : 192.168.1.1
+   Servidores DNS. . . . . . . . . . . . . . . : <span class="diag-alerta">192.168.1.10</span></code></pre>
+          <div class="console-conclusao">
+            <p class="console-conclusao-texto"><strong>Conclusão:</strong> prova que o DHCP entregou endereço válido da sub-rede (não caiu em <code>169.254.x.x</code>) e mostra qual DNS está configurado (<code>192.168.1.10</code>).</p>
+            <div class="console-painel-acoes">
+              <button class="btn btn-marcador console-btn-proximo" type="button" data-next-tab="diag-tab-2">Próximo passo →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="console-painel" role="tabpanel" id="diag-painel-2" aria-labelledby="diag-tab-2" tabindex="0" hidden>
+          <div class="console-cmd-bar">
+            <div class="console-cmd-linha">
+              <span class="console-prompt" aria-hidden="true">C:\&gt;</span>
+              <code class="console-cmd-texto">ping 1.1.1.1</code>
+            </div>
+            <div class="console-cmd-ctrl">
+              <button class="console-btn-copiar" type="button" data-copy-cmd="ping 1.1.1.1">Copiar comando</button>
+              <span class="console-copy-status" data-copy-status role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <pre class="console-saida" tabindex="0"><code>Disparando 1.1.1.1 com 32 bytes de dados:
+Resposta de 1.1.1.1: bytes=32 tempo=14ms TTL=57
+Resposta de 1.1.1.1: bytes=32 tempo=13ms TTL=57
+Resposta de 1.1.1.1: bytes=32 tempo=14ms TTL=57
+Resposta de 1.1.1.1: bytes=32 tempo=13ms TTL=57
+
+Estatísticas do Ping para 1.1.1.1:
+    Pacotes: Enviados = 4, Recebidos = 4, <span class="diag-ok">Perdidos = 0 (0% de perda)</span>,
+Aproximar um número redondo de vezes em milissegundos:
+    Mínimo = 13ms, Máximo = 14ms, Média = 13ms</code></pre>
+          <div class="console-conclusao">
+            <p class="console-conclusao-texto"><strong>Conclusão:</strong> prova que cabo, placa, switch, gateway e link com a internet estão de pé — reiniciar roteador ou trocar cabo aqui seria chute.</p>
+            <div class="console-painel-acoes">
+              <button class="btn btn-marcador console-btn-proximo" type="button" data-next-tab="diag-tab-3">Próximo passo →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="console-painel" role="tabpanel" id="diag-painel-3" aria-labelledby="diag-tab-3" tabindex="0" hidden>
+          <div class="console-cmd-bar">
+            <div class="console-cmd-linha">
+              <span class="console-prompt" aria-hidden="true">C:\&gt;</span>
+              <code class="console-cmd-texto">nslookup tininja.net</code>
+            </div>
+            <div class="console-cmd-ctrl">
+              <button class="console-btn-copiar" type="button" data-copy-cmd="nslookup tininja.net">Copiar comando</button>
+              <span class="console-copy-status" data-copy-status role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <pre class="console-saida" tabindex="0"><code>Servidor:  UnKnown
+Address:  192.168.1.10
+
+<span class="diag-erro">DNS request timed out.
+    timeout was 2 seconds.
+DNS request timed out.
+    timeout was 2 seconds.
+*** Tempo limite da solicitação esgotado para UnKnown</span></code></pre>
+          <div class="console-conclusao">
+            <p class="console-conclusao-texto"><strong>Conclusão:</strong> prova que o serviço de resolução DNS em <code>192.168.1.10</code> não respondeu; por isso o WhatsApp (que já tinha conexão/IP) seguia rodando enquanto novos sites não abriam.</p>
+            <div class="console-painel-acoes">
+              <a class="console-link-curso" href="/lp/fundamentos-de-rede/?utm_source=site&amp;utm_medium=home&amp;utm_content=diagnostico">Ver o método completo no Fundamentos de Rede</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="faixa" id="oficio" aria-labelledby="oficio-titulo">
       <div class="duo inverso">
         <div class="janela">
@@ -465,5 +576,6 @@
   <!-- rodape:fim -->
   <script type="module" src="/assets/js/site.js"></script>
   <script src="/assets/js/hero-intro.js" defer></script>
+  <script src="/assets/js/diagnostico.js" defer></script>
 </body>
 </html>
