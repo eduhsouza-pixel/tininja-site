@@ -100,6 +100,19 @@
     .placa:active { transform: translateY(1px); }
     .acao { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem 1.1rem; margin-top: 1.5rem; }
     .acao small { font-size: 0.95rem; line-height: 1.35; color: var(--tinta-2); max-width: 30ch; }
+    .hero .placa, .ficha-turma .placa { font-size: clamp(1.3rem, 4.6vw, 1.6rem); min-height: 4.4rem; padding: 1rem 2.2rem 0.9rem;
+      box-shadow: 0 10px 28px rgba(240, 127, 26, 0.45); }
+    .hero .placa::after, .ficha-turma .placa::after { content: "→"; margin-left: 0.6rem; }
+    .ficha-turma .placa { display: flex; width: 100%; margin-top: 1.2rem; font-size: 1.35rem; min-height: 4rem; padding: 0.9rem 1rem 0.8rem; }
+    .barra-cta { display: none; }
+    @media (max-width: 899px) {
+      .hero .placa { width: 100%; }
+      .hero h1 { font-size: clamp(2.05rem, 7.4vw, 3rem); }
+      .barra-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+        padding: 0.6rem 0.9rem calc(0.6rem + env(safe-area-inset-bottom)); background: rgba(22, 24, 29, 0.96); }
+      .barra-cta .placa { width: 100%; min-height: 3.7rem; font-size: 1.3rem; box-shadow: 0 6px 20px rgba(240, 127, 26, 0.4); }
+      body { padding-bottom: 5.2rem; }
+    }
     .hero { padding: 1.4rem 0 2.8rem; }
     .hero .miolo { display: grid; gap: 1.8rem; }
     .produto { margin: 0 0 0.9rem; font-size: 1.05rem; color: var(--tinta-2); }
@@ -126,7 +139,9 @@
     @media (min-width: 900px) {
       .hero { padding: 3.4rem 0 4.4rem; }
       .hero .miolo { grid-template-columns: 1.25fr 0.75fr; column-gap: clamp(2.5rem, 5vw, 4.5rem); align-items: start; }
-      .ficha-turma { margin-top: 2.6rem; }
+      .ficha-turma { margin-top: 0.6rem; }
+      .hero { padding-top: 2.2rem; }
+      .hero h1 { font-size: clamp(2.6rem, 4.2vw, 3.6rem); max-width: 17ch; }
     }
     .secao { padding: clamp(2.8rem, 8vw, 5.5rem) 0; border-top: 1px solid var(--linha); }
     .secao h2 { font-size: clamp(1.75rem, 4.6vw, 2.9rem); max-width: 22ch; margin-bottom: 1rem; }
@@ -359,6 +374,7 @@
             <div><dt>Prática</dt><dd>Laboratório no seu computador</dd></div>
             <div><dt>Garantia</dt><dd>15 dias</dd></div>
           </dl>
+          <a class="placa" href="https://pay.hotmart.com/M108602146Y?off=dmru0x4q">Quero entrar na Turma 1</a>
         </div>
       </div>
     </section>
@@ -755,6 +771,7 @@
       </div>
     </section>
   </main>
+  <div class="barra-cta"><a class="placa" href="https://pay.hotmart.com/M108602146Y?off=dmru0x4q">Quero entrar na Turma 1</a></div>
   <footer class="rodape">
     <div class="miolo">
       <p><a href="/politica-de-privacidade/">Política de Privacidade</a></p>
