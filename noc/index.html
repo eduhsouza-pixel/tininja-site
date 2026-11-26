@@ -219,6 +219,8 @@
     .pausa .data { background: var(--papel); color: var(--tinta-2); border-left-color: var(--tinta-3); }
     .pausa .data + p { margin: 0; color: var(--tinta-2); }
     .pausa::before { content: ""; position: absolute; left: calc(1.25rem - 2px); top: -0.2rem; bottom: 0.2rem; width: 4px; background: repeating-linear-gradient(to bottom, var(--tinta-3) 0 8px, var(--branco) 8px 15px); }
+    .ja .data { background: var(--verde-faixa); border-left-color: var(--tinta); color: #fff; }
+    .ja-no-ar { margin: 0.3rem 0 1rem; font-weight: 700; color: var(--tinta); }
     .pronto { margin: 1.6rem 0 0; font-size: 1rem; color: var(--tinta-2); }
     .bonus-lista { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: 0; }
     @media (min-width: 900px) { .bonus-lista { grid-template-columns: 1fr 1fr; column-gap: clamp(2rem, 5vw, 4rem); } }
@@ -425,8 +427,8 @@
     <section class="secao fundo-papel" aria-labelledby="turma-titulo">
       <div class="miolo turma-grade">
         <div>
-          <h2 id="turma-titulo">O que você monta, semana a semana</h2>
-          <p class="abre">A Turma 1 começa na quarta, 02/12. O calendário prevê um módulo novo por quarta, até 27/01. O bônus de Linux sai em 03/02.</p>
+          <h2 id="turma-titulo">O que já está pronto e o que chega depois</h2>
+          <p class="abre">A Turma 1 começa na quarta, 02/12, e boa parte da formação já está gravada: no primeiro dia você recebe o Método, Redes, Virtualização, Infraestrutura, Windows Server e Active Directory, File Server e o bônus de Proxmox. O resto chega no calendário ao lado, até 27/01. O bônus de Linux sai em 03/02.</p>
           <p class="como-texto">Cada módulo tem apostila com casos práticos, laboratório guiado, critérios de entrega e avaliação. As aulas ficam na área de membros da Hotmart. A cada duas semanas, tem encontro ao vivo comigo, às 20h, pra tirar dúvida e acompanhar a turma. A semana de 30/12 não tem módulo novo. É a semana pra quem atrasou.</p>
           <p class="legenda">No fio ao lado: quadrado preto é módulo, bolinha azul é encontro ao vivo, quadrado verde é bônus e o trecho tracejado é a pausa.</p>
           <div class="acao">
@@ -435,8 +437,9 @@
         </div>
         <div>
           <ol class="trilha">
-            <li class="dia">
+            <li class="dia ja">
               <p class="data"><time datetime="2026-12-02">Quarta, 02/12</time></p>
+              <p class="ja-no-ar">Já gravado e publicado. Fica liberado no primeiro dia.</p>
               <div class="item">
                 <span class="no" aria-hidden="true">0</span>
                 <h3>Método</h3>
@@ -452,13 +455,30 @@
                 <h3>Virtualização</h3>
                 <p>Hipervisor tipo 1 e tipo 2, como escolher plataforma e licença, CPU, memória e disco, ponto de retorno e quando usar container ou VM.</p>
               </div>
-            </li>
-            <li class="dia">
-              <p class="data"><time datetime="2026-12-09">Quarta, 09/12</time></p>
               <div class="item">
                 <span class="no" aria-hidden="true">3</span>
                 <h3>Infraestrutura e servidores</h3>
                 <p>Hardware de servidor, storage DAS, NAS e SAN, RAID (capacidade, falha e reconstrução) e dimensionamento. O caso é o de um servidor que perdeu tudo.</p>
+              </div>
+              <div class="item">
+                <span class="no" aria-hidden="true">6</span>
+                <h3>Windows Server e Active Directory</h3>
+                <p>Promoção do controlador de domínio, usuários e grupos, AGDLP e permissões, OUs e delegação, GPOs, DNS integrado ao AD, segundo DC e funções FSMO, segurança básica com LAPS e diagnóstico do AD.</p>
+              </div>
+              <div class="item">
+                <span class="no" aria-hidden="true">7</span>
+                <h3>File Server e DFS</h3>
+                <p>Compartilhamentos, permissões NTFS e de compartilhamento, NTFS com AGDLP, DFS Namespace e recuperação com Shadow Copies.</p>
+              </div>
+              <div class="item extra">
+                <span class="no" aria-hidden="true">+</span>
+                <h3>Capítulo extra: o próximo nível, a nuvem</h3>
+                <p>Uma introdução a como a rede que você montou se conecta à nuvem e ao que mudam o Entra ID, o Microsoft 365 e o Azure.</p>
+              </div>
+              <div class="item bonus">
+                <span class="no" aria-hidden="true">B</span>
+                <h3>Bônus: Proxmox na Prática</h3>
+                <p>A outra plataforma de virtualização, de código aberto, da bancada à operação do dia a dia.</p>
               </div>
             </li>
             <li class="dia">
@@ -493,26 +513,10 @@
               <p>Pausa de fim de ano. Sem módulo novo.</p>
             </li>
             <li class="dia">
-              <p class="data"><time datetime="2027-01-06">Quarta, 06/01</time></p>
-              <div class="item">
-                <span class="no" aria-hidden="true">6</span>
-                <h3>Windows Server e Active Directory</h3>
-                <p>Promoção do controlador de domínio, usuários e grupos, AGDLP e permissões, OUs e delegação, GPOs, DNS integrado ao AD, segundo DC e funções FSMO, segurança básica com LAPS e diagnóstico do AD.</p>
-              </div>
-            </li>
-            <li class="dia">
               <p class="data"><time datetime="2027-01-07">Quinta, 07/01</time></p>
               <div class="item ao-vivo">
                 <span class="no" aria-hidden="true"></span>
                 <h3>Encontro ao vivo, 20h</h3>
-              </div>
-            </li>
-            <li class="dia">
-              <p class="data"><time datetime="2027-01-13">Quarta, 13/01</time></p>
-              <div class="item">
-                <span class="no" aria-hidden="true">7</span>
-                <h3>File Server e DFS</h3>
-                <p>Compartilhamentos, permissões NTFS e de compartilhamento, NTFS com AGDLP, DFS Namespace e recuperação com Shadow Copies.</p>
               </div>
             </li>
             <li class="dia">
@@ -537,11 +541,6 @@
                 <h3>Backup por workload</h3>
                 <p>Backup de controlador de domínio, de servidor de arquivos, de SQL Server com recuperação no tempo e de aplicações e ERPs. Fecha com o encerramento da formação.</p>
               </div>
-              <div class="item extra">
-                <span class="no" aria-hidden="true">+</span>
-                <h3>Capítulo extra: o próximo nível, a nuvem</h3>
-                <p>Uma introdução a como a rede que você montou se conecta à nuvem e ao que mudam o Entra ID, o Microsoft 365 e o Azure.</p>
-              </div>
             </li>
             <li class="dia">
               <p class="data"><time datetime="2027-02-03">Quarta, 03/02</time></p>
@@ -559,7 +558,7 @@
               </div>
             </li>
           </ol>
-          <p class="pronto">O que já estiver pronto antes da data fica liberado desde o primeiro dia.</p>
+          <p class="pronto">O que ficar pronto antes da data também é liberado antes.</p>
         </div>
       </div>
     </section>
