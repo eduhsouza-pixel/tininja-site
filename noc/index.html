@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>NOC: do suporte ao Analista de Infraestrutura e Redes | TI Ninja</title>
+  <meta name="description" content="A formação completa da TI Ninja. No seu computador, você monta a rede de uma empresa: virtualização, Hyper-V, firewall OPNsense, Windows Server com Active Directory, arquivos e backup. A Turma 1 começa em 02/12.">
+  <meta name="author" content="Eduardo Honorato">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="canonical" href="https://tininja.net/noc/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="TI Ninja">
+  <meta property="og:title" content="NOC: o caminho do suporte ao Analista de Infraestrutura e Redes">
+  <meta property="og:description" content="Virtualização, firewall, Windows Server com Active Directory, arquivos e backup, em ordem e com laboratório. A Turma 1 começa em 02/12. Garantia de 15 dias.">
+  <meta property="og:url" content="https://tininja.net/noc/">
+  <meta property="og:image" content="https://tininja.net/assets/img/og-tininja.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NOC: o caminho do suporte ao Analista de Infraestrutura e Redes">
+  <meta name="twitter:description" content="A rede de uma empresa, montada por você, em ordem. A Turma 1 começa em 02/12.">
+  <link rel="icon" href="/assets/img/marca.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="preload" href="/assets/fonts/almarai-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/almarai-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: "Almarai"; src: url("/assets/fonts/almarai-latin-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Almarai"; src: url("/assets/fonts/almarai-latin-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Almarai"; src: url("/assets/fonts/almarai-latin-800.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+    :root {
+      --branco: #ffffff;
+      --papel: #f6f5f1;
+      --linha: #e2e0d9;
+      --tinta: #16181d;
+      --tinta-2: #4a4f57;
+      --tinta-3: #6b7079;
+      --laranja: #f07f1a;
+      --laranja-hover: #f6943d;
+      --laranja-escuro: #a9530a;
+      --verde: #2ba84a;
+      --verde-faixa: #23943f;
+      --verde-claro: #e6f4ea;
+      --azul: #2b6cd9;
+      --azul-escuro: #1f55b3;
+      --falha: #b3261e;
+      --fonte: "Almarai", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --gutter: clamp(1rem, 4vw, 2.5rem);
+      --coluna: 70rem;
+      --raio: 6px;
+      color-scheme: light;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      background: var(--branco);
+      color: var(--tinta);
+      font-family: var(--fonte);
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      font-variant-numeric: tabular-nums;
+      text-rendering: optimizeLegibility;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    p { margin: 0 0 1rem; max-width: 62ch; }
+    h1, h2, h3 { font-weight: 800; letter-spacing: -0.025em; line-height: 1.04; text-wrap: balance; margin: 0; }
+    a { color: var(--azul-escuro); text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+    :focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 2px; }
+    ::selection { background: var(--laranja); color: var(--tinta); }
+    .pular { position: absolute; left: var(--gutter); top: -4rem; z-index: 10; background: var(--tinta); color: var(--branco); padding: 0.6rem 0.95rem; font-weight: 700; border-radius: var(--raio); text-decoration: none; }
+    .pular:focus { top: 0.6rem; }
+    .miolo { width: min(var(--coluna), 100% - var(--gutter) * 2); margin-inline: auto; }
+    .neutra { display: inline; -webkit-box-decoration-break: clone; box-decoration-break: clone; margin-left: 0.3em; font-size: 0.86em; font-weight: 400; font-style: italic; color: var(--tinta-2); background: #f1f1ee; padding: 0 0.25em; border-radius: 2px; outline: 1px dashed var(--linha); }
+    .confirmar { -webkit-box-decoration-break: clone; box-decoration-break: clone; background: #fff1c2; color: var(--tinta); font-weight: 700; padding: 0 0.2em; border-radius: 2px; outline: 1px dashed var(--laranja-escuro); }
+    .topo { border-bottom: 1px solid var(--linha); }
+    .topo .miolo { display: flex; align-items: center; min-height: 3.6rem; }
+    .marca { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 1.45rem; letter-spacing: -0.035em; line-height: 1; color: var(--tinta); }
+    .marca svg { width: 1.6rem; height: 1.6rem; flex: none; }
+    .placa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.3rem;
+      padding: 0.75rem 1.4rem 0.65rem;
+      font-family: var(--fonte);
+      font-weight: 800;
+      font-size: 1.18rem;
+      line-height: 1.15;
+      text-align: center;
+      text-decoration: none;
+      border-radius: var(--raio);
+      background: var(--laranja);
+      color: var(--tinta);
+      transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .placa:hover { background: var(--laranja-hover); }
+    .placa:active { transform: translateY(1px); }
+    .acao { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem 1.1rem; margin-top: 1.5rem; }
+    .acao small { font-size: 0.95rem; line-height: 1.35; color: var(--tinta-2); max-width: 30ch; }
+    .hero { padding: 1.4rem 0 2.8rem; }
+    .hero .miolo { display: grid; gap: 1.8rem; }
+    .produto { margin: 0 0 0.9rem; font-size: 1.05rem; color: var(--tinta-2); }
+    .produto b { color: var(--tinta); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; margin-right: 0.15rem; }
+    .hero h1 { font-size: clamp(2.3rem, 8.2vw, 4.6rem); line-height: 1.0; max-width: 14ch; }
+    .tese { margin: 1.1rem 0 0; font-size: 1.15rem; line-height: 1.45; max-width: 44ch; }
+    .promessa { margin: 0.9rem 0 0; font-size: 1.15rem; line-height: 1.45; font-weight: 700; max-width: 40ch; }
+    .ficha-turma {
+      align-self: start;
+      margin: 0;
+      padding: 1rem 1.1rem 1.1rem;
+      background: var(--tinta);
+      color: var(--branco);
+      border-left: 6px solid var(--laranja);
+      border-radius: 0 var(--raio) var(--raio) 0;
+    }
+    .ficha-turma .prazo { margin: 0 0 0.9rem; padding-bottom: 0.9rem; border-bottom: 1px solid #3a3d45; }
+    .ficha-turma .prazo strong { display: block; font-size: clamp(1.25rem, 4.4vw, 1.55rem); line-height: 1.15; letter-spacing: -0.02em; }
+    .ficha-turma .prazo span { display: block; margin-top: 0.35rem; font-size: 0.95rem; line-height: 1.35; color: #d9dbe0; }
+    .ficha-turma dl { margin: 0; display: grid; gap: 0.55rem; }
+    .ficha-turma dl div { display: grid; grid-template-columns: 6.2rem 1fr; gap: 0.6rem; font-size: 0.98rem; line-height: 1.35; }
+    .ficha-turma dt { color: #b9bcc4; }
+    .ficha-turma dd { margin: 0; font-weight: 700; }
+    @media (min-width: 900px) {
+      .hero { padding: 3.4rem 0 4.4rem; }
+      .hero .miolo { grid-template-columns: 1.25fr 0.75fr; column-gap: clamp(2.5rem, 5vw, 4.5rem); align-items: start; }
+      .ficha-turma { margin-top: 2.6rem; }
+    }
+    .secao { padding: clamp(2.8rem, 8vw, 5.5rem) 0; border-top: 1px solid var(--linha); }
+    .secao h2 { font-size: clamp(1.75rem, 4.6vw, 2.9rem); max-width: 22ch; margin-bottom: 1rem; }
+    .secao .abre { font-size: 1.12rem; color: var(--tinta-2); }
+    .fundo-papel { background: var(--papel); }
+    .papeis { display: grid; margin: 1.8rem 0 1.6rem; }
+    .papel { padding: 1.3rem 1.25rem 1.35rem; border-radius: var(--raio); }
+    .papel h3 { font-size: clamp(1.3rem, 3.2vw, 1.75rem); margin-bottom: 0.8rem; max-width: 18ch; }
+    .papel ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.6rem; }
+    .papel li { padding-top: 0.6rem; border-top: 1px solid; line-height: 1.4; }
+    .papel-suporte { background: var(--papel); }
+    .papel-suporte li { border-color: var(--linha); }
+    .papel-analista { background: var(--tinta); color: var(--branco); }
+    .papel-analista li { border-color: #3a3d45; }
+    .ponte { display: grid; justify-items: center; padding: 0.35rem 0; }
+    .ponte::before { content: ""; width: 4px; height: 2.2rem; background: var(--tinta); }
+    .ponte span { font-size: 0.92rem; font-weight: 700; color: var(--tinta-2); padding: 0.3rem 0; text-align: center; }
+    .ponte::after { content: ""; width: 4px; height: 1rem; background: var(--tinta); }
+    @media (min-width: 900px) {
+      .papeis { grid-template-columns: 1fr auto 1fr; align-items: stretch; }
+      .ponte { grid-template-columns: 1.4rem auto 1.4rem; align-items: center; padding: 0 0.4rem; }
+      .ponte::before, .ponte::after { width: 1.4rem; height: 4px; }
+      .ponte span { max-width: 9ch; padding: 0 0.5rem; }
+    }
+    .prazo-2027 { margin-top: 2rem; padding: 1.2rem 1.25rem; background: var(--papel); border-radius: var(--raio); max-width: 46rem; }
+    .prazo-2027 p:last-child { margin-bottom: 0; }
+    .fonte { font-size: 0.92rem; color: var(--tinta-3); }
+    .ordem-grade { display: grid; gap: 2rem; }
+    @media (min-width: 900px) { .ordem-grade { grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: start; } }
+    .ordem { margin: 1.4rem 0 1.4rem; padding: 0 0 0 1.4rem; display: grid; gap: 0.7rem; max-width: 40rem; }
+    .ordem li { padding-left: 0.3rem; line-height: 1.45; }
+    .ordem li::marker { font-weight: 800; }
+    .bancada { width: 100%; border-collapse: collapse; margin: 0.6rem 0 0.8rem; font-size: 0.98rem; }
+    .bancada caption { text-align: left; font-weight: 800; font-size: clamp(1.2rem, 3vw, 1.45rem); letter-spacing: -0.02em; padding-bottom: 0.5rem; }
+    .bancada th, .bancada td { text-align: left; vertical-align: top; padding: 0.6rem 0.5rem 0.55rem 0; border-top: 1px solid var(--linha); line-height: 1.35; }
+    .bancada tr:last-child th, .bancada tr:last-child td { border-bottom: 1px solid var(--linha); }
+    .bancada th { font-weight: 800; white-space: nowrap; padding-right: 0.8rem; }
+    .bancada td.ip { white-space: nowrap; color: var(--tinta-2); padding-right: 0; text-align: right; }
+    .bancada-nota { font-size: 0.92rem; color: var(--tinta-3); }
+    .turma-grade { display: grid; gap: 2rem; }
+    @media (min-width: 900px) {
+      .turma-grade { grid-template-columns: 0.8fr 1.2fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: start; }
+      .turma-grade > div:first-child { position: sticky; top: 1.5rem; }
+    }
+    .como { margin: 1.2rem 0 0; padding: 0; list-style: none; display: grid; gap: 0; max-width: 40rem; }
+    .como li { padding: 0.7rem 0; border-top: 1px solid var(--linha); line-height: 1.4; }
+    .como li:last-child { border-bottom: 1px solid var(--linha); }
+    .como-texto { margin: 1.2rem 0 0; max-width: 40rem; line-height: 1.5; }
+    .legenda { margin: 1.2rem 0 0; font-size: 0.92rem; color: var(--tinta-3); }
+    .trilha { position: relative; list-style: none; margin: 0; padding: 0; }
+    .trilha::before { content: ""; position: absolute; left: calc(1.25rem - 2px); top: 0.4rem; bottom: 1.2rem; width: 4px; background: var(--tinta); }
+    .dia { position: relative; padding: 0 0 1.5rem 3.6rem; }
+    .dia:last-child { padding-bottom: 0; }
+    .data {
+      display: inline-block;
+      margin: 0 0 0.8rem;
+      padding: 0.3rem 0.7rem 0.25rem;
+      background: var(--tinta);
+      color: var(--branco);
+      border-left: 5px solid var(--laranja);
+      border-radius: 0 var(--raio) var(--raio) 0;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .item { position: relative; margin: 0 0 1.1rem; }
+    .item:last-child { margin-bottom: 0; }
+    .no {
+      position: absolute;
+      left: -3.6rem;
+      top: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.15rem;
+      border: 3px solid var(--tinta);
+      border-radius: var(--raio);
+      background: var(--branco);
+      z-index: 1;
+    }
+    .item h3 { font-size: clamp(1.2rem, 3vw, 1.45rem); padding-top: 0.45rem; margin-bottom: 0.35rem; }
+    .item p { margin: 0; color: var(--tinta-2); }
+    .ao-vivo .no { width: 1.3rem; height: 1.3rem; left: calc(-3.6rem + 0.6rem); top: 0.15rem; border-radius: 50%; border-color: var(--azul); background: var(--azul); }
+    .ao-vivo h3 { padding-top: 0; font-size: 1.1rem; letter-spacing: -0.01em; }
+    .ao-vivo { margin-bottom: 0.7rem; }
+    .bonus .no { border-color: var(--verde-faixa); background: var(--verde-claro); }
+    .extra .no { border-style: dashed; }
+    .pausa .data { background: var(--papel); color: var(--tinta-2); border-left-color: var(--tinta-3); }
+    .pausa .data + p { margin: 0; color: var(--tinta-2); }
+    .pausa::before { content: ""; position: absolute; left: calc(1.25rem - 2px); top: -0.2rem; bottom: 0.2rem; width: 4px; background: repeating-linear-gradient(to bottom, var(--tinta-3) 0 8px, var(--branco) 8px 15px); }
+    .pronto { margin: 1.6rem 0 0; font-size: 1rem; color: var(--tinta-2); }
+    .bonus-lista { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: 0; }
+    @media (min-width: 900px) { .bonus-lista { grid-template-columns: 1fr 1fr; column-gap: clamp(2rem, 5vw, 4rem); } }
+    .bonus-lista li { padding: 1.1rem 0 1.2rem; border-top: 3px solid var(--verde-faixa); }
+    .bonus-lista h3 { font-size: clamp(1.25rem, 3vw, 1.55rem); margin-bottom: 0.45rem; }
+    .bonus-lista p { margin: 0; color: var(--tinta-2); }
+    .depoimentos { margin: 0; padding: 1.6rem 1.3rem; border: 3px dashed var(--laranja-escuro); border-radius: var(--raio); background: #fff8e8; font-weight: 800; font-size: 1.15rem; }
+    .quem-grade { display: grid; gap: 1.6rem; }
+    @media (min-width: 900px) { .quem-grade { grid-template-columns: 17rem 1fr; gap: 3rem; align-items: start; } }
+    .foto { width: 100%; max-width: 17rem; aspect-ratio: 1; object-fit: cover; border-radius: var(--raio); background: var(--papel); border-top: 6px solid var(--laranja); }
+    .tempo { list-style: none; margin: 1.2rem 0 1.4rem; padding: 0; max-width: 40rem; }
+    .tempo li { display: grid; grid-template-columns: 6.4rem 1fr; gap: 0.8rem; padding: 0.65rem 0; border-top: 1px solid var(--linha); }
+    .tempo li:last-child { border-bottom: 1px solid var(--linha); }
+    .tempo b { font-weight: 800; }
+    .filtro { display: grid; gap: 1.2rem; margin-top: 1.6rem; }
+    @media (min-width: 900px) { .filtro { grid-template-columns: 1fr 1fr; gap: 1.6rem; } }
+    .filtro > div { padding: 1.3rem 1.25rem 1.4rem; border-radius: var(--raio); }
+    .filtro h3 { font-size: clamp(1.25rem, 3vw, 1.55rem); margin-bottom: 0.8rem; }
+    .filtro ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.6rem; }
+    .filtro li { padding-top: 0.6rem; border-top: 1px solid var(--linha); line-height: 1.42; }
+    .e-pra-voce { background: var(--branco); border: 2px solid var(--tinta); }
+    .nao-e { border: 2px solid var(--linha); }
+    .oferta { background: var(--tinta); color: var(--branco); border-top: 0; }
+    .oferta .miolo { display: grid; gap: 1.8rem; }
+    @media (min-width: 900px) { .oferta .miolo { grid-template-columns: 0.85fr 1.15fr; gap: clamp(2.5rem, 5vw, 4.5rem); align-items: start; } }
+    .oferta h2 { color: var(--branco); }
+    .oferta .abre { color: #d9dbe0; }
+    .cartao { padding: clamp(1.3rem, 4vw, 2.2rem); border-radius: var(--raio); background: var(--branco); color: var(--tinta); box-shadow: inset 0 6px 0 var(--laranja); }
+    .cartao h3 { font-size: clamp(1.35rem, 3.4vw, 1.8rem); margin: 0.3rem 0 1rem; }
+    .inclui { list-style: none; margin: 0 0 1.4rem; padding: 0; }
+    .inclui li { position: relative; padding: 0.55rem 0 0.55rem 1.6rem; border-top: 1px solid var(--linha); line-height: 1.4; }
+    .inclui li::before { content: ""; position: absolute; left: 0.1rem; top: 0.95rem; width: 0.7rem; height: 0.38rem; border-left: 3px solid var(--verde-faixa); border-bottom: 3px solid var(--verde-faixa); transform: rotate(-45deg); }
+    .precos { margin: 0 0 0.4rem; display: grid; gap: 0.6rem; }
+    .preco { display: grid; gap: 0.15rem; padding: 0.8rem 0.95rem; border-radius: var(--raio); border: 2px solid var(--linha); }
+    .preco dt { font-weight: 700; font-size: 0.98rem; line-height: 1.3; color: var(--tinta-2); }
+    .preco dd { margin: 0; font-weight: 800; font-size: clamp(1.7rem, 6vw, 2.2rem); letter-spacing: -0.03em; line-height: 1.05; }
+    .preco-abertura { border-color: var(--tinta); border-left: 6px solid var(--laranja); }
+    .preco-abertura dd { font-size: clamp(2.4rem, 9vw, 3.3rem); }
+    .parcelas { margin: 0.5rem 0 0; font-size: 0.98rem; color: var(--tinta-2); }
+    .cartao .placa { width: 100%; margin-top: 1.2rem; font-size: 1.25rem; min-height: 3.6rem; }
+    .cartao .depois { margin: 0.8rem 0 0; font-size: 0.95rem; color: var(--tinta-2); }
+    .aluno { margin: 1rem 0 0; padding-top: 1rem; border-top: 1px solid var(--linha); font-weight: 700; font-size: 1rem; }
+    .garantia { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; margin-top: 0.4rem; }
+    .selo { margin: 0; display: grid; place-items: center; width: 4.6rem; height: 4.6rem; border: 3px solid var(--verde); border-radius: 50%; text-align: center; font-weight: 800; line-height: 1; color: var(--branco); }
+    .selo b { display: block; font-size: 1.6rem; letter-spacing: -0.03em; }
+    .selo span { display: block; font-size: 0.8rem; margin-top: 0.1rem; }
+    .garantia h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); margin: 0.2rem 0 0.5rem; color: var(--branco); }
+    .garantia p { color: #d9dbe0; margin: 0; }
+    .faq { max-width: 50rem; margin-top: 1.2rem; }
+    .faq details { border-top: 1px solid var(--linha); padding: 0.95rem 0; }
+    .faq details:last-child { border-bottom: 1px solid var(--linha); }
+    .faq summary { cursor: pointer; font-weight: 800; font-size: 1.12rem; line-height: 1.3; list-style-position: outside; }
+    .faq summary::marker { color: var(--laranja-escuro); }
+    .faq details p { margin: 0.7rem 0 0; color: var(--tinta-2); }
+    .fim h2 { max-width: 20ch; }
+    .rodape { position: relative; padding: 2.2rem 0 2.4rem; background: var(--papel); color: var(--tinta-2); font-size: 0.95rem; }
+    .rodape::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 6px;
+      background: linear-gradient(90deg,
+        var(--laranja) 0 12.5%, #f9c79a 12.5% 25%,
+        var(--verde) 25% 37.5%, var(--azul) 37.5% 50%,
+        #a9c4f0 50% 62.5%, #9edcae 62.5% 75%,
+        #c9a98f 75% 87.5%, #7a4a26 87.5% 100%);
+    }
+    .rodape p { margin: 0 0 0.4rem; max-width: none; }
+    .rodape a { color: var(--tinta); font-weight: 700; }
+    dialog.escolha { width: min(32rem, calc(100% - 2rem)); padding: 0; border: 0; border-radius: var(--raio); color: var(--tinta); background: var(--branco); box-shadow: 0 18px 60px rgb(0 0 0 / 0.35); }
+    dialog.escolha::backdrop { background: rgb(22 24 29 / 0.7); }
+    .escolha .caixa { position: relative; padding: 1.6rem 1.5rem 1.4rem; }
+    .escolha h2 { margin: 0 2rem 0.4rem 0; font-size: 1.45rem; line-height: 1.2; letter-spacing: -0.02em; }
+    .escolha p { margin: 0 0 1rem; color: var(--tinta-2); line-height: 1.45; }
+    .escolha .opcoes { display: grid; gap: 0.7rem; }
+    .escolha .placa { width: 100%; }
+    .escolha .secundaria { flex-direction: column; background: var(--branco); color: var(--tinta); border: 2px solid var(--tinta); cursor: pointer; }
+    .escolha .secundaria:hover { background: var(--papel); }
+    .escolha .secundaria small { display: block; font-weight: 400; font-size: 0.9rem; margin-top: 0.2rem; }
+    .escolha button.placa { cursor: pointer; }
+    .escolha label { display: block; font-weight: 700; margin-bottom: 0.35rem; }
+    .escolha input[type=email] { width: 100%; font: inherit; font-size: 1.1rem; padding: 0.75rem 0.8rem; border: 2px solid var(--linha); border-radius: var(--raio); margin-bottom: 0.8rem; }
+    .escolha input[type=email]:focus { outline: 3px solid var(--azul); outline-offset: 1px; border-color: var(--azul); }
+    .escolha .msg { min-height: 1.4em; margin: 0 0 0.8rem; font-weight: 700; }
+    .escolha .msg.erro { color: var(--falha); }
+    .escolha .msg.ok { color: var(--verde-faixa); }
+    .escolha .fechar { position: absolute; top: 0.6rem; right: 0.6rem; width: 2.4rem; height: 2.4rem; border: 0; background: none; font-size: 1.6rem; line-height: 1; cursor: pointer; color: var(--tinta-2); }
+    .escolha .voltar { margin-top: 0.8rem; border: 0; background: none; color: var(--azul-escuro); font: inherit; text-decoration: underline; cursor: pointer; padding: 0; }
+    .escolha [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <a class="pular" href="#oferta">Ir para a oferta</a>
+  <header class="topo">
+    <div class="miolo">
+      <span class="marca">
+        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <rect x="22" y="3" width="20" height="9" rx="2.5" fill="#16181D"/>
+          <rect x="5" y="9" width="54" height="52" rx="11" fill="#16181D"/>
+          <rect x="11" y="24" width="42" height="16" rx="3.5" fill="#FFFFFF"/>
+          <rect x="13.5" y="26.5" width="3.6" height="11" rx="1" fill="#F07F1A"/><rect x="13.5" y="29" width="3.6" height="2" fill="#FFFFFF"/><rect x="13.5" y="33.5" width="3.6" height="2" fill="#FFFFFF"/>
+          <rect x="18.3" y="26.5" width="3.6" height="11" rx="1" fill="#F07F1A"/>
+          <rect x="23.1" y="26.5" width="3.6" height="11" rx="1" fill="#2BA84A"/><rect x="23.1" y="29" width="3.6" height="2" fill="#FFFFFF"/><rect x="23.1" y="33.5" width="3.6" height="2" fill="#FFFFFF"/>
+          <rect x="27.9" y="26.5" width="3.6" height="11" rx="1" fill="#2B6CD9"/>
+          <rect x="32.7" y="26.5" width="3.6" height="11" rx="1" fill="#2B6CD9"/><rect x="32.7" y="29" width="3.6" height="2" fill="#FFFFFF"/><rect x="32.7" y="33.5" width="3.6" height="2" fill="#FFFFFF"/>
+          <rect x="37.5" y="26.5" width="3.6" height="11" rx="1" fill="#2BA84A"/>
+          <rect x="42.3" y="26.5" width="3.6" height="11" rx="1" fill="#7A4A26"/><rect x="42.3" y="29" width="3.6" height="2" fill="#FFFFFF"/><rect x="42.3" y="33.5" width="3.6" height="2" fill="#FFFFFF"/>
+          <rect x="47.1" y="26.5" width="3.6" height="11" rx="1" fill="#7A4A26"/>
+        </svg>
+        TI Ninja
+      </span>
+    </div>
+  </header>
+  <main id="conteudo">
+    <section class="hero" aria-labelledby="titulo">
+      <div class="miolo">
+        <div>
+          <p class="produto"><b>NOC</b> Ninja Official Curriculum</p>
+          <h1 id="titulo">Segunda, 9h. A rede do escritório parou, e a causa não está em nenhuma das máquinas.</h1>
+          <p class="tese">Está no firewall, no servidor ou no domínio. O NOC é a formação completa da TI Ninja, o caminho do suporte ao Analista de Infraestrutura e Redes. No seu computador, você monta a rede de uma empresa na ordem em que cada peça depende da anterior: virtualização, servidor, firewall, Windows Server com Active Directory, arquivos e backup.</p>
+          <p class="promessa">Com a base e a ordem, você sai pronto pra aprender sozinho qualquer outra ferramenta do mercado.</p>
+          <div class="acao">
+            <a class="placa" href="https://pay.hotmart.com/M108602146Y?off=dmru0x4q">Quero entrar na Turma 1</a>
+            <small>Pagamento na Hotmart, em até 12x no cartão. Garantia de 15 dias.</small>
+          </div>
+        </div>
+        <div class="ficha-turma" aria-label="Datas da Turma 1">
+          <p class="prazo">
+            <strong>Condição de abertura até sexta, 27/11, às 21h30</strong>
+            <span>Depois, as inscrições seguem até terça, 01/12, às 23h59, sem essa condição.</span>
+          </p>
+          <dl>
+            <div><dt>Começa</dt><dd>Quarta, 02/12</dd></div>
+            <div><dt>Ritmo</dt><dd>Um módulo novo toda quarta</dd></div>
+            <div><dt>Ao vivo</dt><dd>Encontros comigo a cada duas semanas, às 20h</dd></div>
+            <div><dt>Prática</dt><dd>Laboratório no seu computador</dd></div>
+            <div><dt>Garantia</dt><dd>15 dias</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+    <section class="secao" aria-labelledby="papeis-titulo">
+      <div class="miolo">
+        <h2 id="papeis-titulo">O mesmo chamado, visto de dois lugares.</h2>
+        <p class="abre">Na aula de quinta, 26/11, você viu um defeito de verdade numa rede pequena, com firewall, Windows Server e domínio. O NOC é esse caminho inteiro, em ordem, com laboratório pra praticar sem derrubar a rede de ninguém.</p>
+        <div class="papeis">
+          <div class="papel papel-suporte">
+            <h3>O suporte</h3>
+            <ul>
+              <li>Atende o chamado.</li>
+              <li>Testa a máquina, reinicia, confere o cabo.</li>
+              <li>Quando a causa está no servidor ou no firewall, escala pra quem cuida da infraestrutura.</li>
+            </ul>
+          </div>
+          <div class="ponte"><span>o caminho do NOC</span></div>
+          <div class="papel papel-analista">
+            <h3>O Analista de Infraestrutura e Redes</h3>
+            <ul>
+              <li>Olha a rede inteira: firewall, servidor, domínio e as máquinas.</li>
+              <li>Sabe onde procurar quando a empresa para.</li>
+              <li>Corrige na origem e registra o que fez.</li>
+            </ul>
+          </div>
+        </div>
+        <p>Os dois são TI. Eu comecei do lado do suporte, em 2001, numa imobiliária.</p>
+        <div class="prazo-2027">
+          <p>Se 2027 apertar, a empresa que ainda roda o Windows Server 2016 vai ter de decidir o que fazer com ele. Pagar o suporte estendido da Microsoft, o ESU, ou migrar. Junto vão o domínio que roda nele e as máquinas que dependem dele. Essa decisão é trabalho de infraestrutura.</p>
+          <p class="fonte">Fonte: <a href="https://learn.microsoft.com/pt-br/lifecycle/products/windows-server-2016" rel="noopener">Microsoft Learn, ciclo de vida do Windows Server 2016</a>.</p>
+        </div>
+      </div>
+    </section>
+    <section class="secao" aria-labelledby="ordem-titulo">
+      <div class="miolo ordem-grade">
+        <div>
+          <h2 id="ordem-titulo">Cada peça depende da anterior. Por isso o NOC tem ordem.</h2>
+          <p class="abre">Nos comentários do canal, duas dúvidas aparecem mais que todas: por onde começar e como não derrubar nada em produção. Quem estuda infraestrutura em vídeos soltos fica com buracos entre um assunto e outro. E o problema da empresa costuma aparecer justo ali.</p>
+          <p>No NOC, a ordem é a da própria rede:</p>
+          <ol class="ordem">
+            <li>O método e a rede: endereço IP, máscara, gateway, DNS e DHCP. Sem isso, nenhum servidor conversa com nada.</li>
+            <li>A virtualização e o servidor, porque é neles que o resto vai rodar.</li>
+            <li>O firewall, que separa a rede da empresa da internet.</li>
+            <li>O Windows Server com Active Directory, que depende do DNS que você já entendeu lá no começo.</li>
+            <li>Os arquivos e as permissões, em cima do domínio.</li>
+            <li>O backup, por último, quando já existe o que proteger.</li>
+          </ol>
+          <p>Tudo no seu computador, num laboratório. Dá pra quebrar, testar e voltar atrás sem derrubar ninguém. De Redes em diante, cada módulo fecha com um caso ou uma entrega.</p>
+        </div>
+        <div>
+          <table class="bancada">
+            <caption>A rede que você monta</caption>
+            <tbody>
+              <tr><th scope="row">FW01</th><td>Firewall OPNsense, na entrada da rede</td><td class="ip">10.77.0.254</td></tr>
+              <tr><th scope="row">DC01</th><td>Windows Server com Active Directory e DNS</td><td class="ip">10.77.0.10</td></tr>
+              <tr><th scope="row">DC02</th><td>Segundo controlador de domínio</td><td class="ip">10.77.0.11</td></tr>
+              <tr><th scope="row">FS01</th><td>Servidor de arquivos</td><td class="ip">10.77.0.20</td></tr>
+              <tr><th scope="row">BK01</th><td>Backup com Veeam</td><td class="ip">10.77.0.40</td></tr>
+              <tr><th scope="row">CL01</th><td>Computador do usuário, no domínio</td><td class="ip">10.77.0.100</td></tr>
+            </tbody>
+          </table>
+          <p class="bancada-nota">Nomes e endereços da bancada do curso. O domínio é corp.tininja.test.</p>
+        </div>
+      </div>
+    </section>
+    <section class="secao fundo-papel" aria-labelledby="turma-titulo">
+      <div class="miolo turma-grade">
+        <div>
+          <h2 id="turma-titulo">O que você monta, semana a semana</h2>
+          <p class="abre">A Turma 1 começa na quarta, 02/12. O calendário prevê um módulo novo por quarta, até 27/01. O bônus de Linux sai em 03/02.</p>
+          <p class="como-texto">Cada módulo tem apostila com casos práticos, laboratório guiado, critérios de entrega e avaliação. As aulas ficam na área de membros da Hotmart. A cada duas semanas, tem encontro ao vivo comigo, às 20h, pra tirar dúvida e acompanhar a turma. A semana de 30/12 não tem módulo novo. É a semana pra quem atrasou.</p>
+          <p class="legenda">No fio ao lado: quadrado preto é módulo, bolinha azul é encontro ao vivo, quadrado verde é bônus e o trecho tracejado é a pausa.</p>
+          <div class="acao">
+            <a class="placa" href="https://pay.hotmart.com/M108602146Y?off=dmru0x4q">Quero entrar na Turma 1</a>
+          </div>
+        </div>
+        <div>
+          <ol class="trilha">
+            <li class="dia">
+              <p class="data"><time datetime="2026-12-02">Quarta, 02/12</time></p>
+              <div class="item">
+                <span class="no" aria-hidden="true">0</span>
+                <h3>Método</h3>
+                <p>Começa pela aula inaugural. Depois: como estudar, montar a bancada e registrar evidências. Ler o erro como mapa, usar a documentação oficial, pesquisar em inglês, usar IA com validação e encarar uma ferramenta que você nunca viu.</p>
+              </div>
+              <div class="item">
+                <span class="no" aria-hidden="true">1</span>
+                <h3>Redes e TCP/IP</h3>
+                <p>A bancada no VirtualBox, endereço IP, máscara e prefixo, gateway, DNS com nslookup e os tipos de registro, DHCP e as ferramentas de diagnóstico.</p>
+              </div>
+              <div class="item">
+                <span class="no" aria-hidden="true">2</span>
+                <h3>Virtualização</h3>
+                <p>Hipervisor tipo 1 e tipo 2, como escolher plataforma e licença, CPU, memória e disco, ponto de retorno e quando usar container ou VM.</p>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2026-12-09">Quarta, 09/12</time></p>
+              <div class="item">
+                <span class="no" aria-hidden="true">3</span>
+                <h3>Infraestrutura e servidores</h3>
+                <p>Hardware de servidor, storage DAS, NAS e SAN, RAID (capacidade, falha e reconstrução) e dimensionamento. O caso é o de um servidor que perdeu tudo.</p>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2026-12-10">Quinta, 10/12</time></p>
+              <div class="item ao-vivo">
+                <span class="no" aria-hidden="true"></span>
+                <h3>Encontro ao vivo, 20h</h3>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2026-12-16">Quarta, 16/12</time></p>
+              <div class="item">
+                <span class="no" aria-hidden="true">4</span>
+                <h3>Hyper-V</h3>
+                <p>Instalação no servidor, switches virtuais, criação de VMs do plano ao primeiro boot, checkpoints e Windows Admin Center.</p>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2026-12-23">Quarta, 23/12</time></p>
+              <div class="item">
+                <span class="no" aria-hidden="true">5</span>
+                <h3>Firewall com OPNsense</h3>
+                <p>Instalação e interfaces, regras e aliases, NAT de destino e de origem, zonas e VLANs e VPN com OpenVPN. Pra quem vem do pfSense, tem a transição.</p>
+              </div>
+              <div class="item ao-vivo">
+                <span class="no" aria-hidden="true"></span>
+                <h3>Encontro ao vivo, 20h</h3>
+              </div>
+            </li>
+            <li class="dia pausa">
+              <p class="data"><time datetime="2026-12-30">Quarta, 30/12</time></p>
+              <p>Pausa de fim de ano. Sem módulo novo.</p>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2027-01-06">Quarta, 06/01</time></p>
+              <div class="item">
+                <span class="no" aria-hidden="true">6</span>
+                <h3>Windows Server e Active Directory</h3>
+                <p>Promoção do controlador de domínio, usuários e grupos, AGDLP e permissões, OUs e delegação, GPOs, DNS integrado ao AD, segundo DC e funções FSMO, segurança básica com LAPS e diagnóstico do AD.</p>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2027-01-07">Quinta, 07/01</time></p>
+              <div class="item ao-vivo">
+                <span class="no" aria-hidden="true"></span>
+                <h3>Encontro ao vivo, 20h</h3>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2027-01-13">Quarta, 13/01</time></p>
+              <div class="item">
+                <span class="no" aria-hidden="true">7</span>
+                <h3>File Server e DFS</h3>
+                <p>Compartilhamentos, permissões NTFS e de compartilhamento, NTFS com AGDLP, DFS Namespace e recuperação com Shadow Copies.</p>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2027-01-20">Quarta, 20/01</time></p>
+              <div class="item">
+                <span class="no" aria-hidden="true">8</span>
+                <h3>Backup com Veeam</h3>
+                <p>A estratégia 3-2-1, o Veeam Community Edition, o primeiro job de backup, restore da VM inteira ou de um arquivo, retenção e verificação.</p>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2027-01-21">Quinta, 21/01</time></p>
+              <div class="item ao-vivo">
+                <span class="no" aria-hidden="true"></span>
+                <h3>Encontro ao vivo, 20h</h3>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2027-01-27">Quarta, 27/01</time></p>
+              <div class="item">
+                <span class="no" aria-hidden="true">9</span>
+                <h3>Backup por workload</h3>
+                <p>Backup de controlador de domínio, de servidor de arquivos, de SQL Server com recuperação no tempo e de aplicações e ERPs. Fecha com o encerramento da formação.</p>
+              </div>
+              <div class="item extra">
+                <span class="no" aria-hidden="true">+</span>
+                <h3>Capítulo extra: o próximo nível, a nuvem</h3>
+                <p>Uma introdução a como a rede que você montou se conecta à nuvem e ao que mudam o Entra ID, o Microsoft 365 e o Azure.</p>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2027-02-03">Quarta, 03/02</time></p>
+              <div class="item bonus">
+                <span class="no" aria-hidden="true">B</span>
+                <h3>Bônus: Linux essencial</h3>
+                <p>Ubuntu, permissões, SSH com chave, systemd, logs e diagnóstico de rede.</p>
+              </div>
+            </li>
+            <li class="dia">
+              <p class="data"><time datetime="2027-02-04">Quinta, 04/02</time></p>
+              <div class="item ao-vivo">
+                <span class="no" aria-hidden="true"></span>
+                <h3>Encontro ao vivo, 20h</h3>
+              </div>
+            </li>
+          </ol>
+          <p class="pronto">O que já estiver pronto antes da data fica liberado desde o primeiro dia.</p>
+        </div>
+      </div>
+    </section>
+    <section class="secao" aria-labelledby="bonus-titulo">
+      <div class="miolo">
+        <h2 id="bonus-titulo">Junto com a formação, cinco bônus</h2>
+        <ul class="bonus-lista">
+          <li>
+            <h3>Proxmox na Prática</h3>
+            <p>O NOC ensina Hyper-V. Aqui você pratica a outra plataforma, o Proxmox, que é de código aberto: a bancada, a VM ideal, um Windows Server 2025 com 4 GB de memória, a operação do dia a dia e o ProxMenux. Assim a virtualização não fica presa a uma ferramenta só. Já está pronto.</p>
+          </li>
+          <li>
+            <h3>Ninja Bot no Telegram</h3>
+            <p>Um agente de IA no seu Telegram pra te ajudar nos estudos.</p>
+          </li>
+          <li>
+            <h3>Live sobre IA, só para a turma</h3>
+            <p>Um encontro ao vivo sobre como usar agentes de IA no trabalho do dia a dia. A data é anunciada para a turma.</p>
+          </li>
+          <li>
+            <h3>Checklist Técnico de Novo Cliente</h3>
+            <p>Você entra numa empresa e, numa visita, sabe o que está bom e o que está em risco. São 73 itens em 13 áreas, com nota de maturidade, orçamento em horas pelo seu próprio valor/hora e relatório em PDF. Já está no ar.</p>
+          </li>
+          <li>
+            <h3>Linux essencial</h3>
+            <p>Instalação do Ubuntu, sistema de arquivos e permissões, SSH com chave, systemd, logs e investigação de falhas, UFW e diagnóstico de rede. É pro dia em que aparecer um servidor Linux na rede que você cuida. Sai na quarta, 03/02.</p>
+          </li>
+        </ul>
+        <div class="acao">
+          <a class="placa" href="https://pay.hotmart.com/M108602146Y?off=dmru0x4q">Quero entrar na Turma 1</a>
+        </div>
+      </div>
+    </section>
+    <section class="secao" id="mentoria" aria-labelledby="mentoria-titulo">
+      <div class="miolo">
+        <h2 id="mentoria-titulo">Para os 10 primeiros: 6 meses de mentoria comigo</h2>
+        <p class="abre">Os 10 primeiros que entrarem na Turma 1 levam, junto com o NOC, 6 meses de mentoria comigo. A meta é esta: em 6 meses, você termina com a rede de uma empresa montada, documentada e defendida por você.</p>
+        <ul class="bonus-lista">
+          <li>
+            <h3>Grupo só dos 10</h3>
+            <p>Um grupo exclusivo, que eu mesmo respondo.</p>
+          </li>
+          <li>
+            <h3>Encontro toda semana</h3>
+            <p>Um encontro por semana com o grupo.</p>
+          </li>
+          <li>
+            <h3>Sessão individual todo mês</h3>
+            <p>De 30 a 45 minutos, só você e eu, olhando o seu caso.</p>
+          </li>
+        </ul>
+        <p>Uma empresa me pagou R$ 21 mil por 3 meses de mentoria. Aqui são 6 meses, e eles vêm junto com o NOC. São 10 vagas porque mais do que isso eu não consigo acompanhar direito. Contam pela ordem das compras aprovadas; no boleto, a vaga conta quando o pagamento compensar.</p>
+      </div>
+    </section>
+    <section class="secao" aria-labelledby="quem-titulo">
+      <div class="miolo quem-grade">
+        <img class="foto" src="/assets/img/curso-eduardo-560.webp" alt="Eduardo Honorato" width="560" height="560" loading="lazy" decoding="async">
+        <div>
+          <h2 id="quem-titulo">Quem ensina</h2>
+          <p class="abre">Em 1997, eu era office boy. Sou o Eduardo Honorato, do TI Ninja.</p>
+          <ol class="tempo">
+            <li><b>1997</b><span>Office boy.</span></li>
+            <li><b>2001</b><span>Suporte interno numa imobiliária.</span></li>
+            <li><b>2004</b><span>Tirei o MCSA e virei consultor.</span></li>
+            <li><b>Hoje</b><span>Tenho um MSP, uma empresa que cuida da TI de outras empresas. Atendo direto o corporativo.</span></li>
+          </ol>
+          <p>No canal TI Ninja, no YouTube e no Instagram, eu mostro falha real de rede e o raciocínio pra achar a causa. No NOC, o raciocínio é o mesmo, aplicado à rede inteira de uma empresa.</p>
+        </div>
+      </div>
+    </section>
+    <section class="secao fundo-papel" aria-labelledby="praquem-titulo">
+      <div class="miolo">
+        <h2 id="praquem-titulo">Pra quem é o NOC</h2>
+        <div class="filtro">
+          <div class="e-pra-voce">
+            <h3>É pra você se</h3>
+            <ul>
+              <li>Está no suporte (N1, estágio, analista de suporte) e quer ir para a infraestrutura.</li>
+              <li>Atende chamado e quer entender o que acontece no servidor, no domínio e no firewall.</li>
+              <li>Aprendeu infraestrutura aos pedaços e quer a base em ordem.</li>
+              <li>Quer praticar num laboratório antes de mexer na rede de uma empresa.</li>
+            </ul>
+          </div>
+          <div class="nao-e">
+            <h3>Não é pra você se</h3>
+            <ul>
+              <li>Já trabalha há anos como Analista de Infraestrutura e Redes. Vai rever o que já sabe.</li>
+              <li>Ainda não atende chamados de rede, Windows ou impressora. Aí o começo certo é o Fundamentos de Rede.</li>
+              <li>Procura garantia de emprego ou de salário. Isso eu não prometo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="secao oferta" id="oferta" aria-labelledby="oferta-titulo">
+      <div class="miolo">
+        <div>
+          <h2 id="oferta-titulo">Tudo o que entra na Turma 1</h2>
+          <p class="abre">A condição de abertura vale até sexta, 27/11, às 21h30. Depois, as inscrições continuam abertas até terça, 01/12, às 23h59, sem essa condição. Então fecham.</p>
+          <div class="garantia">
+            <p class="selo" aria-hidden="true"><b>15</b><span>dias</span></p>
+            <div>
+              <h3>Garantia de 15 dias</h3>
+              <p>Se não fizer sentido pra você, é só pedir o reembolso pela Hotmart dentro desse prazo. Você recebe o valor de volta.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cartao">
+          <h3>NOC, Ninja Official Curriculum</h3>
+          <ul class="inclui">
+            <li>A formação completa: Método, Redes e TCP/IP, Virtualização, Infraestrutura e servidores, Hyper-V, Firewall com OPNsense, Windows Server e Active Directory, File Server e DFS, Backup com Veeam e Backup por workload</li>
+            <li>Capítulo extra: o próximo nível, a nuvem</li>
+            <li>Apostila com casos práticos, laboratório guiado e critérios de entrega em cada módulo</li>
+            <li>Encontros ao vivo comigo a cada duas semanas</li>
+            <li>Bônus: Proxmox na Prática, Ninja Bot no Telegram, live sobre IA só para a turma, Checklist Técnico de Novo Cliente e Linux essencial</li>
+            <li>Se você estiver entre os 10 primeiros: 6 meses de mentoria comigo</li>
+          </ul>
+          <dl class="precos">
+            <div class="preco preco-abertura">
+              <dt>Condição de abertura, até sexta, 27/11, às 21h30</dt>
+              <dd>R$ 1.197</dd>
+            </div>
+            <div class="preco">
+              <dt>Depois disso, até terça, 01/12, às 23h59</dt>
+              <dd>R$ 1.497</dd>
+            </div>
+          </dl>
+          <p class="parcelas">Em até 12x no cartão, com os juros do parcelamento.</p>
+          <a class="placa" href="https://pay.hotmart.com/M108602146Y?off=dmru0x4q">Quero entrar na Turma 1</a>
+          <p class="depois">O pagamento é feito na Hotmart. O acesso à área de membros chega no e-mail da compra.</p>
+          <p class="aluno">Já é aluno do Fundamentos de Rede? Clique no botão e escolha "Já sou aluno do Fundamentos" para liberar a sua condição.</p>
+        </div>
+      </div>
+    </section>
+    <section class="secao" aria-labelledby="faq-titulo">
+      <div class="miolo">
+        <h2 id="faq-titulo">Perguntas antes de entrar</h2>
+        <div class="faq">
+          <details>
+            <summary>O que quer dizer NOC?</summary>
+            <p>Ninja Official Curriculum. O nome vem dos cursos oficiais da Microsoft, os MOC. O NOC é da TI Ninja e não tem vínculo com a Microsoft.</p>
+          </details>
+          <details>
+            <summary>Preciso ter feito o Fundamentos de Rede?</summary>
+            <p>Não. O NOC começa pelo Método e por Redes e TCP/IP. Mas, se você ainda não atende chamado de rede, Windows ou impressora, o começo certo é o Fundamentos.</p>
+          </details>
+          <details>
+            <summary>Quando eu recebo as aulas?</summary>
+            <p>Na quarta, 02/12, saem a aula inaugural e os três primeiros módulos. Depois, um módulo por quarta até 27/01, com pausa em 30/12, e o bônus de Linux em 03/02. O que já estiver pronto antes da data fica liberado desde o primeiro dia.</p>
+          </details>
+          <details>
+            <summary>E se eu não conseguir acompanhar o ritmo da turma?</summary>
+            <p>A semana de 30/12 não tem módulo novo justamente pra quem atrasou. E as aulas ficam gravadas na área de membros da Hotmart, pra você seguir no seu ritmo.</p>
+          </details>
+          <details>
+            <summary>Como funcionam os encontros ao vivo?</summary>
+            <p>São a cada duas semanas, às 20h: 10/12, 23/12, 07/01, 21/01 e 04/02. Servem pra tirar dúvida e acompanhar a turma.</p>
+          </details>
+          <details>
+            <summary>Que computador eu preciso pra montar o laboratório?</summary>
+            <p>A bancada de Redes e TCP/IP usa o VirtualBox, que é gratuito.</p>
+          </details>
+          <details>
+            <summary>Posso assistir pelo celular?</summary>
+            <p>Pode, pela área de membros da Hotmart. A prática precisa de computador.</p>
+          </details>
+          <details>
+            <summary>Preciso saber inglês?</summary>
+            <p>As aulas são em português. O Método mostra como pesquisar documentação técnica em inglês.</p>
+          </details>
+          <details>
+            <summary>Como eu pago?</summary>
+            <p>Pela Hotmart: no cartão em até 12x, com os juros do parcelamento, ou à vista no Pix, no boleto ou no PayPal.</p>
+          </details>
+          <details>
+            <summary>E se eu entrar e não gostar?</summary>
+            <p>A garantia é de 15 dias. Peça o reembolso pela Hotmart dentro desse prazo e você recebe o valor de volta.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <section class="secao fim fundo-papel" aria-labelledby="fim-titulo">
+      <div class="miolo">
+        <h2 id="fim-titulo">Na próxima segunda às 9h, quando a rede parar, a pergunta vai ser a mesma: onde procurar.</h2>
+        <p class="abre">O NOC é a ordem pra responder. A Turma 1 começa na quarta, 02/12. A condição de abertura vai até sexta, 27/11, às 21h30, e as inscrições fecham na terça, 01/12, às 23h59.</p>
+        <div class="acao">
+          <a class="placa" href="https://pay.hotmart.com/M108602146Y?off=dmru0x4q">Quero entrar na Turma 1</a>
+          <small>Garantia de 15 dias pela Hotmart.</small>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="rodape">
+    <div class="miolo">
+      <p><a href="/politica-de-privacidade/">Política de Privacidade</a></p>
+      <p>DIGITAL RAPIDO COMERCIO E SERVICOS LTDA, CNPJ 10.491.185/0001-38. <a href="mailto:contato@tininja.net">contato@tininja.net</a></p>
+      <p>© 2026 TI Ninja</p>
+    </div>
+  </footer>
+  <dialog class="escolha" id="escolha" aria-labelledby="escolha-titulo">
+    <div class="caixa">
+      <button type="button" class="fechar" data-fechar aria-label="Fechar">&times;</button>
+      <div data-passo="1">
+        <h2 id="escolha-titulo">Quase lá</h2>
+        <p>Você já é aluno do Fundamentos de Rede?</p>
+        <div class="opcoes">
+          <a class="placa" id="ir-novo" href="https://pay.hotmart.com/M108602146Y?off=dmru0x4q">Sou aluno novo</a>
+          <button type="button" class="placa secundaria" data-ir-aluno>Já sou aluno do Fundamentos<small>Desconto pelos módulos que você já tem</small></button>
+        </div>
+      </div>
+      <div data-passo="2" hidden>
+        <h2>Aluno do Fundamentos</h2>
+        <p>Digite o e-mail que você usou para comprar o Fundamentos de Rede na Hotmart.</p>
+        <form id="form-aluno" novalidate>
+          <label for="email-aluno">E-mail da compra</label>
+          <input type="email" id="email-aluno" name="email" autocomplete="email" inputmode="email" required>
+          <p class="msg" id="msg-aluno" role="status" aria-live="polite"></p>
+          <button type="submit" class="placa">Liberar minha condição de aluno</button>
+        </form>
+        <button type="button" class="voltar" data-voltar>Voltar</button>
+      </div>
+    </div>
+  </dialog>
+  <script>
+  (function () {
+    var CHECKOUT = "https://pay.hotmart.com/M108602146Y?off=";
+    var dlg = document.getElementById("escolha");
+    // Sem suporte a <dialog> ou WebCrypto: o botão segue direto para o checkout de aluno novo.
+    if (!dlg || typeof dlg.showModal !== "function" || !window.crypto || !crypto.subtle) return;
+    var novo = document.getElementById("ir-novo");
+    var passos = dlg.querySelectorAll("[data-passo]");
+    var form = document.getElementById("form-aluno");
+    var campo = document.getElementById("email-aluno");
+    var msg = document.getElementById("msg-aluno");
+    var enviar = form.querySelector("button[type=submit]");
+    var lista = null;
+    function passo(n) {
+      passos.forEach(function (el) { el.hidden = el.getAttribute("data-passo") !== String(n); });
+      if (n === 2) setTimeout(function () { campo.focus(); }, 30);
+    }
+    function aviso(texto, tipo) { msg.className = "msg" + (tipo ? " " + tipo : ""); msg.textContent = texto; }
+    function abrir(href, n) { if (href) novo.href = href; aviso(""); passo(n || 1); if (!dlg.open) dlg.showModal(); }
+    function carregar() {
+      if (!lista) lista = fetch("alunos.json", { cache: "no-store" }).then(function (r) {
+        if (!r.ok) throw new Error("lista"); return r.json();
+      }).catch(function (e) { lista = null; throw e; });
+      return lista;
+    }
+    document.querySelectorAll('a.placa[href*="pay.hotmart.com"]').forEach(function (a) {
+      if (a.id === "ir-novo") return;
+      a.addEventListener("click", function (ev) { ev.preventDefault(); abrir(a.href, 1); carregar().catch(function () {}); });
+    });
+    dlg.querySelector("[data-ir-aluno]").addEventListener("click", function () { passo(2); carregar().catch(function () {}); });
+    dlg.querySelector("[data-voltar]").addEventListener("click", function () { aviso(""); passo(1); });
+    dlg.querySelector("[data-fechar]").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (ev) { if (ev.target === dlg) dlg.close(); });
+    var te = new TextEncoder();
+    function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join(""); }
+    function deHex(h) { var o = new Uint8Array(h.length / 2); for (var i = 0; i < o.length; i++) o[i] = parseInt(h.substr(i * 2, 2), 16); return o; }
+    async function conferir(email, l) {
+      var base = await crypto.subtle.importKey("raw", te.encode(email), "PBKDF2", false, ["deriveBits"]);
+      var dk = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: deHex(l.sal), iterations: l.iter }, base, 256);
+      var k = await crypto.subtle.importKey("raw", dk, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+      var id = hex(await crypto.subtle.sign("HMAC", k, te.encode("id"))).slice(0, 24);
+      var ct = l.e[id];
+      if (!ct) return null;
+      var bytes = Uint8Array.from(atob(ct), function (c) { return c.charCodeAt(0); });
+      var out = new Uint8Array(bytes.length);
+      for (var i = 0, bloco = 0; i < bytes.length; bloco++) {
+        var f = new Uint8Array(await crypto.subtle.sign("HMAC", k, te.encode("k" + bloco)));
+        for (var j = 0; j < f.length && i < bytes.length; j++, i++) out[i] = bytes[i] ^ f[j];
+      }
+      return JSON.parse(new TextDecoder().decode(out));
+    }
+    form.addEventListener("submit", async function (ev) {
+      ev.preventDefault();
+      var email = campo.value.trim().toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { aviso("Confira o e-mail digitado.", "erro"); return; }
+      aviso("Conferindo...");
+      enviar.disabled = true;
+      try {
+        var c = await conferir(email, await carregar());
+        if (!c) {
+          aviso("Não achei esse e-mail entre os alunos do Fundamentos. Use o mesmo e-mail da compra na Hotmart ou fale comigo em contato@tininja.net.", "erro");
+          return;
+        }
+        var oferta = Date.now() < Date.parse(c.virada) ? c.a : c.b;
+        aviso("Achei! Abrindo a sua condição de aluno...", "ok");
+        window.location.href = CHECKOUT + oferta + "&email=" + encodeURIComponent(email) + "&sck=pagina-aluno-fundamentos";
+      } catch (e) {
+        aviso("Não consegui conferir agora. Tente de novo em instantes ou fale comigo em contato@tininja.net.", "erro");
+      } finally {
+        enviar.disabled = false;
+      }
+    });
+    if (/[?&]aluno=1(&|$)/.test(location.search)) abrir(null, 2);
+  })();
+  </script>
+</body>
+</html>
